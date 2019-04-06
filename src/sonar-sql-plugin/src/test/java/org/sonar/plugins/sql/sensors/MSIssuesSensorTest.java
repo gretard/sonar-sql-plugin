@@ -14,6 +14,8 @@ import org.sonar.api.batch.fs.internal.DefaultInputFile;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.api.batch.sensor.internal.SensorContextTester;
 import org.sonar.api.utils.internal.JUnitTempFolder;
+import org.sonar.api.utils.log.LogTester;
+import org.sonar.api.utils.log.LoggerLevel;
 import org.sonar.plugins.sql.Constants;
 
 public class MSIssuesSensorTest {
@@ -21,7 +23,10 @@ public class MSIssuesSensorTest {
 	@Rule
 	public TemporaryFolder folder = new TemporaryFolder();
 
-	@org.junit.Rule
+	@Rule
+	public LogTester logTester = new LogTester().setLevel(LoggerLevel.DEBUG);
+
+	@Rule
 	public JUnitTempFolder temp = new JUnitTempFolder();
 
 	@Test
@@ -35,24 +40,21 @@ public class MSIssuesSensorTest {
 		File resFile = folder.newFile("staticcodeanalysis.results.xml");
 
 		FileUtils.write(resFile,
-				"<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" + 
-				"<Problems>" + 
-				"<Problem>" + "<Line>1</Line>" + "<Rule>S1</Rule>"
-						+ "<ProblemDescription>Test</ProblemDescription>" + "<Severity>MAJOR</Severity>"
+				"<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" + "<Problems>" + "<Problem>" + "<Line>1</Line>"
+						+ "<Rule>S1</Rule>" + "<ProblemDescription>Test</ProblemDescription>"
+						+ "<Severity>MAJOR</Severity>"
 
 						+ "<SourceFile>" + baseFile.getAbsolutePath() + "</SourceFile>" + "</Problem></Problems>",
 				Charset.defaultCharset());
-	
+
 		FileUtils.copyURLToFile(getClass().getResource("/tsql/sample2.sql"), baseFile);
 		String contents = new String(Files.readAllBytes(baseFile.toPath()));
 
 		DefaultInputFile ti = new TestInputFileBuilder("test", folder.getRoot(), baseFile).initMetadata(contents)
-				.setLanguage(Constants.languageKey)
-				.setContents(contents).build();
+				.setLanguage(Constants.languageKey).setContents(contents).build();
 		ctxTester.fileSystem().add(ti);
 		MSIssuesSensor s = new MSIssuesSensor();
 		s.execute(ctxTester);
-
 		Assert.assertEquals(1, ctxTester.allExternalIssues().size());
 	}
 

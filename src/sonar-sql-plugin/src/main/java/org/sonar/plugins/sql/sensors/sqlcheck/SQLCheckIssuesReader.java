@@ -54,7 +54,7 @@ public class SQLCheckIssuesReader {
 				}
 				SQLCheckIssue issue = new SQLCheckIssue();
 				issue.description = issueDescription.toString().trim();
-				issue.name = issueName.substring(2, issueName.length()).trim();
+				issue.name = issueName.substring(2, issueName.length()).split(":", 2)[0].trim();
 				issue.risk = risk.split("\\(", 2)[1].split("\\)", 2)[0].trim();
 				issue.statement = statement.split(":", 2)[1].trim();
 				issue.message = risk.substring(risk.lastIndexOf(')') + 1).trim();
