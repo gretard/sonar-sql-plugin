@@ -1,0 +1,1961 @@
+<sql-rules><rule>
+<key>BP001</key>
+<internalKey>BP001</internalKey>
+<name>Index type is not specified</name>
+<description><![CDATA[<h2>Index type is not specified</h2><p>The index type (whether it is CLUSTERED or NONCLUSTERED) is not specified explicitly in the CREATE INDEX statement.</p><p>You can only have one clustered index on a table, of course, and this choice has a lot of influence on the performance of queries, so you should take care to select wisely. The primary key is often, but not only, the correct choice.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP002</key>
+<internalKey>BP002</internalKey>
+<name>ORDER BY clause with constants</name>
+<description><![CDATA[<h2>ORDER BY clause with constants</h2><p>Constants are being used in the ORDER BY clause.</p><p>The use of constants in the ORDER BY is deprecated for removal in the future. They make ORDER BY statements more difficult to understand.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP003</key>
+<internalKey>BP003</internalKey>
+<name>SELECT in trigger</name>
+<description><![CDATA[<h2>SELECT in trigger</h2><p>One or more SELECT statements were found in a trigger.</p><p>The trigger should never return data to a client. It is possible to place a SELECT statement in a trigger, but it serves no practical, useful purpose, and can have unexpected effects.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP004</key>
+<internalKey>BP004</internalKey>
+<name>INSERT without column list</name>
+<description><![CDATA[<h2>INSERT without column list</h2><p>The column list for the insert statement is missing.</p><p>The INSERT statement need not have a column list, but omitting it assumes certain columns in a particular order. It likely to cause errors if the table in to which the inserts will be made is changed, particularly with table variables where insertions are not checked. Column lists also make code more intelligible.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP005</key>
+<internalKey>BP005</internalKey>
+<name>Asterisk in select list</name>
+<description><![CDATA[<h2>Asterisk in select list</h2><p>There is an asterisk instead of a column list in a SELECT statement.</p><p>SELECT * FROM in IF EXISTS statements are fine, but SELECT *  in other contexts assumes certain columns in a particular order, which may not last. Also, results should always consist of just the columns you need.</p><p>Using SELECT * FROM within IF EXISTS statements are fine, but in other contexts it causes several problems. For example, INSERT INTO…SELECT * FROM statement assumes the columns are in a particular order, and that order may not last. Also, selecting all the columns in a table when you don’t need them all can cause unnecessary network load and query performance problems.</p><p>Learn more about this code smell  -  Finding code smells using SQL Prompt: Asterisk in SELECT list</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP006</key>
+<internalKey>BP006</internalKey>
+<name>TOP without ORDER BY</name>
+<description><![CDATA[<h2>TOP without ORDER BY</h2><p>TOP is being used in a SELECT statement without a subsequent ORDER BY clause.</p><p>This is legal in SQL but meaningless because asking for the TOP 10 rows implies a certain order, and tables have no implicit logical order.</p><p>Using TOP in a SELECT statement without a subsequent ORDER BY clause is legal in SQL Server, but meaningless because asking for the TOP 10 rows implies that the data is guaranteed to be in a certain order, and tables have no implicit logical order. You must specify the order.In a SELECT statement, you should always use an ORDER BY clause with the TOP clause, to specify which rows are affected by the TOP filter. If you need to implement a paging solution in an application widget, to send chunks or “pages” of data to the client so a user can scroll through data, it is better and easier to use the OFFSET–FETCH sub-clause in the ORDER BY clause, instead of the TOP clause.See TOP without ORDER BY in a SELECT statement for examples.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP007</key>
+<internalKey>BP007</internalKey>
+<name>Variable length datatype without explicit length</name>
+<description><![CDATA[<h2>Variable length datatype without explicit length</h2><p>Variable length datatype is declared without explicit length (VARCHAR, VARBINARY and NVARCHAR).</p><p>A variable length datatype that is declared without an explicit length is a shorthand for specifying a length of 1.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP008</key>
+<internalKey>BP008</internalKey>
+<name>CAST/CONVERT to var types without length</name>
+<description><![CDATA[<h2>CAST/CONVERT to var types without length</h2><p>The length of VARCHAR, VARBINARY and NVARCHAR datatype in a CAST or CONVERT clause wasn’t explicitly specified.</p><p>When you convert a datatype to a varchar, you do not have to specify the length. If you don’t do so, SQL Server will use a Varchar length sufficient to hold the string. It is better to specify the length because SQL Server has no idea what length you may subsequently need.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP009</key>
+<internalKey>BP009</internalKey>
+<name>Avoid var types of length 1 or 2</name>
+<description><![CDATA[<h2>Avoid var types of length 1 or 2</h2><p>You have used a Variable length datatype (NVARCHAR , VARCHAR or BINARY) of length 1 or 2.</p><p>Very small CHAR and BINARY values are more economically stored than their VAR equivalents. Specify the datatype of  the fixed-length version.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP010</key>
+<internalKey>BP010</internalKey>
+<name>Usage of @@IDENTITY</name>
+<description><![CDATA[<h2>Usage of @@IDENTITY</h2><p>@@IDENTITY is being used to get the value of the last identity insertion.</p><p>If you have a trigger on the table, the value can sometimes be wrong. The @@IDENTITY function returns the last identity created in the same session whereas SCOPE_IDENTITY() function returns the last identity created in the same scope as well. Using SCOPE_IDENTITY() is safer.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP011</key>
+<internalKey>BP011</internalKey>
+<name>NULL comparison or addition/substring</name>
+<description><![CDATA[<h2>NULL comparison or addition/substring</h2><p>A comparison or expression is using NULL without explicit provision for a NULL value.</p><p>Any expression or comparison that involves a NULL value will produce a NULL result. Expressions need to use IS [NOT] NULL and the ISNULL/COALESCE function to handle NULL values appropriately.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP012</key>
+<internalKey>BP012</internalKey>
+<name>CASE without ELSE</name>
+<description><![CDATA[<h2>CASE without ELSE</h2><p>The CASE statement doesn't specify what happens when all WHEN expressions evaluate to FALSE.</p><p>The ELSE clause can be omitted but unless you use the ELSE clause of the CASE statement, you will find that a NULL is returned if all WHEN expressions return FALSE. If you really want to do this, make it explicit so the code is easier to understand.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP013</key>
+<internalKey>BP013</internalKey>
+<name>EXECUTE('SQL script') is used</name>
+<description><![CDATA[<h2>EXECUTE('SQL script') is used</h2><p>EXECUTE('SQL script') is being used to execute a SQL batch in a string.</p><p>Avoid using EXEC to run dynamic SQL. It is there for backward compatibility only and is commonly used for SQL injection. Use sp_executesql instead, because it allows parameter substitutions for both inputs and outputs and also because the execution plan that sp_executesql produces is more likely to be reused.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP014</key>
+<internalKey>BP014</internalKey>
+<name>[NOT] NULL option is not specified in CREATE/DECLARE TABLE statement</name>
+<description><![CDATA[<h2>[NOT] NULL option is not specified in CREATE/DECLARE TABLE statement</h2><p>A column definition has not specified that a column is NULL or NOT NULL.</p><p>Because the default of allowing NULLs can be changed with the database setting ‘ANSI_NULL_DFLT_ON’, you should explicitly define a column as NULL or NOT NULL for noncomputed columns or, if you use a user-defined data type, that you allow the column to use the default nullability of the data type. Sparse columns must always allow NULL.</p><p>NOTE: This issue is only shown once for each table definition.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP015</key>
+<internalKey>BP015</internalKey>
+<name>Scope of cursor (LOCAL/GLOBAL) is not specified</name>
+<description><![CDATA[<h2>Scope of cursor (LOCAL/GLOBAL) is not specified</h2><p>You have not explicitly defined the scope of a cursor.</p><p>When you define a cursor with the DECLARE CURSOR statement you can, and should, define the scope of the cursor name. GLOBAL means that the cursor name should be global to the connection. LOCAL specifies that the cursor name is LOCAL to the stored procedure, trigger, or batch containing the DECLARE CURSOR statement.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP016</key>
+<internalKey>BP016</internalKey>
+<name>Return without result code</name>
+<description><![CDATA[<h2>Return without result code</h2><p>You have a stored procedure that does not return a result code.</p><p>When you use the EXECUTE command to execute a stored procedure, or call the stored procedure from an application, an integer is returned that can be assigned to a variable. It is generally used to communicate the success of the operation.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP017</key>
+<internalKey>BP017</internalKey>
+<name>DELETE statement without WHERE or INNER JOIN clause</name>
+<description><![CDATA[<h2>DELETE statement without WHERE or INNER JOIN clause</h2><p>The DELETE statement has neither a WHERE nor an INNER JOIN clause, and it will delete the whole table when executed.</p><p>It is very easy to delete an entire table when you mean to delete just one or more rows. Delete statements should also be in a transaction so you can check the result before committing.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP018</key>
+<internalKey>BP018</internalKey>
+<name>UPDATE statement without WHERE or INNER JOIN clause</name>
+<description><![CDATA[<h2>UPDATE statement without WHERE or INNER JOIN clause</h2><p>The UPDATE statement has neither a WHERE nor an INNER JOIN clause, and it will update every row in the table.</p><p>It is very easy to update an entire table when you mean to update just one or more rows. Update statements should also be in a transaction so you can check the result before committing.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP019</key>
+<internalKey>BP019</internalKey>
+<name>Foreign key is disabled</name>
+<description><![CDATA[<h2>Foreign key is disabled</h2><p>Foreign key is disabled.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP020</key>
+<internalKey>BP020</internalKey>
+<name>Column created with option ANSI_PADDING set to OFF</name>
+<description><![CDATA[<h2>Column created with option ANSI_PADDING set to OFF</h2><p>Column created with option ANSI_PADDING set to OFF.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP021</key>
+<internalKey>BP021</internalKey>
+<name>Table does not have clustered index</name>
+<description><![CDATA[<h2>Table does not have clustered index</h2><p>Most tables should have a clustered index.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP022</key>
+<internalKey>BP022</internalKey>
+<name>Money/SmallMoney datatype is used</name>
+<description><![CDATA[<h2>Money/SmallMoney datatype is used</h2><p>The MONEY data type confuses the storage of data values with their display, though its name clearly suggests the sort of data it holds. It is proprietary to SQL Server and allows you to specify monetary values preceded by a currency symbol, but SQL Server doesn’t store any currency information at all with the actual numeric values, so the purpose of this is unclear.</p><p>It has limited precision; the underlying type is a BIGINT or, in the case of SMALLMONEY, an INT, so you can unintentionally get a loss of precision due to rounding errors. While simple addition or subtraction is fine, more complicated calculations that can be done for financial reports can show errors. Although the MONEY datatype generally takes less storage, and takes less bandwidth when sent over networks, via TDS, it is generally far better to use a data type such as the DECIMAL or NUMERIC type, which is less likely to suffer from rounding errors or scale overflow.</p><p>See Also: Avoid use of the MONEY and SMALLMONEY datatypes for examples of the problems MONEY and SMALLMONEY can cause.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP023</key>
+<internalKey>BP023</internalKey>
+<name>Float/real datatype is used</name>
+<description><![CDATA[<h2>Float/real datatype is used</h2><p>The FLOAT (8 byte) and REAL (4 byte) data types are suitable only for specialist scientific use since they are approximate types with an enormous range (-1.79E+308 to -2.23E-308, and 2.23E-308 to 1.79E+308, in the case of FLOAT).</p><p>Any other use needs to be regarded as suspect, and a FLOAT or REAL used as a key or found in an index needs to be investigated.</p><p>The DECIMAL type is an exact data type and has an impressive range from -10^38+1 through 10^38-1. Although it requires more storage than the FLOAT or REAL types, it is generally a better choice.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>BP024</key>
+<internalKey>BP024</internalKey>
+<name>sql_variant datatype is used</name>
+<description><![CDATA[<h2>sql_variant datatype is used</h2><p>The sql_variant type is not your typical data type. It stores values from a number of different data types and is used internally by SQL Server. It is hard to imagine a valid use in a relational database. It cannot be returned to an application via ODBC except as binary data, and it isn’t supported in Microsoft Azure SQL Database.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>3min</debtRemediationFunctionCoefficient>
+<tag>best-practice</tag>
+</rule>
+<rule>
+<key>CGUNP</key>
+<internalKey>CGUNP</internalKey>
+<name>Unparsed SQL</name>
+<description><![CDATA[<h2>Unparsed SQL</h2><p>Unable to parse SQL code. The SQL may be incorrect or contain syntax that SQL Prompt doesn't understand.</p><p>Try fixing the SQL or rewriting it in a simpler form.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP001</key>
+<internalKey>DEP001</internalKey>
+<name>Table hint without WITH keyword</name>
+<description><![CDATA[<h2>Table hint without WITH keyword</h2><p>The WITH keyword before a table hint is missing.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP002</key>
+<internalKey>DEP002</internalKey>
+<name>WRITETEXT, UPDATETEXT and READTEXT statements are deprecated</name>
+<description><![CDATA[<h2>WRITETEXT, UPDATETEXT and READTEXT statements are deprecated</h2><p>There is no good reason for using the TEXT datatype anymore.</p><p>These functions are used in support of the TEXT datatype, which  was replaced in SQL Server 2005 by the far more versatile VARCHAR(MAX). This is compatible with string functions, and is actively supported.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP003</key>
+<internalKey>DEP003</internalKey>
+<name>GROUP BY ALL clause is deprecated</name>
+<description><![CDATA[<h2>GROUP BY ALL clause is deprecated</h2><p>GROUP BY ALL clause is not supported for remote tables and is no longer actively maintained.</p><p>Use a custom case-by-case solution with UNION or a derived table. The results you get are more intuitive: it is easier to know when a zero category will appear or not.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP004</key>
+<internalKey>DEP004</internalKey>
+<name>COMPUTE and COMPUTE BY clauses are deprecated</name>
+<description><![CDATA[<h2>COMPUTE and COMPUTE BY clauses are deprecated</h2><p>Starting with SQL Server 2012, the COMPUTE and COMPUTE BY clauses are no longer supported, as they are archaic ways of doing printed reports. They do not produce conventional results.</p><p>Use GROUPING, ROLLUP or CUBE instead, to produce results that can be stored for further processing or aggregation.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP005</key>
+<internalKey>DEP005</internalKey>
+<name>FASTFIRSTROW table hint is deprecated</name>
+<description><![CDATA[<h2>FASTFIRSTROW table hint is deprecated</h2><p>Starting with SQL Server 2008, the FASTFIRSTROW table hint has been deprecated. This feature has been removed in  SQL Server 2012.</p><p>Use [FAST n] instead.  FASTFIRSTROW  allows data to begin streaming to the user earlier, at a risk of a cost in performance.  OPTION (FAST 1) is equivalent but you can, with this hint, specify the number of ‘fast’ rows.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP006</key>
+<internalKey>DEP006</internalKey>
+<name>SETUSER statement is deprecated</name>
+<description><![CDATA[<h2>SETUSER statement is deprecated</h2><p>SETUSER statement is there only for backward-compatibility.</p><p>Since SQL Server 2008, it has been possible to use EXECUTE AS, which is much clearer.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP007</key>
+<internalKey>DEP007</internalKey>
+<name>TAPE as backup device is deprecated</name>
+<description><![CDATA[<h2>TAPE as backup device is deprecated</h2><p>Support for tape backup devices will eventually be removed.</p><p>It is unusual to use a tape backup as these devices  are comparatively expensive and unreliable. If code has a TAPE dumpdevice defined, it is probably legacy code that must be removed.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP008</key>
+<internalKey>DEP008</internalKey>
+<name>PASSWORD/MEDIAPASSWORD options in BACKUP/RESTORE statement are deprecated</name>
+<description><![CDATA[<h2>PASSWORD/MEDIAPASSWORD options in BACKUP/RESTORE statement are deprecated</h2><p>Since SQL Server 2012, the PASSWORD and MEDIAPASSWORD options are discontinued for creating backups.</p><p>It is important to password-protect backups. However, the protection that this option afforded was not up to current standards. Properly set-up ACLs on the directory provides stronger protection, as does a third-party backup solution.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP009</key>
+<internalKey>DEP009</internalKey>
+<name>DBCC DBREINDEX statement is deprecated</name>
+<description><![CDATA[<h2>DBCC DBREINDEX statement is deprecated</h2><p>The use of DBCC DBREINDEX is no longer recommended.</p><p>Use ALTER INDEX REBUILD instead. It has many more options, and supports current types of index.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP010</key>
+<internalKey>DEP010</internalKey>
+<name>DBCC CONCURRENCYVIOLATION is deprecated</name>
+<description><![CDATA[<h2>DBCC CONCURRENCYVIOLATION is deprecated</h2><p>An attempt to execute this command returns error 2526.</p><p>No recent version of edition of SQL Server includes a workload governor; therefore the command has been removed.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP011</key>
+<internalKey>DEP011</internalKey>
+<name>DBCC INDEXDEFRAG is deprecated</name>
+<description><![CDATA[<h2>DBCC INDEXDEFRAG is deprecated</h2><p>DBCC INDEXDEFRAG is deprecated.</p><p>ALTER INDEX REORGANIZE can perform index defragmentation without taking the database offline, allowing users to access the tables being defragmented (enterprise edition only).</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP012</key>
+<internalKey>DEP012</internalKey>
+<name>DBCC SHOWCONTIG is deprecated</name>
+<description><![CDATA[<h2>DBCC SHOWCONTIG is deprecated</h2><p>DBCC SHOWCONTIG is no longer the supported way of investigating index fragmentation.</p><p>DBCC SHOWCONTIG only displays the first partition of the specified table or index and does not display row-overflow storage information or spatial indexes. It does not show  off-row data types, such as NVARCHAR(MAX), VARCHAR(MAX), VARBINARY(MAX), and XML.</p><p>Use sys.dm_db_index_physical_stats instead.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP013</key>
+<internalKey>DEP013</internalKey>
+<name>Deprecated SET options</name>
+<description><![CDATA[<h2>Deprecated SET options</h2><p>These SET options are deprecated: ANSI_NULLS, ANSI_PADDING, CONCAT_NULL_YIELDS_NULL, REMOTE_PROC_TRANSACTIONS, OFFSETS.</p><p>It is a bad idea to set ANSI_NULLS OFF or ANSI_PADDING OFF since this is not supported for certain indexes such as indexed views and indexes on computed columns. CONCAT_NULL_YIELDS_NULL OFF causes expressions that assume this behaviour to give strange results. REMOTE_PROC_TRANSACTIONS should not be used because remote stored procedures are deprecated so, instead of issuing remote stored procedure calls, use distributed queries that reference linked servers. The OFFSETS options will soon be unavailable.</p><p>Additionally, Microsoft claims that in a future version of SQL Server, ANSI_NULLS will be ON and any applications that explicitly set the option to OFF will generate an error and as such recommends to avoid using this feature in new development work, and plan to modify applications that do so at present.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP014</key>
+<internalKey>DEP014</internalKey>
+<name>SET ROWCOUNT option is deprecated</name>
+<description><![CDATA[<h2>SET ROWCOUNT option is deprecated</h2><p>SET ROWCOUNT option was replaced by the TOP(N) syntax of the SELECT statement.</p><p>SET ROWCOUNT sets the limit to the number of rows returned for the rest of the batch, whereas TOP(n) within the SELECT statement sets the number of rows to return by the query. The latter is much safer and easier to control.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP015</key>
+<internalKey>DEP015</internalKey>
+<name>READONLY and READWRITE options are deprecated</name>
+<description><![CDATA[<h2>READONLY and READWRITE options are deprecated</h2><p>READONLY and READWRITE options are no longer supported.</p><p>Use the READ_ONLY and READ_WRITE options instead.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP016</key>
+<internalKey>DEP016</internalKey>
+<name>TORN_PAGE_DETECTION option is deprecated</name>
+<description><![CDATA[<h2>TORN_PAGE_DETECTION option is deprecated</h2><p>The TORN_PAGE_DETECTION option only checks the first 2 bytes in every 512-byte sector.</p><p>The only worthwhile page verification option is CHECKSUM.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP017</key>
+<internalKey>DEP017</internalKey>
+<name>NON-ANSI join (*= or =*) is used</name>
+<description><![CDATA[<h2>NON-ANSI join (*= or =*) is used</h2><p>Non-ANSI joins (via *= or =*) are deprecated – use LEFT/RIGHT OUTER join syntax instead.</p><p>The *= or *= syntax is maintained only for backward compatibility with legacy systems and is rightly incomprehensible to most SQL developers.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP018</key>
+<internalKey>DEP018</internalKey>
+<name>ALL option in GRANT/DENY/REVOKE statement is deprecated</name>
+<description><![CDATA[<h2>ALL option in GRANT/DENY/REVOKE statement is deprecated</h2><p>The  ALL keyword is highly confusing as it doesn’t add all permissions. It is legacy code that hasn’t kept pace with new versions of SQL Server. Don’t use it!</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP019</key>
+<internalKey>DEP019</internalKey>
+<name>System table or view is deprecated</name>
+<description><![CDATA[<h2>System table or view is deprecated</h2><p>This SQL Server 2000 system table is included as a view for backward compatibility.</p><p>We recommend that you use the current SQL Server system views instead. To find the equivalent system view or views, see Mapping SQL Server 2000 System Tables to SQL Server 2005 System Views. This feature will be removed in a future version of Microsoft SQL Server.</p><p>Avoid using this feature in new development work, and plan to modify applications that currently use this feature.</p><p>Compatibility Views (Transact-SQL) (MSDN)</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP020</key>
+<internalKey>DEP020</internalKey>
+<name>Numbered procedures are deprecated</name>
+<description><![CDATA[<h2>Numbered procedures are deprecated</h2><p>Numbered procedures are deprecated – do not use numbered procedures.</p><p>This was always a bad idea, that allowed you to overload procedures by creating more than one version of a stored procedure, and which allow you to delete them in one command. It never worked well.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP021</key>
+<internalKey>DEP021</internalKey>
+<name>String literals as column aliases are deprecated</name>
+<description><![CDATA[<h2>String literals as column aliases are deprecated</h2><p>If Aliases are valid identifiers they do not need delimiters. If they are not, then they should be delimited by double-quotes, not single-quotes. SQL Server and Sybase allow square brackets for the same purpose though this is not ANSI Standard SQL. String aliases are not part of the SQL standard, and have been deprecated by Microsoft when used with the assignment syntax.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP022</key>
+<internalKey>DEP022</internalKey>
+<name>DEP022</name>
+<description><![CDATA[<h2>DEP022</h2><p>DROP INDEX with two-part name is deprecated</p><p>This syntax will be removed in a future version of Microsoft SQL Server. Avoid using this syntax in new development work, and plan to modify applications that currently use the feature.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP025</key>
+<internalKey>DEP025</internalKey>
+<name>System stored procedure is deprecated</name>
+<description><![CDATA[<h2>System stored procedure is deprecated</h2><p>There is never a good reason to use undocumented system stored procedures and even some documented ones, such as sp_addalias, sp_addgroup, sp_changegroup, sp_dropgroup and sp_helpgroup have been replaced with better ways of doing it.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP026</key>
+<internalKey>DEP026</internalKey>
+<name>Three-part and four-part column references in SELECT list are deprecated</name>
+<description><![CDATA[<h2>Three-part and four-part column references in SELECT list are deprecated</h2><p>Three-part and four-part column references in SELECT list are deprecated – two-part names is the standard-compliant behavior.</p><p>Sometimes, when a table is referenced in another database or server, programmers believe that the two or three-part table name needs to be applied to the columns. This is unnecessary and meaningless. Just the table name is required for the columns.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP027</key>
+<internalKey>DEP027</internalKey>
+<name>System function is deprecated</name>
+<description><![CDATA[<h2>System function is deprecated</h2><p>This feature will be removed in a future version of Microsoft SQL Server. Avoid using this feature in new development work, and plan to modify applications that currently use this feature.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>DEP028</key>
+<internalKey>DEP028</internalKey>
+<name>The SQL module was created with ANSI_NULLS and/or QUOTED_IDENTIFIER options set to OFF</name>
+<description><![CDATA[<h2>The SQL module was created with ANSI_NULLS and/or QUOTED_IDENTIFIER options set to OFF</h2><p>The SQL module was created with ANSI_NULLS and/or QUOTED_IDENTIFIER options set to OFF.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>EI001</key>
+<internalKey>EI001</internalKey>
+<name>Incompatible variable type for procedure call</name>
+<description><![CDATA[<h2>Incompatible variable type for procedure call</h2><p>Variable type is not fully compatible with procedure parameter type.</p><p>A parameter passed to a procedure or function must be of a type that can be cast into the variable datatype declared for that parameter in the body of the routine. It should be of exactly the same type so as to avoid the extra processing to resolve an implicit conversion.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI002</key>
+<internalKey>EI002</internalKey>
+<name>Incompatible literal type for procedure call</name>
+<description><![CDATA[<h2>Incompatible literal type for procedure call</h2><p>Literal type is not fully compatible with procedure parameter type.</p><p>A parameter passed to a procedure can be a literal (e.g. 1,’03 jun 2017’ or ‘hello world’) but it must be possible to cast it unambiguously to the variable datatype declared for that parameter in the body of the routine.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI003</key>
+<internalKey>EI003</internalKey>
+<name>Non-scalar subquery in place of a scalar</name>
+<description><![CDATA[<h2>Non-scalar subquery in place of a scalar</h2><p>Subquery may return more than one row.</p><p>A subquery can only be scalar, meaning that it can return just one value. Even if you correctly place just one expression in your select list, you must also ensure that just one row is returned. TOP 1 can be used if there is an ORDER BY clause</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI004</key>
+<internalKey>EI004</internalKey>
+<name>Extra parameter passed</name>
+<description><![CDATA[<h2>Extra parameter passed</h2><p>A named parameter is not found in parameter list of a procedure.</p><p>Parameters can be passed by position in a comma-delimited list, or by name, where order position isn’t required. Any parameters that are specified by name must have the name identical to the definition for that procedure</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI005</key>
+<internalKey>EI005</internalKey>
+<name>Unnamed call after named call</name>
+<description><![CDATA[<h2>Unnamed call after named call</h2><p>It is not recommended to use the position notation after the named notation when calling a procedure.</p><p>Parameters can be passed by position in a comma-delimited list, or by name, but it is a bad idea to mix the two methods even when it is possible. If a parameter has a default value assigned to it, it can be left out of the parameter list, and it is difficult to check whether the values you supply are for the parameters you intend.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI006</key>
+<internalKey>EI006</internalKey>
+<name>Required parameter is not passed</name>
+<description><![CDATA[<h2>Required parameter is not passed</h2><p>Parameter is not passed to a procedure and no default is provided.</p><p>With procedures and functions, parameters can be assigned default values that are used when a value isn’t passed for that parameter when calling the procedure. However, if a parameter isn’t assigned a value and there is no default provided it is an error.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI007</key>
+<internalKey>EI007</internalKey>
+<name>Call parameter declared as output</name>
+<description><![CDATA[<h2>Call parameter declared as output</h2><p>Procedure parameter is not defined as OUTPUT, but marked as OUTPUT in procedure call statement.</p><p>Output scalar parameters for procedures are passed to the procedure, and can have their value altered within the procedure. This allows procedures to return scalar output. The formal parameter must be declared as an OUTPUT parameter if the actual parameter that is passed had the OUTPUT keyword. This triggers an error.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI008</key>
+<internalKey>EI008</internalKey>
+<name>Call parameter is not declared as output</name>
+<description><![CDATA[<h2>Call parameter is not declared as output</h2><p>Procedure parameter is defined as OUTPUT, but is not marked as OUTPUT in procedure call statement.</p><p>Output scalar parameters for procedures are passed to the procedure, and can have their value altered within the procedure. This allows procedures to return scalar output. However, the matching variable passed as the output parameter in the module or command string must also have the keyword OUTPUT. There is no error but the resultant value is NULL, which you are unlikely to want.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI009</key>
+<internalKey>EI009</internalKey>
+<name>Call has more parameters than required</name>
+<description><![CDATA[<h2>Call has more parameters than required</h2><p>Number of passed parameters exceeds the number of procedure parameters.</p><p>Parameters can be passed to procedures and functions in an ordered delimited list, but never more than the number of parameters. For a function, this must have the same number of list members as the parameters. For a procedure you can have fewer if defaults are declared in parameters.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI010</key>
+<internalKey>EI010</internalKey>
+<name>OPEN of undefined cursor</name>
+<description><![CDATA[<h2>OPEN of undefined cursor</h2><p>The cursor definition is not found in the current scope – the OPEN statement will cause an error.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI011</key>
+<internalKey>EI011</internalKey>
+<name>FETCH from undefined cursor</name>
+<description><![CDATA[<h2>FETCH from undefined cursor</h2><p>The cursor definition is not found in the current scope – the FETCH statement will cause an error.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI012</key>
+<internalKey>EI012</internalKey>
+<name>CLOSE of undefined cursor</name>
+<description><![CDATA[<h2>CLOSE of undefined cursor</h2><p>The cursor definition is not found in the current scope – the CLOSE statement will cause an error.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI013</key>
+<internalKey>EI013</internalKey>
+<name>DEALLOCATE of undefined cursor</name>
+<description><![CDATA[<h2>DEALLOCATE of undefined cursor</h2><p>The cursor definition is not found in the current scope – the DEALLOCATE statement will cause an error.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI014</key>
+<internalKey>EI014</internalKey>
+<name>Fetch from cursor with asterisk in select list, unable to check columns</name>
+<description><![CDATA[<h2>Fetch from cursor with asterisk in select list, unable to check columns</h2><p>It is not recommended to use the asterisk in select list when defining a cursor.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI015</key>
+<internalKey>EI015</internalKey>
+<name>Incorrect number of fetch variables</name>
+<description><![CDATA[<h2>Incorrect number of fetch variables</h2><p>Number of variables in FETCH statement differs from number of columns in the cursor definition.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI016</key>
+<internalKey>EI016</internalKey>
+<name>Reference to procedure in other database</name>
+<description><![CDATA[<h2>Reference to procedure in other database</h2><p>Try to avoid using hardcoded references to other databases.</p><p>There is nothing wrong in executing procedures in other databases, but it is better to avoid hard-coding these references and use synonyms instead.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI017</key>
+<internalKey>EI017</internalKey>
+<name>Hardcoded current database name in procedure call</name>
+<description><![CDATA[<h2>Hardcoded current database name in procedure call</h2><p>It is better to avoid using hardcoded references to the current database as this causes problems if you later do the inconceivable by changing the database name or cut-and-pasting a routine. A hardcoded database name has no performance advantage.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI018</key>
+<internalKey>EI018</internalKey>
+<name>Missing parameter(s) name in procedure call</name>
+<description><![CDATA[<h2>Missing parameter(s) name in procedure call</h2><p>It is recommended to specify the parameter name while calling a stored procedure.</p><p>Although delimited ordered lists are perfectly legal, it is generally wiser to specify the name of the parameter just in case you add a parameter in the middle of the list where it makes logical sense to do so. It is easy to do this with a metadata routine or SQL Prompt.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI019</key>
+<internalKey>EI019</internalKey>
+<name>BEGIN TRANSACTION without ROLLBACK TRANSACTION</name>
+<description><![CDATA[<h2>BEGIN TRANSACTION without ROLLBACK TRANSACTION</h2><p>Take notice of using BEGIN TRANSACTION without ROLLBACK TRANSACTION.</p><p>ROLLBACK TRANSACTION rolls back a transaction to the beginning of it, or to a savepoint inside the transaction. You don’t need a ROLLBACK TRANSACTION statement within a transaction, but if there isn’t one, then it may be a sign that error handling has not been refined to production standards.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI020</key>
+<internalKey>EI020</internalKey>
+<name>ROLLBACK TRANSACTION without BEGIN TRANSACTION</name>
+<description><![CDATA[<h2>ROLLBACK TRANSACTION without BEGIN TRANSACTION</h2><p>Take notice of using ROLLBACK TRANSACTION without BEGIN TRANSACTION.</p><p>It is possible to have a ROLLBACK TRANSACTION within a block where there is no explicit transaction. This will trigger an error if the code is executed outside a transaction, and suggests that transactions are being held open unnecessarily.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI021</key>
+<internalKey>EI021</internalKey>
+<name>Closing of unopened cursor</name>
+<description><![CDATA[<h2>Closing of unopened cursor</h2><p>It is not possible to close an unopened cursor.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI022</key>
+<internalKey>EI022</internalKey>
+<name>Fetch from unopened cursor</name>
+<description><![CDATA[<h2>Fetch from unopened cursor</h2><p>It is not possible to fetch rows from an unopened cursor.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI023</key>
+<internalKey>EI023</internalKey>
+<name>Update/delete operation on cursor, but cursor is not declared as updatable</name>
+<description><![CDATA[<h2>Update/delete operation on cursor, but cursor is not declared as updatable</h2><p>It is recommended to specify a cursor as updatable before performing  an UPDATE/DELETE operation on the cursor.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI024</key>
+<internalKey>EI024</internalKey>
+<name>Stored procedure name starts with sp_</name>
+<description><![CDATA[<h2>Stored procedure name starts with sp_</h2><p>It is not recommended to start a user stored procedure name with sp_ as this prefix is used in built in stored procedures.</p><p>If you prefix a procedure name with ‘sp_’, the master database is searched first, which will be a performance hit. SQL Server identifiers should not have ‘hungarian notation’ prefixes.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI025</key>
+<internalKey>EI025</internalKey>
+<name>Executing stored procedure without getting result</name>
+<description><![CDATA[<h2>Executing stored procedure without getting result</h2><p>It is perfectly OK to execute a stored procedure without getting the result. This integer that is returned is used to pass back information about the success of the stored procedure, but the value must be assigned in code These return codes are generallyy used in control-of-flow blocks within procedures to set the return code value for each possible error. To get a SQL Server error rather than a process error, you can use the @@ERROR function.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI026</key>
+<internalKey>EI026</internalKey>
+<name>Reference to function in other database</name>
+<description><![CDATA[<h2>Reference to function in other database</h2><p>It is perfectly acceptable to reference a function in another database as long as you use the standard three-part naming convention.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI027</key>
+<internalKey>EI027</internalKey>
+<name>Reference to table or view in other database</name>
+<description><![CDATA[<h2>Reference to table or view in other database</h2><p>It is perfectly acceptable to reference a table or view in another database as long as you use the standard three-part naming convention.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI028</key>
+<internalKey>EI028</internalKey>
+<name>Adding NOT NULL column without default value</name>
+<description><![CDATA[<h2>Adding NOT NULL column without default value</h2><p>Adding a NOT NULL column without a DEFAULT value to an existing table that already contains data will fail, because SQL Server has no way of adding that column to the existing rows, as there must be a value in the column.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI029</key>
+<internalKey>EI029</internalKey>
+<name>Avoid using ISNUMERIC() function</name>
+<description><![CDATA[<h2>Avoid using ISNUMERIC() function</h2><p>Avoid using ISNUMERIC() function because it accepts int, numeric, float and money numbers.</p><p>ISNUMERIC() is there for legacy reasons. It is answering a different question to the one you want answered. It is better to use the LIKE command to answer the question because each numeric data type needs a different answer.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI030</key>
+<internalKey>EI030</internalKey>
+<name>Usage of ORDER BY in view or single statement (inline) TVF</name>
+<description><![CDATA[<h2>Usage of ORDER BY in view or single statement (inline) TVF</h2><p>Views and inline Table-valued functions have no intrinsic order. The order of the result is specified only by the SELECT statement that specifies the View, iTVF or table. If executed, this will trigger an error ‘The ORDER BY clause is invalid in views, inline functions, derived tables, subqueries, and common table expressions, unless TOP or FOR XML is also specified’. Some programmers wrongly assume that adding TOP 100 PERCENT is ok because the error disappears.  You should include the ORDER BY only in the outermost query.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI031</key>
+<internalKey>EI031</internalKey>
+<name>Relying on the INSERT…EXEC statement</name>
+<description><![CDATA[<h2>Relying on the INSERT…EXEC statement</h2>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI032</key>
+<internalKey>EI032</internalKey>
+<name>Using the xp_cmdshell system stored procedure</name>
+<description><![CDATA[<h2>Using the xp_cmdshell system stored procedure</h2>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>EI033</key>
+<internalKey>EI033</internalKey>
+<name>Using dynamic SQL without the EXECUTE AS clause</name>
+<description><![CDATA[<h2>Using dynamic SQL without the EXECUTE AS clause</h2>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>execution-issue</tag>
+</rule>
+<rule>
+<key>MI001</key>
+<internalKey>MI001</internalKey>
+<name>Table var is declared but never used</name>
+<description><![CDATA[<h2>Table var is declared but never used</h2><p>Although it makes very little difference to performance, every table variable results in a table being created and deleted in the TEMPDB database.</p><p>Also, clean code -- without unnecessary and unused parameters, variables and values -- greatly simplifies the complex task of managing large SQL projects and databases.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>misc</tag>
+</rule>
+<rule>
+<key>MI002</key>
+<internalKey>MI002</internalKey>
+<name>Temp table is declared but never used</name>
+<description><![CDATA[<h2>Temp table is declared but never used</h2><p>Temp tables have a small cost to performance, because they are created and deleted in the TEMPDB database.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>misc</tag>
+</rule>
+<rule>
+<key>MI003</key>
+<internalKey>MI003</internalKey>
+<name>Unqualified column name</name>
+<description><![CDATA[<h2>Unqualified column name</h2><p>A column name should be qualified with its table name if it is part of a join or is in a subquery.</p><p>Even if it is currently unambiguous, at some point a change could be made that will cause an error.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>misc</tag>
+</rule>
+<rule>
+<key>MI004</key>
+<internalKey>MI004</internalKey>
+<name>Usage of sp_executesql (only in procedure/trigger)</name>
+<description><![CDATA[<h2>Usage of sp_executesql (only in procedure/trigger)</h2>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>misc</tag>
+</rule>
+<rule>
+<key>MI005</key>
+<internalKey>MI005</internalKey>
+<name>Variable is declared but never used</name>
+<description><![CDATA[<h2>Variable is declared but never used</h2><p>Unused variables are often a symptom of technical debt or unfinished work.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>misc</tag>
+</rule>
+<rule>
+<key>MI006</key>
+<internalKey>MI006</internalKey>
+<name>Parameter is declared but never used</name>
+<description><![CDATA[<h2>Parameter is declared but never used</h2><p>Unused parameters are often a symptom of technical debt or unfinished work.</p><p>They are sometimes necessary for  backward-compatibility so only remove if  safe to do so.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>misc</tag>
+</rule>
+<rule>
+<key>MI007</key>
+<internalKey>MI007</internalKey>
+<name>WAIT FOR DELAY/TIME used</name>
+<description><![CDATA[<h2>WAIT FOR DELAY/TIME used</h2><p>Including WAITFOR will slow the completion of the SQL Server process and can result in a timeout message in the application. If necessary, adjust the timeout setting for the connection at the application level.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>misc</tag>
+</rule>
+<rule>
+<key>MI008</key>
+<internalKey>MI008</internalKey>
+<name>QUOTED_IDENTIFIERS option inside stored procedure, trigger or function</name>
+<description><![CDATA[<h2>QUOTED_IDENTIFIERS option inside stored procedure, trigger or function</h2><p>Setting the QUOTED_IDENTIFIERS options inside a stored procedure, trigger or function will have no effect.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>misc</tag>
+</rule>
+<rule>
+<key>NC001A</key>
+<internalKey>NC001A</internalKey>
+<name>TRANSACTION names that are allowed</name>
+<description><![CDATA[<h2>TRANSACTION names that are allowed</h2><p>Allowed names can be listed in Rule Customization.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>naming</tag>
+</rule>
+<rule>
+<key>NC001D</key>
+<internalKey>NC001D</internalKey>
+<name>TRANSACTION names that are disallowed</name>
+<description><![CDATA[<h2>TRANSACTION names that are disallowed</h2><p>THROW should be avoided as a transaction name to avoid keyword name conflict.</p><p>Disallowed names must be listed in Rule Customization using regex syntax.</p><p>Eg, THROW|UnwantedName2|UnwantedName3</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>naming</tag>
+</rule>
+<rule>
+<key>PE001</key>
+<internalKey>PE001</internalKey>
+<name>Schema name for procedure is not specified</name>
+<description><![CDATA[<h2>Schema name for procedure is not specified</h2><p>A stored procedure is being called via the EXECUTE command without the schema being specified.</p><p>Even where you don’t have to qualify the name of a stored procedure, that is whenever the procedure is in your default schema, performance is slightly better if you specify the schema, and it makes the code more intelligible to others, more consistent, and easier to refactor.</p><p>SQL Monitor</p><p>The complete name of any schema-based database object consists of up to four identifiers: the server name, database name, schema name, and object name. Only if you are calling a remote stored procedure would you need a fully qualified name consisting of all four identifiers. If you are calling a procedure in another database, you obviously need its database identifier in the name. Within a database, you only need the object name itself so long as the procedure is in the same schema. By specifying the schema, the database engine needs less searching to identify it. Even system stored procedures should be qualified with the ‘sys’ schema name. When creating a stored procedure as well, it is a good habit to always specify the parent schema.</p><p>Still, if you have a synonym for your stored procedure and you call the synonym via the EXECUTE command, you should not specify any schema.</p><p>Read more on the Redgate Hub</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE002</key>
+<internalKey>PE002</internalKey>
+<name>Schema name for table or view is not specified</name>
+<description><![CDATA[<h2>Schema name for table or view is not specified</h2><p>It is recommended to always specify schema name.</p><p>Usually, performance is slightly better if you specify the schema because it speeds the search for the object, but in certain cases, you need versions of the same table or view to be different depending on the user role.</p><p>You can put different tables or views of the same name in different schemas. You then need to specify the table without the schema because sql server will then choose the stored procedure from the schema associated with the role of the user.</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE003</key>
+<internalKey>PE003</internalKey>
+<name>Creation of table by SELECT INTO statement</name>
+<description><![CDATA[<h2>Creation of table by SELECT INTO statement</h2><p>SELECT … INTO is being used to create a table. Before SQL Server 2005 this would lock out all other users.</p><p>It is usually easier to understand tables created with a CREATE TABLE statement.  However, SELECT INTO can be very useful for creating temporary tables.</p><p>SQL Monitor</p><p>Prior to SQL Server 2005, use of SELECT…INTO in production code was a performance 'code smell' because it acquired schema locks on system tables of the database, causing SQL Server to appear unresponsive while the query was being executed. This is because it is a DDL statement in an implicit transaction, which is inevitably long-running since the data is inserted within the same SQL Statement. However, this behavior was fixed in SQL Server 2005, when the locking model changed.</p><p>SELECT…INTO became popular because it was a faster way of inserting data than using INSERT INTO…SELECT…. This was mainly due to the SELECT…INTO operation being, where possible, bulk-logged. Although INSERT INTO can now be bulk-logged, you may still see this performance advantage in SQL Server 2012 and 2014, because SELECT…INTO can be parallelized on these versions, whereas support for parallelization of INSERT INTO only emerged in SQL Server 2016. However, with SELECT…INTO, you still have the task of defining all required indexes and constraints, and so on, on the new table.</p><p>Generally, SELECT…INTO is still a useful shortcut for development work, but it no longer has a clear performance advantage, and is of doubtful value for a live database. It is not part of the SQL Standard. It is usually easier to work with tables created with a CREATE TABLE statement because you then have the advantage of specifying constraints and datatypes in advance, and this also means that you're less likely to allow inconsistencies to sneak into the data.</p><p>See also: When to use the SELECT…INTO statement</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE004</key>
+<internalKey>PE004</internalKey>
+<name>INDEX HINT is used</name>
+<description><![CDATA[<h2>INDEX HINT is used</h2><p>It is not a good idea to use query hints as in WITH (INDEX (MyIndex)).</p><p>The SQL Server query optimizer usually selects the best index for a join, so these should be used only as a last resort by experienced developers and database administrators.</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE005</key>
+<internalKey>PE005</internalKey>
+<name>JOIN HINT is used</name>
+<description><![CDATA[<h2>JOIN HINT is used</h2><p>It is not recommended to use join hints.</p><p>It is not a good idea to use join hints as in WITH (LOOP, HASH,MERGE or REMOTE). The SQL Server query optimizer usually selects the best index for a join, so these should only be used as a last resort by experienced developers and database administrators.</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE006</key>
+<internalKey>PE006</internalKey>
+<name>TABLE HINT is used</name>
+<description><![CDATA[<h2>TABLE HINT is used</h2><p>It is not recommended to use table hints.</p><p>It is not a good idea to use any of the rich variety of table hints. The SQL Server query optimizer usually selects the best index for a join, so these should be used only as a last resort by experienced developers and database administrators.</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE007</key>
+<internalKey>PE007</internalKey>
+<name>QUERY HINT is used</name>
+<description><![CDATA[<h2>QUERY HINT is used</h2><p>It is not recommended to use query hints.</p><p>It is not a good idea to use query hints. The SQL Server query optimizer usually selects the best execution plan for a query, these should be used only as a last resort by experienced developers and database administrators.</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE008</key>
+<internalKey>PE008</internalKey>
+<name>SET NOCOUNT OFF is used</name>
+<description><![CDATA[<h2>SET NOCOUNT OFF is used</h2><p>It is not recommended to set NOCOUNT to OFF.</p><p>This is the default setting but it isn’t such a good idea in a production system. The count of the result of a SQL expression is useful but it is actually sent to the application in the message queue rather than as a result. The value can be gotten using the @@ROWCOUNT function.</p><p>SQL Monitor</p><p>Whenever you execute a query, a small (nine-byte) message packet, called DONE_IN_PROC, is sent back to the client. For each T-SQL statement executed, the message displays the number of rows that are affected by that statement. Use of SET NOCOUNT ON suppresses the sending of this message packet.</p><p>This can improve performance by reducing network traffic slightly. The server-based logic, and values such as @@ROWCOUNT, are all unaffected.</p><p>Triggers should not send rowcount messages, so use of SET NOCOUNT OFF for triggers is a code smell. Other code modules, such as stored procedures, should avoid use of SET NOCOUNT ON, unless one or more of the applications using the stored procedures require it to be OFF, because they are reading the value in the message.</p><p>Read more on the Redgate Hub</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE009</key>
+<internalKey>PE009</internalKey>
+<name>No SET NOCOUNT ON before DML</name>
+<description><![CDATA[<h2>No SET NOCOUNT ON before DML</h2><p>It is recommended to set NOCOUNT to ON.</p><p>It is a good idea to add a set NOCOUNT to ON statement before any DML statements in a batch to prevent the count of the result of a SQL expression being sent to the users application like a print statement in the message queue rather than as a result. The value can be gotten using the @@ROWCOUNT function.</p><p>SQL Monitor</p><p>Whenever you execute a query, a small (nine-byte) message packet, called DONE_IN_PROC, is sent back to the client. For each T-SQL statement executed, the message displays the number of rows that are affected by that statement.</p><p>Use of SET NOCOUNT ON suppresses the sending of this message packet. This can improve performance by reducing network traffic slightly. The server-based logic, and values such as @@ROWCOUNT, are all unaffected.</p><p>It is recommended to add a SET NOCOUNT ON at the start of every stored procedure, trigger and dynamically executed batch. This rule will apply to all triggers, without exception. No stored procedures will need these messages either, unless they are called from outside the database by an application that is trying to use them to get a gauge of the number of rows of a result. In general, when design9ing an application, it is better to send the count in an output variable, using the value in @@RowCount.</p><p>Read more on the Redgate Hub</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE010</key>
+<internalKey>PE010</internalKey>
+<name>Interleaving DDL and DML in stored procedure/trigger</name>
+<description><![CDATA[<h2>Interleaving DDL and DML in stored procedure/trigger</h2><p>It is not recommended to mix DML and DDL statement because recompilation issues may arise.</p><p>If DML and DDL statements are interleaved, stored procedures will often be recompiled instead of using the cached query plan, especially if there are DDL statements following DML statements. The risk of this happening is far less if you use table variables rather than creating temporary tables or ordinary tables.</p><p>SQL Monitor</p><p>It makes for much clearer code and is easier to refactor if any DDL statements such as table creation or alteration are made at the start of the batch or procedure. However, only if you are using SQL Server before SQL Server 2005 do you need to worry about interleaving on performance grounds. This is because more recent versions of SQL Server no longer recompile the batch, instead of using the cached query plan, if DDL statements follow DML statements.</p><p>If either a user table, or temporary table, is created or altered within a batch, this triggers just a deferred statement-level recompile. This only happens the first time it is run, and if the version in cache is subsequently used, there is no more problem. A statement-level recompile will only recompile once, right before the batch executes for the first time.</p><p>DECLARE statements that produce a table variable do not cause any type of recompile when the procedure or trigger first executes, whereas the creation of a temporary table or ordinary table does. However, since table variables don't cause recompiles, the optimizer can never get accurate row count estimations for table variables, which can sometimes cause bad plans and poor performance.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE011</key>
+<internalKey>PE011</internalKey>
+<name>PRINT statement is used in trigger</name>
+<description><![CDATA[<h2>PRINT statement is used in trigger</h2><p>Trigger should not return data back to a client.</p><p>PRINT statements can be returned to the client. These are not in the result set but sent down the Infomessage queue, like the count messages. These are fine for temporary debugging, but should not be still there in a production system.</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE012</key>
+<internalKey>PE012</internalKey>
+<name>Settings lead to procedure recompilation (only in proc/trigger)</name>
+<description><![CDATA[<h2>Settings lead to procedure recompilation (only in proc/trigger)</h2><p>Setting this option from within batch leads to batch recompilation.</p><p>Where possible, batches, triggers and procedures should be compiled just once and their plans reused when called again. This yields better performance and uses less memory resource. Anything that changes the execution context will force a recompile.</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE013</key>
+<internalKey>PE013</internalKey>
+<name>COUNT used instead of EXISTS</name>
+<description><![CDATA[<h2>COUNT used instead of EXISTS</h2><p>It is not recommended to use COUNT() in this circumstance. Use EXISTS() instead for superior performance and readability.</p><p>Some programmers use COUNT(*) to check to see if there are any rows that match some criteria when EXISTS() or NOT EXISTS() could be used instead.</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE014</key>
+<internalKey>PE014</internalKey>
+<name>SET FORCEPLAN used</name>
+<description><![CDATA[<h2>SET FORCEPLAN used</h2><p>It is not recommended to use SET FORCEPLAN OFF because of the possibility of performance degradation.</p><p>SET FORCEPLAN ON  overrides the logic used by the query optimizer to process a Transact-SQL SELECT statement. It prevents the optimizer from changing the order in which SQL Server processes the tables to satisfy the query. It is very unlikely to be useful.</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE015</key>
+<internalKey>PE015</internalKey>
+<name>No FETCH FIRST/LAST/PRIOR, but cursor is not declared as forward only</name>
+<description><![CDATA[<h2>No FETCH FIRST/LAST/PRIOR, but cursor is not declared as forward only</h2><p>It is recommended to declare cursor with appropriate scroll options (FORWARD_ONLY,FAST_FORWARD, etc).</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE016</key>
+<internalKey>PE016</internalKey>
+<name>Cursor is opened but is not deallocated</name>
+<description><![CDATA[<h2>Cursor is opened but is not deallocated</h2><p>It is recommended to deallocate a cursor explicitly.</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE017</key>
+<internalKey>PE017</internalKey>
+<name>Incorrect usage of const UDF</name>
+<description><![CDATA[<h2>Incorrect usage of const UDF</h2><p>It is not recommended to use a UDF that returns a const value in JOIN or WHERE clauses or in a select list – it is better to store the UDF value in a variable.</p><p>SQL Monitor</p><p>Developers tend to expect to be able to set global values in a database to provide constants such as the value of Pi, or variables such as the tax rate, language, file URNs or URLs. User-defined scalar functions return a single value, and so seem to provide the ideal way of doing so. This is fine for functions that are executed infrequently, and process relatively small data sets, but in other cases it can cause dramatic query performance problems. There is an overhead in calling any SQL Server function that has a BEGIN…END block because, unless we allow SQL Server to verify its output, by creating the function using schema binding, it will re-execute the function for every row, before data can be filtered, even though it is obvious to you that it will return the same value every time. Unless you are confident with schema binding, and its consequences when making database changes, it is better to use either transfer the value to a variable, or use a module such as a view or inline Table-value function.</p><p>See also: Misuse of the scalar user-defined function as a constant (PE017)</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE018</key>
+<internalKey>PE018</internalKey>
+<name>Cursor is not declared as readonly</name>
+<description><![CDATA[<h2>Cursor is not declared as readonly</h2><p>This cursor can be declared as readonly as there was no UPDATE or DELETE operation.</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE019</key>
+<internalKey>PE019</internalKey>
+<name>Consider using EXISTS instead of IN</name>
+<description><![CDATA[<h2>Consider using EXISTS instead of IN</h2><p>In theory, EXISTS is faster because the search stops as soon as the condition is true, whereas IN has to collect all sub-query results before testing the condition. In practice, the query optimizer treats EXISTS and IN the same way whenever it can.</p><p>SQL Monitor</p><p>It used to be that the EXISTS logical operator was faster than IN, when comparing data sets using a subquery. For example, in cases where the query had to perform a certain task, but only if the subquery returned any rows, then when evaluating WHERE [NOT] EXISTS (subquery), the database engine could quit searching as soon as it had found just one row, whereas WHERE [NOT] IN (subquery) would always collect all the results from the sub-query, before further processing.</p><p>However, the query optimizer now treats EXISTS and IN the same way, whenever it can, so you’re unlikely to see any significant performance differences. Nevertheless, you need to be cautious when using the NOT IN operator if the subquery’s source data contains NULL values. If so, you should consider using a NOT EXISTS operator instead of NOT IN, or recast the statement as a left outer join.</p><p>See also: Consider using [NOT] EXISTS instead of [NOT] IN (subquery)</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE020</key>
+<internalKey>PE020</internalKey>
+<name>INSERT INTO table with ORDER BY</name>
+<description><![CDATA[<h2>INSERT INTO table with ORDER BY</h2><p>The SQL query that is used to produce the result that is inserted into the permanent table has its order specified by an ORDER BY statement. Relational tables are not ordered, so the ORDER BY is meaningless. Use a Row_Number() Window clause instead, if you need to impose a particular order on rows in the table, via a query, especially if you need to allow subsequent insertions into the table"</p><p>SQL Monitor</p><p>The SQL query that is used to produce the result that is inserted into the permanent table has its order specified by an ORDER BY statement. Relational tables are not ordered, so the ORDER BY is meaningless. Use a Row_Number() Window clause instead, if you need to impose a particular order on rows in the table, via a query, especially if you need to allow subsequent insertions into the table. For temporary tables or table variables that will have no subsequent insertions, the current order can be maintained via an IDENTITY field in the target table, but it is an anachronism now that there are better and more versatile ways of doing it.See also: SQL Prompt Code Analysis: INSERT INTO a permanent table with ORDER BY (PE020)</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE021</key>
+<internalKey>PE021</internalKey>
+<name>WITH RECOMPILE option is used</name>
+<description><![CDATA[<h2>WITH RECOMPILE option is used</h2><p>Consider using RECOMPILE query hint instead of WITH RECOMPILE option.</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE022</key>
+<internalKey>PE022</internalKey>
+<name>Foreign key is not trusted</name>
+<description><![CDATA[<h2>Foreign key is not trusted</h2><p>Foreign key is not trusted.</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>PE023</key>
+<internalKey>PE023</internalKey>
+<name>DDL without specifying a schema name for table</name>
+<description><![CDATA[<h2>DDL without specifying a schema name for table</h2><p>The compiler can interpret a two-part object name quicker than just one name. This applies particularly to tables, views, procedures and functions. The same name can be used in different database schemas, so it pays to make your queries unambiguous.</p><p>SQL Monitor</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>performance</tag>
+</rule>
+<rule>
+<key>SC001</key>
+<internalKey>SC001</internalKey>
+<name>Script should end with GO</name>
+<description><![CDATA[<h2>Script should end with GO</h2><p>GO has nothing to do with SQL and is not interpreted by SQL Server. It signals the end of a batch on the client (e.g. SSMS) in order to ensure that several batches can be sent from one file or script.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>SC002</key>
+<internalKey>SC002</internalKey>
+<name>Script should end with empty line</name>
+<description><![CDATA[<h2>Script should end with empty line</h2><p>Many editing tools will get confused  if the last line  in a text file is not terminated with a newline or carriage return / new line combination.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>SC003</key>
+<internalKey>SC003</internalKey>
+<name>There should be no USE statement in batch</name>
+<description><![CDATA[<h2>There should be no USE statement in batch</h2><p>It is unusual to need to jump between database contexts in the middle of a batch, though it is allowed.</p><p>The USE command can only accept a literal database name. It cannot use a synonym, variable or expression. It is intended only as the way of switching the user context.It requires that a database name should be embedded somewhere in the body of the code.</p><p>For reliable installation, this requires a SQLCMD macro or similar to allow the installer to specify the name when necessary.</p><p>The use of USE itself isn't wrong, though it causes an error in Azure SQL Database. It is, in fact, often required in Admin scripts and DDL. If, however, you need to use it in application code, there is probably something wrong with the design of the database(s), since batches should always for security, run in the database context of that database user. Any cross-database work should be done with synonyms, views or iTVFs.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>SC004</key>
+<internalKey>SC004</internalKey>
+<name>Found TODO comment</name>
+<description><![CDATA[<h2>Found TODO comment</h2><p>There is a -- TODO Task...  comment left in the code.</p><p>This rule also matches bug, fix and warning comments left in code.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>SC005</key>
+<internalKey>SC005</internalKey>
+<name>The procedure grants itself permissions</name>
+<description><![CDATA[<h2>The procedure grants itself permissions</h2><p>The procedure grants itself permissions. This may indicate that a GO is missing.</p><p>Consider the following:</p><p>CREATE PROCEDURE MyProc  AS       BEGIN           SET NOCOUNT ON;       END;     GRANT EXECUTE ON MyProc TO PUBLIC;  GO</p><p>In the above example, if GO is omitted before the GRANT statement, the procedure will be created with the GRANT statement included as part of its body, and no rights will be granted during script execution. It is very unusual for a stored procedure to legitimately grant rights to itself, which is why this pattern should be flagged.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>SC006</key>
+<internalKey>SC006</internalKey>
+<name>The EOL marker sequence is not expected CR/LF</name>
+<description><![CDATA[<h2>The EOL marker sequence is not expected CR/LF</h2><p>The EOL marker sequence is not the expected CR/LF.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MAJOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+<tag>depreciated</tag>
+</rule>
+<rule>
+<key>ST001</key>
+<internalKey>ST001</internalKey>
+<name>Old-style join is used (...from table1,table2...)</name>
+<description><![CDATA[<h2>Old-style join is used (...from table1,table2...)</h2><p>Use ANSI-style joins via JOIN.</p><p>This form of SQL is no longer used. It is always better to specify the type of join you are using, INNER, LEFT OUTER, LEFT OUTER, FULL OUTER and CROSS.</p><p>The "old style" Microsoft/Sybase JOIN style for SQL, which uses the =* and *= syntax, has been deprecated and is no longer used. Queries that use this syntax will fail when the database engine level is 10 (SQL Server 2008) or later (compatibility level 100). The ANSI-89 table citation list (FROM tableA, tableB) is still ISO standard for INNER JOINs only.</p><p>Neither of these styles are worth using. It is always better to specify the type of join you require, INNER, LEFT OUTER, RIGHT OUTER, FULL OUTER and CROSS, which has been standard since ANSI SQL-92 was published. While you can choose any supported JOIN style, without affecting the query plan used by SQL Server, using the ANSI-standard syntax will make your code easier to understand, more consistent, and portable to other relational database systems.</p><p>Read more on the Redgate Hub</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST002</key>
+<internalKey>ST002</internalKey>
+<name>Old-style column alias via EQUAL sign</name>
+<description><![CDATA[<h2>Old-style column alias via EQUAL sign</h2><p>The ANSI standard SQL uses the AS keyword to specify an alias, delimiting the alias with double quotes where necessary. The assignment syntax is legal only in Sybase and SQL Server so it is not portable to other SQL Database systems such as Oracle or MySQL; likewise, the use of square brackets to delimit the alias when it is not a legal identifier. Microsoft has deprecated the use of single quotes to delimit an alias (see DEP021)</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST003</key>
+<internalKey>ST003</internalKey>
+<name>Procedure body not enclosed with BEGIN...END</name>
+<description><![CDATA[<h2>Procedure body not enclosed with BEGIN...END</h2><p>It is recommended to enclose a routine body in a BEGIN...END block.</p><p>The BEGIN …END block declaration is optional for stored procedure though it is mandatory for multi-line user-defined functions. To avoid confusion it is best to be consistent.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST004</key>
+<internalKey>ST004</internalKey>
+<name>SQL-92 style cursor declaration is used</name>
+<description><![CDATA[<h2>SQL-92 style cursor declaration is used</h2><p>Use extended syntax instead.</p><p>You use the DECLARE CURSOR command to define the attributes of a T-SQL cursor. DECLARE CURSOR can accept the SQL-92 standard syntax and the SQL Server Extended syntax. Only the extended syntax supports the many T-SQL extensions to cursors.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST005</key>
+<internalKey>ST005</internalKey>
+<name>IF or ELSE without BEGIN...END block</name>
+<description><![CDATA[<h2>IF or ELSE without BEGIN...END block</h2><p>Note: By default, this rule is set to "Ignore". To enable it, set it to "Warning" in the Rules dialog.</p><p>It is recommended to use BEGIN...END as a wrapper for a block of code in IF or ELSE statements. Although, in theory you only need a block wrapper if more than one statement is used in an IF ELSE sequence It is easy to get statements wrong if you leave out the BEGIN…END</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST006</key>
+<internalKey>ST006</internalKey>
+<name>Old-style TOP clause is used</name>
+<description><![CDATA[<h2>Old-style TOP clause is used</h2><p>It is recommended to use the new style TOP clause - TOP(n).</p><p>In order to limit the results of a query, you can specify the number you need by using the TOP clause. The TOP syntax is clearer with the parentheses, though they are syntactic sugar since only one parameter can be within parentheses.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST007</key>
+<internalKey>ST007</internalKey>
+<name>Cursor name is reused</name>
+<description><![CDATA[<h2>Cursor name is reused</h2><p>More than one cursor has the same name.</p><p>Cursors are often thought to have the same scope as variables but this is not the case. It is a mistake to reuse the cursor name.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST008</key>
+<internalKey>ST008</internalKey>
+<name>Non-named parameter style used</name>
+<description><![CDATA[<h2>Non-named parameter style used</h2><p>Use named parameters when calling procedure (exec dbo.Procedure @Parameter1=value,@parameter2=...). Issue registered once per procedure call.</p><p>It is better to provide parameters by name, particularly during active development as otherwise, as procedures are improved, parameters have to be added at the end of the list rather than in logical order, and parameters cannot easily be deleted without causing several mysterious problems.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST009</key>
+<internalKey>ST009</internalKey>
+<name>Avoid using GOTO to improve readability</name>
+<description><![CDATA[<h2>Avoid using GOTO to improve readability</h2><p>GOTO is perfectly legal but it becomes extraordinarily difficult to maintain code that uses GOTOs rather than conventional block structures. It is very rare to find any circumstances where a GOTO is necessary.</p><p>GOTO checks for specific labels can be ignored.</p><p>You may, for example, have a corporate convention to use labels with standard names such as ‘Finish’, ‘ExitWithError’, ‘Cleanup’, and so on.</p><p>In this instance, you can add the labels to ST009 Allowed Labels in the  Rules / Customizable Rules  dialog using standard regular expression syntax.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST010</key>
+<internalKey>ST010</internalKey>
+<name>Use alias for all table sources</name>
+<description><![CDATA[<h2>Use alias for all table sources</h2><p>Aliases are designed to improve readability, not to save typing.</p><p>You only need aliases where you are joining tables that, together with their schemas, have long names.</p><p>For consistency, it is often best to use aliases for every SQL expression that involves more than one table source. There is no performance advantage to using aliases.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST011</key>
+<internalKey>ST011</internalKey>
+<name>Consider using table variable instead of temporary table</name>
+<description><![CDATA[<h2>Consider using table variable instead of temporary table</h2><p>These are much easier to work with, are pretty secure, and they trigger fewer recompiles in the routines where they’re used than if you were to use temporary tables.</p><p>There are many factors involved in choosing whether to use a temporary table or a table variable, and a few simple ‘rules’ to follow, to get the best performance. Assuming you follow the basic rules-of-engagement, then you should consider table variables as a first choice when working with relatively small data sets. They are easier to work with and they trigger fewer recompiles in the routines in which they’re used, compared to using temporary tables. Table variables also require fewer locking resources as they are ‘private’ to the process and batch that created them.</p><p>See Choosing Between Table Variables and Temporary Tables for more details.</p><p>ST012:If you are doing more complex processing on temporary data, or need to use more than reasonably small amounts of data in them, then local temporary tables are likely to be a better choice than table variables.See Choosing Between Table Variables and Temporary Tables for more details.</p><p>Learn more about temporary tables.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST012</key>
+<internalKey>ST012</internalKey>
+<name>Consider using temporary table instead of table variable</name>
+<description><![CDATA[<h2>Consider using temporary table instead of table variable</h2><p>If you are doing more complex processing on temporary data or likely to use more than reasonably small amounts of data in them, then  local temporary tables are likely to be  a better choice than a table variable.</p><p>See Choosing Between Table Variables and Temporary Tables for more details.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST013</key>
+<internalKey>ST013</internalKey>
+<name>Non-ANSI NOT_EQUAL operator used (!=)</name>
+<description><![CDATA[<h2>Non-ANSI NOT_EQUAL operator used (!=)</h2><p>Use ANSI-style NOT_EQUAL operator (<>).</p><p>The ‘!=’ symbol for not equal is not part of the SQL language. It is understood but only for the sake of backward-compatibility.</p>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST014</key>
+<internalKey>ST014</internalKey>
+<name>Procedure name - pattern is not found in allowed patterns</name>
+<description><![CDATA[<h2>Procedure name - pattern is not found in allowed patterns</h2>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST015</key>
+<internalKey>ST015</internalKey>
+<name>Procedure name - pattern is found in disallowed patterns</name>
+<description><![CDATA[<h2>Procedure name - pattern is found in disallowed patterns</h2>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST016</key>
+<internalKey>ST016</internalKey>
+<name>Function name started with fn_</name>
+<description><![CDATA[<h2>Function name started with fn_</h2>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+<rule>
+<key>ST017</key>
+<internalKey>ST017</internalKey>
+<name>Using numbers in table names</name>
+<description><![CDATA[<h2>Using numbers in table names</h2>]]></description>
+<descriptionFormat>HTML</descriptionFormat>
+<severity>MINOR</severity>
+<cardinality>SINGLE</cardinality>
+<status>READY</status>
+<remediationFunction>LINEAR</remediationFunction>
+<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
+<debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+<tag>style</tag>
+</rule>
+</sql-rules>

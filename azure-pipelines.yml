@@ -1,0 +1,25 @@
+strategy:
+  matrix:
+    linux:
+      imageName: 'ubuntu-16.04'
+    mac:
+      imageName: 'macos-10.13'
+    windows:
+      imageName: 'vs2017-win2016'
+
+pool:
+  vmImage: $(imageName)
+  demands: maven
+
+steps:
+- task: Maven@3
+  displayName: 'Maven sonar-sql-plugin install'
+  inputs:
+    mavenPomFile: 'src/sonar-sql-plugin/pom.xml'
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**/*.jar'
+    TargetFolder: '$(build.artifactstagingdirectory)'

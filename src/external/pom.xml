@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.sonar.test</groupId>
+  <artifactId>sample</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>sql-grammars</name>
+ 
+ <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jdk.min.version>1.8</jdk.min.version>
+	<grammars>grammars-v4/tsql</grammars>
+	<grammars.out.dir>tsql</grammars.out.dir>
+	<grammars.package>org.antlr.sql.dialects.tsql</grammars.package>
+  </properties>
+
+  <build>
+    <plugins>
+    <plugin>
+		<groupId>org.antlr</groupId>
+				<artifactId>antlr4-maven-plugin</artifactId>
+				<version>4.7.2</version>
+				<configuration>
+					<sourceDirectory>${basedir}</sourceDirectory>
+					<outputDirectory>${basedir}/../sonar-sql-plugin/src/main/java/org/antlr/sql/dialects/${grammars.out.dir}</outputDirectory>
+					  <listener>true</listener>
+					  <visitor>true</visitor>
+					  <caseInsensitiveType>UPPER</caseInsensitiveType>
+					   <arguments>
+                    <argument>-package</argument>
+                    <argument>${grammars.package}</argument>
+                    <argument>-Xexact-output-dir</argument>
+                    
+                </arguments>
+					<includes>
+						<include>${grammars}/*.g4</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>antlr4</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin> 
+			
+		
+    
+    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>${jdk.min.version}</source>
+          <target>${jdk.min.version}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+
+  
+</project>

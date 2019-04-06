@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sql-rules repoName="Demo adhoc rules" repoKey="tsqlDemoRepoAdhoc" isAdhoc="true">
+   <rule>
+        <key>C001</key>
+        <name>DEMO: WAITFOR is used</name>
+        <internalKey>C001</internalKey>
+        <description>WAITFOR is used.&lt;h2&gt;Code examples&lt;/h2&gt;&lt;h3&gt;Non-compliant&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;WAITFOR '10:00:00';&lt;/code&gt;&lt;/pre&gt;</description>
+        <remediationFunction>LINEAR</remediationFunction>
+        <debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+        <tag>performance</tag>
+		<ruleType>BUG</ruleType>
+        <ruleImplementation>
+            <names>
+                <textItem>Waitfor_statementContext</textItem>
+            </names>
+            <textToFind/>
+            <parentRules/>
+            <childrenRules/>
+            <siblingsRules/>
+            <usesRules/>
+            <ruleViolationMessage>DEMO: WAITFOR is used.</ruleViolationMessage>
+            <times>1</times>
+            <distance>0</distance>
+            <index>0</index>
+            <indexCheckType>Default</indexCheckType>
+            <distanceCheckType>Default</distanceCheckType>
+            <ruleMode>Default</ruleMode>
+            <ruleMatchType>ClassOnly</ruleMatchType>
+            <ruleResultType>FailIfFound</ruleResultType>
+            <textCheckType>Default</textCheckType>
+            <violatingRulesCodeExamples>
+                <ruleCodeExample>WAITFOR '10:00:00';</ruleCodeExample>
+            </violatingRulesCodeExamples>
+            <compliantRulesCodeExamples/>
+        </ruleImplementation>
+    </rule>
+    <rule>
+        <key>C002</key>
+        <name>DEMO: SELECT * is used</name>
+        <internalKey>C002</internalKey>
+        <description>&lt;h2&gt;Description&lt;/h2&gt;&lt;p&gt;SELECT * is used. Please list names.&lt;/p&gt;&lt;h2&gt;Code examples&lt;/h2&gt;&lt;h3&gt;Non-compliant&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;SELECT * from dbo.test;&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;Compliant&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;SELECT name, surname from dbo.test;&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;SELECT name, surname, 1 * 3 from dbo.test;&lt;/code&gt;&lt;/pre&gt;</description>
+        <severity>MINOR</severity>
+        <remediationFunction>LINEAR</remediationFunction>
+        <debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
+        <tag>design</tag>
+        <ruleImplementation>
+            <names>
+                <textItem>Select_list_elemContext</textItem>
+            </names>
+            <textToFind>
+                <textItem>*</textItem>
+            </textToFind>
+            <parentRules/>
+            <childrenRules/>
+            <siblingsRules/>
+            <usesRules/>
+            <ruleViolationMessage>DEMO: SELECT * was used</ruleViolationMessage>
+            <times>1</times>
+            <distance>0</distance>
+            <index>0</index>
+            <indexCheckType>Default</indexCheckType>
+            <distanceCheckType>Default</distanceCheckType>
+            <ruleMode>Default</ruleMode>
+            <ruleMatchType>TextAndClass</ruleMatchType>
+            <ruleResultType>FailIfFound</ruleResultType>
+            <textCheckType>Strict</textCheckType>
+            <violatingRulesCodeExamples>
+                <ruleCodeExample>SELECT * from dbo.test;</ruleCodeExample>
+            </violatingRulesCodeExamples>
+            <compliantRulesCodeExamples>
+                <ruleCodeExample>SELECT name, surname from dbo.test;</ruleCodeExample>
+                <ruleCodeExample>SELECT name, surname, 1 * 3 from dbo.test;</ruleCodeExample>
+            </compliantRulesCodeExamples>
+        </ruleImplementation>
+    </rule>
+</sql-rules>
+

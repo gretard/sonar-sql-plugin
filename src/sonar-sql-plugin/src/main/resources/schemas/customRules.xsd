@@ -1,0 +1,181 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="textItem" type="xs:string"/>
+  <xs:element name="className" type="xs:string"/>
+  <xs:element name="ruleCodeExample" type="xs:string"/>
+  <xs:simpleType name="ruleResultType" final="restriction" >
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="Default" />
+        <xs:enumeration value="FailIfFound" />
+        <xs:enumeration value="FailIfNotFound" />
+        <xs:enumeration value="FailIfLessFound" />
+        <xs:enumeration value="FailIfMoreFound" />
+        <xs:enumeration value="SkipIfFound" />   
+        <xs:enumeration value="SkipIfNotFound" />     
+    </xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="ruleMode" final="restriction" >
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="Default" />
+        <xs:enumeration value="Group" />
+        <xs:enumeration value="Single" />    
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="ruleMatchType" final="restriction" >
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="Default" />
+        <xs:enumeration value="Full"/>
+        <xs:enumeration value="TextOnly" />
+        <xs:enumeration value="TextAndClass" />
+        <xs:enumeration value="ClassOnly" />
+        <xs:enumeration value="Strict" />
+    </xs:restriction>
+</xs:simpleType>
+ <xs:simpleType name="textCheckType" final="restriction" >
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="Default" />
+        <xs:enumeration value="Contains" />
+        <xs:enumeration value="Regexp" />
+        <xs:enumeration value="Strict" />
+    </xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="ruleDistanceIndexMatchType" final="restriction" >
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="Default" />
+        <xs:enumeration value="More" />
+        <xs:enumeration value="Less" />
+        <xs:enumeration value="Equals" />  
+    </xs:restriction>
+</xs:simpleType>
+<xs:element name="textToFind">
+    <xs:complexType mixed="false">
+      <xs:sequence>
+        <xs:element ref="textItem" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="names">
+    <xs:complexType mixed="false">
+      <xs:sequence>
+        <xs:element ref="textItem" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ruleViolationMessage" type="xs:string"/>
+  <xs:element name="ruleImplementation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="names"/>
+        <xs:element ref="textToFind"/>
+        <xs:element ref="parentRules" minOccurs="0"/>
+        <xs:element ref="childrenRules" minOccurs="0"/>
+        <xs:element ref="siblingsRules"  minOccurs="0"/>
+        <xs:element ref="usesRules" minOccurs="0"/>
+        <xs:element ref="ruleViolationMessage"/>
+        <xs:element name="times" type="xs:int" default="1" />
+        <xs:element name="distance" type="xs:int" default="0" />
+        <xs:element name="index" type="xs:int" default="0" /> 
+        <xs:element name="indexCheckType" type="ruleDistanceIndexMatchType" />
+        <xs:element name="distanceCheckType" type="ruleDistanceIndexMatchType" />
+        <xs:element name="ruleMode" type="ruleMode" />
+        <xs:element name="ruleMatchType" type="ruleMatchType" />
+        <xs:element name="ruleResultType" type="ruleResultType" />
+        <xs:element name="textCheckType" type="textCheckType" />
+        <xs:element ref="violatingRulesCodeExamples"/>
+        <xs:element ref="compliantRulesCodeExamples"/>
+        
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+   <xs:element name="violatingRulesCodeExamples">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ruleCodeExample" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+     <xs:element name="compliantRulesCodeExamples">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ruleCodeExample" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="parentRules">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ruleImplementation" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+    <xs:element name="usesRules">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ruleImplementation" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="siblingsRules">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ruleImplementation" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="childrenRules">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ruleImplementation" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="key" type="xs:string"></xs:element>
+  <xs:element name="name" type="xs:string"/>
+  <xs:element name="internalKey" type="xs:string"/>
+  <xs:element name="descriptionFormat" type="xs:string"/>
+  <xs:element name="description" type="xs:string"/>
+  <xs:element name="severity" type="xs:string"/>
+  <xs:element name="cardinality" type="xs:string"/>
+  <xs:element name="status" type="xs:string"/>
+  <xs:element name="ruleType" type="xs:string" default="CODE_SMELL" />
+  <xs:element name="remediationFunction" type="xs:string"/>
+  <xs:element name="remediationFunctionBaseEffort" type="xs:string"/>
+  <xs:element name="debtRemediationFunctionCoefficient" type="xs:string"/>
+  <xs:element name="tag" type="xs:string"/>
+  <xs:element name="source" type="xs:string"/>
+  <xs:element name="rule">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="key"/>
+        <xs:element ref="name"/>
+        <xs:element ref="internalKey"/>
+        <xs:element ref="descriptionFormat"/>
+        <xs:element ref="description"/>
+        <xs:element ref="severity"/>
+        <xs:element ref="cardinality"/>
+        <xs:element ref="status"/>
+        <xs:element ref="remediationFunction"/>
+        <xs:element ref="remediationFunctionBaseEffort"/>
+        <xs:element ref="debtRemediationFunctionCoefficient"/>
+        <xs:element ref="tag"/>
+        <xs:element ref="ruleImplementation"/>
+        <xs:element ref="source"/>
+        <xs:element ref="ruleType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sql-rules">
+  
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="rule" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="repoName"/>
+      <xs:attribute type="xs:string" name="repoKey"/>
+      <xs:attribute type="xs:string" name="version" default="1" />
+      <xs:attribute type="xs:boolean" name="isAdhoc" default="false" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
