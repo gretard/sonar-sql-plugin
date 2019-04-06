@@ -8,9 +8,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>sonar-plugin</packaging>
 
-	<name>SQL language plugin</name>	
+	<name>SQL language plugin</name>
 	<description>SQL plugin for SonarQube</description>
-	
+
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -18,11 +18,17 @@
 		<sonar.apiVersion>7.4</sonar.apiVersion>
 		<jdk.min.version>1.8</jdk.min.version>
 		<maven.compiler.target>1.8</maven.compiler.target>
-				<maven.source.target>1.8</maven.source.target>
-		
+		<maven.source.target>1.8</maven.source.target>
+
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>0.9.11</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.sonarsource.sonarqube</groupId>
 			<artifactId>sonar-plugin-api</artifactId>
@@ -37,7 +43,7 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.5</version>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>

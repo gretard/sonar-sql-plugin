@@ -1,4 +1,4 @@
-package org.antlr.sql.models.matchers;
+package org.antlr.sql.sca;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.sonar.plugins.sql.models.rules.Rule;
 import org.sonar.plugins.sql.models.rules.SqlRules;
 
-public class IssuesProviderTestsIT {
+public class IssuesProviderTestsITCase {
 
 	@Test
 	public void testViolatingStatements() {
