@@ -34,6 +34,7 @@ public class SQLCheckIssuesReader {
 		String statement = null;
 		String risk = null;
 		while (i < end) {
+			
 			String line = lines.get(i);
 			if (line.startsWith("SQL Statement:")) {
 				statement = line;

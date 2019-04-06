@@ -42,7 +42,7 @@ public final class Constants {
 	
 	public static final String SQL_SQLCHECK_PATH = "sonar.sql.sqlcheck.path";
 		
-	public static final String SQL_SQLCHECK_PATH_DEFAULT = "sqlcheck";
+	public static final String SQL_SQLCHECK_PATH_DEFAULT = "/usr/bin/sqlcheck";
 
 
 }

@@ -1,11 +1,13 @@
 package org.sonar.plugins.sql.sensors;
 
 import java.io.File;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.rule.Severity;
 import org.sonar.api.batch.sensor.Sensor;
@@ -58,17 +60,17 @@ public class SqlCheckSensor extends BaseSensor implements Sensor {
 
 				@SuppressWarnings("deprecation")
 				final String[] args = new String[] { externalTool, "-f",
-						file.file().getAbsoluteFile().getCanonicalPath(), "-v", ">>",
-						tempResultsFile.getAbsolutePath() };
+						file.file().getAbsoluteFile().getCanonicalPath(), "-v"};
 
-				final Process process = new ProcessBuilder(args).start();
+				
+				final Process process = new ProcessBuilder(args).redirectOutput(tempResultsFile).start();
 				LOGGER.debug("Running SQLCheck with {}", Arrays.toString(args));
-
 				final int result = process.waitFor();
 				if (result != 0 || !tempResultsFile.exists() || tempResultsFile.length() == 0) {
 					LOGGER.warn("Was not able to run SQLCheck with {}", Arrays.toString(args));
 					return;
 				}
+				//System.out.println(FileUtils.readFileToString(tempResultsFile));
 				List<SQLCheckIssue> issues = reader.read(tempResultsFile);
 				for (SQLCheckIssue issue : issues) {
 					try {
@@ -76,11 +78,14 @@ public class SqlCheckSensor extends BaseSensor implements Sensor {
 								.name(issue.name).ruleId(issue.getId()).severity(Severity.MAJOR)
 								.type(RuleType.CODE_SMELL).save();
 
-						NewExternalIssue externalIssue = context.newExternalIssue().ruleId(issue.getId())
+						NewExternalIssue externalIssue = context.newExternalIssue()
+								.ruleId(issue.getId()).severity(Severity.MAJOR).type(RuleType.CODE_SMELL)
 								.engineId(this.repositoryName);
-						NewIssueLocation loc = externalIssue.newLocation().on(file);
+						NewIssueLocation loc = externalIssue.newLocation().on(file)
+								.message(issue.message);
 						externalIssue.at(loc).save();
 					} catch (Exception e) {
+						e.printStackTrace();
 						LOGGER.debug("Unexpected error adding issue on file {}: {} ", file, e);
 					}
 
