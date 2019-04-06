@@ -6,6 +6,7 @@ import java.nio.file.Files;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -25,6 +26,8 @@ public class CGIssuesSensorTest {
 
 	@Test
 	public void testExecute() throws IOException {
+
+		Assume.assumeTrue("Tool exists", new File(Constants.TSQL_CG_PATH_DEFAULT).exists());
 
 		SensorContextTester ctxTester = SensorContextTester.create(folder.getRoot());
 		ctxTester.fileSystem().setWorkDir(folder.getRoot().toPath());

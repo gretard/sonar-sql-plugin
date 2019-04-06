@@ -27,7 +27,7 @@ public class SQLCheckSensorTest {
 	@Test
 	public void testExecute() throws IOException {
 
-		Assume.assumeTrue("Sqlcheck exists", new File("/usr/bin/sqlcheck").exists());
+		Assume.assumeTrue("Tool exists", new File(Constants.SQL_SQLCHECK_PATH_DEFAULT).exists());
 		SensorContextTester ctxTester = SensorContextTester.create(folder.getRoot());
 		ctxTester.fileSystem().setWorkDir(folder.getRoot().toPath());
 

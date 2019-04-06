@@ -7,6 +7,7 @@ import java.nio.file.Files;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -26,6 +27,7 @@ public class SqlCoverCoverageSensorTest {
 
 	@Test
 	public void testExecute() throws IOException {
+
 
 		SensorContextTester ctxTester = SensorContextTester.create(folder.getRoot());
 		ctxTester.fileSystem().setWorkDir(folder.getRoot().toPath());
