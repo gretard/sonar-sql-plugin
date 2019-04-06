@@ -58,17 +58,18 @@ public class CGIssuesSensor extends BaseSensor implements Sensor {
 
 	@Override
 	public void execute(SensorContext context) {
-		final String filePath = context.config().get(Constants.TSQL_CG_PATH).orElse(Constants.TSQL_CG_PATH_DEFAULT)
+		final String externalTool = context.config().get(Constants.TSQL_CG_PATH).orElse(Constants.TSQL_CG_PATH_DEFAULT)
 				.toLowerCase();
 		final String sourceDir = context.fileSystem().baseDir().getAbsolutePath();
 		try {
-			if (!Files.exists(Paths.get(filePath))) {
+			if (!Files.exists(Paths.get(externalTool))) {
+				LOGGER.info("Skip running external tool as executable not found {}", externalTool);
 				return;
 			}
 
 			final File tempResultsFile = tempFolder.newFile("temp", "results.xml");
 
-			final String[] args = new String[] { filePath, "-source", sourceDir, "-out",
+			final String[] args = new String[] { externalTool, "-source", sourceDir, "-out",
 					tempResultsFile.getAbsolutePath(), "/include:all" };
 
 			final Process process = new ProcessBuilder(args).start();
