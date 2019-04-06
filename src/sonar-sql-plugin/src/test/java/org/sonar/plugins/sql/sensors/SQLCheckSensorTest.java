@@ -6,6 +6,7 @@ import java.nio.file.Files;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -26,9 +27,10 @@ public class SQLCheckSensorTest {
 	@Test
 	public void testExecute() throws IOException {
 
+		Assume.assumeTrue("Sqlcheck exists", new File("/usr/bin/sqlcheck").exists());
 		SensorContextTester ctxTester = SensorContextTester.create(folder.getRoot());
 		ctxTester.fileSystem().setWorkDir(folder.getRoot().toPath());
-		
+
 		File baseFile = folder.newFile("sample2.sql");
 
 		FileUtils.copyURLToFile(getClass().getResource("/tsql/sample1.sql"), baseFile);
