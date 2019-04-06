@@ -45,7 +45,10 @@ public class SQLSensor implements Sensor {
 		final Configuration config = context.config();
 
 		final String dialect = config.get(Constants.PLUGIN_SQL_DIALECT).orElse("tsql").toUpperCase();
-		final long timeout = config.getLong(Constants.PLUGIN_SQL_SCA_TIMEOUT).orElse((long) 3600);
+		final long timeout = config.getLong(Constants.PLUGIN_SQL_SCA_TIMEOUT)
+				.orElse(Constants.PLUGIN_SQL_SCA_TIMEOUT_DEFAULT);
+		final long maxFileSize = config.getLong(Constants.PLUGIN_SQL_SCA_MAX_FILE_SIZE)
+				.orElse(Constants.PLUGIN_SQL_SCA_MAX_FILE_SIZE_DEFAULT);
 
 		if (!EnumUtils.isValidEnum(Dialects.class, dialect)) {
 			LOGGER.warn("Undefined dialect was passed: {}. Supported dialects are: {}", dialect, Dialects.values());
@@ -68,6 +71,11 @@ public class SQLSensor implements Sensor {
 				@Override
 				public void run() {
 					try {
+						if (inputFile.file().length() > maxFileSize) {
+							LOGGER.debug("Skipping {} file as its size exceeds {} bytes", inputFile, maxFileSize);
+
+							return;
+						}
 						final AntlrContext ctx = sqlDialect.parse(inputFile.contents(), customRules);
 						for (final Filler filler : fillers) {
 							filler.fill(inputFile, context, ctx);

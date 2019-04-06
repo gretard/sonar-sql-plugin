@@ -55,7 +55,8 @@ public class SqlCheckSensor extends BaseSensor implements Sensor {
 				LOGGER.info("Skip running external tool as executable not found {}", externalTool);
 				return;
 			}
-			final long timeout = context.config().getLong(Constants.PLUGIN_SQL_SCA_TIMEOUT).orElse((long) 3600);
+			final long timeout = context.config().getLong(Constants.PLUGIN_SQL_SCA_TIMEOUT)
+					.orElse(Constants.PLUGIN_SQL_SCA_TIMEOUT_DEFAULT);
 
 			final ExecutorService service = Executors.newWorkStealingPool();
 			for (InputFile file : context.fileSystem()
@@ -106,10 +107,12 @@ public class SqlCheckSensor extends BaseSensor implements Sensor {
 			for (final SQLCheckIssue issue : issues) {
 				try {
 					context.newAdHocRule().description(issue.description).engineId(this.repositoryName).name(issue.name)
-							.ruleId(issue.getId()).severity(Severity.MAJOR).type(RuleType.CODE_SMELL).save();
+							.ruleId(issue.getId()).severity(Severity.valueOf(issue.getSeverity().toUpperCase()))
+							.type(RuleType.CODE_SMELL).save();
 
 					NewExternalIssue externalIssue = context.newExternalIssue().ruleId(issue.getId())
-							.severity(Severity.MAJOR).type(RuleType.CODE_SMELL).engineId(this.repositoryName);
+							.severity(Severity.valueOf(issue.getSeverity().toUpperCase())).type(RuleType.CODE_SMELL)
+							.engineId(this.repositoryName);
 					NewIssueLocation loc = externalIssue.newLocation().on(file).message(issue.message);
 					externalIssue.at(loc).save();
 				} catch (Exception e) {

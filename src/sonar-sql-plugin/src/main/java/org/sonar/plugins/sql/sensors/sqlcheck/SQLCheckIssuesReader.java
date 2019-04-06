@@ -34,7 +34,7 @@ public class SQLCheckIssuesReader {
 		String statement = null;
 		String risk = null;
 		while (i < end) {
-			
+
 			String line = lines.get(i);
 			if (line.startsWith("SQL Statement:")) {
 				statement = line;
@@ -82,6 +82,17 @@ public class SQLCheckIssuesReader {
 		public String description;
 
 		public String name;
+
+		public String getSeverity() {
+			if (StringUtils.containsIgnoreCase(risk, "HIGH")) {
+				return "MAJOR";
+			}
+			if (StringUtils.containsIgnoreCase(risk, "LOW")) {
+				return "TRIVIAL";
+			}
+			return "MINOR";
+
+		}
 
 		public String risk;
 	}

@@ -1,8 +1,27 @@
 package org.antlr.sql.dialects;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.antlr.sql.dialects.mysql.MySqlParser.ComparisonOperatorContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.FunctionCallExpressionAtomContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.InsertStatementContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.LikePredicateContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.LogicalExpressionContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.LogicalOperatorContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.OrderByClauseContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.OrderByExpressionContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.PredicateExpressionContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.QuerySpecificationContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.ScalarFunctionCallContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.ScalarFunctionNameContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.SelectElementsContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.UidContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.UidListContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.UnionStatementContext;
+import org.antlr.sql.dialects.psql.PostgreSQLParser.Func_callContext;
+import org.antlr.sql.dialects.psql.PostgreSQLParser.Selector_clauseContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Column_name_listContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Comparison_operatorContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.ConstantContext;
@@ -47,31 +66,61 @@ public enum SQLDialectRules {
 	INSTANCE;
 
 	public List<SqlRules> getRules() {
+		List<SqlRules> rules = new ArrayList<>();
+		{
+			SqlRules customRules = new SqlRules();
+			customRules.setRepoKey("SQLCC");
+			customRules.setRepoName("SQL Plugin checks");
+			customRules.setDialect("tsql");
+			customRules.getRule()
+					.addAll(Arrays.asList(getWaitForRule(), getSelectAllRule(), getInsertRule(), getOrderByRule(),
+							getExecRule(), getNoLockRule(), getSargRule(), getPKRule(), getFKRule(),
+							getNullComparisonRule(), getIndexNamingRule(), getWhereWithOrVsUnionRule(),
+							getUnionVsUnionALLRule(), getExistsVsInRule(), getOrderByRuleWithoutAscDesc()));
+			rules.add(customRules);
+		}
+		{
+			SqlRules customRules = new SqlRules();
+			customRules.setRepoKey("SQLCC");
+			customRules.setRepoName("SQL Plugin checks");
+			customRules.setDialect("mysql");
+			customRules.getRule()
+					.addAll(Arrays.asList(getWaitForRuleMySql(), getSelectAllRuleMySql(), getInsertRuleMySql(), getOrderByRuleMySql(),
+							 getSargRuleMySql(), /*getPKRule(), getFKRule(),*/
+							 getNullComparisonRuleMySql(),/* getIndexNamingRule(),*/ getWhereWithOrVsUnionRuleMySql(),
+							getUnionVsUnionALLRuleMySQL(), getExistsVsInRuleMySql(), getOrderByRuleWithoutAscDesc()));
+			rules.add(customRules);
 
-		SqlRules customRules = new SqlRules();
-		customRules.setRepoKey("SQLCC");
-		customRules.setRepoName("SQL Plugin checks");
-		customRules.setDialect("tsql");
-		customRules.getRule()
-				.addAll(Arrays.asList(getWaitForRule(), getSelectAllRule(), getInsertRule(), getOrderByRule(),
-						getExecRule(), getNoLockRule(), getSargRule(), getPKRule(), getFKRule(),
-						getNullComparisonRule(), getIndexNamingRule(), getWhereWithOrVsUnionRule(),
-						getUnionVsUnionALLRule(), getExistsVsInRule(), getOrderByRuleWithoutAscDesc()));
-		return Arrays.asList(customRules);
+		}
+		{
+			SqlRules customRules = new SqlRules();
+			customRules.setRepoKey("SQLCC");
+			customRules.setRepoName("SQL Plugin checks");
+			customRules.setDialect("pssql");
+			customRules.getRule()
+					.addAll(Arrays.asList(getWaitForRulePsSQL(), getSelectAllRule(), /*getInsertRule(),*/ getOrderByRule(),
+							getExecRule(), getNoLockRule(), getSargRule(), getPKRule(), getFKRule(),
+							getNullComparisonRule(), getIndexNamingRule(), getWhereWithOrVsUnionRule(),
+							getUnionVsUnionALLRule(), getExistsVsInRule(), getOrderByRuleWithoutAscDesc()));
+	//		rules.add(customRules);
+
+		}
+		return rules;
 	}
 
 	public static Rule getWaitForRule() {
 		Rule rule = new Rule();
 		rule.setKey("C001");
 		rule.setInternalKey("C001");
-		rule.setDescription("WAITFOR is used.");
-		rule.setName("WAITFOR is used");
+		rule.setDescription("SLEEP/WAITFOR is used.");
+		rule.setDescription("SLEEP/WAITFOR is used");
 		rule.setTag("performance");
 		rule.setSeverity("MINOR");
 		rule.setRemediationFunction("LINEAR");
 		rule.setDebtRemediationFunctionCoefficient("2min");
 		RuleImplementation impl = new RuleImplementation();
 		impl.getNames().getTextItem().add(Waitfor_statementContext.class.getSimpleName());
+
 		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 		impl.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
 		impl.setRuleViolationMessage("WAITFOR is used.");
@@ -80,7 +129,47 @@ public enum SQLDialectRules {
 		rule.setRuleImplementation(impl);
 		return rule;
 	}
+	public static Rule getWaitForRulePsSQL() {
+		Rule rule = new Rule();
+		rule.setKey("C001");
+		rule.setInternalKey("C001");
+		rule.setDescription("SLEEP/WAITFOR is used.");
+		rule.setDescription("SLEEP/WAITFOR is used");
+		rule.setTag("performance");
+		rule.setSeverity("MINOR");
+		rule.setRemediationFunction("LINEAR");
+		rule.setDebtRemediationFunctionCoefficient("2min");
+		RuleImplementation impl = new RuleImplementation();
+		impl.getNames().getTextItem().add(Func_callContext.class.getSimpleName());
+impl.getTextToFind().getTextItem().add("pg_sleep");
+		impl.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+		impl.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+		impl.setRuleViolationMessage("WAITFOR is used.");
+		impl.getViolatingRulesCodeExamples().getRuleCodeExample().add("select pg_sleep(5); ");
 
+		rule.setRuleImplementation(impl);
+		return rule;
+	}
+	public static Rule getWaitForRuleMySql() {
+		Rule rule = new Rule();
+		rule.setKey("C001");
+		rule.setInternalKey("C001");
+		rule.setDescription("SLEEP/WAITFOR is used.");
+		rule.setName("SLEEP/WAITFOR is used");
+		rule.setTag("performance");
+		rule.setSeverity("MINOR");
+		rule.setRemediationFunction("LINEAR");
+		rule.setDebtRemediationFunctionCoefficient("2min");
+		RuleImplementation impl = new RuleImplementation();
+		impl.getNames().getTextItem().add(ScalarFunctionNameContext.class.getSimpleName());
+		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		impl.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+		impl.setRuleViolationMessage("SLEEP is used.");
+		impl.getViolatingRulesCodeExamples().getRuleCodeExample().add("SELECT SLEEP(10);");
+
+		rule.setRuleImplementation(impl);
+		return rule;
+	}
 	public static Rule getSelectAllRule() {
 		Rule rule = new Rule();
 		rule.setKey("C002");
@@ -94,6 +183,8 @@ public enum SQLDialectRules {
 		RuleImplementation impl = new RuleImplementation();
 
 		impl.getNames().getTextItem().add(Select_list_elemContext.class.getSimpleName());
+		impl.getNames().getTextItem().add(Selector_clauseContext.class.getSimpleName());
+		//
 		impl.getTextToFind().getTextItem().add("*");
 		impl.setRuleViolationMessage("SELECT * was used. Consider listing column names.");
 		impl.setTextCheckType(TextCheckType.STRICT);
@@ -106,7 +197,32 @@ public enum SQLDialectRules {
 
 		return rule;
 	}
+	public static Rule getSelectAllRuleMySql() {
+		Rule rule = new Rule();
+		rule.setKey("C002");
+		rule.setInternalKey("C002");
+		rule.setName("SELECT * is used");
+		rule.setDescription("<h2>Description</h2><p>SELECT * is used. Please list names.</p>");
+		rule.setTag("design");
+		rule.setSeverity("MINOR");
+		rule.setRemediationFunction("LINEAR");
+		rule.setDebtRemediationFunctionCoefficient("2min");
+		RuleImplementation impl = new RuleImplementation();
 
+		impl.getNames().getTextItem().add(SelectElementsContext.class.getSimpleName());
+		impl.getTextToFind().getTextItem().add("*");
+		impl.setRuleViolationMessage("SELECT * was used. Consider listing column names.");
+		impl.setTextCheckType(TextCheckType.STRICT);
+		impl.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+		impl.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+		impl.getViolatingRulesCodeExamples().getRuleCodeExample().add("SELECT * from dbo.test;");
+		impl.getCompliantRulesCodeExamples().getRuleCodeExample().add("SELECT name, surname from dbo.test;");
+		impl.getCompliantRulesCodeExamples().getRuleCodeExample().add("SELECT name, surname, 1 * 3 from dbo.test;");
+		rule.setRuleImplementation(impl);
+
+		return rule;
+	}
+	//UidListContext
 	public static Rule getInsertRule() {
 		Rule rule = new Rule();
 		rule.setKey("C003");
@@ -128,6 +244,37 @@ public enum SQLDialectRules {
 
 		impl.getChildrenRules().getRuleImplementation().add(child2);
 		impl.getNames().getTextItem().add(Insert_statementContext.class.getSimpleName());
+		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		impl.setRuleResultType(RuleResultType.DEFAULT);
+		impl.setRuleViolationMessage("Column list is not specified in an INSERT statement.");
+		impl.getViolatingRulesCodeExamples().getRuleCodeExample().add("INSERT INTO dbo.test VALUES (1,2);");
+		impl.getCompliantRulesCodeExamples().getRuleCodeExample().add("INSERT INTO dbo.test (a,b) VALUES (1,2);");
+
+		rule.setRuleImplementation(impl);
+
+		return rule;
+	}
+	public static Rule getInsertRuleMySql() {
+		Rule rule = new Rule();
+		rule.setKey("C003");
+		rule.setInternalKey("C003");
+		rule.setName("INSERT statement without columns listed");
+		rule.setDescription(
+				"<h2>Description</h2><p>INSERT statement does not have columns listed. Always use a column list in your INSERT statements.</p>");
+		rule.setTag("design");
+		rule.setSeverity("MINOR");
+		rule.setRemediationFunction("LINEAR");
+		rule.setDebtRemediationFunctionCoefficient("2min");
+		RuleImplementation child2 = new RuleImplementation();
+		child2.getNames().getTextItem().add(UidListContext.class.getSimpleName());
+		child2.setTextCheckType(TextCheckType.DEFAULT);
+		child2.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
+		child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+		RuleImplementation impl = new RuleImplementation();
+
+		impl.getChildrenRules().getRuleImplementation().add(child2);
+		impl.getNames().getTextItem().add(InsertStatementContext.class.getSimpleName());
 		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 		impl.setRuleResultType(RuleResultType.DEFAULT);
 		impl.setRuleViolationMessage("Column list is not specified in an INSERT statement.");
@@ -160,6 +307,69 @@ public enum SQLDialectRules {
 
 		impl.getChildrenRules().getRuleImplementation().add(child2);
 		impl.getNames().getTextItem().add(Order_by_clauseContext.class.getSimpleName());
+		
+		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		impl.setRuleResultType(RuleResultType.DEFAULT);
+		impl.setRuleViolationMessage("Positional reference is used instead of column name in an ORDER BY clause.");
+		impl.getViolatingRulesCodeExamples().getRuleCodeExample().add("SELECT * from dbo.test order by 1, 2;");
+		impl.getCompliantRulesCodeExamples().getRuleCodeExample().add("SELECT * from dbo.test order by name;");
+
+		rule.setRuleImplementation(impl);
+		return rule;
+	}
+	
+	public static Rule getOrderByRulePSSQL() {
+		Rule rule = new Rule();
+		rule.setKey("C004");
+		rule.setInternalKey("C004");
+		rule.setName("ORDER BY clause contains positional references");
+		rule.setDescription(
+				"<h2>Description</h2><p>Do not use column numbers in the ORDER BY clause. Always use column names in an order by clause. Avoid positional references.</p>");
+		rule.setTag("design");
+		rule.setSeverity("MINOR");
+		rule.setRemediationFunction("LINEAR");
+		rule.setDebtRemediationFunctionCoefficient("2min");
+		RuleImplementation child2 = new RuleImplementation();
+		child2.getNames().getTextItem().add(ConstantContext.class.getSimpleName());
+		child2.setTextCheckType(TextCheckType.DEFAULT);
+		child2.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+		child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+		RuleImplementation impl = new RuleImplementation();
+
+		impl.getChildrenRules().getRuleImplementation().add(child2);
+		impl.getNames().getTextItem().add(Order_by_clauseContext.class.getSimpleName());
+		
+		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		impl.setRuleResultType(RuleResultType.DEFAULT);
+		impl.setRuleViolationMessage("Positional reference is used instead of column name in an ORDER BY clause.");
+		impl.getViolatingRulesCodeExamples().getRuleCodeExample().add("SELECT * from dbo.test order by 1;");
+		impl.getCompliantRulesCodeExamples().getRuleCodeExample().add("SELECT * from dbo.test order by name;");
+
+		rule.setRuleImplementation(impl);
+		return rule;
+	}
+	public static Rule getOrderByRuleMySql() {
+		Rule rule = new Rule();
+		rule.setKey("C004");
+		rule.setInternalKey("C004");
+		rule.setName("ORDER BY clause contains positional references");
+		rule.setDescription(
+				"<h2>Description</h2><p>Do not use column numbers in the ORDER BY clause. Always use column names in an order by clause. Avoid positional references.</p>");
+		rule.setTag("design");
+		rule.setSeverity("MINOR");
+		rule.setRemediationFunction("LINEAR");
+		rule.setDebtRemediationFunctionCoefficient("2min");
+		RuleImplementation child2 = new RuleImplementation();
+		child2.getNames().getTextItem().add(org.antlr.sql.dialects.mysql.MySqlParser.ConstantContext.class.getSimpleName());
+		child2.setTextCheckType(TextCheckType.DEFAULT);
+		child2.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+		child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+		RuleImplementation impl = new RuleImplementation();
+
+		impl.getChildrenRules().getRuleImplementation().add(child2);
+		impl.getNames().getTextItem().add(OrderByClauseContext.class.getSimpleName());
 		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 		impl.setRuleResultType(RuleResultType.DEFAULT);
 		impl.setRuleViolationMessage("Positional reference is used instead of column name in an ORDER BY clause.");
@@ -621,6 +831,52 @@ public enum SQLDialectRules {
 
 		return r;
 	}
+	public static Rule getNullComparisonRuleMySql() {
+		Rule r = new Rule();
+		r.setKey("C012");
+		r.setInternalKey("C012");
+		r.setDescription(
+				"<h2>Description</h2><p>It is not advisable to use comparison operator to check if value is null as comparison operators return UNKNOWN when either or both arguments are NULL. Please use IS NULL or IS NOT NULL instead.</p>");
+		r.setSeverity("MAJOR");
+		r.setTag("reliability");
+		r.setRemediationFunction("LINEAR");
+		r.setDebtRemediationFunctionCoefficient("3min");
+		r.setName("Comparison operator (=, <>, !=) to check if value is null used");
+		RuleImplementation rImpl = new RuleImplementation();
+		rImpl.getNames().getTextItem().add(PredicateExpressionContext.class.getSimpleName());
+		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		rImpl.setRuleViolationMessage(
+				"Comparison operator (=, <>, !=) to check if value is null used. Consider using IS NULL/IS NOT NULL.");
+		r.setRuleImplementation(rImpl);
+		RuleImplementation child = new RuleImplementation();
+		child.getTextToFind().getTextItem().add("!=");
+		child.getTextToFind().getTextItem().add("<>");
+		child.getTextToFind().getTextItem().add("=");
+		child.setTextCheckType(TextCheckType.STRICT);
+		child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+		child.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+		child.getNames().getTextItem().add(ComparisonOperatorContext.class.getSimpleName());
+
+		RuleImplementation childNull = new RuleImplementation();
+
+		childNull.getTextToFind().getTextItem().add("NULL");
+		childNull.setTextCheckType(TextCheckType.STRICT);
+		childNull.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+		childNull.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+		childNull.getNames().getTextItem().add(ConstantContext.class.getSimpleName());
+
+		rImpl.getChildrenRules().getRuleImplementation().add(child);
+		rImpl.getChildrenRules().getRuleImplementation().add(childNull);
+		rImpl.getCompliantRulesCodeExamples().getRuleCodeExample().add("SELECT * from dbo.test where name IS NULL;");
+		rImpl.getCompliantRulesCodeExamples().getRuleCodeExample()
+				.add("SELECT * from dbo.test where name IS NOT NULL;");
+		rImpl.getCompliantRulesCodeExamples().getRuleCodeExample().add("SELECT * from dbo.test where name = 'test';");
+		rImpl.getViolatingRulesCodeExamples().getRuleCodeExample().add("SELECT * from dbo.test where name = null;");
+		rImpl.getViolatingRulesCodeExamples().getRuleCodeExample().add("SELECT * from dbo.test where name != null;");
+		rImpl.getViolatingRulesCodeExamples().getRuleCodeExample().add("SELECT * from dbo.test where name <> null;");
+
+		return r;
+	}
 
 	public static Rule getWhereWithOrVsUnionRule() {
 		Rule r = new Rule();
@@ -653,6 +909,37 @@ public enum SQLDialectRules {
 		r.setSource("https://dzone.com/articles/sql-handbook-and-best-practices-performance-tuning");
 		return r;
 	}
+	public static Rule getWhereWithOrVsUnionRuleMySql() {
+		Rule r = new Rule();
+		r.setKey("C014");
+		r.setInternalKey("C014");
+		r.setDescription(
+				"<h2>Description</h2><p>It is  advisable to consider using UNION/UNION ALL operator instead of OR verb in the WHERE clause.</p>");
+		r.setSeverity("MAJOR");
+		r.setTag("performance");
+		r.setRemediationFunction("LINEAR");
+		r.setDebtRemediationFunctionCoefficient("3min");
+		r.setName("OR verb is used in a WHERE clause");
+		RuleImplementation rImpl = new RuleImplementation();
+		rImpl.getNames().getTextItem().add(LogicalExpressionContext.class.getSimpleName());
+		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		rImpl.setRuleViolationMessage("Consider using UNION ALL instead of OR in a WHERE clause.");
+		r.setRuleImplementation(rImpl);
+		RuleImplementation child = new RuleImplementation();
+		child.getTextToFind().getTextItem().add("or");
+		child.setTextCheckType(TextCheckType.STRICT);
+		child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+		child.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+		child.getNames().getTextItem().add(LogicalOperatorContext.class.getSimpleName());
+
+		rImpl.getChildrenRules().getRuleImplementation().add(child);
+		rImpl.getCompliantRulesCodeExamples().getRuleCodeExample()
+				.add("SELECT name, surname, count from dbo.test where name = 'or' and surname = 'TestOR';");
+		rImpl.getViolatingRulesCodeExamples().getRuleCodeExample()
+				.add("SELECT name, surname, count from dbo.test where name = 'Test' OR surname = 'Testor';");
+		r.setSource("https://dzone.com/articles/sql-handbook-and-best-practices-performance-tuning");
+		return r;
+	}
 
 	public static Rule getUnionVsUnionALLRule() {
 		Rule r = new Rule();
@@ -668,6 +955,41 @@ public enum SQLDialectRules {
 
 		RuleImplementation rImpl = new RuleImplementation();
 		rImpl.getNames().getTextItem().add(Sql_unionContext.class.getSimpleName());
+		rImpl.setRuleViolationMessage(
+				"Consider using UNION ALL instead of UNION operator for the performance reasons.");
+		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		r.setRuleImplementation(rImpl);
+		RuleImplementation child = new RuleImplementation();
+		child.getTextToFind().getTextItem().add("all");
+		child.setTextCheckType(TextCheckType.STRICT);
+		child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+		child.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
+		child.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
+
+		rImpl.getChildrenRules().getRuleImplementation().add(child);
+		rImpl.getCompliantRulesCodeExamples().getRuleCodeExample()
+				.add("SELECT name, surname, count from dbo.test union all SELECT name, surname, count from dbo.test2;");
+		rImpl.getViolatingRulesCodeExamples().getRuleCodeExample()
+				.add("SELECT name, surname, count from dbo.test union SELECT name, surname, count from dbo.test2;");
+		r.setSource("https://dzone.com/articles/sql-handbook-and-best-practices-performance-tuning");
+		return r;
+	}
+
+	
+	public static Rule getUnionVsUnionALLRuleMySQL() {
+		Rule r = new Rule();
+		r.setKey("C015");
+		r.setInternalKey("C015");
+		r.setDescription(
+				"<h2>Description</h2><p>It is  advisable to consider using UNION ALL operator instead of UNION.</p>");
+		r.setSeverity("MAJOR");
+		r.setTag("performance");
+		r.setRemediationFunction("LINEAR");
+		r.setDebtRemediationFunctionCoefficient("3min");
+		r.setName("UNION operator is used");
+
+		RuleImplementation rImpl = new RuleImplementation();
+		rImpl.getNames().getTextItem().add(UnionStatementContext.class.getSimpleName());
 		rImpl.setRuleViolationMessage(
 				"Consider using UNION ALL instead of UNION operator for the performance reasons.");
 		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
@@ -735,6 +1057,54 @@ public enum SQLDialectRules {
 		return r;
 	}
 
+	
+	public static Rule getExistsVsInRuleMySql() {
+		Rule r = new Rule();
+		r.setKey("C016");
+		r.setInternalKey("C016");
+		r.setDescription(
+				"<h2>Description</h2><p>Consider using EXISTS/NOT EXISTS operator instead of IN for a subquery.</p>");
+		r.setSeverity("MAJOR");
+		r.setTag("performance");
+		r.setRemediationFunction("LINEAR");
+		r.setDebtRemediationFunctionCoefficient("5min");
+		r.setName("IN/NOT IN is used for a subquery");
+		RuleImplementation rImpl = new RuleImplementation();
+		rImpl.getNames().getTextItem().add(PredicateExpressionContext.class.getSimpleName());
+		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		rImpl.setRuleViolationMessage("Consider using EXISTS/NOT EXISTS instead of IN/NOT IN in a clause.");
+		r.setRuleImplementation(rImpl);
+
+		RuleImplementation child = new RuleImplementation();
+		child.getTextToFind().getTextItem().add("in");
+		child.setTextCheckType(TextCheckType.STRICT);
+		child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+		child.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+		child.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
+
+		RuleImplementation childSubqueryContext = new RuleImplementation();
+		childSubqueryContext.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		childSubqueryContext.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+		childSubqueryContext.getNames().getTextItem().add(QuerySpecificationContext.class.getSimpleName());
+
+		rImpl.getChildrenRules().getRuleImplementation().add(child);
+		rImpl.getChildrenRules().getRuleImplementation().add(childSubqueryContext);
+		rImpl.getCompliantRulesCodeExamples().getRuleCodeExample()
+				.add("SELECT name, surname, count from dbo.test where locationID in (1,2,3);");
+		rImpl.getCompliantRulesCodeExamples().getRuleCodeExample()
+				.add("SELECT name, surname, count from dbo.test where locationID not in (1,2,3);");
+
+		rImpl.getCompliantRulesCodeExamples().getRuleCodeExample().add(
+				"SELECT name, surname, count from dbo.test where exists (select 1 from dbo.locations where id = locationID);");
+		rImpl.getViolatingRulesCodeExamples().getRuleCodeExample()
+				.add("SELECT name, surname, count from dbo.test where locationID in (select id from dbo.locations);");
+		rImpl.getViolatingRulesCodeExamples().getRuleCodeExample().add(
+				"SELECT name, surname, count from dbo.test where locationID not in (select id from dbo.locations);");
+
+		r.setSource("https://dzone.com/articles/sql-handbook-and-best-practices-performance-tuning");
+		return r;
+	}
+
 	public static Rule getOrderByRuleWithoutAscDesc() {
 		Rule rule = new Rule();
 		rule.setKey("C017");
@@ -757,6 +1127,8 @@ public enum SQLDialectRules {
 
 		impl.getChildrenRules().getRuleImplementation().add(child2);
 		impl.getNames().getTextItem().add(Order_by_expressionContext.class.getSimpleName());
+		impl.getNames().getTextItem().add(OrderByExpressionContext.class.getSimpleName());
+
 		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 		impl.setRuleResultType(RuleResultType.DEFAULT);
 		impl.setRuleViolationMessage("No ASC/DESC order defined in an ORDER BY clause.");
@@ -850,6 +1222,72 @@ public enum SQLDialectRules {
 		return rule;
 	}
 
+	public static Rule getSargRuleMySql() {
+		Rule rule = new Rule();
+		rule.setKey("C009");
+		rule.setInternalKey("C009");
+		rule.setStatus("BETA");
+		rule.setName("Non-sargable statement used");
+		rule.setDescription(
+				"<h2>Description</h2><p>Use of non-sargeable arguments might cause performance problems.</p>");
+		rule.setTag("performance");
+		rule.setSeverity("MAJOR");
+		rule.setRemediationFunction("LINEAR");
+		rule.setDebtRemediationFunctionCoefficient("5min");
+		RuleImplementation functionCallContainsColRef = new RuleImplementation();
+		functionCallContainsColRef.getNames().getTextItem().add(UidContext.class.getSimpleName());
+		functionCallContainsColRef.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		functionCallContainsColRef.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+		functionCallContainsColRef
+				.setRuleViolationMessage("Non-sargeable argument found - column referenced in a function.");
+
+		RuleImplementation ruleFunctionCall = new RuleImplementation();
+		ruleFunctionCall.getNames().getTextItem().add(FunctionCallExpressionAtomContext.class.getSimpleName());
+		ruleFunctionCall.getNames().getTextItem().add(ScalarFunctionCallContext.class.getSimpleName());
+		ruleFunctionCall.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		ruleFunctionCall.setRuleResultType(RuleResultType.DEFAULT);
+		ruleFunctionCall.getChildrenRules().getRuleImplementation().add(functionCallContainsColRef);
+
+		RuleImplementation predicateContextContainsLike = new RuleImplementation();
+		predicateContextContainsLike.getTextToFind().getTextItem().add("LIKE");
+		predicateContextContainsLike.setTextCheckType(TextCheckType.CONTAINS);
+		predicateContextContainsLike.getNames().getTextItem().add(LikePredicateContext.class.getSimpleName());
+		predicateContextContainsLike.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+		predicateContextContainsLike.setRuleResultType(RuleResultType.DEFAULT);
+
+		RuleImplementation functionCallContainsLikeWildcard = new RuleImplementation();
+		functionCallContainsLikeWildcard.getTextToFind().getTextItem().add("N?[',‘]%(.*?)'");
+		functionCallContainsLikeWildcard.setTextCheckType(TextCheckType.REGEXP);
+		functionCallContainsLikeWildcard.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
+		functionCallContainsLikeWildcard.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+		functionCallContainsLikeWildcard.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+		functionCallContainsLikeWildcard
+				.setRuleViolationMessage("Non-sargeable argument found - predicate starts with wildcard. %");
+
+		predicateContextContainsLike.getChildrenRules().getRuleImplementation().add(functionCallContainsLikeWildcard);
+
+		RuleImplementation impl = new RuleImplementation();
+		impl.getChildrenRules().getRuleImplementation().add(ruleFunctionCall);
+		impl.getChildrenRules().getRuleImplementation().add(predicateContextContainsLike);
+		impl.setRuleViolationMessage("Non-sargeable argument found");
+		impl.getNames().getTextItem().add(PredicateExpressionContext.class.getSimpleName());
+		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		impl.setRuleResultType(RuleResultType.DEFAULT);
+		impl.getCompliantRulesCodeExamples().getRuleCodeExample()
+				.add("SELECT MAX(RateChangeDate)  FROM HumanResources.EmployeePayHistory WHERE BusinessEntityID = 1");
+		impl.getViolatingRulesCodeExamples().getRuleCodeExample()
+				.add("SELECT name, surname from dbo.test where year(date) > 2008");
+		impl.getViolatingRulesCodeExamples().getRuleCodeExample()
+				.add("SELECT name, surname from dbo.test where name like '%red' ");
+		impl.getCompliantRulesCodeExamples().getRuleCodeExample()
+				.add("SELECT name, surname from dbo.test where date between 2008-10-10 and 2010-10-10;");
+		impl.getCompliantRulesCodeExamples().getRuleCodeExample().add("SELECT max(price) from dbo.items;");
+
+		rule.setSource("http://sqlmag.com/t-sql/t-sql-best-practices-part-1");
+		rule.setRuleImplementation(impl);
+
+		return rule;
+	}
 	public static Rule getDeclareRule() {
 		Rule r = new Rule();
 		r.setInternalKey("C011");

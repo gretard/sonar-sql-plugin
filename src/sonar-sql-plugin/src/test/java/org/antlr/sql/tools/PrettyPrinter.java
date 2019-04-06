@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 public class PrettyPrinter {
 
 	public static void main(String[] args) {
-		AntlrContext ctx = Dialects.MYSQL.parse("select count(*) from ts.test;\r\n");
+		AntlrContext ctx = Dialects.PSSQL.parse("INSERT INTO dbo.test VALUES (1,2);\r\n");
 		print(ctx.root, 0, ctx.stream);
 	}
 

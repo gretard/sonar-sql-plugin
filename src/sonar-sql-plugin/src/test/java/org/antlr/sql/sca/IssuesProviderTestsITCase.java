@@ -8,12 +8,15 @@ import org.antlr.sql.dialects.SQLDialectRules;
 import org.antlr.sql.models.AntlrContext;
 import org.antlr.sql.sca.IssuesProvider;
 import org.antlr.sql.sca.SqlIssue;
+import org.antlr.sql.tools.PrettyPrinter;
 import org.junit.Assert;
 import org.junit.Test;
 import org.sonar.plugins.sql.models.rules.Rule;
 import org.sonar.plugins.sql.models.rules.SqlRules;
 
 public class IssuesProviderTestsITCase {
+
+	
 
 	@Test
 	public void testViolatingStatements() {
@@ -24,11 +27,14 @@ public class IssuesProviderTestsITCase {
 		for (SqlRules rList : rules) {
 			for (Rule rule : rList.getRule()) {
 				for (String v : rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample()) {
-					AntlrContext ctx = Dialects.TSQL.parse(v);
+					AntlrContext ctx = Dialects.valueOf(rList.getDialect().toUpperCase()).parse(v);
 					SqlRules a = new SqlRules();
 					a.getRule().add(rule);
 					ctx.rules = Arrays.asList(a);
 					List<SqlIssue> issues = sut.analyze(ctx);
+					if (issues.isEmpty()) {
+						PrettyPrinter.print(ctx.root, 0, ctx.stream);
+					}
 					Assert.assertTrue("Expected issue on : " + v + " for rule: " + rule.getKey(), !issues.isEmpty());
 				}
 			}
@@ -45,7 +51,7 @@ public class IssuesProviderTestsITCase {
 		for (SqlRules rList : rules) {
 			for (Rule rule : rList.getRule()) {
 				for (String v : rule.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample()) {
-					AntlrContext ctx = Dialects.TSQL.parse(v);
+					AntlrContext ctx = Dialects.valueOf(rList.getDialect().toUpperCase()).parse(v);
 					SqlRules a = new SqlRules();
 					a.getRule().add(rule);
 					ctx.rules = Arrays.asList(a);
