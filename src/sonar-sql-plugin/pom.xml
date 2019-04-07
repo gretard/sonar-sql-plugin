@@ -5,7 +5,7 @@
 
 	<groupId>org.sonar.plugins</groupId>
 	<artifactId>sonar-sql-plugin</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>sonar-plugin</packaging>
 
 	<name>SQL language plugin</name>
@@ -41,13 +41,13 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.5</version>
+			<version>3.8.1</version>
 		</dependency>
 
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.5</version>
+			<version>2.6</version>
 		</dependency>
 		<!-- <dependency> <groupId>org.apache.commons</groupId> <artifactId>commons-io</artifactId> 
 			<version>1.3.2</version> </dependency> -->
@@ -61,7 +61,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
+			<version>4.13-beta-2</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -71,32 +71,19 @@
 			<artifactId>antlr4-runtime</artifactId>
 			<version>4.7.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.reflections</groupId>
-			<artifactId>reflections</artifactId>
-			<version>0.9.11</version>
-			<scope>test</scope>
-		</dependency>
+
 	</dependencies>
 
 	<build>
 		<plugins>
-
-
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.0.0-M1</version>
 				<configuration>
-
 				</configuration>
 			</plugin>
-			<!-- <plugin> <groupId>org.antlr</groupId> <artifactId>antlr4-maven-plugin</artifactId> 
-				<version>4.7.1</version> <configuration> <outputDirectory>src/main/java</outputDirectory> 
-				<libDirectory>src/main/resources</libDirectory> <visitor>true</visitor> </configuration> 
-				<executions> <execution> <goals> <goal>antlr4</goal> </goals> </execution> 
-				</executions> </plugin> -->
+
 			<plugin>
 				<groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
 				<artifactId>sonar-packaging-maven-plugin</artifactId>
@@ -119,7 +106,7 @@
 	</build>
 
 	<scm>
-		<url>https://github.com/gretard/sonar-tsql-plugin</url>
+		<url>https://github.com/gretard/sonar-sql-plugin</url>
 	</scm>
 
 </project>

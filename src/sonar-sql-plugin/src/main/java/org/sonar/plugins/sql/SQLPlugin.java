@@ -17,7 +17,7 @@ public class SQLPlugin implements Plugin {
 				.description("SQL dialect for analysis").defaultValue("tsql").type(PropertyType.STRING).build());
 
 		context.addExtension(PropertyDefinition.builder(Constants.PLUGIN_SQL_EXTERNAL_RULES_SEARCH_PATH)
-				.name("Custom rules search path").description("Path/File to custom rules")
+				.name("Custom rules search path").description("Path/File to custom rules").multiValues(true)
 				.defaultValue(Constants.PLUGIN_SQL_EXTERNAL_RULES_SEARCH_PATH_DEFAULT).type(PropertyType.STRING)
 				.build());
 

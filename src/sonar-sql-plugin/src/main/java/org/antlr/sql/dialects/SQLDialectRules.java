@@ -38,23 +38,28 @@ public enum SQLDialectRules {
 			sqlRules.getRule().forEach(rule -> {
 				String key = rule.getKey();
 				if (!rules.containsKey(key)) {
-					rule.getDescription();
 					StringBuilder sb = new StringBuilder();
 					sb.append(rule.getDescription());
-					sb.append("<h2>Code examples</h2>");
-					if (!rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample().isEmpty()) {
-						sb.append("<h3>Non-compliant</h3>");
-						for (String x : rule.getRuleImplementation().getViolatingRulesCodeExamples()
-								.getRuleCodeExample()) {
-							sb.append("<pre><code>" + x + "</code></pre>");
+					if (!rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample().isEmpty()
+							|| !rule.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample()
+									.isEmpty()) {
+						sb.append("<h2>Code examples</h2>");
+						if (!rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample()
+								.isEmpty()) {
+							sb.append("<h3>Non-compliant</h3>");
+							for (String x : rule.getRuleImplementation().getViolatingRulesCodeExamples()
+									.getRuleCodeExample()) {
+								sb.append("<pre><code>" + x + "</code></pre>");
+							}
 						}
-					}
 
-					if (!rule.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample().isEmpty()) {
-						sb.append("<h3>Compliant</h3>");
-						for (String x : rule.getRuleImplementation().getCompliantRulesCodeExamples()
-								.getRuleCodeExample()) {
-							sb.append("<pre><code>" + x + "</code></pre>");
+						if (!rule.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample()
+								.isEmpty()) {
+							sb.append("<h3>Compliant</h3>");
+							for (String x : rule.getRuleImplementation().getCompliantRulesCodeExamples()
+									.getRuleCodeExample()) {
+								sb.append("<pre><code>" + x + "</code></pre>");
+							}
 						}
 					}
 					rule.setDescription(sb.toString());

@@ -24,12 +24,14 @@ public enum BaseRules implements IBaseRules {
 		Rule rule = new Rule();
 		rule.setKey("C001");
 		rule.setInternalKey("C001");
-		rule.setDescription("SLEEP/WAITFOR is used.");
+		rule.setName("SLEEP/WAITFOR is used.");
 		rule.setDescription("SLEEP/WAITFOR is used");
 		rule.setTag("performance");
 		rule.setSeverity("MINOR");
 		rule.setRemediationFunction("LINEAR");
 		rule.setDebtRemediationFunctionCoefficient("2min");
+		rule.getRuleImplementation().setRuleViolationMessage("WAIT/SLEEP is used");
+
 		return rule;
 	}
 
@@ -352,6 +354,7 @@ public enum BaseRules implements IBaseRules {
 				.add("CREATE UNIQUE INDEX Test_Name on dbo.test (Name);");
 		ruleImpl.getCompliantRulesCodeExamples().getRuleCodeExample()
 				.add("CREATE UNIQUE INDEX IX_Test_Name on dbo.test (Name);");
+		ruleImpl.setRuleViolationMessage("INDEX is not using recommended naming convention");
 
 		Rule rule = new Rule();
 
@@ -400,6 +403,8 @@ public enum BaseRules implements IBaseRules {
 				.add("SELECT * from dbo.test where name != null;");
 		r.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample()
 				.add("SELECT * from dbo.test where name <> null;");
+		r.getRuleImplementation()
+				.setRuleViolationMessage("Comparison operator (=, <>, !=) to check if value is null used");
 
 		return r;
 	}
