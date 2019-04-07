@@ -11,9 +11,9 @@ public class SQLQualityProfile implements BuiltInQualityProfilesDefinition {
 
 	@Override
 	public void define(Context context) {
-		NewBuiltInQualityProfile profile = context.createBuiltInQualityProfile("SQL rules", Constants.languageKey)
+		final NewBuiltInQualityProfile profile = context.createBuiltInQualityProfile("SQL rules", Constants.languageKey)
 				.setDefault(true);
-		List<SqlRules> rules = SQLDialectRules.INSTANCE.getRules();
+		final List<SqlRules> rules = SQLDialectRules.INSTANCE.getGroupedRules();
 		for (SqlRules sqlRules : rules) {
 			for (Rule rule : sqlRules.getRule()) {
 				profile.activateRule(sqlRules.getRepoKey(), rule.getKey());

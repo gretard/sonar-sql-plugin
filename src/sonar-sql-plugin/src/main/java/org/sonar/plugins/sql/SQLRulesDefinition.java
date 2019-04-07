@@ -11,7 +11,7 @@ public class SQLRulesDefinition implements RulesDefinition {
 	@Override
 	public void define(Context context) {
 
-		List<SqlRules> rules = SQLDialectRules.INSTANCE.getRules();
+		List<SqlRules> rules = SQLDialectRules.INSTANCE.getGroupedRules();
 
 		for (SqlRules rulesDef : rules) {
 			NewRepository repository = context.createRepository(rulesDef.getRepoKey(), Constants.languageKey)

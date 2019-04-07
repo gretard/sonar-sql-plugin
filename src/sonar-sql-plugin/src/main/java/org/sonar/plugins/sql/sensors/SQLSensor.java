@@ -68,6 +68,7 @@ public class SQLSensor implements Sensor {
 		files.forEach(inputFile -> {
 			service.execute(new Runnable() {
 
+				@SuppressWarnings("deprecation")
 				@Override
 				public void run() {
 					try {

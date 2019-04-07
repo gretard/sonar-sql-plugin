@@ -48,7 +48,9 @@ public class RulesMatchingVisitor extends AbstractParseTreeVisitor<Void> {
 		final ParseTreeNode node = new ParseTreeNode(tree);
 		for (SqlRules rules : this.rules) {
 			for (Rule rule : rules.getRule()) {
+				
 				RuleImplementation ruleImplementation = rule.getRuleImplementation();
+				
 				if (!this.matcher.match(node, ruleImplementation)
 						|| !this.textMatcher.match(node, ruleImplementation)) {
 					continue;

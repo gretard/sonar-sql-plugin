@@ -27,9 +27,7 @@ public class SQLCheckIssuesReaderTest {
 
 		SQLCheckIssuesReader sut = new SQLCheckIssuesReader();
 		List<SQLCheckIssue> results = sut.read(baseFile);
-		for (SQLCheckIssue issue: results) {
-			System.out.println(issue.message);
-		}
+
 		Assert.assertEquals(4, results.size());
 
 	}

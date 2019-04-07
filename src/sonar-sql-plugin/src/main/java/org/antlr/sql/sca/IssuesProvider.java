@@ -19,7 +19,6 @@ public class IssuesProvider {
 		visitor.visit(ctx.root);
 
 		List<FoundMatch> matches = visitor.getMatches();
-
 		for (FoundMatch m : matches) {
 			Map<RuleImplementation, List<IParsedNode>> checkedRules = searcher.search(m);
 

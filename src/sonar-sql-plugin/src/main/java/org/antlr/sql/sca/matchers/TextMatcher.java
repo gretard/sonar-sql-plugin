@@ -20,6 +20,7 @@ public class TextMatcher implements IMatcher {
 		final String text = item.getText();
 		final List<String> names = ruleImplementation.getTextToFind().getTextItem();
 
+		
 		for (final String searchItem : names) {
 			switch (type) {
 			case DEFAULT:
