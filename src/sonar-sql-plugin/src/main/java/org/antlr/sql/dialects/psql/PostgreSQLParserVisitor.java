@@ -11,6 +11,12 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#root}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRoot(PostgreSQLParser.RootContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

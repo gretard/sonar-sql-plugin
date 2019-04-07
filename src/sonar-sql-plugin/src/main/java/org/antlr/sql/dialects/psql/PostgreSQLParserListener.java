@@ -8,6 +8,16 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface PostgreSQLParserListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link PostgreSQLParser#root}.
+	 * @param ctx the parse tree
+	 */
+	void enterRoot(PostgreSQLParser.RootContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PostgreSQLParser#root}.
+	 * @param ctx the parse tree
+	 */
+	void exitRoot(PostgreSQLParser.RootContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PostgreSQLParser#stmt}.
 	 * @param ctx the parse tree
 	 */
