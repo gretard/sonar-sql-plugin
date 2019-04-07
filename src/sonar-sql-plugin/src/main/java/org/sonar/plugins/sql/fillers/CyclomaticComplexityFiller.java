@@ -9,7 +9,7 @@ import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.measures.CoreMetrics;
 
-public class CyclomaticCompleixtyFiller implements Filler {
+public class CyclomaticComplexityFiller implements Filler {
 
 	public void fill(InputFile file, SensorContext context, AntlrContext antlrContext) {
 		try {

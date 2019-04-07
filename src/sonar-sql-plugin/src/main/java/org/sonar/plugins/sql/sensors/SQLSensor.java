@@ -19,7 +19,7 @@ import org.sonar.plugins.sql.Constants;
 import org.sonar.plugins.sql.adhoc.AdhocRulesProvider;
 import org.sonar.plugins.sql.fillers.CognitiveComplexityFiller;
 import org.sonar.plugins.sql.fillers.CpdTokensFiller;
-import org.sonar.plugins.sql.fillers.CyclomaticCompleixtyFiller;
+import org.sonar.plugins.sql.fillers.CyclomaticComplexityFiller;
 import org.sonar.plugins.sql.fillers.Filler;
 import org.sonar.plugins.sql.fillers.HighlighterFiller;
 import org.sonar.plugins.sql.fillers.IssuesFiller;
@@ -30,7 +30,7 @@ public class SQLSensor implements Sensor {
 
 	private static final Logger LOGGER = Loggers.get(SQLSensor.class);
 
-	private final Filler fillers[] = { new CognitiveComplexityFiller(), new CyclomaticCompleixtyFiller(),
+	private final Filler fillers[] = { new CognitiveComplexityFiller(), new CyclomaticComplexityFiller(),
 			new LineMetricsFiller(), new HighlighterFiller(), new CpdTokensFiller(), new IssuesFiller() };
 	private final AdhocRulesProvider adhocRulesProvider = new AdhocRulesProvider();
 
