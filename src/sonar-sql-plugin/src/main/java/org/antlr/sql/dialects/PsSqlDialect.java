@@ -23,7 +23,7 @@ public class PsSqlDialect extends BaseDialect {
 	@Override
 	protected ParseTree getRoot(CommonTokenStream stream) {
 		PostgreSQLParser p = new PostgreSQLParser(stream);
-		//p.removeErrorListeners();
+		p.removeErrorListeners();
 		return p.root();
 	}
 
