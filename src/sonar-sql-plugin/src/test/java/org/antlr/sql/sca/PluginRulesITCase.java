@@ -66,6 +66,14 @@ public class PluginRulesITCase {
 
 	}
 
+	@Test
+	public void testRuleContainsViolationMessgae() throws Throwable {
+
+		Assert.assertNotNull("Rule " + rule.getKey() + " does not contain violation message",
+				rule.getRuleImplementation().getRuleViolationMessage());
+
+	}
+
 	private String text;
 	private Rule rule;
 	private Dialects dialect;

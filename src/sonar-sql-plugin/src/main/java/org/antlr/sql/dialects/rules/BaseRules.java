@@ -287,6 +287,7 @@ public enum BaseRules implements IBaseRules {
 	public Rule getPKRule() {
 		RuleImplementation ruleImpl = new RuleImplementation();
 
+		ruleImpl.setRuleViolationMessage("Defined primary key is not using recommended naming convention");
 		ruleImpl.getViolatingRulesCodeExamples().getRuleCodeExample().add(
 				"CREATE TABLE dbo.Orders\r\n(\r\nId int NOT NULL,\r\nCONSTRAINT OrderID PRIMARY KEY CLUSTERED (Id) \r\n);  ");
 		ruleImpl.getCompliantRulesCodeExamples().getRuleCodeExample()
@@ -323,7 +324,7 @@ public enum BaseRules implements IBaseRules {
 				"ALTER TABLE dbo.Orders ADD CONSTRAINT ClientId FOREIGN KEY (ClientId) REFERENCES dbo.Clients(Id);  ");
 		ruleImpl.getCompliantRulesCodeExamples().getRuleCodeExample().add(
 				"ALTER TABLE dbo.Orders ADD CONSTRAINT FK_ClientId FOREIGN KEY (ClientId) REFERENCES dbo.Clients(Id); ");
-
+		ruleImpl.setRuleViolationMessage("Defined foreign key is not using recommended naming convention");
 		Rule rule = new Rule();
 		rule.setKey("C011");
 		rule.setInternalKey("C011");

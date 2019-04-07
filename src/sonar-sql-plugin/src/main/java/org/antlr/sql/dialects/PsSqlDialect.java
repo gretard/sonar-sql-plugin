@@ -30,7 +30,8 @@ public class PsSqlDialect extends BaseDialect {
 	@Override
 	protected DialectLanguageTypesMap getTypesMap() {
 		return new DialectLanguageTypesMap().addCommentToken(PostgreSQLParser.COMMENT)
-				.addCommentToken(PostgreSQLParser.LINE_COMMENT).addStringToken(PostgreSQLParser.SINGLEQ_STRING_LITERAL)
+				.addCommentToken(PostgreSQLParser.BLOCK_COMMENT).addCommentToken(PostgreSQLParser.LINE_COMMENT)
+				.addStringToken(PostgreSQLParser.SINGLEQ_STRING_LITERAL)
 				.addStringToken(PostgreSQLParser.DOUBLEQ_STRING_LITERAL).addComplexityType(PredicateContext.class)
 
 				.addCognitiveComplexityType(Order_by_itemContext.class)

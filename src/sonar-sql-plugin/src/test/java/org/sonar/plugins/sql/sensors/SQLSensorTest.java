@@ -41,4 +41,24 @@ public class SQLSensorTest {
 
 	}
 
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testPsSQL() throws IOException {
+		SensorContextTester ctxTester = SensorContextTester.create(folder.getRoot());
+		ctxTester.settings().setProperty(Constants.PLUGIN_SQL_DIALECT, "pssql");
+		File baseFile = folder.newFile("test.sql");
+		FileUtils.copyURLToFile(getClass().getResource("/pssql/sample1.sql"), baseFile);
+
+		String contents = new String(Files.readAllBytes(baseFile.toPath()));
+		DefaultInputFile ti = new TestInputFileBuilder("test", "test.sql").initMetadata(contents).setContents(contents)
+				.setLanguage(Constants.languageKey).build();
+		ctxTester.fileSystem().add(ti);
+
+		SQLSensor s = new SQLSensor();
+		s.execute(ctxTester);
+		
+		Assert.assertEquals(0, ctxTester.allIssues().size());
+
+	}
+
 }
