@@ -38,6 +38,7 @@ public class SQLSensorTest {
 		SQLSensor s = new SQLSensor();
 		s.execute(ctxTester);
 		Assert.assertEquals(1, ctxTester.allIssues().size());
+
 	}
 
 }

@@ -24,10 +24,10 @@ public class TSQLDialect extends BaseDialect {
 	@Override
 	protected DialectLanguageTypesMap getTypesMap() {
 		return new DialectLanguageTypesMap().addCommentToken(TSqlParser.COMMENT)
-				.addCommentToken(TSqlParser.LINE_COMMENT)
-				.addStringToken(TSqlParser.STRING)
+				.addCommentToken(TSqlParser.LINE_COMMENT).addStringToken(TSqlParser.STRING)
 				.addComplexityType(TSqlParser.Search_condition_notContext.class)
 				.addComplexityType(TSqlParser.Try_catch_statementContext.class)
+
 				.addCognitiveComplexityType(TSqlParser.Sql_unionContext.class)
 				.addCognitiveComplexityType(TSqlParser.Function_callContext.class)
 				.addCognitiveComplexityType(TSqlParser.Join_partContext.class)

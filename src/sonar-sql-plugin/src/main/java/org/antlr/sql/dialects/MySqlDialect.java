@@ -2,6 +2,9 @@ package org.antlr.sql.dialects;
 
 import org.antlr.sql.dialects.mysql.MySqlLexer;
 import org.antlr.sql.dialects.mysql.MySqlParser;
+import org.antlr.sql.dialects.mysql.MySqlParser.DmlStatementContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.PredicateExpressionContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.ScalarFunctionCallContext;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;
@@ -23,9 +26,12 @@ public class MySqlDialect extends BaseDialect {
 
 	@Override
 	protected DialectLanguageTypesMap getTypesMap() {
-		return new DialectLanguageTypesMap()
-				.addCommentToken(MySqlParser.COMMENT)
-				.addCommentToken(MySqlParser.LINE_COMMENT)
-				.addStringToken(MySqlParser.STRING);
+		return new DialectLanguageTypesMap().addCommentToken(MySqlParser.COMMENT)
+				.addCommentToken(MySqlParser.LINE_COMMENT).addStringToken(MySqlParser.STRING)
+				.addCognitiveComplexityType(PredicateExpressionContext.class)
+				.addCognitiveComplexityType(DmlStatementContext.class)
+				.addCognitiveComplexityType(ScalarFunctionCallContext.class)
+				.addComplexityType(PredicateExpressionContext.class);
+
 	}
 }
