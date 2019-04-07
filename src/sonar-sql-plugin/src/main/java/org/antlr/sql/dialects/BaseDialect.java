@@ -20,7 +20,7 @@ public abstract class BaseDialect implements IDialect {
 		final CharStream charStream = new CaseChangingCharStream(CharStreams.fromString(text), true);
 
 		Lexer lexer = this.getLexer(charStream);
-	//	lexer.removeErrorListeners();
+		lexer.removeErrorListeners();
 
 		final CommonTokenStream stream = new CommonTokenStream(lexer);
 		stream.fill();
