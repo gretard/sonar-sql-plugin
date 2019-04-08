@@ -20,3 +20,5 @@ SET row_security = off;
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
+
+SELECT * FROM sample.test order by 1;

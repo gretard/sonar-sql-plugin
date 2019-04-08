@@ -1,5 +1,6 @@
 -- sample
-SELECT * FROM test;
+SELECT * FROM sample.test order by 1;
+
 
 SELECT name,name FROM test;
 /*
