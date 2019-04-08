@@ -32,7 +32,7 @@ $sonarArgs = @(
 "-Dsonar.exclusions=**/bin/**/*.*,**/obj/**/*.*,**/*.sqlproj", # skip build files from analysis
 
 # it is possible to specify absolute path to the SQLCover report or directory where file matching *Coverage.opencoverxml resides, by default plugin will try to find it in the base directory's subdirectories
-# "-Dsonar.sql.tsql.sqlcover.path=$coverageOutputDir\Coverage.opencoverxml",
+# "-Dsonar.sql.tsql.sqlcover.report=$coverageOutputDir\Coverage.opencoverxml",
 
 # setting sql code guard path
 "-Dsonar.sql.tsql.cg.path=$sqlCodeGuard",

@@ -8,8 +8,11 @@ import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.fs.internal.DefaultInputFile;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.cpd.NewCpdTokens;
+import org.sonar.api.utils.log.Logger;
+import org.sonar.api.utils.log.Loggers;
 
 public class CpdTokensFiller implements Filler {
+	private static final Logger LOGGER = Loggers.get(CpdTokensFiller.class);
 
 	@Override
 	public void fill(InputFile file, SensorContext context, AntlrContext antlrContext) {
@@ -35,7 +38,8 @@ public class CpdTokensFiller implements Filler {
 			newCpdTokens.save();
 
 		} catch (Throwable e) {
-			e.printStackTrace();
+			LOGGER.warn("Error adding cpd tokens on " + file, e);
+
 		}
 
 	}

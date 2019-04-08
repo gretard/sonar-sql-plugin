@@ -42,6 +42,21 @@ public class SQLPlugin implements Plugin {
 				.description("File/Search suffix for MS T-SQL analysis report")
 				.defaultValue(Constants.TSQL_MS_ISSUES_DEFAULT).type(PropertyType.STRING).build());
 
+		context.addExtension(PropertyDefinition.builder(Constants.PLUGIN_SUFFIXES)
+				.name("File suffixes").description("File suffixes which will be reported belonging to SQL langauge").multiValues(true)
+				.defaultValue(".sql").type(PropertyType.STRING)
+				.build());
+		
+		context.addExtension(PropertyDefinition.builder(Constants.PLUGIN_SQL_SCA_TIMEOUT)
+				.name("SCA timeout")
+				.description("Timeout value for full code analysis done by plugin in seconds")
+				.defaultValue(Constants.PLUGIN_SQL_SCA_TIMEOUT_DEFAULT+"").type(PropertyType.INTEGER).build());
+		
+		context.addExtension(PropertyDefinition.builder(Constants.PLUGIN_SQL_SCA_MAX_FILE_SIZE)
+				.name("SCA file size limit")
+				.description("Limit in bytes for files to be analyzed by plugin")
+				.defaultValue(Constants.PLUGIN_SQL_SCA_MAX_FILE_SIZE_DEFAULT + "").type(PropertyType.INTEGER).build());
+		
 		context.addExtensions(SQLLanguage.class, SQLRulesDefinition.class, CGRulesDefinition.class,
 				MsRulesDefinition.class, SQLQualityProfile.class);
 		context.addExtensions(SQLSensor.class, MSIssuesSensor.class, CGIssuesSensor.class, SqlCoverCoverageSensor.class,

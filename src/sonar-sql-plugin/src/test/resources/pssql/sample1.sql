@@ -20,9 +20,3 @@ SET row_security = off;
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
-
-ALTER TABLE payment_p2017_06
-    ADD FOREIGN KEY(customer_id) REFERENCES customer(customer_id),
-    ADD FOREIGN KEY(staff_id) REFERENCES staff(staff_id),
-    ADD FOREIGN KEY(rental_id) REFERENCES rental(rental_id);
-

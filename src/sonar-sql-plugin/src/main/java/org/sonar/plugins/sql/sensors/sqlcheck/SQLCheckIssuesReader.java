@@ -36,7 +36,7 @@ public class SQLCheckIssuesReader {
 		while (i < end) {
 
 			String line = lines.get(i);
-			if (line.startsWith("SQL Statement:")) {
+			if (StringUtils.containsIgnoreCase(line, "SQL Statement:")) {
 				statement = line;
 				risk = lines.get(i + 1);
 			}
@@ -46,7 +46,7 @@ public class SQLCheckIssuesReader {
 				StringBuilder issueDescription = new StringBuilder();
 				for (int j = i + 1; j < end; j++) {
 					String temp = lines.get(j);
-					if (temp.isEmpty() || temp.contains("[Matching Expression:")) {
+					if (temp.isEmpty() || StringUtils.containsIgnoreCase(temp, "[Matching Expression:")) {
 						break;
 					}
 					issueDescription.append(temp + " ");

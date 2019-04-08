@@ -1,6 +1,5 @@
 package org.sonar.plugins.sql.fillers;
 
-
 import org.antlr.sql.dialects.DialectLanguageTypesMap;
 import org.antlr.sql.models.AntlrContext;
 import org.antlr.sql.visitors.ClassTypesCountingVisitor;
@@ -8,8 +7,11 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.measures.CoreMetrics;
+import org.sonar.api.utils.log.Logger;
+import org.sonar.api.utils.log.Loggers;
 
 public class CyclomaticComplexityFiller implements Filler {
+	private static final Logger LOGGER = Loggers.get(CyclomaticComplexityFiller.class);
 
 	public void fill(InputFile file, SensorContext context, AntlrContext antlrContext) {
 		try {
@@ -28,7 +30,8 @@ public class CyclomaticComplexityFiller implements Filler {
 			}
 
 		} catch (Throwable e) {
-			e.printStackTrace();
+			LOGGER.warn("Error adding complexity measures on " + file, e);
+
 		}
 
 	}

@@ -33,7 +33,7 @@ public final class Constants {
 
 	public static final String TSQL_CG_PATH = "sonar.sql.tsql.cg.path";
 
-	public static final String TSQL_SQLCOVER_PATH = "sonar.sql.tsql.sqlcover.path";
+	public static final String TSQL_SQLCOVER_PATH = "sonar.sql.tsql.sqlcover.report";
 
 	public static final String TSQL_SQLCOVER_PATH_DEFAULT = "Coverage.opencoverxml";
 

@@ -8,8 +8,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.measures.CoreMetrics;
+import org.sonar.api.utils.log.Logger;
+import org.sonar.api.utils.log.Loggers;
 
 public class LineMetricsFiller implements Filler {
+	private static final Logger LOGGER = Loggers.get(LineMetricsFiller.class);
 
 	private static final int COMMENT = 1;
 	private static final int CODE = 2;
@@ -51,7 +54,7 @@ public class LineMetricsFiller implements Filler {
 			}
 
 		} catch (Throwable e) {
-			e.printStackTrace();
+			LOGGER.warn("Unexpected error adding line counts metrics on: " + file, e);
 		}
 
 	}

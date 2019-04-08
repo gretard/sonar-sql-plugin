@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.rule.Severity;
 import org.sonar.api.batch.sensor.Sensor;
@@ -102,6 +103,7 @@ public class SqlCheckSensor extends BaseSensor implements Sensor {
 			LOGGER.warn("Was not able to run SQLCheck with {}", Arrays.toString(args));
 			return;
 		}
+		
 		final List<SQLCheckIssue> issues = reader.read(tempResultsFile);
 		synchronized (context) {
 			for (final SQLCheckIssue issue : issues) {
@@ -113,12 +115,13 @@ public class SqlCheckSensor extends BaseSensor implements Sensor {
 					NewExternalIssue externalIssue = context.newExternalIssue().ruleId(issue.getId())
 							.severity(Severity.valueOf(issue.getSeverity().toUpperCase())).type(RuleType.CODE_SMELL)
 							.engineId(this.repositoryName);
-					NewIssueLocation loc = externalIssue.newLocation().on(file).message(issue.message);
+					NewIssueLocation loc = externalIssue.newLocation().on(file)
+							.message(StringUtils.isEmpty(issue.statement) ? issue.message
+									: issue.message + " at " + issue.statement);
 					externalIssue.at(loc).save();
 				} catch (Exception e) {
 					LOGGER.debug("Unexpected error adding issue on file {}: {} ", file, e);
 				}
-
 			}
 
 		}

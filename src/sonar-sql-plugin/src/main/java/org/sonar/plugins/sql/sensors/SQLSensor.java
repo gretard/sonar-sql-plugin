@@ -54,6 +54,7 @@ public class SQLSensor implements Sensor {
 			LOGGER.warn("Undefined dialect was passed: {}. Supported dialects are: {}", dialect, Dialects.values());
 			return;
 		}
+		
 		final Dialects sqlDialect = Dialects.valueOf(dialect.toUpperCase());
 		final ExecutorService service = Executors.newWorkStealingPool();
 		final org.sonar.api.batch.fs.FileSystem fs = context.fileSystem();
@@ -73,7 +74,7 @@ public class SQLSensor implements Sensor {
 				public void run() {
 					try {
 						if (inputFile.file().length() > maxFileSize) {
-							LOGGER.debug("Skipping {} file as its size exceeds {} bytes", inputFile, maxFileSize);
+							LOGGER.debug("Skipping {} file as its size exceeds {} bytes. You can increase this limit by setting {} property", inputFile, maxFileSize, Constants.PLUGIN_SQL_SCA_MAX_FILE_SIZE);
 
 							return;
 						}

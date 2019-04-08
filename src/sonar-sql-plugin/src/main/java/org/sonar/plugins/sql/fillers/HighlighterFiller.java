@@ -8,8 +8,12 @@ import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.highlighting.NewHighlighting;
 import org.sonar.api.batch.sensor.highlighting.TypeOfText;
+import org.sonar.api.utils.log.Logger;
+import org.sonar.api.utils.log.Loggers;
 
 public class HighlighterFiller implements Filler {
+
+	private static final Logger LOGGER = Loggers.get(HighlighterFiller.class);
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -23,15 +27,15 @@ public class HighlighterFiller implements Filler {
 						continue;
 					}
 					if (antlrContext.isComment(token)) {
-						newHighlighting.highlight(token.getStartIndex(), token.getStopIndex()+1, TypeOfText.COMMENT);
+						newHighlighting.highlight(token.getStartIndex(), token.getStopIndex() + 1, TypeOfText.COMMENT);
 						continue;
 					}
 					if (antlrContext.isString(token)) {
-						newHighlighting.highlight(token.getStartIndex(), token.getStopIndex()+1, TypeOfText.STRING);
+						newHighlighting.highlight(token.getStartIndex(), token.getStopIndex() + 1, TypeOfText.STRING);
 						continue;
 					}
 					if (antlrContext.isKeyword(token)) {
-						newHighlighting.highlight(token.getStartIndex(), token.getStopIndex()+1, TypeOfText.KEYWORD);
+						newHighlighting.highlight(token.getStartIndex(), token.getStopIndex() + 1, TypeOfText.KEYWORD);
 						continue;
 					}
 				} catch (Exception e) {
@@ -42,7 +46,7 @@ public class HighlighterFiller implements Filler {
 				newHighlighting.save();
 			}
 		} catch (Throwable e) {
-			e.printStackTrace();
+			LOGGER.warn("Unexpected error adding highlighting on: " + file, e);
 		}
 	}
 

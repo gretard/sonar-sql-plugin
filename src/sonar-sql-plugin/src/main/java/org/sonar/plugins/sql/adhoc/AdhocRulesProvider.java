@@ -44,7 +44,7 @@ public class AdhocRulesProvider {
 
 		for (final String path : pathsToSearch) {
 			LOGGER.debug(() -> {
-				return "Searching: " + path;
+				return "Searching custom/adhoc rules at: " + path;
 			});
 			File file = new File(path);
 			if (!file.isAbsolute()) {

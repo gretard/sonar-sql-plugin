@@ -8,6 +8,19 @@ You can support this [project and others](https://github.com/gretard) via [Paypa
 
 ## Description ##
 Currently plug-in supports:
+- Several SQL dialects by using ANTLR4 grammars:
+  - [TSQL](https://github.com/antlr/grammars-v4/tree/master/tsql)
+  - [MySQL](https://github.com/antlr/grammars-v4/tree/master/mysql)
+  - [PostgreSQL](https://github.com/tshprecher/antlr_psql)
+- Reporting of issues found by:
+  - [SQLCodeGuard](https://www.red-gate.com/products/sql-development/sql-code-guard/index) 
+  - [MSBuild](https://msdn.microsoft.com/en-us/library/dd172133(v=vs.100).aspx)
+  - [SQLCheck](https://github.com/jarulraj/sqlcheck)
+  - Custom rules reported by plugin
+- Reporting of code coverage calculated by [SQLCover](https://github.com/GoEddie/SQLCover)
+- Lines and comment lines measures reporting
+- Cognitive and cyclomatic complexity metrics reporting
+- Custom user rules. Configuration can be found at [here]()
 
 ## Requirements ##
 Different plugin versions supports the following:
@@ -19,6 +32,57 @@ Different plugin versions supports the following:
 3. Start SonarQube and enable rules
 4. [TSQL] (Optional) Install [SQLCodeGuard](https://www.red-gate.com/products/sql-development/sql-code-guard/index) into your build machine where you plan to run sonar scanner
 5. [TSQL, MySQL, PotsgreSQL] (Optional) - Install [SQLCheck](https://github.com/jarulraj/sqlcheck) into your build machine where you plan to run sonar scanner
+6. [TSQL] (Optional) Setup SQLCover reorting. You can check tsql example at here for full setup.
 
-## Configuration ##
+## Getting started ###
+Please see examples on how to use different dialects.
 
+### T-SQL ###
+Sonar settings for tsql. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/1-tsql)
+```
+sonar.projectKey=examples.sql.mysql.project
+sonar.projectName=examples.sql.mysql.project
+sonar.projectVersion=1.1
+sonar.sources=src
+
+sonar.language=sql # optional
+sonar.sql.dialect=tsql # optional as plugin defaults to tsql
+
+```
+
+### PostgreSQL ###
+Sonar settings for pssql. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/2-psql)
+```
+sonar.projectKey=examples.sql.mysql.project
+sonar.projectName=examples.sql.mysql.project
+sonar.projectVersion=1.1
+sonar.sources=src
+
+sonar.language=sql # optional
+sonar.sql.dialect=pssql
+```
+
+### MySQL ###
+Sonar settings for mysql. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/3-msql)
+```
+sonar.projectKey=examples.sql.mysql.project
+sonar.projectName=examples.sql.mysql.project
+sonar.projectVersion=1.1
+sonar.sources=src
+
+sonar.language=sql # optional
+sonar.sql.dialect=mysql
+```
+## Plugin configuration ##
+The following options are available for configuration:
+
+- **sonar.sql.dialect** - SQL dialect for analysis. *Defaults to tsql*. Supported values are : tsql, mysql, pssql
+- **sonar.sql.rules.path** - path to custome rules, can be directory or absolute file. *Defaults to .*. Multiple values are supported.
+- **sonar.sql.rules.suffix** - custom rules suffix
+- **sonar.sql.tsql.ms.report** - suffix to search path directories for MSBuild report. *Defaults to staticcodeanalysis.results.xml*. Can be absolute or relative
+- **sonar.sql.sqlcheck.path** - Path to SQLCheck tool. *Defaults to /usr/bin/sqlcheck*
+- **sonar.sql.tsql.cg.path** - Path to CodeGuard tool. *Defaults to C:\Program Files\SQLCodeGuardCmdLine\SqlCodeGuard30.Cmd.exe*
+- **sonar.sql.tsql.sqlcover.report** - path to SQLCover report. Can be absolute or suffix to search in base dir. *Defaults to Coverage.opencoverxml*.
+- **sonar.sql.file.suffixes** - file suffixes which will be reported belonging to SQL langauge. *Defaults to .sql*
+- **sonar.sql.sca.timeout** - timeout value for static code analysis done by plugin in seconds. *Defaults to 3600*
+- **sonar.sql.sca.maxfilesize** - limit in bytes for files to be analyzed by plugin. *Defaults to 2097152*

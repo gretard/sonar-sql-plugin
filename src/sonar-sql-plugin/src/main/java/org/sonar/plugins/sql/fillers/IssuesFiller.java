@@ -19,11 +19,11 @@ import org.sonar.api.utils.log.Loggers;
 
 public class IssuesFiller implements Filler {
 	private static final Logger LOGGER = Loggers.get(IssuesFiller.class);
+	private final IssuesProvider provider = new IssuesProvider();
 
 	@Override
 	public void fill(InputFile file, SensorContext context, AntlrContext antlrContext) {
 
-		IssuesProvider provider = new IssuesProvider();
 		List<SqlIssue> issues = provider.analyze(antlrContext);
 
 		synchronized (context) {
