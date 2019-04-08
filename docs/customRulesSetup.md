@@ -4,14 +4,12 @@ Currently, plugin supports ability to match code against custom rules defined in
 
 
 ### Usage ###
-To use custom rules, you have to define an xml file with 
-- use custom rules as adhoc rules
 
-  
-#### Using custom rules as adhoc rules ####
 - Create an xml file with custom rules defined, there is an [example file](https://github.com/gretard/sonar-sql-plugin/blob/master/examples/1-tsql/myExampleRepo.customRules). Each file defines a single repository.
 - Put custom file into your base directory of the project or you can specify absolute path to the file.
 - Run sonar scanner
+
+
 
 ### Creating custom rules ###
 Custom rules are defined using xml format. Each file should be defining a single repository using format described below. Attributes repoName and repoKey defines repository's name and key used by SonarQube. All keys should be unique.
@@ -25,7 +23,7 @@ Mandatory fields for rule:
 - severity
 - ruleType - can be BUG, CODE_SMELL
 - ruleImplementation - defines how to detect code against which rules will be applied. There are different options for this item:
-	- names - defines a list of SQL parser classes on which rule will be applied. Full list is specified below (TSQL, MYSQL, [PSSQL])
+	- names - defines a list of SQL parser classes on which rule will be applied. Full list is specified below ([TSQL](https://github.com/gretard/sonar-sql-plugin/blob/master/docs/tsqlClasses.md), [MYSQL](https://github.com/gretard/sonar-sql-plugin/blob/master/docs/mysqlClasses.md), [PSSQL](https://github.com/gretard/sonar-sql-plugin/blob/master/docs/pssqlClasses.md) )
 	- textToFind - defines custom text which will be looked for in the applicable nodes
 	- parentRules - defines array of rules of type ruleImplementation which will be applied for node's parents 
 	- childrenRules - defines array of rules of type ruleImplementation which will be applied for node's children
