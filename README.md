@@ -16,11 +16,11 @@ Currently plug-in supports:
   - [SQLCodeGuard](https://www.red-gate.com/products/sql-development/sql-code-guard/index) 
   - [MSBuild](https://msdn.microsoft.com/en-us/library/dd172133(v=vs.100).aspx)
   - [SQLCheck](https://github.com/jarulraj/sqlcheck)
-  - Custom rules reported by plugin
+  - Custom rules reported by [plugin](https://github.com/gretard/sonar-sql-plugin/blob/master/docs/pluginRules.md)
 - Reporting of code coverage calculated by [SQLCover](https://github.com/GoEddie/SQLCover)
 - Lines and comment lines measures reporting
 - Cognitive and cyclomatic complexity metrics reporting
-- Custom user rules. Configuration can be found at [here]()
+- Custom user rules. Configuration can be found at [here](https://github.com/gretard/sonar-sql-plugin/blob/master/docs/customRulesSetup.md)
 
 ## Requirements ##
 Different plugin versions supports the following:
