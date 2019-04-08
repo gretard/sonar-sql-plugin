@@ -9,7 +9,7 @@ import org.reflections.Reflections;
 public class ClassesPrinter {
 
 	public static void main(String[] args) {
-		Reflections reflections = new Reflections("org.antlr.sql.dialects.psql");
+		Reflections reflections = new Reflections("org.antlr.sql.dialects.tsql");
 		Set<Class<? extends ParserRuleContext>> subTypes = reflections.getSubTypesOf(ParserRuleContext.class);
 		TreeSet<String> ordered = new TreeSet<>();
 		for (@SuppressWarnings("rawtypes")
