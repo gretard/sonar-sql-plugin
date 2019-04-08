@@ -44,9 +44,10 @@ sonar.projectKey=examples.sql.mysql.project
 sonar.projectName=examples.sql.mysql.project
 sonar.projectVersion=1.1
 sonar.sources=src
-
-sonar.language=sql # optional
-sonar.sql.dialect=tsql # optional as plugin defaults to tsql
+# optional
+sonar.language=sql
+# optional as plugin defaults to tsql
+sonar.sql.dialect=tsql
 
 ```
 
@@ -57,8 +58,8 @@ sonar.projectKey=examples.sql.mysql.project
 sonar.projectName=examples.sql.mysql.project
 sonar.projectVersion=1.1
 sonar.sources=src
-
-sonar.language=sql # optional
+# optional
+sonar.language=sql
 sonar.sql.dialect=pssql
 ```
 
@@ -69,8 +70,8 @@ sonar.projectKey=examples.sql.mysql.project
 sonar.projectName=examples.sql.mysql.project
 sonar.projectVersion=1.1
 sonar.sources=src
-
-sonar.language=sql # optional
+# optional
+sonar.language=sql
 sonar.sql.dialect=mysql
 ```
 ## Plugin configuration ##
