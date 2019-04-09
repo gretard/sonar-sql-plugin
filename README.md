@@ -1,5 +1,5 @@
 # sonar-sql-plugin
-  SQL language (T-SQL, MySQL and PostgreSQL dialects) plugin for SonarQube 
+  SQL language (T-SQL, MySQL and PostgreSQL dialects) plugin for [SonarQube](https://www.sonarqube.org/) 
 
 ## Donating ##
 You can support this [project and others](https://github.com/gretard) via [Paypal](https://www.paypal.me/greta514284/)
