@@ -72,19 +72,19 @@ public class CGIssuesSensor extends BaseSensor implements Sensor {
 			final String[] args = new String[] { externalTool, "-source", sourceDir, "-out",
 					tempResultsFile.getAbsolutePath(), "/include:all" };
 
-			final Process process = new ProcessBuilder(args).start();
+			final Process process = new ProcessBuilder(args).inheritIO().start();
 			LOGGER.debug("Running SQLCodeGuard with {}", Arrays.toString(args));
 
 			final int result = process.waitFor();
-			if (result != 0 || !tempResultsFile.exists() || tempResultsFile.length() == 0) {
-				LOGGER.warn("Was not able to run SQLCodeGuard with {}", Arrays.toString(args));
+			if (!tempResultsFile.exists() || tempResultsFile.length() == 0) {
+				LOGGER.warn("SQLCodeGuard returned with '{}'. Arguments were: {}", result, Arrays.toString(args));
 				return;
 			}
-			try (BOMInputStream stream = new BOMInputStream(new FileInputStream(tempResultsFile))) {
+			try (final BOMInputStream stream = new BOMInputStream(new FileInputStream(tempResultsFile))) {
 
 				final CodeGuardIssues issues = read(stream);
 
-				for (org.sonar.plugins.sql.models.cgissues.CodeGuardIssues.File f : issues.getFile()) {
+				for (final org.sonar.plugins.sql.models.cgissues.CodeGuardIssues.File f : issues.getFile()) {
 
 					final List<InputFile> files = find(context, f.getFullname());
 					if (files.isEmpty()) {
@@ -94,10 +94,10 @@ public class CGIssuesSensor extends BaseSensor implements Sensor {
 					final InputFile file = files.get(0);
 					for (final Issue is : f.getIssue()) {
 						try {
-							NewExternalIssue newExternalIssue = context.newExternalIssue().ruleId(is.getCode())
+							final NewExternalIssue newExternalIssue = context.newExternalIssue().ruleId(is.getCode())
 									.engineId(repositoryName).type(RuleType.CODE_SMELL);
-							NewIssueLocation location = newExternalIssue.newLocation().on(file).message(is.getText())
-									.at(file.selectLine(is.getLine()));
+							final NewIssueLocation location = newExternalIssue.newLocation().on(file)
+									.message(is.getText()).at(file.selectLine(is.getLine()));
 							newExternalIssue.at(location).severity(extractSeverity(is.getSeverity())).save();
 						} catch (Throwable e) {
 							LOGGER.warn("Unexpected error adding issue on file " + f.getFullname(), e);
@@ -113,16 +113,24 @@ public class CGIssuesSensor extends BaseSensor implements Sensor {
 
 	}
 
-	private final Severity extractSeverity(String severity) {
-		String val = "MAJOR";
+	private final Severity extractSeverity(final String severityValue) {
+		String severity = "MAJOR";
+		if (severityValue != null) {
+			severity = severityValue.toUpperCase();
+		}
+		if ("ERROR".equalsIgnoreCase(severity)) {
+			return Severity.CRITICAL;
+		}
+		if ("WARNING".equalsIgnoreCase(severity)) {
+			return Severity.MAJOR;
+		}
+		try {
+			return Severity.valueOf(severity);
+		} catch (Exception e) {
 
-		if (severity != null) {
-			val = severity.toUpperCase();
 		}
-		if ("WARNING".equalsIgnoreCase(val)) {
-			val = "MAJOR";
-		}
-		return Severity.valueOf(val);
+		return Severity.MAJOR;
+
 	}
 
 }
