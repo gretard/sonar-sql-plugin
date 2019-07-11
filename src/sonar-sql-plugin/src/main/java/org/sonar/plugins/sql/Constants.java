@@ -29,7 +29,7 @@ public final class Constants {
 
 	public static final String TSQL_CG_ENGINEID = "tsql-cg";
 
-	public static final String TSQL_CG_PATH_DEFAULT = "C:\\docs\\tools2\\SCG4_p2\\SCG4.p2\\SqlCodeGuard40.Cmd.exe";
+	public static final String TSQL_CG_PATH_DEFAULT = "C:\\Program Files\\SQLCodeGuardCmdLine\\SqlCodeGuard40.Cmd.exe";
 
 	public static final String TSQL_CG_PATH = "sonar.sql.tsql.cg.path";
 

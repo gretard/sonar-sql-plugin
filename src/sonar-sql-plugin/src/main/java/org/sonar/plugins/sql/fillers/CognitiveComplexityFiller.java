@@ -9,7 +9,6 @@ import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
-import org.sonar.plugins.sql.sensors.CGIssuesSensor;
 
 public class CognitiveComplexityFiller implements Filler {
 

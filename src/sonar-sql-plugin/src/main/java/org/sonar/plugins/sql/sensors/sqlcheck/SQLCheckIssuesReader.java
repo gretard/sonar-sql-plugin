@@ -3,7 +3,6 @@ package org.sonar.plugins.sql.sensors.sqlcheck;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -55,18 +54,18 @@ public class SQLCheckIssuesReader {
 
 				}
 				String statement0 = statement.split(":", 2)[1].trim();
-				String message = risk.substring(risk.lastIndexOf(')') + 1).trim();;
+				String message = risk.substring(risk.lastIndexOf(')') + 1).trim();
+				;
 				SqlIssue issue = new SqlIssue();
 				issue.description = issueDescription.toString().trim();
 				issue.fileName = inputFile;
 				issue.severity = risk.split("\\(", 2)[1].split("\\)", 2)[0].trim();
 				issue.name = issueName.substring(2, issueName.length()).split(":", 2)[0].trim();
-				issue.message = StringUtils.isEmpty(statement0) ? message
-						: message + " at " + statement0;
+				issue.message = StringUtils.isEmpty(statement0) ? message : message + " at " + statement0;
 				issue.repo = Constants.SQL_SQLCHECK_ENGINEID;
 				issue.isAdhoc = true;
 				list.addIssue(issue);
-				//issues.add(issue);
+				// issues.add(issue);
 			}
 			i++;
 		}
