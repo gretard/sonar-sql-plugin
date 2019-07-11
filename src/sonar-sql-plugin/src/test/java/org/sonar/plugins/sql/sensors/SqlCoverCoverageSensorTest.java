@@ -41,7 +41,7 @@ public class SqlCoverCoverageSensorTest {
 						+ "<FullName>sample2</FullName><Methods>		\r\n" + "<Method>\r\n" + "<Summary />\r\n"
 						+ "<SequencePoints>\r\n"
 						+ "			<SequencePoint vc=\"1\" uspid=\"1\" ordinal=\"1\" offset=\"112\" sl=\"1\" sc=\"2\" el=\"8\" ec=\"59\" />\r\n"
-						+ "			<SequencePoint vc=\"1\" uspid=\"2\" ordinal=\"2\" offset=\"178\" sl=\"2\" sc=\"2\" el=\"10\" ec=\"22\" />\r\n"
+						+ "			<SequencePoint vc=\"0\" uspid=\"2\" ordinal=\"2\" offset=\"178\" sl=\"2\" sc=\"2\" el=\"10\" ec=\"22\" />\r\n"
 						+ "			<SequencePoint vc=\"0\" uspid=\"3\" ordinal=\"3\" offset=\"204\" sl=\"3\" sc=\"4\" el=\"11\" ec=\"12\" />\r\n"
 						+ "			<SequencePoint vc=\"0\" uspid=\"4\" ordinal=\"4\" offset=\"219\" sl=\"4\" sc=\"2\" el=\"13\" ec=\"10\" />\r\n"
 						+ "		</SequencePoints>\r\n" + "		</Method>\r\n" + "</Methods>\r\n"
@@ -57,6 +57,8 @@ public class SqlCoverCoverageSensorTest {
 		SqlCoverCoverageSensor s = new SqlCoverCoverageSensor();
 		s.execute(ctxTester);
 		Assert.assertEquals(1, (int) ctxTester.lineHits("test:sample2.sql", 1));
+		Assert.assertEquals(0, (int) ctxTester.lineHits("test:sample2.sql", 2));
+
 	}
 
 }

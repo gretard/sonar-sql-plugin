@@ -7,11 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.sonar.plugins.sql.Constants;
+import org.sonar.plugins.sql.issues.SqlIssue;
+import org.sonar.plugins.sql.issues.SqlIssuesList;
 
 public class SQLCheckIssuesReader {
 
-	public List<SQLCheckIssue> read(File file) throws IOException {
-
+	public SqlIssuesList read(String inputFile, File file) throws IOException {
+		SqlIssuesList list = new SqlIssuesList();
 		List<String> lines = Files.readAllLines(file.toPath());
 		int start = 0;
 		for (String line : lines) {
@@ -28,7 +31,6 @@ public class SQLCheckIssuesReader {
 			}
 
 		}
-		List<SQLCheckIssue> issues = new ArrayList<>();
 		int i = start;
 
 		String statement = null;
@@ -52,48 +54,23 @@ public class SQLCheckIssuesReader {
 					issueDescription.append(temp + " ");
 
 				}
-				SQLCheckIssue issue = new SQLCheckIssue();
+				String statement0 = statement.split(":", 2)[1].trim();
+				String message = risk.substring(risk.lastIndexOf(')') + 1).trim();;
+				SqlIssue issue = new SqlIssue();
 				issue.description = issueDescription.toString().trim();
+				issue.fileName = inputFile;
+				issue.severity = risk.split("\\(", 2)[1].split("\\)", 2)[0].trim();
 				issue.name = issueName.substring(2, issueName.length()).split(":", 2)[0].trim();
-				issue.risk = risk.split("\\(", 2)[1].split("\\)", 2)[0].trim();
-				issue.statement = statement.split(":", 2)[1].trim();
-				issue.message = risk.substring(risk.lastIndexOf(')') + 1).trim();
-				issues.add(issue);
+				issue.message = StringUtils.isEmpty(statement0) ? message
+						: message + " at " + statement0;
+				issue.repo = Constants.SQL_SQLCHECK_ENGINEID;
+				issue.isAdhoc = true;
+				list.addIssue(issue);
+				//issues.add(issue);
 			}
 			i++;
 		}
 
-		return issues;
-	}
-
-	public static class SQLCheckIssue {
-		@Override
-		public String toString() {
-			return "SQLCheckIssue [message=" + message + ", statement=" + statement + ", description=" + description
-					+ ", name=" + name + ", risk=" + risk + "]";
-		}
-
-		public String getId() {
-			return name + "_" + message;
-		}
-
-		public String message;
-		public String statement;
-		public String description;
-
-		public String name;
-
-		public String getSeverity() {
-			if (StringUtils.containsIgnoreCase(risk, "HIGH")) {
-				return "MAJOR";
-			}
-			if (StringUtils.containsIgnoreCase(risk, "LOW")) {
-				return "TRIVIAL";
-			}
-			return "MINOR";
-
-		}
-
-		public String risk;
+		return list;
 	}
 }

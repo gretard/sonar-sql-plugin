@@ -47,7 +47,7 @@ public class RulesHelperTool {
 			System.out.println("Printing tree:\r\n");
 			AntlrContext ctx = sqlDialect.parse(text);
 
-			PrettyPrinter.print(ctx.root, 0, ctx.stream);
+		//	PrettyPrinter.print(ctx.root, 0, ctx.stream);
 			return;
 
 		}

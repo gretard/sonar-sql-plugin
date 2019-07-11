@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.antlr.sql.models.AntlrContext;
 import org.antlr.sql.sca.IssuesProvider;
-import org.antlr.sql.sca.SqlIssue;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.rule.Severity;
 import org.sonar.api.batch.sensor.SensorContext;
@@ -16,6 +15,7 @@ import org.sonar.api.rule.RuleKey;
 import org.sonar.api.rules.RuleType;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
+import org.sonar.plugins.sql.issues.SqlIssue;
 
 public class IssuesFiller implements Filler {
 	private static final Logger LOGGER = Loggers.get(IssuesFiller.class);
@@ -31,24 +31,23 @@ public class IssuesFiller implements Filler {
 				try {
 					if (issue.isAdhoc) {
 						NewAdHocRule rule = context.newAdHocRule();
-						rule.description(issue.rule.getDescription()).engineId(issue.repo).name(issue.rule.getName())
-								.ruleId(issue.rule.getKey()).severity(Severity.valueOf(issue.rule.getSeverity()))
+						rule.description(issue.getDescription()).engineId(issue.getRepo()).name(issue.getName())
+								.ruleId(issue.getKey()).severity(Severity.valueOf(issue.getSeverity()))
 								.type(RuleType.CODE_SMELL).save();
 
 						NewExternalIssue iss = context.newExternalIssue();
-						NewIssueLocation loc = iss.newLocation().on(file).at(file.selectLine(issue.line))
-								.message(issue.rule.getRuleImplementation().getRuleViolationMessage());
-						iss.at(loc).engineId(issue.repo).ruleId(issue.rule.getKey()).type(RuleType.CODE_SMELL)
-								.severity(Severity.valueOf(issue.rule.getSeverity())).save();
+						NewIssueLocation loc = iss.newLocation().on(file).at(file.selectLine(issue.getLine()))
+								.message(issue.getMessage());
+						iss.at(loc).engineId(issue.getRepo()).ruleId(issue.getKey()).type(RuleType.CODE_SMELL)
+								.severity(Severity.valueOf(issue.getSeverity())).save();
 						continue;
 					}
 					NewIssue iss = context.newIssue();
-					NewIssueLocation loc = iss.newLocation().on(file).at(file.selectLine(issue.line))
-							.message(issue.rule.getRuleImplementation().getRuleViolationMessage());
-					iss.at(loc).forRule(RuleKey.of(issue.repo, issue.rule.getKey())).save();
+					NewIssueLocation loc = iss.newLocation().on(file).at(file.selectLine(issue.getLine()))
+							.message(issue.getMessage());
+					iss.at(loc).forRule(RuleKey.of(issue.getRepo(), issue.getKey())).save();
 				} catch (Exception e) {
-					LOGGER.warn(
-							"Unexpected error adding issue: " + issue.repo + " " + issue.rule.getKey() + " at " + file,
+					LOGGER.warn("Unexpected error adding issue: " + issue.repo + " " + issue.getKey() + " at " + file,
 							e);
 				}
 			}

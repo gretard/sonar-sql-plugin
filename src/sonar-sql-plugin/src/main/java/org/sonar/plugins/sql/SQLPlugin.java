@@ -57,7 +57,7 @@ public class SQLPlugin implements Plugin {
 				.description("Limit in bytes for files to be analyzed by plugin")
 				.defaultValue(Constants.PLUGIN_SQL_SCA_MAX_FILE_SIZE_DEFAULT + "").type(PropertyType.INTEGER).build());
 		
-		context.addExtensions(SQLLanguage.class, SQLRulesDefinition.class, CGRulesDefinition.class,
+		context.addExtensions(SQLLanguage.class, SQLRulesDefinition.class,
 				MsRulesDefinition.class, SQLQualityProfile.class);
 		context.addExtensions(SQLSensor.class, MSIssuesSensor.class, CGIssuesSensor.class, SqlCoverCoverageSensor.class,
 				SqlCheckSensor.class);

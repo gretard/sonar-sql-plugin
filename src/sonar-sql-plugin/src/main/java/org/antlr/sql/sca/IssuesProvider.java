@@ -7,6 +7,7 @@ import java.util.Map;
 import org.antlr.sql.models.AntlrContext;
 import org.antlr.sql.sca.nodes.IParsedNode;
 import org.antlr.sql.visitors.RulesMatchingVisitor;
+import org.sonar.plugins.sql.issues.SqlIssue;
 import org.sonar.plugins.sql.models.rules.RuleImplementation;
 
 public class IssuesProvider {
@@ -26,8 +27,13 @@ public class IssuesProvider {
 				SqlIssue e = new SqlIssue();
 				e.repo = m.sqlRules.getRepoKey();
 				e.line = m.node.getLine();
-				e.rule = m.rule;
+				e.description = m.rule.getDescription();
+				e.ruleType = m.rule.getRuleType();
+				e.key = m.rule.getKey();
+				e.severity = m.rule.getSeverity();
 				e.isAdhoc = m.sqlRules.isIsAdhoc();
+				e.message = m.rule.getRuleImplementation().getRuleViolationMessage();
+				e.name = m.rule.getName();
 				foundIssues.add(e);
 			}
 

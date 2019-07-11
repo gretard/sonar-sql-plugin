@@ -5,26 +5,20 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.lang3.StringUtils;
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.batch.rule.Severity;
 import org.sonar.api.batch.sensor.Sensor;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
-import org.sonar.api.batch.sensor.issue.NewExternalIssue;
-import org.sonar.api.batch.sensor.issue.NewIssueLocation;
-import org.sonar.api.rules.RuleType;
 import org.sonar.api.utils.TempFolder;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 import org.sonar.plugins.sql.Constants;
+import org.sonar.plugins.sql.issues.SqlIssuesList;
 import org.sonar.plugins.sql.sensors.sqlcheck.SQLCheckIssuesReader;
-import org.sonar.plugins.sql.sensors.sqlcheck.SQLCheckIssuesReader.SQLCheckIssue;
 
 public class SqlCheckSensor extends BaseSensor implements Sensor {
 
@@ -103,28 +97,9 @@ public class SqlCheckSensor extends BaseSensor implements Sensor {
 			LOGGER.warn("Was not able to run SQLCheck with {}", Arrays.toString(args));
 			return;
 		}
-		
-		final List<SQLCheckIssue> issues = reader.read(tempResultsFile);
-		synchronized (context) {
-			for (final SQLCheckIssue issue : issues) {
-				try {
-					context.newAdHocRule().description(issue.description).engineId(this.repositoryName).name(issue.name)
-							.ruleId(issue.getId()).severity(Severity.valueOf(issue.getSeverity().toUpperCase()))
-							.type(RuleType.CODE_SMELL).save();
 
-					NewExternalIssue externalIssue = context.newExternalIssue().ruleId(issue.getId())
-							.severity(Severity.valueOf(issue.getSeverity().toUpperCase())).type(RuleType.CODE_SMELL)
-							.engineId(this.repositoryName);
-					NewIssueLocation loc = externalIssue.newLocation().on(file)
-							.message(StringUtils.isEmpty(issue.statement) ? issue.message
-									: issue.message + " at " + issue.statement);
-					externalIssue.at(loc).save();
-				} catch (Exception e) {
-					LOGGER.debug("Unexpected error adding issue on file {}: {} ", file, e);
-				}
-			}
-
-		}
+		final SqlIssuesList issues = reader.read(file.filename(), tempResultsFile);
+		addIssues(context, issues, file);
 	}
 
 }

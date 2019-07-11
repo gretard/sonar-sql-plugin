@@ -32,9 +32,9 @@ public class CGIssuesSensorTest {
 		SensorContextTester ctxTester = SensorContextTester.create(folder.getRoot());
 		ctxTester.fileSystem().setWorkDir(folder.getRoot().toPath());
 
-		File baseFile = folder.newFile("sample2.sql");
+		File baseFile = folder.newFile("sample.sql");
 
-		FileUtils.copyURLToFile(getClass().getResource("/tsql/sample2.sql"), baseFile);
+		FileUtils.copyURLToFile(getClass().getResource("/tsql/sample1.sql"), baseFile);
 		String contents = new String(Files.readAllBytes(baseFile.toPath()));
 
 		DefaultInputFile ti = new TestInputFileBuilder("test", folder.getRoot(), baseFile).initMetadata(contents)
@@ -45,6 +45,6 @@ public class CGIssuesSensorTest {
 		CGIssuesSensor s = new CGIssuesSensor(temp);
 		s.execute(ctxTester);
 
-		Assert.assertEquals(2, ctxTester.allExternalIssues().size());
+		Assert.assertEquals(1, ctxTester.allExternalIssues().size());
 	}
 }
