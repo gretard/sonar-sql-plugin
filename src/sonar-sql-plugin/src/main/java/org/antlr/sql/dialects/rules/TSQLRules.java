@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.antlr.sql.dialects.Dialects;
+import org.antlr.sql.dialects.psql.PostgreSQLParser.Func_nameContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.AsteriskContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Column_name_listContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Comparison_operatorContext;
@@ -12,7 +13,6 @@ import org.antlr.sql.dialects.tsql.TSqlParser.ConstantContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Create_indexContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Execute_statementContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Full_column_nameContext;
-import org.antlr.sql.dialects.tsql.TSqlParser.Func_proc_nameContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Function_callContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.IdContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Insert_statementContext;
@@ -147,7 +147,7 @@ public enum TSQLRules {
 		child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 
 		RuleImplementation skipSubRule = new RuleImplementation();
-		skipSubRule.getNames().getTextItem().add(Func_proc_nameContext.class.getSimpleName());
+		skipSubRule.getNames().getTextItem().add(Func_nameContext.class.getSimpleName());
 		skipSubRule.setTextCheckType(TextCheckType.DEFAULT);
 		skipSubRule.setRuleResultType(RuleResultType.SKIP_IF_FOUND);
 		skipSubRule.setRuleMatchType(RuleMatchType.CLASS_ONLY);

@@ -2640,6 +2640,13 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitXML_DATA_TYPE_FUNC(TSqlParser.XML_DATA_TYPE_FUNCContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code IFF}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIFF(TSqlParser.IFFContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TSqlParser#xml_data_type_methods}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -2880,11 +2887,23 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSimple_name(TSqlParser.Simple_nameContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TSqlParser#func_proc_name}.
+	 * Visit a parse tree produced by {@link TSqlParser#func_proc_name_schema}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunc_proc_name(TSqlParser.Func_proc_nameContext ctx);
+	T visitFunc_proc_name_schema(TSqlParser.Func_proc_name_schemaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#func_proc_name_database_schema}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunc_proc_name_database_schema(TSqlParser.Func_proc_name_database_schemaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#func_proc_name_server_database_schema}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunc_proc_name_server_database_schema(TSqlParser.Func_proc_name_server_database_schemaContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TSqlParser#ddl_object}.
 	 * @param ctx the parse tree

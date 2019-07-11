@@ -2,7 +2,6 @@ package org.sonar.plugins.sql.adhoc;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.xml.bind.JAXBException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -70,7 +68,7 @@ public class AdhocRulesProvider {
 				if (child.getNodeType() != Node.ELEMENT_NODE) {
 					continue;
 				}
-				
+
 				rule.getNames().getTextItem().add(child.getTextContent());
 			}
 		}

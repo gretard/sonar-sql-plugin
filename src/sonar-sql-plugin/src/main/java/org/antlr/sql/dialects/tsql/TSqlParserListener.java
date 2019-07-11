@@ -4398,6 +4398,18 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitXML_DATA_TYPE_FUNC(TSqlParser.XML_DATA_TYPE_FUNCContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code IFF}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterIFF(TSqlParser.IFFContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code IFF}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitIFF(TSqlParser.IFFContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TSqlParser#xml_data_type_methods}.
 	 * @param ctx the parse tree
 	 */
@@ -4798,15 +4810,35 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitSimple_name(TSqlParser.Simple_nameContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TSqlParser#func_proc_name}.
+	 * Enter a parse tree produced by {@link TSqlParser#func_proc_name_schema}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunc_proc_name(TSqlParser.Func_proc_nameContext ctx);
+	void enterFunc_proc_name_schema(TSqlParser.Func_proc_name_schemaContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TSqlParser#func_proc_name}.
+	 * Exit a parse tree produced by {@link TSqlParser#func_proc_name_schema}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunc_proc_name(TSqlParser.Func_proc_nameContext ctx);
+	void exitFunc_proc_name_schema(TSqlParser.Func_proc_name_schemaContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#func_proc_name_database_schema}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunc_proc_name_database_schema(TSqlParser.Func_proc_name_database_schemaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#func_proc_name_database_schema}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunc_proc_name_database_schema(TSqlParser.Func_proc_name_database_schemaContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#func_proc_name_server_database_schema}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunc_proc_name_server_database_schema(TSqlParser.Func_proc_name_server_database_schemaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#func_proc_name_server_database_schema}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunc_proc_name_server_database_schema(TSqlParser.Func_proc_name_server_database_schemaContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TSqlParser#ddl_object}.
 	 * @param ctx the parse tree
