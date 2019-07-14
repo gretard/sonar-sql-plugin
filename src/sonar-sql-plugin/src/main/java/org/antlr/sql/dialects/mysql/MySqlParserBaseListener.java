@@ -712,6 +712,18 @@ public class MySqlParserBaseListener implements MySqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCollateColumnConstraint(MySqlParser.CollateColumnConstraintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCollateColumnConstraint(MySqlParser.CollateColumnConstraintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterGeneratedColumnConstraint(MySqlParser.GeneratedColumnConstraintContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1756,6 +1768,18 @@ public class MySqlParserBaseListener implements MySqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAlterByRenameIndex(MySqlParser.AlterByRenameIndexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAlterByRenameIndex(MySqlParser.AlterByRenameIndexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAlterByDropIndex(MySqlParser.AlterByDropIndexContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1996,13 +2020,13 @@ public class MySqlParserBaseListener implements MySqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAlterByAnalyzePartitiion(MySqlParser.AlterByAnalyzePartitiionContext ctx) { }
+	@Override public void enterAlterByAnalyzePartition(MySqlParser.AlterByAnalyzePartitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAlterByAnalyzePartitiion(MySqlParser.AlterByAnalyzePartitiionContext ctx) { }
+	@Override public void exitAlterByAnalyzePartition(MySqlParser.AlterByAnalyzePartitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -2951,6 +2975,18 @@ public class MySqlParserBaseListener implements MySqlParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLimitClause(MySqlParser.LimitClauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLimitClauseAtom(MySqlParser.LimitClauseAtomContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLimitClauseAtom(MySqlParser.LimitClauseAtomContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -4528,6 +4564,18 @@ public class MySqlParserBaseListener implements MySqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSetNewValueInsideTrigger(MySqlParser.SetNewValueInsideTriggerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSetNewValueInsideTrigger(MySqlParser.SetNewValueInsideTriggerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterShowMasterLogs(MySqlParser.ShowMasterLogsContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -5332,6 +5380,30 @@ public class MySqlParserBaseListener implements MySqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterNationalStringDataType(MySqlParser.NationalStringDataTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNationalStringDataType(MySqlParser.NationalStringDataTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNationalVaryingStringDataType(MySqlParser.NationalVaryingStringDataTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNationalVaryingStringDataType(MySqlParser.NationalVaryingStringDataTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDimensionDataType(MySqlParser.DimensionDataTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -5375,6 +5447,18 @@ public class MySqlParserBaseListener implements MySqlParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSpatialDataType(MySqlParser.SpatialDataTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCollectionOptions(MySqlParser.CollectionOptionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCollectionOptions(MySqlParser.CollectionOptionsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

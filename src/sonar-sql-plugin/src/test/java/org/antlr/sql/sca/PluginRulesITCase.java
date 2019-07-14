@@ -55,7 +55,7 @@ public class PluginRulesITCase {
 		SqlRules a = new SqlRules();
 		a.getRule().add(rule);
 		ctx.rules = Arrays.asList(a);
-		List<SqlIssue> issues = sut.analyze(ctx);
+		List<org.sonar.plugins.sql.issues.SqlIssue> issues = sut.analyze(ctx);
 
 		if (issueExists && issues.isEmpty() || !issueExists && !issues.isEmpty()) {
 			PrettyPrinter.print(ctx.root, 0, ctx.stream);

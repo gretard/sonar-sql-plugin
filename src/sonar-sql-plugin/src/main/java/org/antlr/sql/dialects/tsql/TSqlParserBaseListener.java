@@ -5224,6 +5224,18 @@ public class TSqlParserBaseListener implements TSqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterIFF(TSqlParser.IFFContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIFF(TSqlParser.IFFContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterXml_data_type_methods(TSqlParser.Xml_data_type_methodsContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -5704,13 +5716,37 @@ public class TSqlParserBaseListener implements TSqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunc_proc_name(TSqlParser.Func_proc_nameContext ctx) { }
+	@Override public void enterFunc_proc_name_schema(TSqlParser.Func_proc_name_schemaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunc_proc_name(TSqlParser.Func_proc_nameContext ctx) { }
+	@Override public void exitFunc_proc_name_schema(TSqlParser.Func_proc_name_schemaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunc_proc_name_database_schema(TSqlParser.Func_proc_name_database_schemaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunc_proc_name_database_schema(TSqlParser.Func_proc_name_database_schemaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunc_proc_name_server_database_schema(TSqlParser.Func_proc_name_server_database_schemaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunc_proc_name_server_database_schema(TSqlParser.Func_proc_name_server_database_schemaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -98,7 +98,7 @@ public class Rule {
     @XmlElement(required = true)
     protected String source;
     @XmlElement(required = true, defaultValue = "CODE_SMELL")
-    protected String ruleType;
+    protected String ruleType = "CODE_SMELL";
 
     /**
      * Gets the value of the key property.
