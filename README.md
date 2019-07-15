@@ -4,7 +4,7 @@
 ## Donating ##
 You can support this [project and others](https://github.com/gretard) via [Paypal](https://www.paypal.me/greta514284/)
 
-[![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/greta514284/)
+[![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/greta514284/) [![Join the chat at https://gitter.im/sonar-sql-plugin/community](https://badges.gitter.im/sonar-sql-plugin/community.svg)](https://gitter.im/sonar-sql-plugin/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Description ##
 Currently plug-in supports:
