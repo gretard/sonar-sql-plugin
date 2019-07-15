@@ -1,4 +1,6 @@
 # sonar-sql-plugin
+[![Gitter](https://badges.gitter.im/sonar-sql-plugin/community.svg)](https://gitter.im/sonar-sql-plugin/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
   SQL language (T-SQL, MySQL and PostgreSQL dialects) plugin for [SonarQube](https://www.sonarqube.org/) 
 
 ## Donating ##
