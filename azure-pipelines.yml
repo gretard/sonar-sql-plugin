@@ -28,4 +28,3 @@ steps:
   inputs:
     pathtoPublish: '$(Build.artifactstagingdirectory)' 
     artifactName: 'build-$(Agent.OS)'
-    condition: $(Agent.OS) == 'Windows_NT'
