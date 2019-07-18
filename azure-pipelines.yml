@@ -27,4 +27,4 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.artifactstagingdirectory)' 
-    artifactName: 'build-$(platform)' 
+    artifactName: 'build-$(Agent.OS)'
