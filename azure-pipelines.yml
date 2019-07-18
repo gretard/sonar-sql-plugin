@@ -23,3 +23,8 @@ steps:
     SourceFolder: '$(system.defaultworkingdirectory)'
     Contents: '**/*.jar'
     TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: PublishBuildArtifacts@4
+  inputs:
+    pathtoPublish: '$(Build.artifactstagingdirectory)' 
+    artifactName: 'drop' 

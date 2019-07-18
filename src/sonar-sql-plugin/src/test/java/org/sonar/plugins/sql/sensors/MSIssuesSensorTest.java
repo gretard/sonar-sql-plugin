@@ -7,16 +7,21 @@ import java.nio.file.Files;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import org.slf4j.event.Level;
 import org.sonar.api.batch.fs.internal.DefaultInputFile;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.api.batch.sensor.internal.SensorContextTester;
 import org.sonar.api.utils.internal.JUnitTempFolder;
 import org.sonar.api.utils.log.LogTester;
 import org.sonar.api.utils.log.LoggerLevel;
+import org.sonar.api.utils.log.Loggers;
 import org.sonar.plugins.sql.Constants;
+
+import com.sun.media.jfxmedia.logging.Logger;
 
 public class MSIssuesSensorTest {
 
@@ -24,13 +29,14 @@ public class MSIssuesSensorTest {
 	public TemporaryFolder folder = new TemporaryFolder();
 
 	@Rule
-	public LogTester logTester = new LogTester().setLevel(LoggerLevel.DEBUG);
+	public LogTester logTester = new LogTester();
 
 	@Rule
 	public JUnitTempFolder temp = new JUnitTempFolder();
 
 	@Test
 	public void testExecute() throws IOException {
+		Assume.assumeFalse("OS not mac",  System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0);
 
 		SensorContextTester ctxTester = SensorContextTester.create(folder.getRoot());
 		ctxTester.fileSystem().setWorkDir(folder.getRoot().toPath());
@@ -50,7 +56,8 @@ public class MSIssuesSensorTest {
 		FileUtils.copyURLToFile(getClass().getResource("/tsql/sample2.sql"), baseFile);
 		String contents = new String(Files.readAllBytes(baseFile.toPath()));
 
-		DefaultInputFile ti = new TestInputFileBuilder("test", folder.getRoot(), baseFile).initMetadata(contents)
+		DefaultInputFile ti = new TestInputFileBuilder("test", folder.getRoot(), baseFile)
+				.initMetadata(contents)
 				.setLanguage(Constants.languageKey).setContents(contents).build();
 		ctxTester.fileSystem().add(ti);
 		MSIssuesSensor s = new MSIssuesSensor();
