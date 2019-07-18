@@ -56,11 +56,11 @@ public class SQLSensorTest {
 
 		SQLSensor s = new SQLSensor();
 		s.execute(ctxTester);
-		
+
 		Assert.assertEquals(2, ctxTester.allIssues().size());
 
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testMySQL() throws IOException {
@@ -76,8 +76,10 @@ public class SQLSensorTest {
 
 		SQLSensor s = new SQLSensor();
 		s.execute(ctxTester);
-		
+
 		Assert.assertEquals(2, ctxTester.allIssues().size());
+		Assert.assertEquals(0, ctxTester.allExternalIssues().size());
+		Assert.assertEquals(0, ctxTester.allAdHocRules().size());
 
 	}
 

@@ -1,6 +1,5 @@
 package org.antlr.sql.sca;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,14 +7,16 @@ import org.antlr.sql.models.AntlrContext;
 import org.antlr.sql.sca.nodes.IParsedNode;
 import org.antlr.sql.visitors.RulesMatchingVisitor;
 import org.sonar.plugins.sql.issues.SqlIssue;
+import org.sonar.plugins.sql.issues.SqlIssuesList;
 import org.sonar.plugins.sql.models.rules.RuleImplementation;
 
 public class IssuesProvider {
 	ViolationsAnalyzer violationsAnalyzer = new ViolationsAnalyzer();
 	ViolationsSearcher searcher = new ViolationsSearcher();
 
-	public List<SqlIssue> analyze(AntlrContext ctx) {
-		List<SqlIssue> foundIssues = new ArrayList<>();
+	public SqlIssuesList analyze(AntlrContext ctx) {
+		SqlIssuesList list = new SqlIssuesList();
+
 		RulesMatchingVisitor visitor = new RulesMatchingVisitor(ctx.getRules());
 		visitor.visit(ctx.root);
 
@@ -34,10 +35,11 @@ public class IssuesProvider {
 				e.isAdhoc = m.sqlRules.isIsAdhoc();
 				e.message = m.rule.getRuleImplementation().getRuleViolationMessage();
 				e.name = m.rule.getName();
-				foundIssues.add(e);
+				e.isExternal = m.sqlRules.getIsExternal();
+				list.addIssue(e);
 			}
 
 		}
-		return foundIssues;
+		return list;
 	}
 }

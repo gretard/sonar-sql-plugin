@@ -24,6 +24,10 @@ public class SqlIssue {
 		return result;
 	}
 
+	public String getUniqueKey() {
+		return this.repo + ":" + this.key;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -79,6 +83,10 @@ public class SqlIssue {
 
 	public String repo;
 	public String fileName;
+	public boolean isExternal = true;
+	public boolean isExternal() {
+		return isExternal;
+	}
 
 	public String getFileName() {
 		return fileName;

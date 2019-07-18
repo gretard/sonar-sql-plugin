@@ -11,7 +11,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.antlr.sql.dialects.Dialects;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.input.BOMInputStream;
 import org.sonar.api.batch.sensor.Sensor;
 import org.sonar.api.batch.sensor.SensorContext;
@@ -46,19 +45,20 @@ public class CGIssuesSensor extends BaseSensor implements Sensor {
 
 	}
 
-	
+	protected SqlIssuesList read(final InputStream stream) throws Exception {
 
-	private  SqlIssuesList read(final InputStream stream) throws Exception {
 		SqlIssuesList issuesList = new SqlIssuesList();
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
+
 		Document doc = builder.parse(stream);
+
 		NodeList list = doc.getElementsByTagName("issue");
-		
+
 		for (int i = 0; i < list.getLength(); i++) {
 			try {
 				Node n = list.item(i);
-				
+
 				String fileName = XmlHelper.readAttribute(n.getParentNode(), "fullname", null);
 				String line = XmlHelper.readAttribute(n, "line", null);
 				String message = XmlHelper.readAttribute(n, "text", null);
@@ -70,11 +70,12 @@ public class CGIssuesSensor extends BaseSensor implements Sensor {
 				SqlIssue issue = new SqlIssue();
 				issue.fileName = fileName;
 				issue.isAdhoc = true;
+				issue.isExternal = true;
 				issue.key = key;
 				issue.repo = repositoryName;
 				issue.name = message;
 				issue.message = message;
-				issue.description=description;
+				issue.description = description;
 				issue.line = Integer.parseInt(line);
 				issue.severity = severity;
 				issuesList.addIssue(issue);
@@ -112,7 +113,6 @@ public class CGIssuesSensor extends BaseSensor implements Sensor {
 				return;
 			}
 			try (final BOMInputStream stream = new BOMInputStream(new FileInputStream(tempResultsFile))) {
-			//	System.out.println(FileUtils.readFileToString(tempResultsFile));
 
 				final SqlIssuesList issues = read(stream);
 				addIssues(context, issues, null);

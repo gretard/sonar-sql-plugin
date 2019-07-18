@@ -2,6 +2,7 @@ package org.antlr.sql.sca;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import org.antlr.sql.dialects.Dialects;
@@ -13,6 +14,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+import org.sonar.plugins.sql.issues.SqlIssue;
+import org.sonar.plugins.sql.issues.SqlIssuesList;
 import org.sonar.plugins.sql.models.rules.Rule;
 import org.sonar.plugins.sql.models.rules.SqlRules;
 
@@ -55,8 +58,8 @@ public class PluginRulesITCase {
 		SqlRules a = new SqlRules();
 		a.getRule().add(rule);
 		ctx.rules = Arrays.asList(a);
-		List<org.sonar.plugins.sql.issues.SqlIssue> issues = sut.analyze(ctx);
-
+		SqlIssuesList list = sut.analyze(ctx);
+		Collection<SqlIssue> issues = list.getaLLIssues();
 		if (issueExists && issues.isEmpty() || !issueExists && !issues.isEmpty()) {
 			PrettyPrinter.print(ctx.root, 0, ctx.stream);
 		}

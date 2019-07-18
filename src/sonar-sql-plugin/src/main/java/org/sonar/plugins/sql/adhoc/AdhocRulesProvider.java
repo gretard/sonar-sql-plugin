@@ -176,8 +176,8 @@ public class AdhocRulesProvider {
 			rules.setDialect(XmlHelper.readAttribute(root, "dialect", "tsql"));
 			rules.setRepoName(XmlHelper.readAttribute(root, "repoName", null));
 			rules.setRepoKey(XmlHelper.readAttribute(root, "repoKey", null));
-			rules.setIsAdhoc(Boolean.parseBoolean(XmlHelper.readAttribute(root, "isAdhoc", "true")));
-
+			rules.setIsAdhoc(true);
+			rules.setIsExternal(true);
 			NodeList list = doc.getElementsByTagName("rule");
 			for (int i = 0; i < list.getLength(); i++) {
 				try {
