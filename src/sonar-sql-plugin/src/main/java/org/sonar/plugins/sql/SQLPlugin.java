@@ -46,7 +46,7 @@ public class SQLPlugin implements Plugin {
 				.defaultValue(Constants.TSQL_MS_ISSUES_DEFAULT).type(PropertyType.STRING).build());
 
 		context.addExtension(PropertyDefinition.builder(Constants.PLUGIN_SUFFIXES).name("File suffixes")
-				.description("File suffixes which will be reported belonging to SQL langauge").multiValues(true)
+				.description("File suffixes which will be reported belonging to SQL language").multiValues(true)
 				.defaultValue(".sql").type(PropertyType.STRING).build());
 
 		context.addExtension(PropertyDefinition.builder(Constants.PLUGIN_SQL_SCA_TIMEOUT).name("SCA timeout")
