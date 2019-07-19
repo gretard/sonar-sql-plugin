@@ -89,3 +89,4 @@ The following options are available for configuration:
 - **sonar.sql.file.suffixes** - file suffixes which will be reported belonging to SQL langauge. *Defaults to .sql*
 - **sonar.sql.sca.timeout** - timeout value for static code analysis done by plugin in seconds. *Defaults to 3600*
 - **sonar.sql.sca.maxfilesize** - limit in bytes for files to be analyzed by plugin. *Defaults to 2097152*
+- **sonar.sql.rules.skip** - comma separated list of repoKey:ruleId pairs to select rules which will not be reported by the plugin, i.e. tsql-cg:ST008
