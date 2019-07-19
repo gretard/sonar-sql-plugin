@@ -64,8 +64,8 @@ public class SQLCheckIssuesReader {
 				issue.message = StringUtils.isEmpty(statement0) ? message : message + " at " + statement0;
 				issue.repo = Constants.SQL_SQLCHECK_ENGINEID;
 				issue.isAdhoc = true;
+				issue.isExternal = true;
 				list.addIssue(issue);
-				// issues.add(issue);
 			}
 			i++;
 		}

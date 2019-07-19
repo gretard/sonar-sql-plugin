@@ -10,7 +10,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.antlr.sql.dialects.Dialects;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.input.BOMInputStream;
 import org.sonar.api.batch.sensor.Sensor;
 import org.sonar.api.batch.sensor.SensorContext;
@@ -84,6 +83,7 @@ public class MSIssuesSensor extends BaseSensor implements Sensor {
 				issue.message = XmlHelper.getNodeValue(parent, "ProblemDescription");
 				issue.line = Integer.parseInt(XmlHelper.getNodeValue(parent, "Line"));
 				issue.repo = repositoryName;
+				issue.isExternal = true;
 				issuesList.addIssue(issue);
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.antlr.sql.models.AntlrContext;
 import org.antlr.v4.runtime.Token;
+import org.apache.commons.lang3.StringUtils;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.highlighting.NewHighlighting;
@@ -23,9 +24,12 @@ public class HighlighterFiller implements Filler {
 			List<? extends Token> tokens = antlrContext.getAllTokens();
 			for (Token token : tokens) {
 				try {
-					if (token.getStopIndex() <= token.getStartIndex()) {
+					final String text = token.getText();
+					if (token.getType() == -1 || token.getStartIndex() >= token.getStopIndex()
+							|| StringUtils.isEmpty(text)) {
 						continue;
 					}
+
 					if (antlrContext.isComment(token)) {
 						newHighlighting.highlight(token.getStartIndex(), token.getStopIndex() + 1, TypeOfText.COMMENT);
 						continue;

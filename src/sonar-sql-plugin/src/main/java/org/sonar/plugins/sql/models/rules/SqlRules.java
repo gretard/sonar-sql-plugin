@@ -5,22 +5,24 @@
 // Generated on: 2019.03.25 at 09:04:39 PM EET 
 //
 
-
 package org.sonar.plugins.sql.models.rules;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -41,26 +43,25 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "rule"
-})
+@XmlType(name = "", propOrder = { "rule" })
 @XmlRootElement(name = "sql-rules")
 public class SqlRules {
 
-    protected List<Rule> rule;
-    @XmlAttribute(name = "repoName")
-    protected String repoName;
-    @XmlAttribute(name = "repoKey")
-    protected String repoKey;
-    @XmlAttribute(name = "version")
-    protected String version;
-    @XmlAttribute(name = "isAdhoc")
-    protected Boolean isAdhoc;
-    @XmlAttribute(name = "dialect")
-    protected String dialect = "tsql";
-    
+	protected List<Rule> rule;
+	@XmlAttribute(name = "repoName")
+	protected String repoName;
+	@XmlAttribute(name = "repoKey")
+	protected String repoKey;
+	@XmlAttribute(name = "version")
+	protected String version;
+	@XmlAttribute(name = "isAdhoc")
+	protected Boolean isAdhoc = false;
+	@XmlAttribute(name = "isExternal")
+	protected Boolean isExternal = false;
+	@XmlAttribute(name = "dialect")
+	protected String dialect = "tsql";
 
-    public String getDialect() {
+	public String getDialect() {
 		return dialect;
 	}
 
@@ -69,136 +70,135 @@ public class SqlRules {
 	}
 
 	/**
-     * Gets the value of the rule property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the rule property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getRule().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Rule }
-     * 
-     * 
-     */
-    public List<Rule> getRule() {
-        if (rule == null) {
-            rule = new ArrayList<Rule>();
-        }
-        return this.rule;
-    }
+	 * Gets the value of the rule property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a snapshot.
+	 * Therefore any modification you make to the returned list will be present
+	 * inside the JAXB object. This is why there is not a <CODE>set</CODE> method
+	 * for the rule property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getRule().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link Rule }
+	 * 
+	 * 
+	 */
+	public List<Rule> getRule() {
+		if (rule == null) {
+			rule = new ArrayList<Rule>();
+		}
+		return this.rule;
+	}
 
-    /**
-     * Gets the value of the repoName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getRepoName() {
-        return repoName;
-    }
+	/**
+	 * Gets the value of the repoName property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getRepoName() {
+		return repoName;
+	}
 
-    /**
-     * Sets the value of the repoName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setRepoName(String value) {
-        this.repoName = value;
-    }
+	/**
+	 * Sets the value of the repoName property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setRepoName(String value) {
+		this.repoName = value;
+	}
 
-    /**
-     * Gets the value of the repoKey property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getRepoKey() {
-        return repoKey;
-    }
+	/**
+	 * Gets the value of the repoKey property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getRepoKey() {
+		return repoKey;
+	}
 
-    /**
-     * Sets the value of the repoKey property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setRepoKey(String value) {
-        this.repoKey = value;
-    }
+	/**
+	 * Sets the value of the repoKey property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setRepoKey(String value) {
+		this.repoKey = value;
+	}
 
-    /**
-     * Gets the value of the version property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getVersion() {
-        if (version == null) {
-            return "1";
-        } else {
-            return version;
-        }
-    }
+	/**
+	 * Gets the value of the version property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getVersion() {
+		if (version == null) {
+			return "1";
+		} else {
+			return version;
+		}
+	}
 
-    /**
-     * Sets the value of the version property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setVersion(String value) {
-        this.version = value;
-    }
+	/**
+	 * Sets the value of the version property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setVersion(String value) {
+		this.version = value;
+	}
 
-    /**
-     * Gets the value of the isAdhoc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public boolean isIsAdhoc() {
-        if (isAdhoc == null) {
-            return false;
-        } else {
-            return isAdhoc;
-        }
-    }
+	/**
+	 * Gets the value of the isAdhoc property.
+	 * 
+	 * @return possible object is {@link Boolean }
+	 * 
+	 */
+	public boolean isIsAdhoc() {
+		if (isAdhoc == null) {
+			return false;
+		} else {
+			return isAdhoc;
+		}
+	}
 
-    /**
-     * Sets the value of the isAdhoc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setIsAdhoc(Boolean value) {
-        this.isAdhoc = value;
-    }
+	/**
+	 * Sets the value of the isAdhoc property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Boolean }
+	 * 
+	 */
+	public void setIsAdhoc(Boolean value) {
+		this.isAdhoc = value;
+	}
+
+	public Boolean getIsExternal() {
+		if (isExternal == null) {
+			return false;
+		}
+		return isExternal;
+	}
+
+	public void setIsExternal(Boolean isExternal) {
+		this.isExternal = isExternal;
+	}
 
 }

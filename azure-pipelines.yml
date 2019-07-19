@@ -21,5 +21,10 @@ steps:
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
     SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: '**/*.jar'
+    Contents: '**/sonar-sql-plugin*.jar'
     TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.artifactstagingdirectory)' 
+    artifactName: 'build-$(Agent.OS)'

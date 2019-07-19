@@ -46,5 +46,8 @@ public class CGIssuesSensorTest {
 		s.execute(ctxTester);
 
 		Assert.assertEquals(1, ctxTester.allExternalIssues().size());
+		Assert.assertEquals(0, ctxTester.allIssues().size());
+		Assert.assertEquals(1, ctxTester.allAdHocRules().size());
 	}
+
 }

@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.antlr.sql.models.AntlrContext;
 import org.antlr.v4.runtime.Token;
+import org.apache.commons.lang3.StringUtils;
 import org.sonar.api.batch.fs.InputFile;
+import org.sonar.api.batch.fs.TextRange;
 import org.sonar.api.batch.fs.internal.DefaultInputFile;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.cpd.NewCpdTokens;
@@ -24,19 +26,26 @@ public class CpdTokensFiller implements Filler {
 			List<? extends Token> tokens = antlrContext.getAllTokens();
 			DefaultInputFile defaultInputFile = (DefaultInputFile) file;
 			for (Token token : tokens) {
-				if (token.getStopIndex() <= token.getStartIndex()) {
-					continue;
-				}
 				try {
-					newCpdTokens.addToken(defaultInputFile.newRange(token.getStartIndex(), token.getStopIndex() + 1),
-							token.getText());
+					final String text = token.getText();
+					if (token.getType() == -1 || token.getStartIndex() >= token.getStopIndex()
+							|| StringUtils.isEmpty(text)) {
+						continue;
+					}
+
+					final TextRange range = defaultInputFile.newRange(token.getStartIndex(), token.getStopIndex() + 1);
+					defaultInputFile.validate(range);
+					newCpdTokens.addToken(range, text);
+
 				} catch (Throwable e) {
-					e.printStackTrace();
+					if (LOGGER.isDebugEnabled()) {
+						LOGGER.debug("Cannot add range: {} on file {} for token {}", e, file, token);
+					}
 				}
 			}
-
-			newCpdTokens.save();
-
+			synchronized (context) {
+				newCpdTokens.save();
+			}
 		} catch (Throwable e) {
 			LOGGER.warn("Error adding cpd tokens on " + file, e);
 

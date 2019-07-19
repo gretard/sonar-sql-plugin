@@ -7,6 +7,7 @@ import java.nio.file.Files;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -15,7 +16,6 @@ import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.api.batch.sensor.internal.SensorContextTester;
 import org.sonar.api.utils.internal.JUnitTempFolder;
 import org.sonar.api.utils.log.LogTester;
-import org.sonar.api.utils.log.LoggerLevel;
 import org.sonar.plugins.sql.Constants;
 
 public class MSIssuesSensorTest {
@@ -24,13 +24,14 @@ public class MSIssuesSensorTest {
 	public TemporaryFolder folder = new TemporaryFolder();
 
 	@Rule
-	public LogTester logTester = new LogTester().setLevel(LoggerLevel.DEBUG);
+	public LogTester logTester = new LogTester();
 
 	@Rule
 	public JUnitTempFolder temp = new JUnitTempFolder();
 
 	@Test
 	public void testExecute() throws IOException {
+		Assume.assumeFalse("OS not mac", System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0);
 
 		SensorContextTester ctxTester = SensorContextTester.create(folder.getRoot());
 		ctxTester.fileSystem().setWorkDir(folder.getRoot().toPath());
@@ -56,6 +57,8 @@ public class MSIssuesSensorTest {
 		MSIssuesSensor s = new MSIssuesSensor();
 		s.execute(ctxTester);
 		Assert.assertEquals(1, ctxTester.allExternalIssues().size());
+		Assert.assertEquals(0, ctxTester.allIssues().size());
+		Assert.assertEquals(0, ctxTester.allAdHocRules().size());
 	}
 
 }

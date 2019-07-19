@@ -13,6 +13,8 @@ public final class Constants {
 
 	public static final String PLUGIN_SQL_EXTERNAL_RULES_SUFFIX = "sonar.sql.rules.suffixes";
 
+	public static final String PLUGIN_SQL_RULES_SKIP= "sonar.sql.rules.skip";
+	
 	public static final String PLUGIN_SQL_EXTERNAL_RULES_SEARCH_PATH = "sonar.sql.rules.path";
 
 	public static final String PLUGIN_SQL_EXTERNAL_RULES_SEARCH_PATH_DEFAULT = ".";

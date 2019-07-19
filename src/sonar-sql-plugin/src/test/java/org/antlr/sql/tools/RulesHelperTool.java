@@ -3,6 +3,7 @@ package org.antlr.sql.tools;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 import org.antlr.sql.dialects.Dialects;
@@ -11,6 +12,7 @@ import org.antlr.sql.sca.IssuesProvider;
 import org.apache.commons.io.IOUtils;
 import org.sonar.plugins.sql.Constants;
 import org.sonar.plugins.sql.adhoc.AdhocRulesProvider;
+import org.sonar.plugins.sql.issues.SqlIssue;
 import org.sonar.plugins.sql.models.rules.Rule;
 import org.sonar.plugins.sql.models.rules.SqlRules;
 
@@ -46,8 +48,7 @@ public class RulesHelperTool {
 		if ("print".equalsIgnoreCase(action)) {
 			System.out.println("Printing tree:\r\n");
 			AntlrContext ctx = sqlDialect.parse(text);
-
-		//	PrettyPrinter.print(ctx.root, 0, ctx.stream);
+			PrettyPrinter.print(ctx.root, 0, ctx.stream);
 			return;
 
 		}
@@ -62,21 +63,25 @@ public class RulesHelperTool {
 			for (Rule r : rule.getRule()) {
 				SqlRules temp = new SqlRules();
 				temp.getRule().add(r);
-				
+
 				System.out.println("Checking rule: " + r.getKey());
 				for (String s : r.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample()) {
-					
+
 					AntlrContext ctx = sqlDialect.parse(s);
 					ctx.rules.clear();
 					ctx.rules.add(temp);
-					boolean res = issuesProvider.analyze(ctx).size() == 0;
+					Collection<SqlIssue> list = issuesProvider.analyze(ctx).getaLLIssues();
+
+					boolean res = list.size() == 0;
 					System.out.println("\tc passed: " + res + " for " + s);
 				}
 				for (String s : r.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample()) {
 					AntlrContext ctx = sqlDialect.parse(s);
 					ctx.rules.clear();
 					ctx.rules.add(temp);
-					boolean res = issuesProvider.analyze(ctx).size() > 0;
+					Collection<SqlIssue> list = issuesProvider.analyze(ctx).getaLLIssues();
+
+					boolean res = list.size() > 0;
 					System.out.println("\tv passed: " + res + " for " + s);
 				}
 

@@ -1,1 +1,2 @@
-SELECT * FROM dbo.test;
+SELECT * FROM 
+dbo.test;

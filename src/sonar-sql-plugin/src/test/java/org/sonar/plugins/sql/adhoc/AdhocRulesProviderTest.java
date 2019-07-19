@@ -27,7 +27,7 @@ public class AdhocRulesProviderTest {
 		SqlRules rules = AdhocRulesProvider.read(baseFile);
 		Assert.assertEquals("demo", rules.getRepoName());
 		Assert.assertEquals("demoKey", rules.getRepoKey());
-		Assert.assertEquals(false, rules.isIsAdhoc());
+		Assert.assertEquals(true, rules.isIsAdhoc());
 		Assert.assertEquals(1, rules.getRule().size());
 		Rule rule = rules.getRule().get(0);
 		Assert.assertEquals("2min", rule.getDebtRemediationFunctionCoefficient());
