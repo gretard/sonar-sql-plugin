@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sql-rules repoName="Demo adhoc rules for TSQL"
+	repoKey="tsqlCustom" isAdhoc="true">
+	<rule>
+		<key>CC101</key>
+		<name>nolock hint is not being used</name>
+		<internalKey>CC101</internalKey>
+		<descriptionFormat>HTML</descriptionFormat>
+		<description>nolock hint is not being used</description>
+		<severity>BLOCKER</severity>
+		<cardinality>SINGLE</cardinality>
+		<ruleImplementation>
+			<names>
+				<textItem>Select_statementContext</textItem>
+			</names>
+			<childrenRules>
+				<ruleImplementation>
+					<names>
+						<textItem>Table_hintContext</textItem>
+					</names>
+					<textToFind>
+						<textItem>NOLOCk</textItem>
+					</textToFind>
+					<ruleMatchType>TextAndClass</ruleMatchType>
+					<ruleResultType>FailIfNotFound</ruleResultType>
+					<textCheckType>Default</textCheckType>
+					<ruleMatchType>Default</ruleMatchType>
+				</ruleImplementation>
+			</childrenRules>
+			<ruleViolationMessage>Nolock is not being used</ruleViolationMessage>
+			<ruleMatchType>ClassOnly</ruleMatchType>
+			<violatingRulesCodeExamples>
+				<ruleCodeExample>SELECT * from dbo.test;</ruleCodeExample>
+			</violatingRulesCodeExamples>
+			<compliantRulesCodeExamples>
+				<ruleCodeExample>SELECT * from dbo.test WITH (NOLOCK);
+				</ruleCodeExample>
+			</compliantRulesCodeExamples>
+		</ruleImplementation>
+	</rule>
+</sql-rules>
