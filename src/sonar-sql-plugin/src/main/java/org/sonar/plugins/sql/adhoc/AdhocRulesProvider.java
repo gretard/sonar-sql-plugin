@@ -69,7 +69,7 @@ public class AdhocRulesProvider {
 					continue;
 				}
 
-				rule.getNames().getTextItem().add(child.getTextContent());
+				rule.getNames().getTextItem().add(child.getTextContent().trim());
 			}
 		}
 		Node textToFind = XmlHelper.getNode(parent, "textToFind");
@@ -80,7 +80,7 @@ public class AdhocRulesProvider {
 				if (child.getNodeType() != Node.ELEMENT_NODE) {
 					continue;
 				}
-				rule.getTextToFind().getTextItem().add(child.getTextContent());
+				rule.getTextToFind().getTextItem().add(child.getTextContent().trim());
 			}
 		}
 		Node violatingRulesCodeExamples = XmlHelper.getNode(parent, "violatingRulesCodeExamples");
