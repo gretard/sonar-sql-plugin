@@ -5,19 +5,23 @@
 // Generated on: 2019.03.25 at 09:04:39 PM EET 
 //
 
-
 package org.sonar.plugins.sql.models.rules;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
+import org.codehaus.plexus.util.StringUtils;
 
 /**
- * <p>Java class for ruleMode.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
+ * Java class for ruleMode.
+ * 
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
+ * <p>
+ * 
  * <pre>
  * &lt;simpleType name="ruleMode">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
@@ -34,10 +38,8 @@ import javax.xml.bind.annotation.XmlType;
 public enum RuleMode {
 
     @XmlEnumValue("Default")
-    DEFAULT("Default"),
-    @XmlEnumValue("Group")
-    GROUP("Group"),
-    @XmlEnumValue("Single")
+    DEFAULT("Default"), @XmlEnumValue("Group")
+    GROUP("Group"), @XmlEnumValue("Single")
     SINGLE("Single");
     private final String value;
 
@@ -50,8 +52,12 @@ public enum RuleMode {
     }
 
     public static RuleMode fromValue(String v) {
-        for (RuleMode c: RuleMode.values()) {
-            if (c.value.equals(v)) {
+
+        if (StringUtils.isBlank(v)) {
+            return RuleMode.DEFAULT;
+        }
+        for (RuleMode c : RuleMode.values()) {
+            if (c.value.equalsIgnoreCase(v)) {
                 return c;
             }
         }

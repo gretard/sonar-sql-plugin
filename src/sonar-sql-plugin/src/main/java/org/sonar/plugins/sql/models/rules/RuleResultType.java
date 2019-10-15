@@ -12,6 +12,8 @@ import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
+import org.codehaus.plexus.util.StringUtils;
+
 
 /**
  * <p>Java class for ruleResultType.
@@ -62,8 +64,12 @@ public enum RuleResultType {
     }
 
     public static RuleResultType fromValue(String v) {
+        if (StringUtils.isBlank(v)) {
+            return RuleResultType.DEFAULT;
+        }
+        
         for (RuleResultType c: RuleResultType.values()) {
-            if (c.value.equals(v)) {
+            if (c.value.equalsIgnoreCase(v) || c.name().equalsIgnoreCase(v)) {
                 return c;
             }
         }

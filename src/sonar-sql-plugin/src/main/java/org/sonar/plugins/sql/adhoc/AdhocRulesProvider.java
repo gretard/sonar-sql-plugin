@@ -164,7 +164,7 @@ public class AdhocRulesProvider {
 
 	}
 
-	protected static SqlRules read(final File file) throws Exception {
+	public static SqlRules read(final File file) throws Exception {
 		try (BOMInputStream stream = new BOMInputStream(new FileInputStream(file))) {
 
 			SqlRules rules = new SqlRules();

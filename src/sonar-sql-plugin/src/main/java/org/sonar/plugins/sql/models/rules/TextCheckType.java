@@ -12,6 +12,8 @@ import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
+import org.codehaus.plexus.util.StringUtils;
+
 
 /**
  * <p>Java class for textCheckType.
@@ -53,8 +55,12 @@ public enum TextCheckType {
     }
 
     public static TextCheckType fromValue(String v) {
+        if (StringUtils.isBlank(v)) {
+            return TextCheckType.DEFAULT;
+        }
+        
         for (TextCheckType c: TextCheckType.values()) {
-            if (c.value.equals(v)) {
+            if (c.value.equalsIgnoreCase(v) || c.name().equalsIgnoreCase(v)) {
                 return c;
             }
         }

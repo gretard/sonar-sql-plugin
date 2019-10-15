@@ -12,6 +12,8 @@ import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
+import org.codehaus.plexus.util.StringUtils;
+
 
 /**
  * <p>Java class for ruleMatchType.
@@ -59,8 +61,11 @@ public enum RuleMatchType {
     }
 
     public static RuleMatchType fromValue(String v) {
+        if (StringUtils.isBlank(v)) {
+            return RuleMatchType.DEFAULT;
+        }
         for (RuleMatchType c: RuleMatchType.values()) {
-            if (c.value.equals(v)) {
+            if (c.value.equalsIgnoreCase(v) || c.name().equalsIgnoreCase(v)) {
                 return c;
             }
         }
