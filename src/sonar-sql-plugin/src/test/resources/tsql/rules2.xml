@@ -1,0 +1,111 @@
+<SqlRules>
+	<rule>
+		<key>1</key>
+		<name />
+		<internalKey />
+		<descriptionFormat />
+		<description />
+		<severity />
+		<cardinality />
+		<status />
+		<remediationFunction />
+		<remediationFunctionBaseEffort />
+		<debtRemediationFunctionCoefficient />
+		<tag />
+		<ruleImplementation>
+			<names>
+				<textItem>Sql_clauseContext</textItem>
+			</names>
+			<childrenRules>
+				<ruleImplementation>
+					<names>
+						<textItem>Select_statementContext</textItem>
+						<textItem>Delete_statementContext</textItem>
+						<textItem>Update_statementContext</textItem>
+						<textItem>Merge_statementContext</textItem>
+						<textItem>Insert_statementContext</textItem>
+					</names>
+					<childrenRules>
+						<ruleImplementation>
+							<names>
+								<textItem>
+									<textItem>Table_source_itemContext</textItem>
+								</textItem>
+							</names>
+							<childrenRules>
+								<ruleImplementation>
+									<names>
+										<textItem>With_table_hintsContext</textItem>
+									</names>
+									<times>0</times>
+									<distance>0</distance>
+									<index>0</index>
+									<indexCheckType>Default</indexCheckType>
+									<distanceCheckType>Default</distanceCheckType>
+									<ruleMode />
+									<ruleMatchType>ClassOnly</ruleMatchType>
+									<ruleResultType>FailIfNotFound</ruleResultType>
+									<textCheckType>Default</textCheckType>
+								</ruleImplementation>
+							</childrenRules>
+							<ruleViolationMessage>test</ruleViolationMessage>
+							<times>0</times>
+							<distance>0</distance>
+							<index>0</index>
+							<indexCheckType>Default</indexCheckType>
+							<distanceCheckType>Default</distanceCheckType>
+							<ruleMode />
+							<ruleMatchType>ClassOnly</ruleMatchType>
+							<ruleResultType>Default</ruleResultType>
+							<textCheckType>Default</textCheckType>
+						</ruleImplementation>
+					</childrenRules>
+					<times>0</times>
+					<distance>0</distance>
+					<index>0</index>
+					<indexCheckType>Default</indexCheckType>
+					<distanceCheckType>Default</distanceCheckType>
+					<ruleMode />
+					<ruleMatchType>ClassOnly</ruleMatchType>
+					<ruleResultType>Default</ruleResultType>
+					<textCheckType>Default</textCheckType>
+				</ruleImplementation>
+			</childrenRules>
+			<times>0</times>
+			<distance>0</distance>
+			<index>0</index>
+			<indexCheckType>Default</indexCheckType>
+			<distanceCheckType>Default</distanceCheckType>
+			<ruleMode />
+			<ruleMatchType>ClassOnly</ruleMatchType>
+			<ruleResultType>Default</ruleResultType>
+			<textCheckType>Default</textCheckType>
+			<violatingRulesCodeExamples>
+				<ruleCodeExample>Select DistributorID, FirstName, LastName From
+					dbo.Distributor D;
+				</ruleCodeExample>
+				<ruleCodeExample>with cte as (Select DistributorID, FirstName,
+					LastName From
+					dbo.Distributor) select * from cte;
+				</ruleCodeExample>
+			</violatingRulesCodeExamples>
+			<compliantRulesCodeExamples>
+				<ruleCodeExample>Select DistributorID, FirstName, LastName From
+					dbo.Distributor D WITH (NOLOCK);
+				</ruleCodeExample>
+				<ruleCodeExample>with cte as (Select DistributorID, FirstName,
+					LastName From
+					dbo.Distributor D WITH (NOLOCK)) select * from cte;
+				</ruleCodeExample>
+			</compliantRulesCodeExamples>
+		</ruleImplementation>
+		<source />
+		<ruleType>CODE_SMELL</ruleType>
+	</rule>
+	<repoName />
+	<repoKey />
+	<version>1</version>
+	<isAdhoc>false</isAdhoc>
+	<isExternal>false</isExternal>
+	<dialect>tsql</dialect>
+</SqlRules>
