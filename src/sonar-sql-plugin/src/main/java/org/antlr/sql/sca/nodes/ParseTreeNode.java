@@ -88,7 +88,7 @@ public class ParseTreeNode implements IParsedNode {
 		}
 
 		ParseTree p = this.tree;
-		while (p != null) {
+		while (p.getParent() != null) {
 			p = p.getParent();
 		}
 		final String textToFind = this.tree.getText();
