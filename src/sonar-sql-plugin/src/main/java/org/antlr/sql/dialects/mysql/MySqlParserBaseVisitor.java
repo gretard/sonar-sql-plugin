@@ -1,4 +1,4 @@
-// Generated from grammars-v4\mysql\MySqlParser.g4 by ANTLR 4.7.2
+// Generated from grammars-v4\mysql\Positive-Technologies\MySqlParser.g4 by ANTLR 4.7.2
 package org.antlr.sql.dialects.mysql;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -2545,6 +2545,13 @@ public class MySqlParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitDefiniteFullTablePrivLevel(MySqlParser.DefiniteFullTablePrivLevelContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitDefiniteFullTablePrivLevel2(MySqlParser.DefiniteFullTablePrivLevel2Context ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -1,4 +1,4 @@
-// Generated from grammars-v4\mysql\MySqlParser.g4 by ANTLR 4.7.2
+// Generated from grammars-v4\mysql\Positive-Technologies\MySqlParser.g4 by ANTLR 4.7.2
 package org.antlr.sql.dialects.mysql;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -3995,6 +3995,18 @@ public interface MySqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDefiniteFullTablePrivLevel(MySqlParser.DefiniteFullTablePrivLevelContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code definiteFullTablePrivLevel2}
+	 * labeled alternative in {@link MySqlParser#privilegeLevel}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefiniteFullTablePrivLevel2(MySqlParser.DefiniteFullTablePrivLevel2Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code definiteFullTablePrivLevel2}
+	 * labeled alternative in {@link MySqlParser#privilegeLevel}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefiniteFullTablePrivLevel2(MySqlParser.DefiniteFullTablePrivLevel2Context ctx);
 	/**
 	 * Enter a parse tree produced by the {@code definiteTablePrivLevel}
 	 * labeled alternative in {@link MySqlParser#privilegeLevel}.

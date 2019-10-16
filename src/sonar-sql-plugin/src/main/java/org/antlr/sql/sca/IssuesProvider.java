@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.antlr.sql.models.AntlrContext;
+import org.antlr.sql.sca.ViolationsAnalyzer.FoundViolation;
 import org.antlr.sql.sca.nodes.IParsedNode;
 import org.antlr.sql.visitors.RulesMatchingVisitor;
 import org.sonar.api.utils.log.Logger;
@@ -32,13 +33,15 @@ public class IssuesProvider {
         for (FoundMatch m : matches) {
 
             Map<RuleImplementation, List<IParsedNode>> checkedRules = searcher.search(m);
-            final boolean isViolation = violationsAnalyzer.isMatch(checkedRules);
+            final FoundViolation violations = violationsAnalyzer.isMatch(checkedRules);
 
             if (LOGGER.isDebugEnabled()) {
-                LOGGER.debug(() -> "MATCH checked: " + m.node.getText() + " " + m.node.getLine() + " "
-                        + m.node.getClassName() + ". Issues found: " + isViolation);
+                LOGGER.debug(() -> "MATCH checked: [" + m.node.getText() + "] " + m.node.getLine() + " "
+                        + m.node.getClassName() + ". Issues found: " + violations.violatingNodes + " "
+                        + violations.failuresFound);
             }
-            if (isViolation) {
+
+            if (violations.failuresFound) {
                 SqlIssue e = new SqlIssue();
                 e.repo = m.sqlRules.getRepoKey();
                 e.line = m.node.getLine();

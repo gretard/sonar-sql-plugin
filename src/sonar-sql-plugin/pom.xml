@@ -5,7 +5,7 @@
 
 	<groupId>org.sonar.plugins</groupId>
 	<artifactId>sonar-sql-plugin</artifactId>
-	<version>1.0.3</version>
+	<version>1.0.4</version>
 	<packaging>sonar-plugin</packaging>
 
 	<name>SQL language plugin</name>
@@ -23,12 +23,12 @@
 	</properties>
 
 	<dependencies>
-	  <dependency>
-        <groupId>org.jvnet.jaxb2.maven2</groupId>
-        <artifactId>maven-jaxb2-plugin</artifactId>
-        <version>0.14.0</version>
-    </dependency>
-		
+		<dependency>
+			<groupId>org.jvnet.jaxb2.maven2</groupId>
+			<artifactId>maven-jaxb2-plugin</artifactId>
+			<version>0.14.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.sonarsource.sonarqube</groupId>
 			<artifactId>sonar-plugin-api</artifactId>
@@ -56,6 +56,12 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.13-beta-2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.9.8</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

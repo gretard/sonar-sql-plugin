@@ -1,52 +1,75 @@
 package org.antlr.sql.sca;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.antlr.sql.sca.nodes.IParsedNode;
+import org.sonar.api.utils.log.Logger;
+import org.sonar.api.utils.log.Loggers;
 import org.sonar.plugins.sql.models.rules.RuleImplementation;
 import org.sonar.plugins.sql.models.rules.RuleResultType;
 
 public class ViolationsAnalyzer {
+    private static final Logger LOGGER = Loggers.get(ViolationsAnalyzer.class);
 
-	public boolean isMatch(Map<RuleImplementation, List<IParsedNode>> items) {
+    public static class FoundViolation {
+        public final Set<IParsedNode> violatingNodes = new HashSet<IParsedNode>();
+        public boolean failuresFound = false;
+    }
 
-		boolean skipSatisfied = false;
-		boolean failuresFound = false;
-		for (Entry<RuleImplementation, List<IParsedNode>> item : items.entrySet()) {
-			RuleImplementation impl = item.getKey();
-			List<IParsedNode> values = item.getValue();
-			if (RuleResultType.DEFAULT == impl.getRuleResultType()) {
-				continue;
-			}
+    public FoundViolation isMatch(Map<RuleImplementation, List<IParsedNode>> items) {
 
-			if (RuleResultType.SKIP_IF_FOUND == impl.getRuleResultType() && !values.isEmpty()) {
-				skipSatisfied = true;
-			}
-			if (RuleResultType.SKIP_IF_NOT_FOUND == impl.getRuleResultType() && values.isEmpty()) {
-				skipSatisfied = true;
-			}
-			if (RuleResultType.FAIL_IF_FOUND == impl.getRuleResultType() && !values.isEmpty()) {
-				failuresFound = true;
-			}
+        boolean skipSatisfied = false;
+        boolean failuresFound = false;
+        FoundViolation violation = new FoundViolation();
+        for (Entry<RuleImplementation, List<IParsedNode>> item : items.entrySet()) {
 
-			if (RuleResultType.FAIL_IF_NOT_FOUND == impl.getRuleResultType() && values.isEmpty()) {
-				failuresFound = true;
-			}
+            RuleImplementation impl = item.getKey();
+            List<IParsedNode> values = item.getValue();
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug(() -> "Checking rules: " + impl.getRuleViolationMessage() + " against nodes: " + values
+                        + " with result type: " + impl.getRuleResultType());
+            }
+            if (RuleResultType.DEFAULT == impl.getRuleResultType()) {
+                continue;
+            }
 
-			if (RuleResultType.FAIL_IF_MORE_FOUND == impl.getRuleResultType() && values.size() > impl.getTimes()) {
-				failuresFound = true;
-			}
+            if (RuleResultType.SKIP_IF_FOUND == impl.getRuleResultType() && !values.isEmpty()) {
+                skipSatisfied = true;
+            }
+            if (RuleResultType.SKIP_IF_NOT_FOUND == impl.getRuleResultType() && values.isEmpty()) {
+                skipSatisfied = true;
+            }
+            if (RuleResultType.FAIL_IF_FOUND == impl.getRuleResultType() && !values.isEmpty()) {
+                failuresFound = true;
+                violation.violatingNodes.addAll(values);
 
-			if (RuleResultType.FAIL_IF_LESS_FOUND == impl.getRuleResultType() && values.size() < impl.getTimes()) {
-				failuresFound = true;
-			}
+            }
 
-		}
-		if (skipSatisfied) {
-			return false;
-		}
-		return failuresFound;
-	}
+            if (RuleResultType.FAIL_IF_NOT_FOUND == impl.getRuleResultType() && values.isEmpty()) {
+                failuresFound = true;
+                violation.violatingNodes.addAll(values);
+            }
+
+            if (RuleResultType.FAIL_IF_MORE_FOUND == impl.getRuleResultType() && values.size() > impl.getTimes()) {
+                failuresFound = true;
+                violation.violatingNodes.addAll(values);
+            }
+
+            if (RuleResultType.FAIL_IF_LESS_FOUND == impl.getRuleResultType() && values.size() < impl.getTimes()) {
+                failuresFound = true;
+                violation.violatingNodes.addAll(values);
+            }
+
+        }
+        if (skipSatisfied) {
+            violation.failuresFound = false;
+            return violation;
+        }
+        violation.failuresFound = failuresFound;
+        return violation;
+    }
 }

@@ -1,4 +1,4 @@
-// Generated from grammars-v4\mysql\MySqlParser.g4 by ANTLR 4.7.2
+// Generated from grammars-v4\mysql\Positive-Technologies\MySqlParser.g4 by ANTLR 4.7.2
 package org.antlr.sql.dialects.mysql;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -4355,6 +4355,18 @@ public class MySqlParserBaseListener implements MySqlParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDefiniteFullTablePrivLevel(MySqlParser.DefiniteFullTablePrivLevelContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDefiniteFullTablePrivLevel2(MySqlParser.DefiniteFullTablePrivLevel2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDefiniteFullTablePrivLevel2(MySqlParser.DefiniteFullTablePrivLevel2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

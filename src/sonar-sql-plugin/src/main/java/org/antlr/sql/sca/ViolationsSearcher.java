@@ -25,8 +25,12 @@ public class ViolationsSearcher {
 	private void visit(final IParsedNode item, final IParsedNode parent, final RuleImplementation rule,
 			Map<RuleImplementation, List<IParsedNode>> matches) {
 
+	   
 		if (!matcher.matches(item, parent, rule)) {
+		//    System.out.println("NOMATCH "+item.getText()+" "+item.getClassName()+" "+(parent != null ? parent.getText()+" "+parent.getClassName(): "[]")+" "+rule.getRuleViolationMessage());
 			return;
+		}else {
+		  //  System.out.println("MATCH "+item.getText()+" "+item.getClassName()+" "+(parent != null ? parent.getText()+" "+parent.getClassName(): "[]")+" "+rule.getRuleViolationMessage());
 		}
 		List<IParsedNode> temp = matches.getOrDefault(rule, new ArrayList<>());
 		temp.add(item);

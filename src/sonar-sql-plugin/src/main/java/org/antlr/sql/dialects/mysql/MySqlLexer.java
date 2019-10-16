@@ -1,4 +1,4 @@
-// Generated from grammars-v4\mysql\MySqlLexer.g4 by ANTLR 4.7.2
+// Generated from grammars-v4\mysql\Positive-Technologies\MySqlLexer.g4 by ANTLR 4.7.2
 package org.antlr.sql.dialects.mysql;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
