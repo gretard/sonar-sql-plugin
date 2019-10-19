@@ -25,6 +25,10 @@ Currently plug-in supports:
 - Cognitive and cyclomatic complexity metrics reporting
 - Custom user rules. Configuration can be found at [here](https://github.com/gretard/sonar-sql-plugin/blob/master/docs/customRulesSetup.md)
 
+## Tutorials ##
+Tutorials:
+- [Integrating Redgate SQL Code Guard with SonarQube](https://www.red-gate.com/hub/product-learning/sql-change-automation/integrating-redgate-sql-code-guard-with-sonarqube)
+
 ## Requirements ##
 Different plugin versions supports the following:
 - 1.0.0 - Sonarqube 7.4+versions
