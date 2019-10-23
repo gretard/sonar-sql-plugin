@@ -39,8 +39,10 @@ public class IssuesProvider {
 
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug(() -> "MATCH checked: [" + m.node.getText() + "] " + m.node.getLine() + " "
-						+ m.node.getClassName() + ". Issues found: " + violations.violatingNodes.stream()
-								.map(x -> x.getText() + "@" + x.getClassName()).collect(Collectors.toList())
+						+ m.node.getClassName() + ". Issues found: "
+						+ violations.violatingNodes.stream()
+								.map(x -> x.getText() + "@" + x.getClassName() + " on " + x.getLine())
+								.collect(Collectors.toList())
 						+ " " + violations.failuresFound);
 			}
 
