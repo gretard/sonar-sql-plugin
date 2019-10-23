@@ -172,6 +172,30 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAlter_foreign_table_action(PostgreSQLParser.Alter_foreign_table_actionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAlter_foreign_table_action(PostgreSQLParser.Alter_foreign_table_actionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAlter_foreign_table_action_list(PostgreSQLParser.Alter_foreign_table_action_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAlter_foreign_table_action_list(PostgreSQLParser.Alter_foreign_table_action_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAlter_foreign_table_stmt(PostgreSQLParser.Alter_foreign_table_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -316,6 +340,18 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAlter_role_options(PostgreSQLParser.Alter_role_optionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAlter_role_options(PostgreSQLParser.Alter_role_optionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAlter_role_stmt(PostgreSQLParser.Alter_role_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -359,6 +395,18 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAlter_sequence_stmt(PostgreSQLParser.Alter_sequence_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAlter_server_options_list(PostgreSQLParser.Alter_server_options_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAlter_server_options_list(PostgreSQLParser.Alter_server_options_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -2044,6 +2092,42 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSelect_into_stmt(PostgreSQLParser.Select_into_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSelect_into_stmt(PostgreSQLParser.Select_into_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWith_clause(PostgreSQLParser.With_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWith_clause(PostgreSQLParser.With_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWith_expr(PostgreSQLParser.With_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWith_expr(PostgreSQLParser.With_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSet_stmt(PostgreSQLParser.Set_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -2087,6 +2171,30 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSet_session_authorization_stmt(PostgreSQLParser.Set_session_authorization_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTransaction_mode(PostgreSQLParser.Transaction_modeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTransaction_mode(PostgreSQLParser.Transaction_modeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTransaction_mode_list(PostgreSQLParser.Transaction_mode_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTransaction_mode_list(PostgreSQLParser.Transaction_mode_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -2147,6 +2255,30 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitUpdate_stmt(PostgreSQLParser.Update_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVacuum_opt(PostgreSQLParser.Vacuum_optContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVacuum_opt(PostgreSQLParser.Vacuum_optContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVacuum_opt_list(PostgreSQLParser.Vacuum_opt_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVacuum_opt_list(PostgreSQLParser.Vacuum_opt_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -2255,6 +2387,30 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitHaving_clause(PostgreSQLParser.Having_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterColumn_list(PostgreSQLParser.Column_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitColumn_list(PostgreSQLParser.Column_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExplain_parameter(PostgreSQLParser.Explain_parameterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExplain_parameter(PostgreSQLParser.Explain_parameterContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -2416,6 +2572,42 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterUpdater_clause(PostgreSQLParser.Updater_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitUpdater_clause(PostgreSQLParser.Updater_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterUpdater_expr(PostgreSQLParser.Updater_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitUpdater_expr(PostgreSQLParser.Updater_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterReturning_clause(PostgreSQLParser.Returning_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturning_clause(PostgreSQLParser.Returning_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpr(PostgreSQLParser.ExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -2435,6 +2627,18 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBool_expr(PostgreSQLParser.Bool_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCase_expr(PostgreSQLParser.Case_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCase_expr(PostgreSQLParser.Case_exprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -2512,25 +2716,25 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterType_literal(PostgreSQLParser.Type_literalContext ctx) { }
+	@Override public void enterType_name(PostgreSQLParser.Type_nameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitType_literal(PostgreSQLParser.Type_literalContext ctx) { }
+	@Override public void exitType_name(PostgreSQLParser.Type_nameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterType_literal_list(PostgreSQLParser.Type_literal_listContext ctx) { }
+	@Override public void enterTimezone(PostgreSQLParser.TimezoneContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitType_literal_list(PostgreSQLParser.Type_literal_listContext ctx) { }
+	@Override public void exitTimezone(PostgreSQLParser.TimezoneContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -2596,6 +2800,30 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterOption_expr(PostgreSQLParser.Option_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOption_expr(PostgreSQLParser.Option_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOption_list(PostgreSQLParser.Option_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOption_list(PostgreSQLParser.Option_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterTable_name_(PostgreSQLParser.Table_name_Context ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -2608,25 +2836,25 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterType(PostgreSQLParser.TypeContext ctx) { }
+	@Override public void enterData_type(PostgreSQLParser.Data_typeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitType(PostgreSQLParser.TypeContext ctx) { }
+	@Override public void exitData_type(PostgreSQLParser.Data_typeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterType_list(PostgreSQLParser.Type_listContext ctx) { }
+	@Override public void enterData_type_list(PostgreSQLParser.Data_type_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitType_list(PostgreSQLParser.Type_listContext ctx) { }
+	@Override public void exitData_type_list(PostgreSQLParser.Data_type_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -2752,6 +2980,66 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterColumn_constraint(PostgreSQLParser.Column_constraintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitColumn_constraint(PostgreSQLParser.Column_constraintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterColumn_constraints(PostgreSQLParser.Column_constraintsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitColumn_constraints(PostgreSQLParser.Column_constraintsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIndex_parameters(PostgreSQLParser.Index_parametersContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIndex_parameters(PostgreSQLParser.Index_parametersContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExclude_element(PostgreSQLParser.Exclude_elementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExclude_element(PostgreSQLParser.Exclude_elementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTable_constraint(PostgreSQLParser.Table_constraintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTable_constraint(PostgreSQLParser.Table_constraintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRole_name(PostgreSQLParser.Role_nameContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -2771,6 +3059,18 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRole_name_list(PostgreSQLParser.Role_name_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParam_value(PostgreSQLParser.Param_valueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParam_value(PostgreSQLParser.Param_valueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

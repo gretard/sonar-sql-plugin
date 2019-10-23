@@ -78316,9 +78316,6 @@ public class TSqlParser extends Parser {
 			return getRuleContext(Table_nameContext.class,0);
 		}
 		public TerminalNode DOT() { return getToken(TSqlParser.DOT, 0); }
-		public AsteriskContext asterisk() {
-			return getRuleContext(AsteriskContext.class,0);
-		}
 		public AsteriskContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -78341,453 +78338,24 @@ public class TSqlParser extends Parser {
 	public final AsteriskContext asterisk() throws RecognitionException {
 		AsteriskContext _localctx = new AsteriskContext(_ctx, getState());
 		enterRule(_localctx, 776, RULE_asterisk);
+		int _la;
 		try {
-			setState(9353);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(9351);
 			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case STAR:
-				enterOuterAlt(_localctx, 1);
+			_la = _input.LA(1);
+			if (_la==BLOCKING_HIERARCHY || _la==CALLED || ((((_la - 81)) & ~0x3f) == 0 && ((1L << (_la - 81)) & ((1L << (DATA_COMPRESSION - 81)) | (1L << (EVENTDATA - 81)) | (1L << (FILENAME - 81)) | (1L << (FILLFACTOR - 81)) | (1L << (FORCESEEK - 81)))) != 0) || ((((_la - 159)) & ~0x3f) == 0 && ((1L << (_la - 159)) & ((1L << (INIT - 159)) | (1L << (KEY - 159)) | (1L << (MASTER - 159)) | (1L << (MAX_MEMORY - 159)))) != 0) || ((((_la - 226)) & ~0x3f) == 0 && ((1L << (_la - 226)) & ((1L << (OFFSETS - 226)) | (1L << (PAGE - 226)) | (1L << (PUBLIC - 226)) | (1L << (R - 226)) | (1L << (RAW - 226)) | (1L << (RETURN - 226)) | (1L << (RETURNS - 226)) | (1L << (ROWCOUNT - 226)))) != 0) || ((((_la - 296)) & ~0x3f) == 0 && ((1L << (_la - 296)) & ((1L << (SAFETY - 296)) | (1L << (SERVER - 296)) | (1L << (SID - 296)) | (1L << (SOURCE - 296)) | (1L << (STATE - 296)) | (1L << (START - 296)) | (1L << (TARGET - 296)))) != 0) || ((((_la - 384)) & ~0x3f) == 0 && ((1L << (_la - 384)) & ((1L << (ABSOLUTE - 384)) | (1L << (ACCENT_SENSITIVITY - 384)) | (1L << (ACTION - 384)) | (1L << (ACTIVATION - 384)) | (1L << (ACTIVE - 384)) | (1L << (ADDRESS - 384)) | (1L << (AES_128 - 384)) | (1L << (AES_192 - 384)) | (1L << (AES_256 - 384)) | (1L << (AFFINITY - 384)) | (1L << (AFTER - 384)) | (1L << (AGGREGATE - 384)) | (1L << (ALGORITHM - 384)) | (1L << (ALLOW_ENCRYPTED_VALUE_MODIFICATIONS - 384)) | (1L << (ALLOW_SNAPSHOT_ISOLATION - 384)) | (1L << (ALLOWED - 384)) | (1L << (ANSI_NULL_DEFAULT - 384)) | (1L << (ANSI_NULLS - 384)) | (1L << (ANSI_PADDING - 384)) | (1L << (ANSI_WARNINGS - 384)) | (1L << (APPLICATION_LOG - 384)) | (1L << (APPLY - 384)) | (1L << (ARITHABORT - 384)) | (1L << (ASSEMBLY - 384)) | (1L << (AUDIT - 384)) | (1L << (AUDIT_GUID - 384)) | (1L << (AUTO - 384)) | (1L << (AUTO_CLEANUP - 384)) | (1L << (AUTO_CLOSE - 384)) | (1L << (AUTO_CREATE_STATISTICS - 384)) | (1L << (AUTO_SHRINK - 384)) | (1L << (AUTO_UPDATE_STATISTICS - 384)) | (1L << (AUTO_UPDATE_STATISTICS_ASYNC - 384)) | (1L << (AVAILABILITY - 384)) | (1L << (AVG - 384)) | (1L << (BACKUP_PRIORITY - 384)) | (1L << (BEGIN_DIALOG - 384)) | (1L << (BIGINT - 384)) | (1L << (BINARY_BASE64 - 384)) | (1L << (BINARY_CHECKSUM - 384)) | (1L << (BINDING - 384)) | (1L << (BLOB_STORAGE - 384)) | (1L << (BROKER - 384)) | (1L << (BROKER_INSTANCE - 384)) | (1L << (BULK_LOGGED - 384)) | (1L << (CALLER - 384)) | (1L << (CAP_CPU_PERCENT - 384)) | (1L << (CAST - 384)) | (1L << (CATALOG - 384)) | (1L << (CATCH - 384)) | (1L << (CHANGE_RETENTION - 384)) | (1L << (CHANGE_TRACKING - 384)) | (1L << (CHECKSUM - 384)) | (1L << (CHECKSUM_AGG - 384)) | (1L << (CLEANUP - 384)) | (1L << (COLLECTION - 384)) | (1L << (COLUMN_MASTER_KEY - 384)) | (1L << (COMMITTED - 384)) | (1L << (COMPATIBILITY_LEVEL - 384)) | (1L << (CONCAT - 384)) | (1L << (CONCAT_NULL_YIELDS_NULL - 384)) | (1L << (CONTENT - 384)) | (1L << (CONTROL - 384)) | (1L << (COOKIE - 384)))) != 0) || ((((_la - 448)) & ~0x3f) == 0 && ((1L << (_la - 448)) & ((1L << (COUNT - 448)) | (1L << (COUNT_BIG - 448)) | (1L << (COUNTER - 448)) | (1L << (CPU - 448)) | (1L << (CREATE_NEW - 448)) | (1L << (CREATION_DISPOSITION - 448)) | (1L << (CREDENTIAL - 448)) | (1L << (CRYPTOGRAPHIC - 448)) | (1L << (CURSOR_CLOSE_ON_COMMIT - 448)) | (1L << (CURSOR_DEFAULT - 448)) | (1L << (DATE_CORRELATION_OPTIMIZATION - 448)) | (1L << (DATEADD - 448)) | (1L << (DATEDIFF - 448)) | (1L << (DATENAME - 448)) | (1L << (DATEPART - 448)) | (1L << (DAYS - 448)) | (1L << (DB_CHAINING - 448)) | (1L << (DB_FAILOVER - 448)) | (1L << (DECRYPTION - 448)) | (1L << (DEFAULT_DOUBLE_QUOTE - 448)) | (1L << (DEFAULT_FULLTEXT_LANGUAGE - 448)) | (1L << (DEFAULT_LANGUAGE - 448)) | (1L << (DELAY - 448)) | (1L << (DELAYED_DURABILITY - 448)) | (1L << (DELETED - 448)) | (1L << (DENSE_RANK - 448)) | (1L << (DEPENDENTS - 448)) | (1L << (DES - 448)) | (1L << (DESCRIPTION - 448)) | (1L << (DESX - 448)) | (1L << (DHCP - 448)) | (1L << (DIALOG - 448)) | (1L << (DIRECTORY_NAME - 448)) | (1L << (DISABLE - 448)) | (1L << (DISABLE_BROKER - 448)) | (1L << (DISABLED - 448)) | (1L << (DISK_DRIVE - 448)) | (1L << (DOCUMENT - 448)) | (1L << (DYNAMIC - 448)) | (1L << (EMERGENCY - 448)) | (1L << (EMPTY - 448)) | (1L << (ENABLE - 448)) | (1L << (ENABLE_BROKER - 448)) | (1L << (ENCRYPTED_VALUE - 448)) | (1L << (ENCRYPTION - 448)) | (1L << (ENDPOINT_URL - 448)) | (1L << (ERROR_BROKER_CONVERSATIONS - 448)) | (1L << (EXCLUSIVE - 448)) | (1L << (EXECUTABLE - 448)) | (1L << (EXIST - 448)) | (1L << (EXPAND - 448)) | (1L << (EXPIRY_DATE - 448)) | (1L << (EXPLICIT - 448)) | (1L << (FAIL_OPERATION - 448)) | (1L << (FAILOVER_MODE - 448)) | (1L << (FAILURE - 448)) | (1L << (FAILURE_CONDITION_LEVEL - 448)) | (1L << (FAST - 448)) | (1L << (FAST_FORWARD - 448)) | (1L << (FILEGROUP - 448)) | (1L << (FILEGROWTH - 448)) | (1L << (FILEPATH - 448)) | (1L << (FILESTREAM - 448)))) != 0) || ((((_la - 512)) & ~0x3f) == 0 && ((1L << (_la - 512)) & ((1L << (FILTER - 512)) | (1L << (FIRST - 512)) | (1L << (FIRST_VALUE - 512)) | (1L << (FOLLOWING - 512)) | (1L << (FORCE - 512)) | (1L << (FORCE_FAILOVER_ALLOW_DATA_LOSS - 512)) | (1L << (FORCED - 512)) | (1L << (FORMAT - 512)) | (1L << (FORWARD_ONLY - 512)) | (1L << (FULLSCAN - 512)) | (1L << (FULLTEXT - 512)) | (1L << (GB - 512)) | (1L << (GETDATE - 512)) | (1L << (GETUTCDATE - 512)) | (1L << (GLOBAL - 512)) | (1L << (GO - 512)) | (1L << (GROUP_MAX_REQUESTS - 512)) | (1L << (GROUPING - 512)) | (1L << (GROUPING_ID - 512)) | (1L << (HADR - 512)) | (1L << (HASH - 512)) | (1L << (HEALTH_CHECK_TIMEOUT - 512)) | (1L << (HIGH - 512)) | (1L << (HONOR_BROKER_PRIORITY - 512)) | (1L << (HOURS - 512)) | (1L << (IDENTITY_VALUE - 512)) | (1L << (IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX - 512)) | (1L << (IMMEDIATE - 512)) | (1L << (IMPERSONATE - 512)) | (1L << (IMPORTANCE - 512)) | (1L << (INCREMENTAL - 512)) | (1L << (INITIATOR - 512)) | (1L << (INPUT - 512)) | (1L << (INSENSITIVE - 512)) | (1L << (INSERTED - 512)) | (1L << (INT - 512)) | (1L << (IP - 512)) | (1L << (ISOLATION - 512)) | (1L << (KB - 512)) | (1L << (KEEP - 512)) | (1L << (KEEPFIXED - 512)) | (1L << (KEY_SOURCE - 512)) | (1L << (KEYS - 512)) | (1L << (KEYSET - 512)) | (1L << (LAG - 512)) | (1L << (LAST - 512)) | (1L << (LAST_VALUE - 512)) | (1L << (LEAD - 512)) | (1L << (LEVEL - 512)) | (1L << (LIST - 512)) | (1L << (LISTENER - 512)) | (1L << (LISTENER_URL - 512)) | (1L << (LOB_COMPACTION - 512)) | (1L << (LOCAL - 512)) | (1L << (LOCATION - 512)) | (1L << (LOCK - 512)) | (1L << (LOCK_ESCALATION - 512)) | (1L << (LOGIN - 512)) | (1L << (LOOP - 512)) | (1L << (LOW - 512)) | (1L << (MANUAL - 512)) | (1L << (MARK - 512)))) != 0) || ((((_la - 576)) & ~0x3f) == 0 && ((1L << (_la - 576)) & ((1L << (MATERIALIZED - 576)) | (1L << (MAX - 576)) | (1L << (MAX_CPU_PERCENT - 576)) | (1L << (MAX_DOP - 576)) | (1L << (MAX_FILES - 576)) | (1L << (MAX_IOPS_PER_VOLUME - 576)) | (1L << (MAX_MEMORY_PERCENT - 576)) | (1L << (MAX_PROCESSES - 576)) | (1L << (MAX_QUEUE_READERS - 576)) | (1L << (MAX_ROLLOVER_FILES - 576)) | (1L << (MAXDOP - 576)) | (1L << (MAXRECURSION - 576)) | (1L << (MAXSIZE - 576)) | (1L << (MB - 576)) | (1L << (MEDIUM - 576)) | (1L << (MEMORY_OPTIMIZED_DATA - 576)) | (1L << (MESSAGE - 576)) | (1L << (MIN - 576)) | (1L << (MIN_ACTIVE_ROWVERSION - 576)) | (1L << (MIN_CPU_PERCENT - 576)) | (1L << (MIN_IOPS_PER_VOLUME - 576)) | (1L << (MIN_MEMORY_PERCENT - 576)) | (1L << (MINUTES - 576)) | (1L << (MIRROR_ADDRESS - 576)) | (1L << (MIXED_PAGE_ALLOCATION - 576)) | (1L << (MODE - 576)) | (1L << (MODIFY - 576)) | (1L << (MOVE - 576)) | (1L << (MULTI_USER - 576)) | (1L << (NAME - 576)) | (1L << (NESTED_TRIGGERS - 576)) | (1L << (NEW_ACCOUNT - 576)) | (1L << (NEW_BROKER - 576)) | (1L << (NEW_PASSWORD - 576)) | (1L << (NEXT - 576)) | (1L << (NO - 576)) | (1L << (NO_TRUNCATE - 576)) | (1L << (NO_WAIT - 576)) | (1L << (NOCOUNT - 576)) | (1L << (NODES - 576)) | (1L << (NOEXPAND - 576)) | (1L << (NON_TRANSACTED_ACCESS - 576)) | (1L << (NORECOMPUTE - 576)) | (1L << (NORECOVERY - 576)) | (1L << (NOWAIT - 576)) | (1L << (NTILE - 576)) | (1L << (NUMANODE - 576)) | (1L << (NUMBER - 576)) | (1L << (NUMERIC_ROUNDABORT - 576)) | (1L << (OBJECT - 576)) | (1L << (OFFLINE - 576)) | (1L << (OFFSET - 576)) | (1L << (OLD_ACCOUNT - 576)) | (1L << (ONLINE - 576)) | (1L << (ONLY - 576)) | (1L << (OPEN_EXISTING - 576)) | (1L << (OPTIMISTIC - 576)) | (1L << (OPTIMIZE - 576)) | (1L << (OUT - 576)) | (1L << (OUTPUT - 576)) | (1L << (OWNER - 576)) | (1L << (PAGE_VERIFY - 576)) | (1L << (PARAMETERIZATION - 576)) | (1L << (PARTITION - 576)))) != 0) || ((((_la - 640)) & ~0x3f) == 0 && ((1L << (_la - 640)) & ((1L << (PARTITIONS - 640)) | (1L << (PARTNER - 640)) | (1L << (PATH - 640)) | (1L << (POISON_MESSAGE_HANDLING - 640)) | (1L << (POOL - 640)) | (1L << (PORT - 640)) | (1L << (PRECEDING - 640)) | (1L << (PRIMARY_ROLE - 640)) | (1L << (PRIOR - 640)) | (1L << (PRIORITY - 640)) | (1L << (PRIORITY_LEVEL - 640)) | (1L << (PRIVATE - 640)) | (1L << (PRIVATE_KEY - 640)) | (1L << (PRIVILEGES - 640)) | (1L << (PROCEDURE_NAME - 640)) | (1L << (PROPERTY - 640)) | (1L << (PROVIDER - 640)) | (1L << (PROVIDER_KEY_NAME - 640)) | (1L << (QUERY - 640)) | (1L << (QUEUE - 640)) | (1L << (QUEUE_DELAY - 640)) | (1L << (QUOTED_IDENTIFIER - 640)) | (1L << (RANGE - 640)) | (1L << (RANK - 640)) | (1L << (RC2 - 640)) | (1L << (RC4 - 640)) | (1L << (RC4_128 - 640)) | (1L << (READ_COMMITTED_SNAPSHOT - 640)) | (1L << (READ_ONLY - 640)) | (1L << (READ_ONLY_ROUTING_LIST - 640)) | (1L << (READ_WRITE - 640)) | (1L << (READONLY - 640)) | (1L << (REBUILD - 640)) | (1L << (RECEIVE - 640)) | (1L << (RECOMPILE - 640)) | (1L << (RECOVERY - 640)) | (1L << (RECURSIVE_TRIGGERS - 640)) | (1L << (RELATIVE - 640)) | (1L << (REMOTE - 640)) | (1L << (REMOTE_SERVICE_NAME - 640)) | (1L << (REMOVE - 640)) | (1L << (REORGANIZE - 640)) | (1L << (REPEATABLE - 640)) | (1L << (REPLICA - 640)) | (1L << (REQUEST_MAX_CPU_TIME_SEC - 640)) | (1L << (REQUEST_MAX_MEMORY_GRANT_PERCENT - 640)) | (1L << (REQUEST_MEMORY_GRANT_TIMEOUT_SEC - 640)) | (1L << (REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT - 640)) | (1L << (RESERVE_DISK_SPACE - 640)) | (1L << (RESOURCE - 640)) | (1L << (RESOURCE_MANAGER_LOCATION - 640)) | (1L << (RESTRICTED_USER - 640)) | (1L << (RETENTION - 640)) | (1L << (ROBUST - 640)) | (1L << (ROOT - 640)) | (1L << (ROUTE - 640)) | (1L << (ROW - 640)) | (1L << (ROW_NUMBER - 640)) | (1L << (ROWGUID - 640)) | (1L << (ROWS - 640)) | (1L << (SAMPLE - 640)) | (1L << (SCHEMABINDING - 640)) | (1L << (SCOPED - 640)) | (1L << (SCROLL - 640)))) != 0) || ((((_la - 704)) & ~0x3f) == 0 && ((1L << (_la - 704)) & ((1L << (SCROLL_LOCKS - 704)) | (1L << (SEARCH - 704)) | (1L << (SECONDARY - 704)) | (1L << (SECONDARY_ONLY - 704)) | (1L << (SECONDARY_ROLE - 704)) | (1L << (SECONDS - 704)) | (1L << (SECRET - 704)) | (1L << (SECURITY_LOG - 704)) | (1L << (SEEDING_MODE - 704)) | (1L << (SELF - 704)) | (1L << (SEMI_SENSITIVE - 704)) | (1L << (SEND - 704)) | (1L << (SENT - 704)) | (1L << (SERIALIZABLE - 704)) | (1L << (SESSION_TIMEOUT - 704)) | (1L << (SETERROR - 704)) | (1L << (SHARE - 704)) | (1L << (SHOWPLAN - 704)) | (1L << (SIGNATURE - 704)) | (1L << (SIMPLE - 704)) | (1L << (SINGLE_USER - 704)) | (1L << (SIZE - 704)) | (1L << (SMALLINT - 704)) | (1L << (SNAPSHOT - 704)) | (1L << (SPATIAL_WINDOW_MAX_CELLS - 704)) | (1L << (STANDBY - 704)) | (1L << (START_DATE - 704)) | (1L << (STATIC - 704)) | (1L << (STATS_STREAM - 704)) | (1L << (STATUS - 704)) | (1L << (STDEV - 704)) | (1L << (STDEVP - 704)) | (1L << (STOPLIST - 704)) | (1L << (STUFF - 704)) | (1L << (SUBJECT - 704)) | (1L << (SUM - 704)) | (1L << (SUSPEND - 704)) | (1L << (SYMMETRIC - 704)) | (1L << (SYNCHRONOUS_COMMIT - 704)) | (1L << (SYNONYM - 704)) | (1L << (TAKE - 704)) | (1L << (TARGET_RECOVERY_TIME - 704)) | (1L << (TB - 704)) | (1L << (TEXTIMAGE_ON - 704)) | (1L << (THROW - 704)) | (1L << (TIES - 704)) | (1L << (TIME - 704)) | (1L << (TIMEOUT - 704)) | (1L << (TIMER - 704)) | (1L << (TINYINT - 704)) | (1L << (TORN_PAGE_DETECTION - 704)) | (1L << (TRANSFORM_NOISE_WORDS - 704)) | (1L << (TRIPLE_DES - 704)) | (1L << (TRIPLE_DES_3KEY - 704)) | (1L << (TRUSTWORTHY - 704)) | (1L << (TRY - 704)) | (1L << (TSQL - 704)) | (1L << (TWO_DIGIT_YEAR_CUTOFF - 704)) | (1L << (TYPE - 704)) | (1L << (TYPE_WARNING - 704)) | (1L << (UNBOUNDED - 704)) | (1L << (UNCOMMITTED - 704)) | (1L << (UNKNOWN - 704)) | (1L << (UNLIMITED - 704)))) != 0) || ((((_la - 768)) & ~0x3f) == 0 && ((1L << (_la - 768)) & ((1L << (USING - 768)) | (1L << (VALID_XML - 768)) | (1L << (VALIDATION - 768)) | (1L << (VALUE - 768)) | (1L << (VAR - 768)) | (1L << (VARP - 768)) | (1L << (VIEW_METADATA - 768)) | (1L << (VIEWS - 768)) | (1L << (WAIT - 768)) | (1L << (WELL_FORMED_XML - 768)) | (1L << (WORK - 768)) | (1L << (WORKLOAD - 768)) | (1L << (XML - 768)) | (1L << (XMLNAMESPACES - 768)) | (1L << (DOUBLE_QUOTE_ID - 768)) | (1L << (SQUARE_BRACKET_ID - 768)) | (1L << (ID - 768)))) != 0)) {
 				{
 				setState(9348);
-				match(STAR);
-				}
-				break;
-			case BLOCKING_HIERARCHY:
-			case CALLED:
-			case DATA_COMPRESSION:
-			case EVENTDATA:
-			case FILENAME:
-			case FILLFACTOR:
-			case FORCESEEK:
-			case INIT:
-			case KEY:
-			case MASTER:
-			case MAX_MEMORY:
-			case OFFSETS:
-			case PAGE:
-			case PUBLIC:
-			case R:
-			case RAW:
-			case RETURN:
-			case RETURNS:
-			case ROWCOUNT:
-			case SAFETY:
-			case SERVER:
-			case SID:
-			case SOURCE:
-			case STATE:
-			case START:
-			case TARGET:
-			case ABSOLUTE:
-			case ACCENT_SENSITIVITY:
-			case ACTION:
-			case ACTIVATION:
-			case ACTIVE:
-			case ADDRESS:
-			case AES_128:
-			case AES_192:
-			case AES_256:
-			case AFFINITY:
-			case AFTER:
-			case AGGREGATE:
-			case ALGORITHM:
-			case ALLOW_ENCRYPTED_VALUE_MODIFICATIONS:
-			case ALLOW_SNAPSHOT_ISOLATION:
-			case ALLOWED:
-			case ANSI_NULL_DEFAULT:
-			case ANSI_NULLS:
-			case ANSI_PADDING:
-			case ANSI_WARNINGS:
-			case APPLICATION_LOG:
-			case APPLY:
-			case ARITHABORT:
-			case ASSEMBLY:
-			case AUDIT:
-			case AUDIT_GUID:
-			case AUTO:
-			case AUTO_CLEANUP:
-			case AUTO_CLOSE:
-			case AUTO_CREATE_STATISTICS:
-			case AUTO_SHRINK:
-			case AUTO_UPDATE_STATISTICS:
-			case AUTO_UPDATE_STATISTICS_ASYNC:
-			case AVAILABILITY:
-			case AVG:
-			case BACKUP_PRIORITY:
-			case BEGIN_DIALOG:
-			case BIGINT:
-			case BINARY_BASE64:
-			case BINARY_CHECKSUM:
-			case BINDING:
-			case BLOB_STORAGE:
-			case BROKER:
-			case BROKER_INSTANCE:
-			case BULK_LOGGED:
-			case CALLER:
-			case CAP_CPU_PERCENT:
-			case CAST:
-			case CATALOG:
-			case CATCH:
-			case CHANGE_RETENTION:
-			case CHANGE_TRACKING:
-			case CHECKSUM:
-			case CHECKSUM_AGG:
-			case CLEANUP:
-			case COLLECTION:
-			case COLUMN_MASTER_KEY:
-			case COMMITTED:
-			case COMPATIBILITY_LEVEL:
-			case CONCAT:
-			case CONCAT_NULL_YIELDS_NULL:
-			case CONTENT:
-			case CONTROL:
-			case COOKIE:
-			case COUNT:
-			case COUNT_BIG:
-			case COUNTER:
-			case CPU:
-			case CREATE_NEW:
-			case CREATION_DISPOSITION:
-			case CREDENTIAL:
-			case CRYPTOGRAPHIC:
-			case CURSOR_CLOSE_ON_COMMIT:
-			case CURSOR_DEFAULT:
-			case DATE_CORRELATION_OPTIMIZATION:
-			case DATEADD:
-			case DATEDIFF:
-			case DATENAME:
-			case DATEPART:
-			case DAYS:
-			case DB_CHAINING:
-			case DB_FAILOVER:
-			case DECRYPTION:
-			case DEFAULT_DOUBLE_QUOTE:
-			case DEFAULT_FULLTEXT_LANGUAGE:
-			case DEFAULT_LANGUAGE:
-			case DELAY:
-			case DELAYED_DURABILITY:
-			case DELETED:
-			case DENSE_RANK:
-			case DEPENDENTS:
-			case DES:
-			case DESCRIPTION:
-			case DESX:
-			case DHCP:
-			case DIALOG:
-			case DIRECTORY_NAME:
-			case DISABLE:
-			case DISABLE_BROKER:
-			case DISABLED:
-			case DISK_DRIVE:
-			case DOCUMENT:
-			case DYNAMIC:
-			case EMERGENCY:
-			case EMPTY:
-			case ENABLE:
-			case ENABLE_BROKER:
-			case ENCRYPTED_VALUE:
-			case ENCRYPTION:
-			case ENDPOINT_URL:
-			case ERROR_BROKER_CONVERSATIONS:
-			case EXCLUSIVE:
-			case EXECUTABLE:
-			case EXIST:
-			case EXPAND:
-			case EXPIRY_DATE:
-			case EXPLICIT:
-			case FAIL_OPERATION:
-			case FAILOVER_MODE:
-			case FAILURE:
-			case FAILURE_CONDITION_LEVEL:
-			case FAST:
-			case FAST_FORWARD:
-			case FILEGROUP:
-			case FILEGROWTH:
-			case FILEPATH:
-			case FILESTREAM:
-			case FILTER:
-			case FIRST:
-			case FIRST_VALUE:
-			case FOLLOWING:
-			case FORCE:
-			case FORCE_FAILOVER_ALLOW_DATA_LOSS:
-			case FORCED:
-			case FORMAT:
-			case FORWARD_ONLY:
-			case FULLSCAN:
-			case FULLTEXT:
-			case GB:
-			case GETDATE:
-			case GETUTCDATE:
-			case GLOBAL:
-			case GO:
-			case GROUP_MAX_REQUESTS:
-			case GROUPING:
-			case GROUPING_ID:
-			case HADR:
-			case HASH:
-			case HEALTH_CHECK_TIMEOUT:
-			case HIGH:
-			case HONOR_BROKER_PRIORITY:
-			case HOURS:
-			case IDENTITY_VALUE:
-			case IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX:
-			case IMMEDIATE:
-			case IMPERSONATE:
-			case IMPORTANCE:
-			case INCREMENTAL:
-			case INITIATOR:
-			case INPUT:
-			case INSENSITIVE:
-			case INSERTED:
-			case INT:
-			case IP:
-			case ISOLATION:
-			case KB:
-			case KEEP:
-			case KEEPFIXED:
-			case KEY_SOURCE:
-			case KEYS:
-			case KEYSET:
-			case LAG:
-			case LAST:
-			case LAST_VALUE:
-			case LEAD:
-			case LEVEL:
-			case LIST:
-			case LISTENER:
-			case LISTENER_URL:
-			case LOB_COMPACTION:
-			case LOCAL:
-			case LOCATION:
-			case LOCK:
-			case LOCK_ESCALATION:
-			case LOGIN:
-			case LOOP:
-			case LOW:
-			case MANUAL:
-			case MARK:
-			case MATERIALIZED:
-			case MAX:
-			case MAX_CPU_PERCENT:
-			case MAX_DOP:
-			case MAX_FILES:
-			case MAX_IOPS_PER_VOLUME:
-			case MAX_MEMORY_PERCENT:
-			case MAX_PROCESSES:
-			case MAX_QUEUE_READERS:
-			case MAX_ROLLOVER_FILES:
-			case MAXDOP:
-			case MAXRECURSION:
-			case MAXSIZE:
-			case MB:
-			case MEDIUM:
-			case MEMORY_OPTIMIZED_DATA:
-			case MESSAGE:
-			case MIN:
-			case MIN_ACTIVE_ROWVERSION:
-			case MIN_CPU_PERCENT:
-			case MIN_IOPS_PER_VOLUME:
-			case MIN_MEMORY_PERCENT:
-			case MINUTES:
-			case MIRROR_ADDRESS:
-			case MIXED_PAGE_ALLOCATION:
-			case MODE:
-			case MODIFY:
-			case MOVE:
-			case MULTI_USER:
-			case NAME:
-			case NESTED_TRIGGERS:
-			case NEW_ACCOUNT:
-			case NEW_BROKER:
-			case NEW_PASSWORD:
-			case NEXT:
-			case NO:
-			case NO_TRUNCATE:
-			case NO_WAIT:
-			case NOCOUNT:
-			case NODES:
-			case NOEXPAND:
-			case NON_TRANSACTED_ACCESS:
-			case NORECOMPUTE:
-			case NORECOVERY:
-			case NOWAIT:
-			case NTILE:
-			case NUMANODE:
-			case NUMBER:
-			case NUMERIC_ROUNDABORT:
-			case OBJECT:
-			case OFFLINE:
-			case OFFSET:
-			case OLD_ACCOUNT:
-			case ONLINE:
-			case ONLY:
-			case OPEN_EXISTING:
-			case OPTIMISTIC:
-			case OPTIMIZE:
-			case OUT:
-			case OUTPUT:
-			case OWNER:
-			case PAGE_VERIFY:
-			case PARAMETERIZATION:
-			case PARTITION:
-			case PARTITIONS:
-			case PARTNER:
-			case PATH:
-			case POISON_MESSAGE_HANDLING:
-			case POOL:
-			case PORT:
-			case PRECEDING:
-			case PRIMARY_ROLE:
-			case PRIOR:
-			case PRIORITY:
-			case PRIORITY_LEVEL:
-			case PRIVATE:
-			case PRIVATE_KEY:
-			case PRIVILEGES:
-			case PROCEDURE_NAME:
-			case PROPERTY:
-			case PROVIDER:
-			case PROVIDER_KEY_NAME:
-			case QUERY:
-			case QUEUE:
-			case QUEUE_DELAY:
-			case QUOTED_IDENTIFIER:
-			case RANGE:
-			case RANK:
-			case RC2:
-			case RC4:
-			case RC4_128:
-			case READ_COMMITTED_SNAPSHOT:
-			case READ_ONLY:
-			case READ_ONLY_ROUTING_LIST:
-			case READ_WRITE:
-			case READONLY:
-			case REBUILD:
-			case RECEIVE:
-			case RECOMPILE:
-			case RECOVERY:
-			case RECURSIVE_TRIGGERS:
-			case RELATIVE:
-			case REMOTE:
-			case REMOTE_SERVICE_NAME:
-			case REMOVE:
-			case REORGANIZE:
-			case REPEATABLE:
-			case REPLICA:
-			case REQUEST_MAX_CPU_TIME_SEC:
-			case REQUEST_MAX_MEMORY_GRANT_PERCENT:
-			case REQUEST_MEMORY_GRANT_TIMEOUT_SEC:
-			case REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT:
-			case RESERVE_DISK_SPACE:
-			case RESOURCE:
-			case RESOURCE_MANAGER_LOCATION:
-			case RESTRICTED_USER:
-			case RETENTION:
-			case ROBUST:
-			case ROOT:
-			case ROUTE:
-			case ROW:
-			case ROW_NUMBER:
-			case ROWGUID:
-			case ROWS:
-			case SAMPLE:
-			case SCHEMABINDING:
-			case SCOPED:
-			case SCROLL:
-			case SCROLL_LOCKS:
-			case SEARCH:
-			case SECONDARY:
-			case SECONDARY_ONLY:
-			case SECONDARY_ROLE:
-			case SECONDS:
-			case SECRET:
-			case SECURITY_LOG:
-			case SEEDING_MODE:
-			case SELF:
-			case SEMI_SENSITIVE:
-			case SEND:
-			case SENT:
-			case SERIALIZABLE:
-			case SESSION_TIMEOUT:
-			case SETERROR:
-			case SHARE:
-			case SHOWPLAN:
-			case SIGNATURE:
-			case SIMPLE:
-			case SINGLE_USER:
-			case SIZE:
-			case SMALLINT:
-			case SNAPSHOT:
-			case SPATIAL_WINDOW_MAX_CELLS:
-			case STANDBY:
-			case START_DATE:
-			case STATIC:
-			case STATS_STREAM:
-			case STATUS:
-			case STDEV:
-			case STDEVP:
-			case STOPLIST:
-			case STUFF:
-			case SUBJECT:
-			case SUM:
-			case SUSPEND:
-			case SYMMETRIC:
-			case SYNCHRONOUS_COMMIT:
-			case SYNONYM:
-			case TAKE:
-			case TARGET_RECOVERY_TIME:
-			case TB:
-			case TEXTIMAGE_ON:
-			case THROW:
-			case TIES:
-			case TIME:
-			case TIMEOUT:
-			case TIMER:
-			case TINYINT:
-			case TORN_PAGE_DETECTION:
-			case TRANSFORM_NOISE_WORDS:
-			case TRIPLE_DES:
-			case TRIPLE_DES_3KEY:
-			case TRUSTWORTHY:
-			case TRY:
-			case TSQL:
-			case TWO_DIGIT_YEAR_CUTOFF:
-			case TYPE:
-			case TYPE_WARNING:
-			case UNBOUNDED:
-			case UNCOMMITTED:
-			case UNKNOWN:
-			case UNLIMITED:
-			case USING:
-			case VALID_XML:
-			case VALIDATION:
-			case VALUE:
-			case VAR:
-			case VARP:
-			case VIEW_METADATA:
-			case VIEWS:
-			case WAIT:
-			case WELL_FORMED_XML:
-			case WORK:
-			case WORKLOAD:
-			case XML:
-			case XMLNAMESPACES:
-			case DOUBLE_QUOTE_ID:
-			case SQUARE_BRACKET_ID:
-			case ID:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(9349);
 				table_name();
-				setState(9350);
+				setState(9349);
 				match(DOT);
-				setState(9351);
-				asterisk();
 				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			}
+
+			setState(9353);
+			match(STAR);
 			}
 		}
 		catch (RecognitionException re) {
@@ -94170,7 +93738,7 @@ public class TSqlParser extends Parser {
 		"\5\u0183\u2470\n\u0183\5\u0183\u2472\n\u0183\3\u0184\3\u0184\3\u0184\7"+
 		"\u0184\u2477\n\u0184\f\u0184\16\u0184\u247a\13\u0184\3\u0185\3\u0185\3"+
 		"\u0185\3\u0185\7\u0185\u2480\n\u0185\f\u0185\16\u0185\u2483\13\u0185\3"+
-		"\u0185\3\u0185\3\u0186\3\u0186\3\u0186\3\u0186\3\u0186\5\u0186\u248c\n"+
+		"\u0185\3\u0185\3\u0186\3\u0186\3\u0186\5\u0186\u248a\n\u0186\3\u0186\3"+
 		"\u0186\3\u0187\3\u0187\3\u0187\5\u0187\u2491\n\u0187\3\u0187\3\u0187\3"+
 		"\u0187\3\u0187\3\u0187\5\u0187\u2498\n\u0187\3\u0187\5\u0187\u249b\n\u0187"+
 		"\3\u0188\3\u0188\3\u0188\3\u0188\3\u0188\5\u0188\u24a2\n\u0188\3\u0188"+
@@ -94542,7 +94110,7 @@ public class TSqlParser extends Parser {
 		"\u23ac\3\2\2\2\u02f4\u23b3\3\2\2\2\u02f6\u23b5\3\2\2\2\u02f8\u2424\3\2"+
 		"\2\2\u02fa\u2426\3\2\2\2\u02fc\u2429\3\2\2\2\u02fe\u242d\3\2\2\2\u0300"+
 		"\u242f\3\2\2\2\u0302\u2468\3\2\2\2\u0304\u246a\3\2\2\2\u0306\u2473\3\2"+
-		"\2\2\u0308\u247b\3\2\2\2\u030a\u248b\3\2\2\2\u030c\u2490\3\2\2\2\u030e"+
+		"\2\2\u0308\u247b\3\2\2\2\u030a\u2489\3\2\2\2\u030c\u2490\3\2\2\2\u030e"+
 		"\u24ad\3\2\2\2\u0310\u24b7\3\2\2\2\u0312\u24bd\3\2\2\2\u0314\u24bf\3\2"+
 		"\2\2\u0316\u24cc\3\2\2\2\u0318\u24ce\3\2\2\2\u031a\u2503\3\2\2\2\u031c"+
 		"\u2505\3\2\2\2\u031e\u2516\3\2\2\2\u0320\u251e\3\2\2\2\u0322\u2523\3\2"+
@@ -97757,230 +97325,230 @@ public class TSqlParser extends Parser {
 		"\5\u0276\u013c\2\u247d\u247e\7\u0338\2\2\u247e\u2480\5\u0276\u013c\2\u247f"+
 		"\u247d\3\2\2\2\u2480\u2483\3\2\2\2\u2481\u247f\3\2\2\2\u2481\u2482\3\2"+
 		"\2\2\u2482\u2484\3\2\2\2\u2483\u2481\3\2\2\2\u2484\u2485\7\u0337\2\2\u2485"+
-		"\u0309\3\2\2\2\u2486\u248c\7\u033b\2\2\u2487\u2488\5\u0382\u01c2\2\u2488"+
-		"\u2489\7\u0331\2\2\u2489\u248a\5\u030a\u0186\2\u248a\u248c\3\2\2\2\u248b"+
-		"\u2486\3\2\2\2\u248b\u2487\3\2\2\2\u248c\u030b\3\2\2\2\u248d\u248e\5\u0382"+
-		"\u01c2\2\u248e\u248f\7\u0331\2\2\u248f\u2491\3\2\2\2\u2490\u248d\3\2\2"+
-		"\2\u2490\u2491\3\2\2\2\u2491\u2497\3\2\2\2\u2492\u2498\5\u03ba\u01de\2"+
-		"\u2493\u2494\7\u0335\2\2\u2494\u2498\7\u0097\2\2\u2495\u2496\7\u0335\2"+
-		"\2\u2496\u2498\7\u02bc\2\2\u2497\u2492\3\2\2\2\u2497\u2493\3\2\2\2\u2497"+
-		"\u2495\3\2\2\2\u2498\u249a\3\2\2\2\u2499\u249b\5\u0346\u01a4\2\u249a\u2499"+
-		"\3\2\2\2\u249a\u249b\3\2\2\2\u249b\u030d\3\2\2\2\u249c\u249d\5\u03ba\u01de"+
-		"\2\u249d\u249e\7\u0331\2\2\u249e\u249f\5\u03ba\u01de\2\u249f\u24a1\5\u0308"+
-		"\u0185\2\u24a0\u24a2\5\u0346\u01a4\2\u24a1\u24a0\3\2\2\2\u24a1\u24a2\3"+
-		"\2\2\2\u24a2\u24ae\3\2\2\2\u24a3\u24a4\5\u03ba\u01de\2\u24a4\u24a5\7\u033a"+
-		"\2\2\u24a5\u24a6\7\u033a\2\2\u24a6\u24a8\5\u03ba\u01de\2\u24a7\u24a9\5"+
-		"\u0308\u0185\2\u24a8\u24a7\3\2\2\2\u24a8\u24a9\3\2\2\2\u24a9\u24ab\3\2"+
-		"\2\2\u24aa\u24ac\5\u0346\u01a4\2\u24ab\u24aa\3\2\2\2\u24ab\u24ac\3\2\2"+
-		"\2\u24ac\u24ae\3\2\2\2\u24ad\u249c\3\2\2\2\u24ad\u24a3\3\2\2\2\u24ae\u030f"+
-		"\3\2\2\2\u24af\u24b0\5\u0356\u01ac\2\u24b0\u24b1\7\u0324\2\2\u24b1\u24b2"+
-		"\5\u02cc\u0167\2\u24b2\u24b8\3\2\2\2\u24b3\u24b5\5\u02cc\u0167\2\u24b4"+
-		"\u24b6\5\u0346\u01a4\2\u24b5\u24b4\3\2\2\2\u24b5\u24b6\3\2\2\2\u24b6\u24b8"+
-		"\3\2\2\2\u24b7\u24af\3\2\2\2\u24b7\u24b3\3\2\2\2\u24b8\u0311\3\2\2\2\u24b9"+
-		"\u24be\5\u030a\u0186\2\u24ba\u24be\5\u030c\u0187\2\u24bb\u24be\5\u030e"+
-		"\u0188\2\u24bc\u24be\5\u0310\u0189\2\u24bd\u24b9\3\2\2\2\u24bd\u24ba\3"+
-		"\2\2\2\u24bd\u24bb\3\2\2\2\u24bd\u24bc\3\2\2\2\u24be\u0313\3\2\2\2\u24bf"+
-		"\u24c4\5\u0316\u018c\2\u24c0\u24c1\7\u0338\2\2\u24c1\u24c3\5\u0316\u018c"+
-		"\2\u24c2\u24c0\3\2\2\2\u24c3\u24c6\3\2\2\2\u24c4\u24c2\3\2\2\2\u24c4\u24c5"+
-		"\3\2\2\2\u24c5\u0315\3\2\2\2\u24c6\u24c4\3\2\2\2\u24c7\u24cd\5\u0318\u018d"+
-		"\2\u24c8\u24c9\7\u0336\2\2\u24c9\u24ca\5\u0318\u018d\2\u24ca\u24cb\7\u0337"+
-		"\2\2\u24cb\u24cd\3\2\2\2\u24cc\u24c7\3\2\2\2\u24cc\u24c8\3\2\2\2\u24cd"+
-		"\u0317\3\2\2\2\u24ce\u24d2\5\u031a\u018e\2\u24cf\u24d1\5\u0324\u0193\2"+
-		"\u24d0\u24cf\3\2\2\2\u24d1\u24d4\3\2\2\2\u24d2\u24d0\3\2\2\2\u24d2\u24d3"+
-		"\3\2\2\2\u24d3\u0319\3\2\2\2\u24d4\u24d2\3\2\2\2\u24d5\u24d7\5\u032c\u0197"+
-		"\2\u24d6\u24d8\5\u0348\u01a5\2\u24d7\u24d6\3\2\2\2\u24d7\u24d8\3\2\2\2"+
-		"\u24d8\u2504\3\2\2\2\u24d9\u24db\5\u0380\u01c1\2\u24da\u24dc\5\u0348\u01a5"+
-		"\2\u24db\u24da\3\2\2\2\u24db\u24dc\3\2\2\2\u24dc\u2504\3\2\2\2\u24dd\u24df"+
-		"\5\u032e\u0198\2\u24de\u24e0\5\u0348\u01a5\2\u24df\u24de\3\2\2\2\u24df"+
-		"\u24e0\3\2\2\2\u24e0\u2504\3\2\2\2\u24e1\u24e6\5\u0332\u019a\2\u24e2\u24e4"+
-		"\5\u0348\u01a5\2\u24e3\u24e5\5\u0354\u01ab\2\u24e4\u24e3\3\2\2\2\u24e4"+
-		"\u24e5\3\2\2\2\u24e5\u24e7\3\2\2\2\u24e6\u24e2\3\2\2\2\u24e6\u24e7\3\2"+
-		"\2\2\u24e7\u2504\3\2\2\2\u24e8\u24e9\5\u0322\u0192\2\u24e9\u24ea\5\u0348"+
-		"\u01a5\2\u24ea\u2504\3\2\2\2\u24eb\u24ed\5\u0334\u019b\2\u24ec\u24ee\5"+
-		"\u0348\u01a5\2\u24ed\u24ec\3\2\2\2\u24ed\u24ee\3\2\2\2\u24ee\u2504\3\2"+
-		"\2\2\u24ef\u24f1\7\u031b\2\2\u24f0\u24f2\5\u0348\u01a5\2\u24f1\u24f0\3"+
-		"\2\2\2\u24f1\u24f2\3\2\2\2\u24f2\u2504\3\2\2\2\u24f3\u24f4\7\u031b\2\2"+
-		"\u24f4\u24f5\7\u0331\2\2\u24f5\u24fa\5\u0334\u019b\2\u24f6\u24f8\5\u0348"+
-		"\u01a5\2\u24f7\u24f9\5\u0354\u01ab\2\u24f8\u24f7\3\2\2\2\u24f8\u24f9\3"+
-		"\2\2\2\u24f9\u24fb\3\2\2\2\u24fa\u24f6\3\2\2\2\u24fa\u24fb\3\2\2\2\u24fb"+
-		"\u2504\3\2\2\2\u24fc\u2504\5\u031c\u018f\2\u24fd\u24fe\7\u033a\2\2\u24fe"+
-		"\u24ff\7\u033a\2\2\u24ff\u2501\5\u0334\u019b\2\u2500\u2502\5\u0348\u01a5"+
-		"\2\u2501\u2500\3\2\2\2\u2501\u2502\3\2\2\2\u2502\u2504\3\2\2\2\u2503\u24d5"+
-		"\3\2\2\2\u2503\u24d9\3\2\2\2\u2503\u24dd\3\2\2\2\u2503\u24e1\3\2\2\2\u2503"+
-		"\u24e8\3\2\2\2\u2503\u24eb\3\2\2\2\u2503\u24ef\3\2\2\2\u2503\u24f3\3\2"+
-		"\2\2\u2503\u24fc\3\2\2\2\u2503\u24fd\3\2\2\2\u2504\u031b\3\2\2\2\u2505"+
-		"\u2506\7\u00ec\2\2\u2506\u2507\7\u0336\2\2\u2507\u2508\5\u02cc\u0167\2"+
-		"\u2508\u2509\7\u0338\2\2\u2509\u250c\5\u02cc\u0167\2\u250a\u250b\7\u0338"+
-		"\2\2\u250b\u250d\5\u02cc\u0167\2\u250c\u250a\3\2\2\2\u250c\u250d\3\2\2"+
-		"\2\u250d\u250e\3\2\2\2\u250e\u2514\7\u0337\2\2\u250f\u2510\7\u017d\2\2"+
-		"\u2510\u2511\7\u0336\2\2\u2511\u2512\5\u031e\u0190\2\u2512\u2513\7\u0337"+
-		"\2\2\u2513\u2515\3\2\2\2\u2514\u250f\3\2\2\2\u2514\u2515\3\2\2\2\u2515"+
-		"\u031d\3\2\2\2\u2516\u251b\5\u0320\u0191\2\u2517\u2518\7\u0338\2\2\u2518"+
-		"\u251a\5\u0320\u0191\2\u2519\u2517\3\2\2\2\u251a\u251d\3\2\2\2\u251b\u2519"+
-		"\3\2\2\2\u251b\u251c\3\2\2\2\u251c\u031f\3\2\2\2\u251d\u251b\3\2\2\2\u251e"+
-		"\u251f\7\u031d\2\2\u251f\u2521\5\u03b2\u01da\2\u2520\u2522\7\u0320\2\2"+
-		"\u2521\u2520\3\2\2\2\u2521\u2522\3\2\2\2\u2522\u0321\3\2\2\2\u2523\u2524"+
-		"\7,\2\2\u2524\u2525\7\u0336\2\2\u2525\u2526\7-\2\2\u2526\u2527\5\u0382"+
-		"\u01c2\2\u2527\u2528\7\u0338\2\2\u2528\u2529\tz\2\2\u2529\u252a\7\u0337"+
-		"\2\2\u252a\u0323\3\2\2\2\u252b\u252d\7\u00a2\2\2\u252c\u252b\3\2\2\2\u252c"+
-		"\u252d\3\2\2\2\u252d\u2533\3\2\2\2\u252e\u2530\t{\2\2\u252f\u2531\7\u00f0"+
-		"\2\2\u2530\u252f\3\2\2\2\u2530\u2531\3\2\2\2\u2531\u2533\3\2\2\2\u2532"+
-		"\u252c\3\2\2\2\u2532\u252e\3\2\2\2\u2533\u2535\3\2\2\2\u2534\u2536\t|"+
-		"\2\2\u2535\u2534\3\2\2\2\u2535\u2536\3\2\2\2\u2536\u2537\3\2\2\2\u2537"+
-		"\u2538\7\u00ab\2\2\u2538\u2539\5\u0316\u018c\2\u2539\u253a\7\u00e6\2\2"+
-		"\u253a\u253b\5\u02e2\u0172\2\u253b\u254e\3\2\2\2\u253c\u253d\7J\2\2\u253d"+
-		"\u253e\7\u00ab\2\2\u253e\u254e\5\u0316\u018c\2\u253f\u2540\7J\2\2\u2540"+
-		"\u2541\7\u0197\2\2\u2541\u254e\5\u0316\u018c\2\u2542\u2543\7\u00f0\2\2"+
-		"\u2543\u2544\7\u0197\2\2\u2544\u254e\5\u0316\u018c\2\u2545\u2546\7\u00fb"+
-		"\2\2\u2546\u2547\5\u0326\u0194\2\u2547\u2548\5\u0348\u01a5\2\u2548\u254e"+
-		"\3\2\2\2\u2549\u254a\7\u016b\2\2\u254a\u254b\5\u0328\u0195\2\u254b\u254c"+
-		"\5\u0348\u01a5\2\u254c\u254e\3\2\2\2\u254d\u2532\3\2\2\2\u254d\u253c\3"+
-		"\2\2\2\u254d\u253f\3\2\2\2\u254d\u2542\3\2\2\2\u254d\u2545\3\2\2\2\u254d"+
-		"\u2549\3\2\2\2\u254e\u0325\3\2\2\2\u254f\u2550\7\u0336\2\2\u2550\u2551"+
-		"\5\u035e\u01b0\2\u2551\u2552\7\u0086\2\2\u2552\u2553\5\u038e\u01c8\2\u2553"+
-		"\u2554\7\u009c\2\2\u2554\u2555\5\u0354\u01ab\2\u2555\u2556\7\u0337\2\2"+
-		"\u2556\u0327\3\2\2\2\u2557\u2558\7\u0336\2\2\u2558\u2559\5\u02cc\u0167"+
-		"\2\u2559\u255a\7\u0086\2\2\u255a\u255b\5\u038e\u01c8\2\u255b\u255c\7\u009c"+
-		"\2\2\u255c\u255d\7\u0336\2\2\u255d\u255e\5\u032a\u0196\2\u255e\u255f\7"+
-		"\u0337\2\2\u255f\u2560\7\u0337\2\2\u2560\u0329\3\2\2\2\u2561\u2566\5\u038e"+
-		"\u01c8\2\u2562\u2563\7\u0338\2\2\u2563\u2565\5\u038e\u01c8\2\u2564\u2562"+
-		"\3\2\2\2\u2565\u2568\3\2\2\2\u2566\u2564\3\2\2\2\u2566\u2567\3\2\2\2\u2567"+
-		"\u032b\3\2\2\2\u2568\u2566\3\2\2\2\u2569\u256b\5\u0382\u01c2\2\u256a\u256c"+
-		"\5\u034c\u01a7\2\u256b\u256a\3\2\2\2\u256b\u256c\3\2\2\2\u256c\u032d\3"+
-		"\2\2\2\u256d\u256e\7\u00eb\2\2\u256e\u256f\7\u0336\2\2\u256f\u2570\7\u0320"+
-		"\2\2\u2570\u2571\7\u0338\2\2\u2571\u2572\7\u0320\2\2\u2572\u2573\7\u0338"+
-		"\2\2\u2573\u2574\7\u0320\2\2\u2574\u2588\7\u0337\2\2\u2575\u2576\7\u00eb"+
-		"\2\2\u2576\u2577\7\u0336\2\2\u2577\u2578\7%\2\2\u2578\u2579\7\u0320\2"+
-		"\2\u2579\u2583\7\u0338\2\2\u257a\u257f\5\u0330\u0199\2\u257b\u257c\7\u0338"+
-		"\2\2\u257c\u257e\5\u0330\u0199\2\u257d\u257b\3\2\2\2\u257e\u2581\3\2\2"+
-		"\2\u257f\u257d\3\2\2\2\u257f\u2580\3\2\2\2\u2580\u2584\3\2\2\2\u2581\u257f"+
-		"\3\2\2\2\u2582\u2584\5\u03ba\u01de\2\u2583\u257a\3\2\2\2\u2583\u2582\3"+
-		"\2\2\2\u2584\u2585\3\2\2\2\u2585\u2586\7\u0337\2\2\u2586\u2588\3\2\2\2"+
-		"\u2587\u256d\3\2\2\2\u2587\u2575\3\2\2\2\u2588\u032f\3\2\2\2\u2589\u258a"+
-		"\5\u03ba\u01de\2\u258a\u258b\7\u0324\2\2\u258b\u258c\t\30\2\2\u258c\u0331"+
-		"\3\2\2\2\u258d\u2598\5\u02d8\u016d\2\u258e\u258f\7\u0336\2\2\u258f\u2590"+
-		"\5\u02d8\u016d\2\u2590\u2591\7\u0337\2\2\u2591\u2598\3\2\2\2\u2592\u2598"+
-		"\5\u0358\u01ad\2\u2593\u2594\7\u0336\2\2\u2594\u2595\5\u0358\u01ad\2\u2595"+
-		"\u2596\7\u0337\2\2\u2596\u2598\3\2\2\2\u2597\u258d\3\2\2\2\u2597\u258e"+
-		"\3\2\2\2\u2597\u2592\3\2\2\2\u2597\u2593\3\2\2\2\u2598\u0333\3\2\2\2\u2599"+
-		"\u261e\5\u035c\u01af\2\u259a\u261e\5\u035e\u01b0\2\u259b\u261e\5\u0360"+
-		"\u01b1\2\u259c\u259d\5\u039e\u01d0\2\u259d\u259f\7\u0336\2\2\u259e\u25a0"+
-		"\5\u035a\u01ae\2\u259f\u259e\3\2\2\2\u259f\u25a0\3\2\2\2\u25a0\u25a1\3"+
-		"\2\2\2\u25a1\u25a2\7\u0337\2\2\u25a2\u261e\3\2\2\2\u25a3\u25a4\7\u01a9"+
-		"\2\2\u25a4\u25a5\7\u0336\2\2\u25a5\u25a6\7\u033b\2\2\u25a6\u261e\7\u0337"+
-		"\2\2\u25a7\u25a8\7\u01b1\2\2\u25a8\u25a9\7\u0336\2\2\u25a9\u25aa\5\u02cc"+
-		"\u0167\2\u25aa\u25ab\7\20\2\2\u25ab\u25ac\5\u03b2\u01da\2\u25ac\u25ad"+
-		"\7\u0337\2\2\u25ad\u261e\3\2\2\2\u25ae\u25af\7G\2\2\u25af\u25b0\7\u0336"+
-		"\2\2\u25b0\u25b1\5\u03b2\u01da\2\u25b1\u25b2\7\u0338\2\2\u25b2\u25b5\5"+
-		"\u02cc\u0167\2\u25b3\u25b4\7\u0338\2\2\u25b4\u25b6\5\u02cc\u0167\2\u25b5"+
-		"\u25b3\3\2\2\2\u25b5\u25b6\3\2\2\2\u25b6\u25b7\3\2\2\2\u25b7\u25b8\7\u0337"+
-		"\2\2\u25b8\u261e\3\2\2\2\u25b9\u25ba\7\u01b6\2\2\u25ba\u25bb\7\u0336\2"+
-		"\2\u25bb\u25bc\7\u033b\2\2\u25bc\u261e\7\u0337\2\2\u25bd\u25be\7\66\2"+
-		"\2\u25be\u25bf\7\u0336\2\2\u25bf\u25c0\5\u035a\u01ae\2\u25c0\u25c1\7\u0337"+
-		"\2\2\u25c1\u261e\3\2\2\2\u25c2\u261e\7N\2\2\u25c3\u261e\7O\2\2\u25c4\u25c5"+
-		"\7\u01cd\2\2\u25c5\u25c6\7\u0336\2\2\u25c6\u25c7\7\u031d\2\2\u25c7\u25c8"+
-		"\7\u0338\2\2\u25c8\u25c9\5\u02cc\u0167\2\u25c9\u25ca\7\u0338\2\2\u25ca"+
-		"\u25cb\5\u02cc\u0167\2\u25cb\u25cc\7\u0337\2\2\u25cc\u261e\3\2\2\2\u25cd"+
-		"\u25ce\7\u01ce\2\2\u25ce\u25cf\7\u0336\2\2\u25cf\u25d0\7\u031d\2\2\u25d0"+
-		"\u25d1\7\u0338\2\2\u25d1\u25d2\5\u02cc\u0167\2\u25d2\u25d3\7\u0338\2\2"+
-		"\u25d3\u25d4\5\u02cc\u0167\2\u25d4\u25d5\7\u0337\2\2\u25d5\u261e\3\2\2"+
-		"\2\u25d6\u25d7\7\u01cf\2\2\u25d7\u25d8\7\u0336\2\2\u25d8\u25d9\7\u031d"+
-		"\2\2\u25d9\u25da\7\u0338\2\2\u25da\u25db\5\u02cc\u0167\2\u25db\u25dc\7"+
-		"\u0337\2\2\u25dc\u261e\3\2\2\2\u25dd\u25de\7\u01d0\2\2\u25de\u25df\7\u0336"+
-		"\2\2\u25df\u25e0\7\u031d\2\2\u25e0\u25e1\7\u0338\2\2\u25e1\u25e2\5\u02cc"+
-		"\u0167\2\u25e2\u25e3\7\u0337\2\2\u25e3\u261e\3\2\2\2\u25e4\u25e5\7\u020e"+
-		"\2\2\u25e5\u25e6\7\u0336\2\2\u25e6\u261e\7\u0337\2\2\u25e7\u25e8\7\u020f"+
-		"\2\2\u25e8\u25e9\7\u0336\2\2\u25e9\u261e\7\u0337\2\2\u25ea\u25eb\7\u0097"+
-		"\2\2\u25eb\u25ec\7\u0336\2\2\u25ec\u25ef\5\u03b2\u01da\2\u25ed\u25ee\7"+
-		"\u0338\2\2\u25ee\u25f0\7\u031c\2\2\u25ef\u25ed\3\2\2\2\u25ef\u25f0\3\2"+
-		"\2\2\u25f0\u25f3\3\2\2\2\u25f1\u25f2\7\u0338\2\2\u25f2\u25f4\7\u031c\2"+
-		"\2\u25f3\u25f1\3\2\2\2\u25f3\u25f4\3\2\2\2\u25f4\u25f5\3\2\2\2\u25f5\u25f6"+
-		"\7\u0337\2\2\u25f6\u261e\3\2\2\2\u25f7\u261e\7\u0254\2\2\u25f8\u25f9\7"+
-		"\u00e1\2\2\u25f9\u25fa\7\u0336\2\2\u25fa\u25fb\5\u02cc\u0167\2\u25fb\u25fc"+
-		"\7\u0338\2\2\u25fc\u25fd\5\u02cc\u0167\2\u25fd\u25fe\7\u0337\2\2\u25fe"+
-		"\u261e\3\2\2\2\u25ff\u2600\7\u02e3\2\2\u2600\u2601\7\u0336\2\2\u2601\u2602"+
-		"\5\u02cc\u0167\2\u2602\u2603\7\u0338\2\2\u2603\u2604\7\u031c\2\2\u2604"+
-		"\u2605\7\u0338\2\2\u2605\u2606\7\u031c\2\2\u2606\u2607\7\u0338\2\2\u2607"+
-		"\u2608\5\u02cc\u0167\2\u2608\u2609\7\u0337\2\2\u2609\u261e\3\2\2\2\u260a"+
-		"\u261e\7\u013d\2\2\u260b\u261e\7\u0156\2\2\u260c\u260d\7\u00aa\2\2\u260d"+
-		"\u260e\7\u0336\2\2\u260e\u260f\5\u02cc\u0167\2\u260f\u2610\7\u0338\2\2"+
-		"\u2610\u2611\5\u02cc\u0167\2\u2611\u2612\7\u0337\2\2\u2612\u261e\3\2\2"+
-		"\2\u2613\u261e\5\u0336\u019c\2\u2614\u2615\7\u009b\2\2\u2615\u2616\7\u0336"+
-		"\2\2\u2616\u2617\5\u02e2\u0172\2\u2617\u2618\7\u0338\2\2\u2618\u2619\5"+
-		"\u02cc\u0167\2\u2619\u261a\7\u0338\2\2\u261a\u261b\5\u02cc\u0167\2\u261b"+
-		"\u261c\7\u0337\2\2\u261c\u261e\3\2\2\2\u261d\u2599\3\2\2\2\u261d\u259a"+
-		"\3\2\2\2\u261d\u259b\3\2\2\2\u261d\u259c\3\2\2\2\u261d\u25a3\3\2\2\2\u261d"+
-		"\u25a7\3\2\2\2\u261d\u25ae\3\2\2\2\u261d\u25b9\3\2\2\2\u261d\u25bd\3\2"+
-		"\2\2\u261d\u25c2\3\2\2\2\u261d\u25c3\3\2\2\2\u261d\u25c4\3\2\2\2\u261d"+
-		"\u25cd\3\2\2\2\u261d\u25d6\3\2\2\2\u261d\u25dd\3\2\2\2\u261d\u25e4\3\2"+
-		"\2\2\u261d\u25e7\3\2\2\2\u261d\u25ea\3\2\2\2\u261d\u25f7\3\2\2\2\u261d"+
-		"\u25f8\3\2\2\2\u261d\u25ff\3\2\2\2\u261d\u260a\3\2\2\2\u261d\u260b\3\2"+
-		"\2\2\u261d\u260c\3\2\2\2\u261d\u2613\3\2\2\2\u261d\u2614\3\2\2\2\u261e"+
-		"\u0335\3\2\2\2\u261f\u2625\5\u0338\u019d\2\u2620\u2625\5\u033a\u019e\2"+
-		"\u2621\u2625\5\u033c\u019f\2\u2622\u2625\5\u033e\u01a0\2\u2623\u2625\5"+
-		"\u0340\u01a1\2\u2624\u261f\3\2\2\2\u2624\u2620\3\2\2\2\u2624\u2621\3\2"+
-		"\2\2\u2624\u2622\3\2\2\2\u2624\u2623\3\2\2\2\u2625\u0337\3\2\2\2\u2626"+
-		"\u262b\7\u031b\2\2\u2627\u262b\7\u031d\2\2\u2628\u262b\7s\2\2\u2629\u262b"+
-		"\5\u033a\u019e\2\u262a\u2626\3\2\2\2\u262a\u2627\3\2\2\2\u262a\u2628\3"+
-		"\2\2\2\u262a\u2629\3\2\2\2\u262b\u262c\3\2\2\2\u262c\u262d\7\u0331\2\2"+
-		"\u262d\u262e\7\u0305\2\2\u262e\u262f\7\u0336\2\2\u262f\u2630\7\u0320\2"+
-		"\2\u2630\u2631\7\u0338\2\2\u2631\u2632\7\u0320\2\2\u2632\u2652\7\u0337"+
-		"\2\2\u2633\u2638\7\u031b\2\2\u2634\u2638\7\u031d\2\2\u2635\u2638\7s\2"+
-		"\2\u2636\u2638\5\u033a\u019e\2\u2637\u2633\3\2\2\2\u2637\u2634\3\2\2\2"+
-		"\u2637\u2635\3\2\2\2\u2637\u2636\3\2\2\2\u2638\u2639\3\2\2\2\u2639\u263a"+
-		"\7\u0331\2\2\u263a\u263b\7\u02ba\2\2\u263b\u263c\7\u0331\2\2\u263c\u263d"+
-		"\7\u0305\2\2\u263d\u263e\7\u0336\2\2\u263e\u263f\7\u0320\2\2\u263f\u2640"+
-		"\7\u0338\2\2\u2640\u2641\7\u0320\2\2\u2641\u2652\7\u0337\2\2\u2642\u2647"+
-		"\7\u031b\2\2\u2643\u2647\7\u031d\2\2\u2644\u2647\7s\2\2\u2645\u2647\5"+
-		"\u033a\u019e\2\u2646\u2642\3\2\2\2\u2646\u2643\3\2\2\2\u2646\u2644\3\2"+
-		"\2\2\u2646\u2645\3\2\2\2\u2647\u2648\3\2\2\2\u2648\u2649\7\u0331\2\2\u2649"+
-		"\u264a\7\u00f3\2\2\u264a\u264b\7\u0331\2\2\u264b\u264c\7\u0305\2\2\u264c"+
-		"\u264d\7\u0336\2\2\u264d\u264e\7\u0320\2\2\u264e\u264f\7\u0338\2\2\u264f"+
-		"\u2650\7\u0320\2\2\u2650\u2652\7\u0337\2\2\u2651\u262a\3\2\2\2\u2651\u2637"+
-		"\3\2\2\2\u2651\u2646\3\2\2\2\u2652\u0339\3\2\2\2\u2653\u2657\7\u031b\2"+
-		"\2\u2654\u2657\7\u031d\2\2\u2655\u2657\5\u0380\u01c1\2\u2656\u2653\3\2"+
-		"\2\2\u2656\u2654\3\2\2\2\u2656\u2655\3\2\2\2\u2657\u2658\3\2\2\2\u2658"+
-		"\u2659\7\u0331\2\2\u2659\u265a\7\u0294\2\2\u265a\u265b\7\u0336\2\2\u265b"+
-		"\u265c\7\u0320\2\2\u265c\u266a\7\u0337\2\2\u265d\u2661\7\u031b\2\2\u265e"+
-		"\u2661\7\u031d\2\2\u265f\u2661\5\u0380\u01c1\2\u2660\u265d\3\2\2\2\u2660"+
-		"\u265e\3\2\2\2\u2660\u265f\3\2\2\2\u2661\u2662\3\2\2\2\u2662\u2663\7\u0331"+
-		"\2\2\u2663\u2664\7\u02ba\2\2\u2664\u2665\7\u0331\2\2\u2665\u2666\7\u0294"+
-		"\2\2\u2666\u2667\7\u0336\2\2\u2667\u2668\7\u0320\2\2\u2668\u266a\7\u0337"+
-		"\2\2\u2669\u2656\3\2\2\2\u2669\u2660\3\2\2\2\u266a\u033b\3\2\2\2\u266b"+
-		"\u266c\t}\2\2\u266c\u266d\7\u0331\2\2\u266d\u266e\7\u01f4\2\2\u266e\u266f"+
-		"\7\u0336\2\2\u266f\u2670\7\u0320\2\2\u2670\u2671\7\u0337\2\2\u2671\u033d"+
-		"\3\2\2\2\u2672\u2673\t}\2\2\u2673\u2674\7\u0331\2\2\u2674\u2675\7\u025c"+
-		"\2\2\u2675\u2676\7\u0336\2\2\u2676\u2677\7\u0320\2\2\u2677\u2678\7\u0337"+
-		"\2\2\u2678\u033f\3\2\2\2\u2679\u267a\t}\2\2\u267a\u267b\7\u0331\2\2\u267b"+
-		"\u267c\7\u0269\2\2\u267c\u267d\7\u0336\2\2\u267d\u267e\7\u0320\2\2\u267e"+
-		"\u267f\7\u0337\2\2\u267f\u0341\3\2\2\2\u2680\u2681\7\u0179\2\2\u2681\u2682"+
-		"\5\u02cc\u0167\2\u2682\u2683\7\u015d\2\2\u2683\u2684\5\u02cc\u0167\2\u2684"+
-		"\u0343\3\2\2\2\u2685\u2686\7\u0179\2\2\u2686\u2687\5\u02e2\u0172\2\u2687"+
-		"\u2688\7\u015d\2\2\u2688\u2689\5\u02cc\u0167\2\u2689\u0345\3\2\2\2\u268a"+
-		"\u268c\7\20\2\2\u268b\u268a\3\2\2\2\u268b\u268c\3\2\2\2\u268c\u268d\3"+
-		"\2\2\2\u268d\u268e\5\u0356\u01ac\2\u268e\u0347\3\2\2\2\u268f\u2691\7\20"+
-		"\2\2\u2690\u268f\3\2\2\2\u2690\u2691\3\2\2\2\u2691\u2692\3\2\2\2\u2692"+
-		"\u2693\5\u034a\u01a6\2\u2693\u0349\3\2\2\2\u2694\u2696\5\u03ba\u01de\2"+
-		"\u2695\u2697\5\u034c\u01a7\2\u2696\u2695\3\2\2\2\u2696\u2697\3\2\2\2\u2697"+
-		"\u034b\3\2\2\2\u2698\u269a\7\u017d\2\2\u2699\u2698\3\2\2\2\u2699\u269a"+
-		"\3\2\2\2\u269a\u269b\3\2\2\2\u269b\u269c\7\u0336\2\2\u269c\u26a3\5\u0350"+
-		"\u01a9\2\u269d\u269f\7\u0338\2\2\u269e\u269d\3\2\2\2\u269e\u269f\3\2\2"+
-		"\2\u269f\u26a0\3\2\2\2\u26a0\u26a2\5\u0350\u01a9\2\u26a1\u269e\3\2\2\2"+
-		"\u26a2\u26a5\3\2\2\2\u26a3\u26a1\3\2\2\2\u26a3\u26a4\3\2\2\2\u26a4\u26a6"+
-		"\3\2\2\2\u26a5\u26a3\3\2\2\2\u26a6\u26a7\7\u0337\2\2\u26a7\u034d\3\2\2"+
-		"\2\u26a8\u26a9\7\u017d\2\2\u26a9\u26aa\7\u0336\2\2\u26aa\u26b1\5\u0350"+
-		"\u01a9\2\u26ab\u26ad\7\u0338\2\2\u26ac\u26ab\3\2\2\2\u26ac\u26ad\3\2\2"+
-		"\2\u26ad\u26ae\3\2\2\2\u26ae\u26b0\5\u0350\u01a9\2\u26af\u26ac\3\2\2\2"+
-		"\u26b0\u26b3\3\2\2\2\u26b1\u26af\3\2\2\2\u26b1\u26b2\3\2\2\2\u26b2\u26b4"+
-		"\3\2\2\2\u26b3\u26b1\3\2\2\2\u26b4\u26b5\7\u0337\2\2\u26b5\u034f\3\2\2"+
-		"\2\u26b6\u26b8\7\u026a\2\2\u26b7\u26b6\3\2\2\2\u26b7\u26b8\3\2\2\2\u26b8"+
-		"\u26e9\3\2\2\2\u26b9\u26cd\7\u009f\2\2\u26ba\u26bb\7\u0336\2\2\u26bb\u26c0"+
-		"\5\u0352\u01aa\2\u26bc\u26bd\7\u0338\2\2\u26bd\u26bf\5\u0352\u01aa\2\u26be"+
-		"\u26bc\3\2\2\2\u26bf\u26c2\3\2\2\2\u26c0\u26be\3\2\2\2\u26c0\u26c1\3\2"+
-		"\2\2\u26c1\u26c3\3\2\2\2\u26c2\u26c0\3\2\2\2\u26c3\u26c4\7\u0337\2\2\u26c4"+
-		"\u26ce\3\2\2\2\u26c5\u26ca\5\u0352\u01aa\2\u26c6\u26c7\7\u0338\2\2\u26c7"+
-		"\u26c9\5\u0352\u01aa\2\u26c8\u26c6\3\2\2\2\u26c9\u26cc\3\2\2\2\u26ca\u26c8"+
-		"\3\2\2\2\u26ca\u26cb\3\2\2\2\u26cb\u26ce\3\2\2\2\u26cc\u26ca\3\2\2\2\u26cd"+
+		"\u0309\3\2\2\2\u2486\u2487\5\u0382\u01c2\2\u2487\u2488\7\u0331\2\2\u2488"+
+		"\u248a\3\2\2\2\u2489\u2486\3\2\2\2\u2489\u248a\3\2\2\2\u248a\u248b\3\2"+
+		"\2\2\u248b\u248c\7\u033b\2\2\u248c\u030b\3\2\2\2\u248d\u248e\5\u0382\u01c2"+
+		"\2\u248e\u248f\7\u0331\2\2\u248f\u2491\3\2\2\2\u2490\u248d\3\2\2\2\u2490"+
+		"\u2491\3\2\2\2\u2491\u2497\3\2\2\2\u2492\u2498\5\u03ba\u01de\2\u2493\u2494"+
+		"\7\u0335\2\2\u2494\u2498\7\u0097\2\2\u2495\u2496\7\u0335\2\2\u2496\u2498"+
+		"\7\u02bc\2\2\u2497\u2492\3\2\2\2\u2497\u2493\3\2\2\2\u2497\u2495\3\2\2"+
+		"\2\u2498\u249a\3\2\2\2\u2499\u249b\5\u0346\u01a4\2\u249a\u2499\3\2\2\2"+
+		"\u249a\u249b\3\2\2\2\u249b\u030d\3\2\2\2\u249c\u249d\5\u03ba\u01de\2\u249d"+
+		"\u249e\7\u0331\2\2\u249e\u249f\5\u03ba\u01de\2\u249f\u24a1\5\u0308\u0185"+
+		"\2\u24a0\u24a2\5\u0346\u01a4\2\u24a1\u24a0\3\2\2\2\u24a1\u24a2\3\2\2\2"+
+		"\u24a2\u24ae\3\2\2\2\u24a3\u24a4\5\u03ba\u01de\2\u24a4\u24a5\7\u033a\2"+
+		"\2\u24a5\u24a6\7\u033a\2\2\u24a6\u24a8\5\u03ba\u01de\2\u24a7\u24a9\5\u0308"+
+		"\u0185\2\u24a8\u24a7\3\2\2\2\u24a8\u24a9\3\2\2\2\u24a9\u24ab\3\2\2\2\u24aa"+
+		"\u24ac\5\u0346\u01a4\2\u24ab\u24aa\3\2\2\2\u24ab\u24ac\3\2\2\2\u24ac\u24ae"+
+		"\3\2\2\2\u24ad\u249c\3\2\2\2\u24ad\u24a3\3\2\2\2\u24ae\u030f\3\2\2\2\u24af"+
+		"\u24b0\5\u0356\u01ac\2\u24b0\u24b1\7\u0324\2\2\u24b1\u24b2\5\u02cc\u0167"+
+		"\2\u24b2\u24b8\3\2\2\2\u24b3\u24b5\5\u02cc\u0167\2\u24b4\u24b6\5\u0346"+
+		"\u01a4\2\u24b5\u24b4\3\2\2\2\u24b5\u24b6\3\2\2\2\u24b6\u24b8\3\2\2\2\u24b7"+
+		"\u24af\3\2\2\2\u24b7\u24b3\3\2\2\2\u24b8\u0311\3\2\2\2\u24b9\u24be\5\u030a"+
+		"\u0186\2\u24ba\u24be\5\u030c\u0187\2\u24bb\u24be\5\u030e\u0188\2\u24bc"+
+		"\u24be\5\u0310\u0189\2\u24bd\u24b9\3\2\2\2\u24bd\u24ba\3\2\2\2\u24bd\u24bb"+
+		"\3\2\2\2\u24bd\u24bc\3\2\2\2\u24be\u0313\3\2\2\2\u24bf\u24c4\5\u0316\u018c"+
+		"\2\u24c0\u24c1\7\u0338\2\2\u24c1\u24c3\5\u0316\u018c\2\u24c2\u24c0\3\2"+
+		"\2\2\u24c3\u24c6\3\2\2\2\u24c4\u24c2\3\2\2\2\u24c4\u24c5\3\2\2\2\u24c5"+
+		"\u0315\3\2\2\2\u24c6\u24c4\3\2\2\2\u24c7\u24cd\5\u0318\u018d\2\u24c8\u24c9"+
+		"\7\u0336\2\2\u24c9\u24ca\5\u0318\u018d\2\u24ca\u24cb\7\u0337\2\2\u24cb"+
+		"\u24cd\3\2\2\2\u24cc\u24c7\3\2\2\2\u24cc\u24c8\3\2\2\2\u24cd\u0317\3\2"+
+		"\2\2\u24ce\u24d2\5\u031a\u018e\2\u24cf\u24d1\5\u0324\u0193\2\u24d0\u24cf"+
+		"\3\2\2\2\u24d1\u24d4\3\2\2\2\u24d2\u24d0\3\2\2\2\u24d2\u24d3\3\2\2\2\u24d3"+
+		"\u0319\3\2\2\2\u24d4\u24d2\3\2\2\2\u24d5\u24d7\5\u032c\u0197\2\u24d6\u24d8"+
+		"\5\u0348\u01a5\2\u24d7\u24d6\3\2\2\2\u24d7\u24d8\3\2\2\2\u24d8\u2504\3"+
+		"\2\2\2\u24d9\u24db\5\u0380\u01c1\2\u24da\u24dc\5\u0348\u01a5\2\u24db\u24da"+
+		"\3\2\2\2\u24db\u24dc\3\2\2\2\u24dc\u2504\3\2\2\2\u24dd\u24df\5\u032e\u0198"+
+		"\2\u24de\u24e0\5\u0348\u01a5\2\u24df\u24de\3\2\2\2\u24df\u24e0\3\2\2\2"+
+		"\u24e0\u2504\3\2\2\2\u24e1\u24e6\5\u0332\u019a\2\u24e2\u24e4\5\u0348\u01a5"+
+		"\2\u24e3\u24e5\5\u0354\u01ab\2\u24e4\u24e3\3\2\2\2\u24e4\u24e5\3\2\2\2"+
+		"\u24e5\u24e7\3\2\2\2\u24e6\u24e2\3\2\2\2\u24e6\u24e7\3\2\2\2\u24e7\u2504"+
+		"\3\2\2\2\u24e8\u24e9\5\u0322\u0192\2\u24e9\u24ea\5\u0348\u01a5\2\u24ea"+
+		"\u2504\3\2\2\2\u24eb\u24ed\5\u0334\u019b\2\u24ec\u24ee\5\u0348\u01a5\2"+
+		"\u24ed\u24ec\3\2\2\2\u24ed\u24ee\3\2\2\2\u24ee\u2504\3\2\2\2\u24ef\u24f1"+
+		"\7\u031b\2\2\u24f0\u24f2\5\u0348\u01a5\2\u24f1\u24f0\3\2\2\2\u24f1\u24f2"+
+		"\3\2\2\2\u24f2\u2504\3\2\2\2\u24f3\u24f4\7\u031b\2\2\u24f4\u24f5\7\u0331"+
+		"\2\2\u24f5\u24fa\5\u0334\u019b\2\u24f6\u24f8\5\u0348\u01a5\2\u24f7\u24f9"+
+		"\5\u0354\u01ab\2\u24f8\u24f7\3\2\2\2\u24f8\u24f9\3\2\2\2\u24f9\u24fb\3"+
+		"\2\2\2\u24fa\u24f6\3\2\2\2\u24fa\u24fb\3\2\2\2\u24fb\u2504\3\2\2\2\u24fc"+
+		"\u2504\5\u031c\u018f\2\u24fd\u24fe\7\u033a\2\2\u24fe\u24ff\7\u033a\2\2"+
+		"\u24ff\u2501\5\u0334\u019b\2\u2500\u2502\5\u0348\u01a5\2\u2501\u2500\3"+
+		"\2\2\2\u2501\u2502\3\2\2\2\u2502\u2504\3\2\2\2\u2503\u24d5\3\2\2\2\u2503"+
+		"\u24d9\3\2\2\2\u2503\u24dd\3\2\2\2\u2503\u24e1\3\2\2\2\u2503\u24e8\3\2"+
+		"\2\2\u2503\u24eb\3\2\2\2\u2503\u24ef\3\2\2\2\u2503\u24f3\3\2\2\2\u2503"+
+		"\u24fc\3\2\2\2\u2503\u24fd\3\2\2\2\u2504\u031b\3\2\2\2\u2505\u2506\7\u00ec"+
+		"\2\2\u2506\u2507\7\u0336\2\2\u2507\u2508\5\u02cc\u0167\2\u2508\u2509\7"+
+		"\u0338\2\2\u2509\u250c\5\u02cc\u0167\2\u250a\u250b\7\u0338\2\2\u250b\u250d"+
+		"\5\u02cc\u0167\2\u250c\u250a\3\2\2\2\u250c\u250d\3\2\2\2\u250d\u250e\3"+
+		"\2\2\2\u250e\u2514\7\u0337\2\2\u250f\u2510\7\u017d\2\2\u2510\u2511\7\u0336"+
+		"\2\2\u2511\u2512\5\u031e\u0190\2\u2512\u2513\7\u0337\2\2\u2513\u2515\3"+
+		"\2\2\2\u2514\u250f\3\2\2\2\u2514\u2515\3\2\2\2\u2515\u031d\3\2\2\2\u2516"+
+		"\u251b\5\u0320\u0191\2\u2517\u2518\7\u0338\2\2\u2518\u251a\5\u0320\u0191"+
+		"\2\u2519\u2517\3\2\2\2\u251a\u251d\3\2\2\2\u251b\u2519\3\2\2\2\u251b\u251c"+
+		"\3\2\2\2\u251c\u031f\3\2\2\2\u251d\u251b\3\2\2\2\u251e\u251f\7\u031d\2"+
+		"\2\u251f\u2521\5\u03b2\u01da\2\u2520\u2522\7\u0320\2\2\u2521\u2520\3\2"+
+		"\2\2\u2521\u2522\3\2\2\2\u2522\u0321\3\2\2\2\u2523\u2524\7,\2\2\u2524"+
+		"\u2525\7\u0336\2\2\u2525\u2526\7-\2\2\u2526\u2527\5\u0382\u01c2\2\u2527"+
+		"\u2528\7\u0338\2\2\u2528\u2529\tz\2\2\u2529\u252a\7\u0337\2\2\u252a\u0323"+
+		"\3\2\2\2\u252b\u252d\7\u00a2\2\2\u252c\u252b\3\2\2\2\u252c\u252d\3\2\2"+
+		"\2\u252d\u2533\3\2\2\2\u252e\u2530\t{\2\2\u252f\u2531\7\u00f0\2\2\u2530"+
+		"\u252f\3\2\2\2\u2530\u2531\3\2\2\2\u2531\u2533\3\2\2\2\u2532\u252c\3\2"+
+		"\2\2\u2532\u252e\3\2\2\2\u2533\u2535\3\2\2\2\u2534\u2536\t|\2\2\u2535"+
+		"\u2534\3\2\2\2\u2535\u2536\3\2\2\2\u2536\u2537\3\2\2\2\u2537\u2538\7\u00ab"+
+		"\2\2\u2538\u2539\5\u0316\u018c\2\u2539\u253a\7\u00e6\2\2\u253a\u253b\5"+
+		"\u02e2\u0172\2\u253b\u254e\3\2\2\2\u253c\u253d\7J\2\2\u253d\u253e\7\u00ab"+
+		"\2\2\u253e\u254e\5\u0316\u018c\2\u253f\u2540\7J\2\2\u2540\u2541\7\u0197"+
+		"\2\2\u2541\u254e\5\u0316\u018c\2\u2542\u2543\7\u00f0\2\2\u2543\u2544\7"+
+		"\u0197\2\2\u2544\u254e\5\u0316\u018c\2\u2545\u2546\7\u00fb\2\2\u2546\u2547"+
+		"\5\u0326\u0194\2\u2547\u2548\5\u0348\u01a5\2\u2548\u254e\3\2\2\2\u2549"+
+		"\u254a\7\u016b\2\2\u254a\u254b\5\u0328\u0195\2\u254b\u254c\5\u0348\u01a5"+
+		"\2\u254c\u254e\3\2\2\2\u254d\u2532\3\2\2\2\u254d\u253c\3\2\2\2\u254d\u253f"+
+		"\3\2\2\2\u254d\u2542\3\2\2\2\u254d\u2545\3\2\2\2\u254d\u2549\3\2\2\2\u254e"+
+		"\u0325\3\2\2\2\u254f\u2550\7\u0336\2\2\u2550\u2551\5\u035e\u01b0\2\u2551"+
+		"\u2552\7\u0086\2\2\u2552\u2553\5\u038e\u01c8\2\u2553\u2554\7\u009c\2\2"+
+		"\u2554\u2555\5\u0354\u01ab\2\u2555\u2556\7\u0337\2\2\u2556\u0327\3\2\2"+
+		"\2\u2557\u2558\7\u0336\2\2\u2558\u2559\5\u02cc\u0167\2\u2559\u255a\7\u0086"+
+		"\2\2\u255a\u255b\5\u038e\u01c8\2\u255b\u255c\7\u009c\2\2\u255c\u255d\7"+
+		"\u0336\2\2\u255d\u255e\5\u032a\u0196\2\u255e\u255f\7\u0337\2\2\u255f\u2560"+
+		"\7\u0337\2\2\u2560\u0329\3\2\2\2\u2561\u2566\5\u038e\u01c8\2\u2562\u2563"+
+		"\7\u0338\2\2\u2563\u2565\5\u038e\u01c8\2\u2564\u2562\3\2\2\2\u2565\u2568"+
+		"\3\2\2\2\u2566\u2564\3\2\2\2\u2566\u2567\3\2\2\2\u2567\u032b\3\2\2\2\u2568"+
+		"\u2566\3\2\2\2\u2569\u256b\5\u0382\u01c2\2\u256a\u256c\5\u034c\u01a7\2"+
+		"\u256b\u256a\3\2\2\2\u256b\u256c\3\2\2\2\u256c\u032d\3\2\2\2\u256d\u256e"+
+		"\7\u00eb\2\2\u256e\u256f\7\u0336\2\2\u256f\u2570\7\u0320\2\2\u2570\u2571"+
+		"\7\u0338\2\2\u2571\u2572\7\u0320\2\2\u2572\u2573\7\u0338\2\2\u2573\u2574"+
+		"\7\u0320\2\2\u2574\u2588\7\u0337\2\2\u2575\u2576\7\u00eb\2\2\u2576\u2577"+
+		"\7\u0336\2\2\u2577\u2578\7%\2\2\u2578\u2579\7\u0320\2\2\u2579\u2583\7"+
+		"\u0338\2\2\u257a\u257f\5\u0330\u0199\2\u257b\u257c\7\u0338\2\2\u257c\u257e"+
+		"\5\u0330\u0199\2\u257d\u257b\3\2\2\2\u257e\u2581\3\2\2\2\u257f\u257d\3"+
+		"\2\2\2\u257f\u2580\3\2\2\2\u2580\u2584\3\2\2\2\u2581\u257f\3\2\2\2\u2582"+
+		"\u2584\5\u03ba\u01de\2\u2583\u257a\3\2\2\2\u2583\u2582\3\2\2\2\u2584\u2585"+
+		"\3\2\2\2\u2585\u2586\7\u0337\2\2\u2586\u2588\3\2\2\2\u2587\u256d\3\2\2"+
+		"\2\u2587\u2575\3\2\2\2\u2588\u032f\3\2\2\2\u2589\u258a\5\u03ba\u01de\2"+
+		"\u258a\u258b\7\u0324\2\2\u258b\u258c\t\30\2\2\u258c\u0331\3\2\2\2\u258d"+
+		"\u2598\5\u02d8\u016d\2\u258e\u258f\7\u0336\2\2\u258f\u2590\5\u02d8\u016d"+
+		"\2\u2590\u2591\7\u0337\2\2\u2591\u2598\3\2\2\2\u2592\u2598\5\u0358\u01ad"+
+		"\2\u2593\u2594\7\u0336\2\2\u2594\u2595\5\u0358\u01ad\2\u2595\u2596\7\u0337"+
+		"\2\2\u2596\u2598\3\2\2\2\u2597\u258d\3\2\2\2\u2597\u258e\3\2\2\2\u2597"+
+		"\u2592\3\2\2\2\u2597\u2593\3\2\2\2\u2598\u0333\3\2\2\2\u2599\u261e\5\u035c"+
+		"\u01af\2\u259a\u261e\5\u035e\u01b0\2\u259b\u261e\5\u0360\u01b1\2\u259c"+
+		"\u259d\5\u039e\u01d0\2\u259d\u259f\7\u0336\2\2\u259e\u25a0\5\u035a\u01ae"+
+		"\2\u259f\u259e\3\2\2\2\u259f\u25a0\3\2\2\2\u25a0\u25a1\3\2\2\2\u25a1\u25a2"+
+		"\7\u0337\2\2\u25a2\u261e\3\2\2\2\u25a3\u25a4\7\u01a9\2\2\u25a4\u25a5\7"+
+		"\u0336\2\2\u25a5\u25a6\7\u033b\2\2\u25a6\u261e\7\u0337\2\2\u25a7\u25a8"+
+		"\7\u01b1\2\2\u25a8\u25a9\7\u0336\2\2\u25a9\u25aa\5\u02cc\u0167\2\u25aa"+
+		"\u25ab\7\20\2\2\u25ab\u25ac\5\u03b2\u01da\2\u25ac\u25ad\7\u0337\2\2\u25ad"+
+		"\u261e\3\2\2\2\u25ae\u25af\7G\2\2\u25af\u25b0\7\u0336\2\2\u25b0\u25b1"+
+		"\5\u03b2\u01da\2\u25b1\u25b2\7\u0338\2\2\u25b2\u25b5\5\u02cc\u0167\2\u25b3"+
+		"\u25b4\7\u0338\2\2\u25b4\u25b6\5\u02cc\u0167\2\u25b5\u25b3\3\2\2\2\u25b5"+
+		"\u25b6\3\2\2\2\u25b6\u25b7\3\2\2\2\u25b7\u25b8\7\u0337\2\2\u25b8\u261e"+
+		"\3\2\2\2\u25b9\u25ba\7\u01b6\2\2\u25ba\u25bb\7\u0336\2\2\u25bb\u25bc\7"+
+		"\u033b\2\2\u25bc\u261e\7\u0337\2\2\u25bd\u25be\7\66\2\2\u25be\u25bf\7"+
+		"\u0336\2\2\u25bf\u25c0\5\u035a\u01ae\2\u25c0\u25c1\7\u0337\2\2\u25c1\u261e"+
+		"\3\2\2\2\u25c2\u261e\7N\2\2\u25c3\u261e\7O\2\2\u25c4\u25c5\7\u01cd\2\2"+
+		"\u25c5\u25c6\7\u0336\2\2\u25c6\u25c7\7\u031d\2\2\u25c7\u25c8\7\u0338\2"+
+		"\2\u25c8\u25c9\5\u02cc\u0167\2\u25c9\u25ca\7\u0338\2\2\u25ca\u25cb\5\u02cc"+
+		"\u0167\2\u25cb\u25cc\7\u0337\2\2\u25cc\u261e\3\2\2\2\u25cd\u25ce\7\u01ce"+
+		"\2\2\u25ce\u25cf\7\u0336\2\2\u25cf\u25d0\7\u031d\2\2\u25d0\u25d1\7\u0338"+
+		"\2\2\u25d1\u25d2\5\u02cc\u0167\2\u25d2\u25d3\7\u0338\2\2\u25d3\u25d4\5"+
+		"\u02cc\u0167\2\u25d4\u25d5\7\u0337\2\2\u25d5\u261e\3\2\2\2\u25d6\u25d7"+
+		"\7\u01cf\2\2\u25d7\u25d8\7\u0336\2\2\u25d8\u25d9\7\u031d\2\2\u25d9\u25da"+
+		"\7\u0338\2\2\u25da\u25db\5\u02cc\u0167\2\u25db\u25dc\7\u0337\2\2\u25dc"+
+		"\u261e\3\2\2\2\u25dd\u25de\7\u01d0\2\2\u25de\u25df\7\u0336\2\2\u25df\u25e0"+
+		"\7\u031d\2\2\u25e0\u25e1\7\u0338\2\2\u25e1\u25e2\5\u02cc\u0167\2\u25e2"+
+		"\u25e3\7\u0337\2\2\u25e3\u261e\3\2\2\2\u25e4\u25e5\7\u020e\2\2\u25e5\u25e6"+
+		"\7\u0336\2\2\u25e6\u261e\7\u0337\2\2\u25e7\u25e8\7\u020f\2\2\u25e8\u25e9"+
+		"\7\u0336\2\2\u25e9\u261e\7\u0337\2\2\u25ea\u25eb\7\u0097\2\2\u25eb\u25ec"+
+		"\7\u0336\2\2\u25ec\u25ef\5\u03b2\u01da\2\u25ed\u25ee\7\u0338\2\2\u25ee"+
+		"\u25f0\7\u031c\2\2\u25ef\u25ed\3\2\2\2\u25ef\u25f0\3\2\2\2\u25f0\u25f3"+
+		"\3\2\2\2\u25f1\u25f2\7\u0338\2\2\u25f2\u25f4\7\u031c\2\2\u25f3\u25f1\3"+
+		"\2\2\2\u25f3\u25f4\3\2\2\2\u25f4\u25f5\3\2\2\2\u25f5\u25f6\7\u0337\2\2"+
+		"\u25f6\u261e\3\2\2\2\u25f7\u261e\7\u0254\2\2\u25f8\u25f9\7\u00e1\2\2\u25f9"+
+		"\u25fa\7\u0336\2\2\u25fa\u25fb\5\u02cc\u0167\2\u25fb\u25fc\7\u0338\2\2"+
+		"\u25fc\u25fd\5\u02cc\u0167\2\u25fd\u25fe\7\u0337\2\2\u25fe\u261e\3\2\2"+
+		"\2\u25ff\u2600\7\u02e3\2\2\u2600\u2601\7\u0336\2\2\u2601\u2602\5\u02cc"+
+		"\u0167\2\u2602\u2603\7\u0338\2\2\u2603\u2604\7\u031c\2\2\u2604\u2605\7"+
+		"\u0338\2\2\u2605\u2606\7\u031c\2\2\u2606\u2607\7\u0338\2\2\u2607\u2608"+
+		"\5\u02cc\u0167\2\u2608\u2609\7\u0337\2\2\u2609\u261e\3\2\2\2\u260a\u261e"+
+		"\7\u013d\2\2\u260b\u261e\7\u0156\2\2\u260c\u260d\7\u00aa\2\2\u260d\u260e"+
+		"\7\u0336\2\2\u260e\u260f\5\u02cc\u0167\2\u260f\u2610\7\u0338\2\2\u2610"+
+		"\u2611\5\u02cc\u0167\2\u2611\u2612\7\u0337\2\2\u2612\u261e\3\2\2\2\u2613"+
+		"\u261e\5\u0336\u019c\2\u2614\u2615\7\u009b\2\2\u2615\u2616\7\u0336\2\2"+
+		"\u2616\u2617\5\u02e2\u0172\2\u2617\u2618\7\u0338\2\2\u2618\u2619\5\u02cc"+
+		"\u0167\2\u2619\u261a\7\u0338\2\2\u261a\u261b\5\u02cc\u0167\2\u261b\u261c"+
+		"\7\u0337\2\2\u261c\u261e\3\2\2\2\u261d\u2599\3\2\2\2\u261d\u259a\3\2\2"+
+		"\2\u261d\u259b\3\2\2\2\u261d\u259c\3\2\2\2\u261d\u25a3\3\2\2\2\u261d\u25a7"+
+		"\3\2\2\2\u261d\u25ae\3\2\2\2\u261d\u25b9\3\2\2\2\u261d\u25bd\3\2\2\2\u261d"+
+		"\u25c2\3\2\2\2\u261d\u25c3\3\2\2\2\u261d\u25c4\3\2\2\2\u261d\u25cd\3\2"+
+		"\2\2\u261d\u25d6\3\2\2\2\u261d\u25dd\3\2\2\2\u261d\u25e4\3\2\2\2\u261d"+
+		"\u25e7\3\2\2\2\u261d\u25ea\3\2\2\2\u261d\u25f7\3\2\2\2\u261d\u25f8\3\2"+
+		"\2\2\u261d\u25ff\3\2\2\2\u261d\u260a\3\2\2\2\u261d\u260b\3\2\2\2\u261d"+
+		"\u260c\3\2\2\2\u261d\u2613\3\2\2\2\u261d\u2614\3\2\2\2\u261e\u0335\3\2"+
+		"\2\2\u261f\u2625\5\u0338\u019d\2\u2620\u2625\5\u033a\u019e\2\u2621\u2625"+
+		"\5\u033c\u019f\2\u2622\u2625\5\u033e\u01a0\2\u2623\u2625\5\u0340\u01a1"+
+		"\2\u2624\u261f\3\2\2\2\u2624\u2620\3\2\2\2\u2624\u2621\3\2\2\2\u2624\u2622"+
+		"\3\2\2\2\u2624\u2623\3\2\2\2\u2625\u0337\3\2\2\2\u2626\u262b\7\u031b\2"+
+		"\2\u2627\u262b\7\u031d\2\2\u2628\u262b\7s\2\2\u2629\u262b\5\u033a\u019e"+
+		"\2\u262a\u2626\3\2\2\2\u262a\u2627\3\2\2\2\u262a\u2628\3\2\2\2\u262a\u2629"+
+		"\3\2\2\2\u262b\u262c\3\2\2\2\u262c\u262d\7\u0331\2\2\u262d\u262e\7\u0305"+
+		"\2\2\u262e\u262f\7\u0336\2\2\u262f\u2630\7\u0320\2\2\u2630\u2631\7\u0338"+
+		"\2\2\u2631\u2632\7\u0320\2\2\u2632\u2652\7\u0337\2\2\u2633\u2638\7\u031b"+
+		"\2\2\u2634\u2638\7\u031d\2\2\u2635\u2638\7s\2\2\u2636\u2638\5\u033a\u019e"+
+		"\2\u2637\u2633\3\2\2\2\u2637\u2634\3\2\2\2\u2637\u2635\3\2\2\2\u2637\u2636"+
+		"\3\2\2\2\u2638\u2639\3\2\2\2\u2639\u263a\7\u0331\2\2\u263a\u263b\7\u02ba"+
+		"\2\2\u263b\u263c\7\u0331\2\2\u263c\u263d\7\u0305\2\2\u263d\u263e\7\u0336"+
+		"\2\2\u263e\u263f\7\u0320\2\2\u263f\u2640\7\u0338\2\2\u2640\u2641\7\u0320"+
+		"\2\2\u2641\u2652\7\u0337\2\2\u2642\u2647\7\u031b\2\2\u2643\u2647\7\u031d"+
+		"\2\2\u2644\u2647\7s\2\2\u2645\u2647\5\u033a\u019e\2\u2646\u2642\3\2\2"+
+		"\2\u2646\u2643\3\2\2\2\u2646\u2644\3\2\2\2\u2646\u2645\3\2\2\2\u2647\u2648"+
+		"\3\2\2\2\u2648\u2649\7\u0331\2\2\u2649\u264a\7\u00f3\2\2\u264a\u264b\7"+
+		"\u0331\2\2\u264b\u264c\7\u0305\2\2\u264c\u264d\7\u0336\2\2\u264d\u264e"+
+		"\7\u0320\2\2\u264e\u264f\7\u0338\2\2\u264f\u2650\7\u0320\2\2\u2650\u2652"+
+		"\7\u0337\2\2\u2651\u262a\3\2\2\2\u2651\u2637\3\2\2\2\u2651\u2646\3\2\2"+
+		"\2\u2652\u0339\3\2\2\2\u2653\u2657\7\u031b\2\2\u2654\u2657\7\u031d\2\2"+
+		"\u2655\u2657\5\u0380\u01c1\2\u2656\u2653\3\2\2\2\u2656\u2654\3\2\2\2\u2656"+
+		"\u2655\3\2\2\2\u2657\u2658\3\2\2\2\u2658\u2659\7\u0331\2\2\u2659\u265a"+
+		"\7\u0294\2\2\u265a\u265b\7\u0336\2\2\u265b\u265c\7\u0320\2\2\u265c\u266a"+
+		"\7\u0337\2\2\u265d\u2661\7\u031b\2\2\u265e\u2661\7\u031d\2\2\u265f\u2661"+
+		"\5\u0380\u01c1\2\u2660\u265d\3\2\2\2\u2660\u265e\3\2\2\2\u2660\u265f\3"+
+		"\2\2\2\u2661\u2662\3\2\2\2\u2662\u2663\7\u0331\2\2\u2663\u2664\7\u02ba"+
+		"\2\2\u2664\u2665\7\u0331\2\2\u2665\u2666\7\u0294\2\2\u2666\u2667\7\u0336"+
+		"\2\2\u2667\u2668\7\u0320\2\2\u2668\u266a\7\u0337\2\2\u2669\u2656\3\2\2"+
+		"\2\u2669\u2660\3\2\2\2\u266a\u033b\3\2\2\2\u266b\u266c\t}\2\2\u266c\u266d"+
+		"\7\u0331\2\2\u266d\u266e\7\u01f4\2\2\u266e\u266f\7\u0336\2\2\u266f\u2670"+
+		"\7\u0320\2\2\u2670\u2671\7\u0337\2\2\u2671\u033d\3\2\2\2\u2672\u2673\t"+
+		"}\2\2\u2673\u2674\7\u0331\2\2\u2674\u2675\7\u025c\2\2\u2675\u2676\7\u0336"+
+		"\2\2\u2676\u2677\7\u0320\2\2\u2677\u2678\7\u0337\2\2\u2678\u033f\3\2\2"+
+		"\2\u2679\u267a\t}\2\2\u267a\u267b\7\u0331\2\2\u267b\u267c\7\u0269\2\2"+
+		"\u267c\u267d\7\u0336\2\2\u267d\u267e\7\u0320\2\2\u267e\u267f\7\u0337\2"+
+		"\2\u267f\u0341\3\2\2\2\u2680\u2681\7\u0179\2\2\u2681\u2682\5\u02cc\u0167"+
+		"\2\u2682\u2683\7\u015d\2\2\u2683\u2684\5\u02cc\u0167\2\u2684\u0343\3\2"+
+		"\2\2\u2685\u2686\7\u0179\2\2\u2686\u2687\5\u02e2\u0172\2\u2687\u2688\7"+
+		"\u015d\2\2\u2688\u2689\5\u02cc\u0167\2\u2689\u0345\3\2\2\2\u268a\u268c"+
+		"\7\20\2\2\u268b\u268a\3\2\2\2\u268b\u268c\3\2\2\2\u268c\u268d\3\2\2\2"+
+		"\u268d\u268e\5\u0356\u01ac\2\u268e\u0347\3\2\2\2\u268f\u2691\7\20\2\2"+
+		"\u2690\u268f\3\2\2\2\u2690\u2691\3\2\2\2\u2691\u2692\3\2\2\2\u2692\u2693"+
+		"\5\u034a\u01a6\2\u2693\u0349\3\2\2\2\u2694\u2696\5\u03ba\u01de\2\u2695"+
+		"\u2697\5\u034c\u01a7\2\u2696\u2695\3\2\2\2\u2696\u2697\3\2\2\2\u2697\u034b"+
+		"\3\2\2\2\u2698\u269a\7\u017d\2\2\u2699\u2698\3\2\2\2\u2699\u269a\3\2\2"+
+		"\2\u269a\u269b\3\2\2\2\u269b\u269c\7\u0336\2\2\u269c\u26a3\5\u0350\u01a9"+
+		"\2\u269d\u269f\7\u0338\2\2\u269e\u269d\3\2\2\2\u269e\u269f\3\2\2\2\u269f"+
+		"\u26a0\3\2\2\2\u26a0\u26a2\5\u0350\u01a9\2\u26a1\u269e\3\2\2\2\u26a2\u26a5"+
+		"\3\2\2\2\u26a3\u26a1\3\2\2\2\u26a3\u26a4\3\2\2\2\u26a4\u26a6\3\2\2\2\u26a5"+
+		"\u26a3\3\2\2\2\u26a6\u26a7\7\u0337\2\2\u26a7\u034d\3\2\2\2\u26a8\u26a9"+
+		"\7\u017d\2\2\u26a9\u26aa\7\u0336\2\2\u26aa\u26b1\5\u0350\u01a9\2\u26ab"+
+		"\u26ad\7\u0338\2\2\u26ac\u26ab\3\2\2\2\u26ac\u26ad\3\2\2\2\u26ad\u26ae"+
+		"\3\2\2\2\u26ae\u26b0\5\u0350\u01a9\2\u26af\u26ac\3\2\2\2\u26b0\u26b3\3"+
+		"\2\2\2\u26b1\u26af\3\2\2\2\u26b1\u26b2\3\2\2\2\u26b2\u26b4\3\2\2\2\u26b3"+
+		"\u26b1\3\2\2\2\u26b4\u26b5\7\u0337\2\2\u26b5\u034f\3\2\2\2\u26b6\u26b8"+
+		"\7\u026a\2\2\u26b7\u26b6\3\2\2\2\u26b7\u26b8\3\2\2\2\u26b8\u26e9\3\2\2"+
+		"\2\u26b9\u26cd\7\u009f\2\2\u26ba\u26bb\7\u0336\2\2\u26bb\u26c0\5\u0352"+
+		"\u01aa\2\u26bc\u26bd\7\u0338\2\2\u26bd\u26bf\5\u0352\u01aa\2\u26be\u26bc"+
+		"\3\2\2\2\u26bf\u26c2\3\2\2\2\u26c0\u26be\3\2\2\2\u26c0\u26c1\3\2\2\2\u26c1"+
+		"\u26c3\3\2\2\2\u26c2\u26c0\3\2\2\2\u26c3\u26c4\7\u0337\2\2\u26c4\u26ce"+
+		"\3\2\2\2\u26c5\u26ca\5\u0352\u01aa\2\u26c6\u26c7\7\u0338\2\2\u26c7\u26c9"+
+		"\5\u0352\u01aa\2\u26c8\u26c6\3\2\2\2\u26c9\u26cc\3\2\2\2\u26ca\u26c8\3"+
+		"\2\2\2\u26ca\u26cb\3\2\2\2\u26cb\u26ce\3\2\2\2\u26cc\u26ca\3\2\2\2\u26cd"+
 		"\u26ba\3\2\2\2\u26cd\u26c5\3\2\2\2\u26ce\u26ea\3\2\2\2\u26cf\u26d0\7\u009f"+
 		"\2\2\u26d0\u26d1\7\u0324\2\2\u26d1\u26ea\5\u0352\u01aa\2\u26d2\u26e1\7"+
 		"\u0087\2\2\u26d3\u26d4\7\u0336\2\2\u26d4\u26d5\5\u0352\u01aa\2\u26d5\u26d6"+
@@ -98376,7 +97944,7 @@ public class TSqlParser extends Parser {
 		"\u2383\u2387\u238c\u2393\u2396\u239a\u239f\u23a3\u23ac\u23b3\u23bc\u23c8"+
 		"\u23ca\u23d4\u23d7\u23dc\u23e5\u23e7\u23e9\u23ee\u23f6\u23fb\u2403\u2408"+
 		"\u240e\u2418\u241a\u241e\u2422\u2424\u242b\u2436\u2458\u2468\u246f\u2471"+
-		"\u2478\u2481\u248b\u2490\u2497\u249a\u24a1\u24a8\u24ab\u24ad\u24b5\u24b7"+
+		"\u2478\u2481\u2489\u2490\u2497\u249a\u24a1\u24a8\u24ab\u24ad\u24b5\u24b7"+
 		"\u24bd\u24c4\u24cc\u24d2\u24d7\u24db\u24df\u24e4\u24e6\u24ed\u24f1\u24f8"+
 		"\u24fa\u2501\u2503\u250c\u2514\u251b\u2521\u252c\u2530\u2532\u2535\u254d"+
 		"\u2566\u256b\u257f\u2583\u2587\u2597\u259f\u25b5\u25ef\u25f3\u261d\u2624"+

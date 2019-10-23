@@ -89,6 +89,18 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAlter_foreign_data_wrapper_stmt(PostgreSQLParser.Alter_foreign_data_wrapper_stmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#alter_foreign_table_action}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlter_foreign_table_action(PostgreSQLParser.Alter_foreign_table_actionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#alter_foreign_table_action_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlter_foreign_table_action_list(PostgreSQLParser.Alter_foreign_table_action_listContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#alter_foreign_table_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -161,6 +173,12 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAlter_publication_stmt(PostgreSQLParser.Alter_publication_stmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#alter_role_options}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlter_role_options(PostgreSQLParser.Alter_role_optionsContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#alter_role_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -184,6 +202,12 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAlter_sequence_stmt(PostgreSQLParser.Alter_sequence_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#alter_server_options_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlter_server_options_list(PostgreSQLParser.Alter_server_options_listContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#alter_server_stmt}.
 	 * @param ctx the parse tree
@@ -1025,6 +1049,24 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelect_stmt(PostgreSQLParser.Select_stmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#select_into_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelect_into_stmt(PostgreSQLParser.Select_into_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#with_clause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWith_clause(PostgreSQLParser.With_clauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#with_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWith_expr(PostgreSQLParser.With_exprContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#set_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -1048,6 +1090,18 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSet_session_authorization_stmt(PostgreSQLParser.Set_session_authorization_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#transaction_mode}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTransaction_mode(PostgreSQLParser.Transaction_modeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#transaction_mode_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTransaction_mode_list(PostgreSQLParser.Transaction_mode_listContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#set_transaction_stmt}.
 	 * @param ctx the parse tree
@@ -1078,6 +1132,18 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitUpdate_stmt(PostgreSQLParser.Update_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#vacuum_opt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVacuum_opt(PostgreSQLParser.Vacuum_optContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#vacuum_opt_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVacuum_opt_list(PostgreSQLParser.Vacuum_opt_listContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#vacuum_stmt}.
 	 * @param ctx the parse tree
@@ -1132,6 +1198,18 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitHaving_clause(PostgreSQLParser.Having_clauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#column_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColumn_list(PostgreSQLParser.Column_listContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#explain_parameter}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExplain_parameter(PostgreSQLParser.Explain_parameterContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#frame}.
 	 * @param ctx the parse tree
@@ -1211,6 +1289,24 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFor_clause(PostgreSQLParser.For_clauseContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#updater_clause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUpdater_clause(PostgreSQLParser.Updater_clauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#updater_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUpdater_expr(PostgreSQLParser.Updater_exprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#returning_clause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturning_clause(PostgreSQLParser.Returning_clauseContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -1222,6 +1318,12 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBool_expr(PostgreSQLParser.Bool_exprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#case_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCase_expr(PostgreSQLParser.Case_exprContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#expr_list}.
 	 * @param ctx the parse tree
@@ -1259,17 +1361,17 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunc_sig_list(PostgreSQLParser.Func_sig_listContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PostgreSQLParser#type_literal}.
+	 * Visit a parse tree produced by {@link PostgreSQLParser#type_name}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitType_literal(PostgreSQLParser.Type_literalContext ctx);
+	T visitType_name(PostgreSQLParser.Type_nameContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PostgreSQLParser#type_literal_list}.
+	 * Visit a parse tree produced by {@link PostgreSQLParser#timezone}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitType_literal_list(PostgreSQLParser.Type_literal_listContext ctx);
+	T visitTimezone(PostgreSQLParser.TimezoneContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#oper}.
 	 * @param ctx the parse tree
@@ -1301,23 +1403,35 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIdentifier_list(PostgreSQLParser.Identifier_listContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#option_expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOption_expr(PostgreSQLParser.Option_exprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#option_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOption_list(PostgreSQLParser.Option_listContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#table_name_}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitTable_name_(PostgreSQLParser.Table_name_Context ctx);
 	/**
-	 * Visit a parse tree produced by {@link PostgreSQLParser#type}.
+	 * Visit a parse tree produced by {@link PostgreSQLParser#data_type}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitType(PostgreSQLParser.TypeContext ctx);
+	T visitData_type(PostgreSQLParser.Data_typeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PostgreSQLParser#type_list}.
+	 * Visit a parse tree produced by {@link PostgreSQLParser#data_type_list}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitType_list(PostgreSQLParser.Type_listContext ctx);
+	T visitData_type_list(PostgreSQLParser.Data_type_listContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#index_method}.
 	 * @param ctx the parse tree
@@ -1379,6 +1493,36 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAggregate_signature(PostgreSQLParser.Aggregate_signatureContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#column_constraint}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColumn_constraint(PostgreSQLParser.Column_constraintContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#column_constraints}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColumn_constraints(PostgreSQLParser.Column_constraintsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#index_parameters}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIndex_parameters(PostgreSQLParser.Index_parametersContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#exclude_element}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExclude_element(PostgreSQLParser.Exclude_elementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#table_constraint}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTable_constraint(PostgreSQLParser.Table_constraintContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#role_name}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -1390,6 +1534,12 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitRole_name_list(PostgreSQLParser.Role_name_listContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#param_value}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParam_value(PostgreSQLParser.Param_valueContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#non_reserved_keyword}.
 	 * @param ctx the parse tree
