@@ -64,7 +64,7 @@ public class PluginRulesITCase {
 			PrettyPrinter.print(ctx.root, 0, ctx.stream);
 		}
 
-		Assert.assertTrue("Found issues on : " + text + " for rule: " + rule.getKey(),
+		Assert.assertTrue("Found issues on : " + text + " for rule: " + rule.getKey()+" "+rule.getName()+" expected: "+issueExists,
 				!issues.isEmpty() == issueExists);
 
 	}

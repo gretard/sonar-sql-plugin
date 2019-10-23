@@ -32,9 +32,9 @@ public class CyclomaticComplexityFillerTest {
 	public static Iterable<Object[]> data() throws Throwable {
 
 		List<Object[]> data = new ArrayList<>();
-		data.add(new Object[] { Dialects.MYSQL });
-		data.add(new Object[] { Dialects.PSSQL });
-		data.add(new Object[] { Dialects.TSQL });
+		data.add(new Object[] { Dialects.MYSQL, 17 });
+		data.add(new Object[] { Dialects.PSSQL, 7 });
+		data.add(new Object[] { Dialects.TSQL, 9 });
 		return data;
 	}
 
@@ -46,8 +46,11 @@ public class CyclomaticComplexityFillerTest {
 
 	private Dialects dialect;
 
-	public CyclomaticComplexityFillerTest(Dialects dialect) {
+	private int expected;
+
+	public CyclomaticComplexityFillerTest(Dialects dialect, int expected) {
 		this.dialect = dialect;
+		this.expected = expected;
 	}
 
 	@Test
@@ -76,8 +79,7 @@ public class CyclomaticComplexityFillerTest {
 		filler.fill(ti, ctxTester, antlrContext);
 
 		int cg = ctxTester.measure("test:test.sql", CoreMetrics.COMPLEXITY).value();
-		System.out.println(dialect.name() + " " + cg);
-		Assert.assertTrue(cg > 0);
+		Assert.assertEquals("Complexity differs", expected, cg);
 
 	}
 

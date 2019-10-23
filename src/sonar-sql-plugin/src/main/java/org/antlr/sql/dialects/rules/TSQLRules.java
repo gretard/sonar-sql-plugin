@@ -81,19 +81,28 @@ public enum TSQLRules {
 
 		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 
-		
 		RuleImplementation child = new RuleImplementation();
 
 		child.getNames().getTextItem().add(AsteriskContext.class.getSimpleName());
 		child.getTextToFind().getTextItem().add("*");
 
-		child.setTextCheckType(TextCheckType.STRICT);
-		child.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+		child.setTextCheckType(TextCheckType.CONTAINS);
+		child.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
 		child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+
+		RuleImplementation child2 = new RuleImplementation();
+
+		child2.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
+		child2.getTextToFind().getTextItem().add("*");
+
+		child2.setTextCheckType(TextCheckType.STRICT);
+		child2.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+		child2.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+		child.getChildrenRules().getRuleImplementation().add(child2);
 
 		impl.getChildrenRules().getRuleImplementation().add(child);
 
-		//AsteriskContext
+		// AsteriskContext
 		return rule;
 	}
 

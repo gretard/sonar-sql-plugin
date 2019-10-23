@@ -32,9 +32,9 @@ public class CognitiveComplexityFillerTest {
 	public static Iterable<Object[]> data() throws Throwable {
 
 		List<Object[]> data = new ArrayList<>();
-		data.add(new Object[] { Dialects.MYSQL });
-		data.add(new Object[] { Dialects.PSSQL });
-		data.add(new Object[] { Dialects.TSQL });
+		data.add(new Object[] { Dialects.MYSQL, 22 });
+		data.add(new Object[] { Dialects.PSSQL, 15 });
+		data.add(new Object[] { Dialects.TSQL, 18 });
 		return data;
 	}
 
@@ -46,8 +46,11 @@ public class CognitiveComplexityFillerTest {
 
 	private Dialects dialect;
 
-	public CognitiveComplexityFillerTest(Dialects dialect) {
+	private int expected;
+
+	public CognitiveComplexityFillerTest(Dialects dialect, int expected) {
 		this.dialect = dialect;
+		this.expected = expected;
 	}
 
 	@Test
@@ -76,8 +79,7 @@ public class CognitiveComplexityFillerTest {
 		filler.fill(ti, ctxTester, antlrContext);
 
 		int cg = ctxTester.measure("test:test.sql", CoreMetrics.COGNITIVE_COMPLEXITY).value();
-		System.out.println(dialect.name() + " " + cg);
-		Assert.assertTrue(cg > 0);
+		Assert.assertEquals("Complexity differs", expected, cg);
 
 	}
 
