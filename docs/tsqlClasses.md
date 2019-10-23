@@ -1,5 +1,5 @@
 # TSQL
-T-SQL supported classes:
+Supported classes:
 - AGGREGATE_WINDOWED_FUNCContext
 - ANALYTIC_WINDOWED_FUNCContext
 - Aggregate_windowed_functionContext
@@ -327,7 +327,9 @@ T-SQL supported classes:
 - Func_body_returns_scalarContext
 - Func_body_returns_selectContext
 - Func_body_returns_tableContext
-- Func_proc_nameContext
+- Func_proc_name_database_schemaContext
+- Func_proc_name_schemaContext
+- Func_proc_name_server_database_schemaContext
 - Function_callContext
 - Function_optionContext
 - GETDATEContext
@@ -341,6 +343,7 @@ T-SQL supported classes:
 - Hadr_optionsContext
 - HostContext
 - IDENTITYContext
+- IFFContext
 - ISNULLContext
 - IdContext
 - If_statementContext

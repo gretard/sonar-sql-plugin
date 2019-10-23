@@ -1,5 +1,5 @@
 # MySQL
-MySQL supported classes:
+Supported classes:
 - AdministrationStatementContext
 - AggregateFunctionCallContext
 - AggregateWindowedFunctionContext
@@ -12,7 +12,7 @@ MySQL supported classes:
 - AlterByAddPrimaryKeyContext
 - AlterByAddSpecialIndexContext
 - AlterByAddUniqueKeyContext
-- AlterByAnalyzePartitiionContext
+- AlterByAnalyzePartitionContext
 - AlterByChangeColumnContext
 - AlterByChangeDefaultContext
 - AlterByCheckPartitionContext
@@ -40,6 +40,7 @@ MySQL supported classes:
 - AlterByRemovePartitioningContext
 - AlterByRenameColumnContext
 - AlterByRenameContext
+- AlterByRenameIndexContext
 - AlterByReorganizePartitionContext
 - AlterByRepairPartitionContext
 - AlterBySetAlgorithmContext
@@ -96,9 +97,11 @@ MySQL supported classes:
 - CheckTableOptionContext
 - ChecksumTableContext
 - CloseCursorContext
+- CollateColumnConstraintContext
 - CollateExpressionAtomContext
 - CollationNameContext
 - CollectionDataTypeContext
+- CollectionOptionsContext
 - ColumnConstraintContext
 - ColumnCreateTableContext
 - ColumnDeclarationContext
@@ -150,6 +153,7 @@ MySQL supported classes:
 - DefaultAuthConnectionOptionContext
 - DefaultColumnConstraintContext
 - DefaultValueContext
+- DefiniteFullTablePrivLevel2Context
 - DefiniteFullTablePrivLevelContext
 - DefiniteSchemaPrivLevelContext
 - DefiniteTablePrivLevelContext
@@ -268,6 +272,7 @@ MySQL supported classes:
 - LevelWeightRangeContext
 - LevelsInWeightStringContext
 - LikePredicateContext
+- LimitClauseAtomContext
 - LimitClauseContext
 - LoadDataStatementContext
 - LoadIndexIntoCacheContext
@@ -293,6 +298,8 @@ MySQL supported classes:
 - MultipleUpdateStatementContext
 - MysqlVariableContext
 - MysqlVariableExpressionAtomContext
+- NationalStringDataTypeContext
+- NationalVaryingStringDataTypeContext
 - NaturalJoinContext
 - NestedExpressionAtomContext
 - NestedRowExpressionAtomContext
@@ -410,6 +417,7 @@ MySQL supported classes:
 - SetAutocommitStatementContext
 - SetCharsetContext
 - SetNamesContext
+- SetNewValueInsideTriggerContext
 - SetPasswordContext
 - SetPasswordStatementContext
 - SetStatementContext
@@ -570,4 +578,3 @@ MySQL supported classes:
 - XaStartTransactionContext
 - XidContext
 - XuidStringIdContext
-
