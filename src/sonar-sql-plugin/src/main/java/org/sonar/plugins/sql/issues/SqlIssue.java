@@ -97,6 +97,10 @@ public class SqlIssue {
 	public String description;
 	public String name;
 	public String ruleType = "CODE_SMELL";
+	public long debtRemediationEffort = 0;
+	public long getDebtRemediationEffort() {
+		return debtRemediationEffort;
+	}
 
 	public String getRuleType() {
 		if (ruleType == null) {

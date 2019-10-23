@@ -123,6 +123,9 @@ public class BaseSensor {
 					if (issue.isExternal) {
 						final NewExternalIssue newExternalIssue = context.newExternalIssue().ruleId(issue.getKey())
 								.engineId(issue.getRepo()).type(RuleType.valueOf(issue.getRuleType()));
+						if (issue.getDebtRemediationEffort() > 0) {
+							newExternalIssue.remediationEffortMinutes(issue.getDebtRemediationEffort());
+						}
 						final NewIssueLocation location = newExternalIssue.newLocation().on(main)
 								.message(issue.getMessage());
 						if (issue.getLine() > 0) {

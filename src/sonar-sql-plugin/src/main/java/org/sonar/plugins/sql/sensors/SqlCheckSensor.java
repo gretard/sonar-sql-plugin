@@ -24,8 +24,6 @@ public class SqlCheckSensor extends BaseSensor implements Sensor {
 
 	private static final Logger LOGGER = Loggers.get(SqlCheckSensor.class);
 
-	private final String repositoryName = Constants.SQL_SQLCHECK_ENGINEID;
-
 	private final SQLCheckIssuesReader reader = new SQLCheckIssuesReader();
 
 	private final TempFolder tempFolder;
