@@ -2,6 +2,7 @@ package org.antlr.sql.sca;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.antlr.sql.models.AntlrContext;
 import org.antlr.sql.sca.ViolationsAnalyzer.FoundViolation;
@@ -38,8 +39,9 @@ public class IssuesProvider {
 
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug(() -> "MATCH checked: [" + m.node.getText() + "] " + m.node.getLine() + " "
-						+ m.node.getClassName() + ". Issues found: " + violations.violatingNodes + " "
-						+ violations.failuresFound);
+						+ m.node.getClassName() + ". Issues found: " + violations.violatingNodes.stream()
+								.map(x -> x.getText() + "@" + x.getClassName()).collect(Collectors.toList())
+						+ " " + violations.failuresFound);
 			}
 
 			if (violations.failuresFound) {
