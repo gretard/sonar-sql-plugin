@@ -8,11 +8,12 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
-import org.sonar.api.internal.apachecommons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 public class ParseTreeNode implements IParsedNode {
 
 	private ParseTree tree;
+
 	public int getDistance() {
 		return distance;
 	}
@@ -170,9 +171,10 @@ public class ParseTreeNode implements IParsedNode {
 			if (parent1 instanceof org.antlr.sql.dialects.tsql.TSqlParser.Cfl_statementContext) {
 				return new ParseTreeNode(parent1, distance, 1, -1);
 			}
-			/*if (parent1 instanceof org.antlr.sql.dialects.mysql.MySqlParser.) {
-				return new ParseTreeNode(parent1, distance, 1, -1);
-			}*/
+			/*
+			 * if (parent1 instanceof org.antlr.sql.dialects.mysql.MySqlParser.) { return
+			 * new ParseTreeNode(parent1, distance, 1, -1); }
+			 */
 			parent1 = parent1.getParent();
 		}
 		return null;
