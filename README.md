@@ -12,8 +12,8 @@ You can support this [project and others](https://github.com/gretard) via [Paypa
 ## Description ##
 Currently plug-in supports:
 - Several SQL dialects by using ANTLR4 grammars:
-  - [TSQL](https://github.com/antlr/grammars-v4/tree/master/tsql)
-  - [MySQL](https://github.com/antlr/grammars-v4/tree/master/mysql)
+  - [TSQL](https://github.com/antlr/grammars-v4/tree/master/sql/tsql)
+  - [MySQL](https://github.com/antlr/grammars-v4/tree/master/sql/mysql/Positive-Technologies)
   - [PostgreSQL](https://github.com/tshprecher/antlr_psql)
 - Reporting of issues found by:
   - [SQLCodeGuard](https://www.red-gate.com/products/sql-development/sql-code-guard/index) 
