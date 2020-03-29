@@ -1,4 +1,4 @@
-// Generated from grammars-v4\mysql\Positive-Technologies\MySqlParser.g4 by ANTLR 4.7.2
+// Generated from grammars-v4\sql\mysql\Positive-Technologies\MySqlParser.g4 by ANTLR 4.7.2
 package org.antlr.sql.dialects.mysql;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -2756,6 +2756,36 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitUseStatement(MySqlParser.UseStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#signalStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSignalStatement(MySqlParser.SignalStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#resignalStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitResignalStatement(MySqlParser.ResignalStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#signalConditionInformation}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSignalConditionInformation(MySqlParser.SignalConditionInformationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#diagnosticsStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiagnosticsStatement(MySqlParser.DiagnosticsStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#diagnosticsConditionInformationName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiagnosticsConditionInformationName(MySqlParser.DiagnosticsConditionInformationNameContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code describeStatements}
 	 * labeled alternative in {@link MySqlParser#describeObjectClause}.

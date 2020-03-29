@@ -1,4 +1,4 @@
-// Generated from grammars-v4\mysql\Positive-Technologies\MySqlParser.g4 by ANTLR 4.7.2
+// Generated from grammars-v4\sql\mysql\Positive-Technologies\MySqlParser.g4 by ANTLR 4.7.2
 package org.antlr.sql.dialects.mysql;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -4655,6 +4655,56 @@ public interface MySqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitUseStatement(MySqlParser.UseStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#signalStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterSignalStatement(MySqlParser.SignalStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#signalStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitSignalStatement(MySqlParser.SignalStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#resignalStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterResignalStatement(MySqlParser.ResignalStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#resignalStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitResignalStatement(MySqlParser.ResignalStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#signalConditionInformation}.
+	 * @param ctx the parse tree
+	 */
+	void enterSignalConditionInformation(MySqlParser.SignalConditionInformationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#signalConditionInformation}.
+	 * @param ctx the parse tree
+	 */
+	void exitSignalConditionInformation(MySqlParser.SignalConditionInformationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#diagnosticsStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterDiagnosticsStatement(MySqlParser.DiagnosticsStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#diagnosticsStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitDiagnosticsStatement(MySqlParser.DiagnosticsStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#diagnosticsConditionInformationName}.
+	 * @param ctx the parse tree
+	 */
+	void enterDiagnosticsConditionInformationName(MySqlParser.DiagnosticsConditionInformationNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#diagnosticsConditionInformationName}.
+	 * @param ctx the parse tree
+	 */
+	void exitDiagnosticsConditionInformationName(MySqlParser.DiagnosticsConditionInformationNameContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code describeStatements}
 	 * labeled alternative in {@link MySqlParser#describeObjectClause}.
