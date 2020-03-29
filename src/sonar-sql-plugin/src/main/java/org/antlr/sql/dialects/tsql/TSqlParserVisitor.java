@@ -1,4 +1,4 @@
-// Generated from grammars-v4\tsql\TSqlParser.g4 by ANTLR 4.7.2
+// Generated from grammars-v4\sql\tsql\TSqlParser.g4 by ANTLR 4.7.2
 package org.antlr.sql.dialects.tsql;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -1877,6 +1877,30 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBackup_service_master_key(TSqlParser.Backup_service_master_keyContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TSqlParser#kill_statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitKill_statement(TSqlParser.Kill_statementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#kill_process}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitKill_process(TSqlParser.Kill_processContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#kill_query_notification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitKill_query_notification(TSqlParser.Kill_query_notificationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#kill_stats_job}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitKill_stats_job(TSqlParser.Kill_stats_jobContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TSqlParser#execute_statement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -2014,6 +2038,18 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSetuser_statement(TSqlParser.Setuser_statementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#reconfigure_statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReconfigure_statement(TSqlParser.Reconfigure_statementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#shutdown_statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitShutdown_statement(TSqlParser.Shutdown_statementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TSqlParser#dbcc_clause}.
 	 * @param ctx the parse tree
@@ -2465,34 +2501,6 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDerived_table(TSqlParser.Derived_tableContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code RANKING_WINDOWED_FUNC}
-	 * labeled alternative in {@link TSqlParser#function_call}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRANKING_WINDOWED_FUNC(TSqlParser.RANKING_WINDOWED_FUNCContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code AGGREGATE_WINDOWED_FUNC}
-	 * labeled alternative in {@link TSqlParser#function_call}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAGGREGATE_WINDOWED_FUNC(TSqlParser.AGGREGATE_WINDOWED_FUNCContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ANALYTIC_WINDOWED_FUNC}
-	 * labeled alternative in {@link TSqlParser#function_call}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitANALYTIC_WINDOWED_FUNC(TSqlParser.ANALYTIC_WINDOWED_FUNCContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code SCALAR_FUNCTION}
-	 * labeled alternative in {@link TSqlParser#function_call}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSCALAR_FUNCTION(TSqlParser.SCALAR_FUNCTIONContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code BINARY_CHECKSUM}
 	 * labeled alternative in {@link TSqlParser#function_call}.
 	 * @param ctx the parse tree
@@ -2646,6 +2654,41 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIFF(TSqlParser.IFFContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RANKING_WINDOWED_FUNC}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRANKING_WINDOWED_FUNC(TSqlParser.RANKING_WINDOWED_FUNCContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code AGGREGATE_WINDOWED_FUNC}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAGGREGATE_WINDOWED_FUNC(TSqlParser.AGGREGATE_WINDOWED_FUNCContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ANALYTIC_WINDOWED_FUNC}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitANALYTIC_WINDOWED_FUNC(TSqlParser.ANALYTIC_WINDOWED_FUNCContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SCALAR_FUNCTION}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSCALAR_FUNCTION(TSqlParser.SCALAR_FUNCTIONContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code STRINGAGG}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTRINGAGG(TSqlParser.STRINGAGGContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TSqlParser#xml_data_type_methods}.
 	 * @param ctx the parse tree

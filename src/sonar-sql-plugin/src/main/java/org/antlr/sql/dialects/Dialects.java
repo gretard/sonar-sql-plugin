@@ -7,34 +7,34 @@ import org.antlr.sql.models.AntlrContext;
 import org.sonar.plugins.sql.models.rules.SqlRules;
 
 public enum Dialects {
-	TSQL(new TSQLDialect()), PSSQL(new PsSqlDialect()), MYSQL(new MySqlDialect());
+    TSQL(new TSQLDialect()), PSSQL(new PsSqlDialect()), MYSQL(new MySqlDialect()), VSQL(new VSQLDialect());
 
-	public AntlrContext parse(String text) {
-		return parse(text, Collections.emptyList());
-	}
+    public AntlrContext parse(String text) {
+        return parse(text, Collections.emptyList());
+    }
 
-	public AntlrContext parse(String text, List<SqlRules> rules) {
-		AntlrContext ctx = this.dialect.parse(text);
+    public AntlrContext parse(String text, List<SqlRules> rules) {
+        AntlrContext ctx = this.dialect.parse(text);
 
-		SQLDialectRules.INSTANCE.getRules().forEach(r -> {
-			if (r.getDialect() == null || this.name().equalsIgnoreCase(r.getDialect())) {
-				ctx.rules.add(r);
-			}
+        SQLDialectRules.INSTANCE.getRules().forEach(r -> {
+            if (r.getDialect() == null || this.name().equalsIgnoreCase(r.getDialect())) {
+                ctx.rules.add(r);
+            }
 
-		});
-		
-		rules.forEach(r -> {
-			if (r.getDialect() == null || this.name().equalsIgnoreCase(r.getDialect())) {
-				ctx.rules.add(r);
-			}
-		});
+        });
 
-		return ctx;
-	}
+        rules.forEach(r -> {
+            if (r.getDialect() == null || this.name().equalsIgnoreCase(r.getDialect())) {
+                ctx.rules.add(r);
+            }
+        });
 
-	private final IDialect dialect;
+        return ctx;
+    }
 
-	private Dialects(IDialect dialect) {
-		this.dialect = dialect;
-	}
+    private final IDialect dialect;
+
+    private Dialects(IDialect dialect) {
+        this.dialect = dialect;
+    }
 }

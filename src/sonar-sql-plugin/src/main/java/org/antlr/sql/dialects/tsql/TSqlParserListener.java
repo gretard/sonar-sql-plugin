@@ -1,4 +1,4 @@
-// Generated from grammars-v4\tsql\TSqlParser.g4 by ANTLR 4.7.2
+// Generated from grammars-v4\sql\tsql\TSqlParser.g4 by ANTLR 4.7.2
 package org.antlr.sql.dialects.tsql;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -3118,6 +3118,46 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitBackup_service_master_key(TSqlParser.Backup_service_master_keyContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TSqlParser#kill_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterKill_statement(TSqlParser.Kill_statementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#kill_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitKill_statement(TSqlParser.Kill_statementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#kill_process}.
+	 * @param ctx the parse tree
+	 */
+	void enterKill_process(TSqlParser.Kill_processContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#kill_process}.
+	 * @param ctx the parse tree
+	 */
+	void exitKill_process(TSqlParser.Kill_processContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#kill_query_notification}.
+	 * @param ctx the parse tree
+	 */
+	void enterKill_query_notification(TSqlParser.Kill_query_notificationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#kill_query_notification}.
+	 * @param ctx the parse tree
+	 */
+	void exitKill_query_notification(TSqlParser.Kill_query_notificationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#kill_stats_job}.
+	 * @param ctx the parse tree
+	 */
+	void enterKill_stats_job(TSqlParser.Kill_stats_jobContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#kill_stats_job}.
+	 * @param ctx the parse tree
+	 */
+	void exitKill_stats_job(TSqlParser.Kill_stats_jobContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TSqlParser#execute_statement}.
 	 * @param ctx the parse tree
 	 */
@@ -3347,6 +3387,26 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSetuser_statement(TSqlParser.Setuser_statementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#reconfigure_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterReconfigure_statement(TSqlParser.Reconfigure_statementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#reconfigure_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitReconfigure_statement(TSqlParser.Reconfigure_statementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#shutdown_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterShutdown_statement(TSqlParser.Shutdown_statementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#shutdown_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitShutdown_statement(TSqlParser.Shutdown_statementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TSqlParser#dbcc_clause}.
 	 * @param ctx the parse tree
@@ -4098,54 +4158,6 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitDerived_table(TSqlParser.Derived_tableContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code RANKING_WINDOWED_FUNC}
-	 * labeled alternative in {@link TSqlParser#function_call}.
-	 * @param ctx the parse tree
-	 */
-	void enterRANKING_WINDOWED_FUNC(TSqlParser.RANKING_WINDOWED_FUNCContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code RANKING_WINDOWED_FUNC}
-	 * labeled alternative in {@link TSqlParser#function_call}.
-	 * @param ctx the parse tree
-	 */
-	void exitRANKING_WINDOWED_FUNC(TSqlParser.RANKING_WINDOWED_FUNCContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code AGGREGATE_WINDOWED_FUNC}
-	 * labeled alternative in {@link TSqlParser#function_call}.
-	 * @param ctx the parse tree
-	 */
-	void enterAGGREGATE_WINDOWED_FUNC(TSqlParser.AGGREGATE_WINDOWED_FUNCContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code AGGREGATE_WINDOWED_FUNC}
-	 * labeled alternative in {@link TSqlParser#function_call}.
-	 * @param ctx the parse tree
-	 */
-	void exitAGGREGATE_WINDOWED_FUNC(TSqlParser.AGGREGATE_WINDOWED_FUNCContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ANALYTIC_WINDOWED_FUNC}
-	 * labeled alternative in {@link TSqlParser#function_call}.
-	 * @param ctx the parse tree
-	 */
-	void enterANALYTIC_WINDOWED_FUNC(TSqlParser.ANALYTIC_WINDOWED_FUNCContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ANALYTIC_WINDOWED_FUNC}
-	 * labeled alternative in {@link TSqlParser#function_call}.
-	 * @param ctx the parse tree
-	 */
-	void exitANALYTIC_WINDOWED_FUNC(TSqlParser.ANALYTIC_WINDOWED_FUNCContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code SCALAR_FUNCTION}
-	 * labeled alternative in {@link TSqlParser#function_call}.
-	 * @param ctx the parse tree
-	 */
-	void enterSCALAR_FUNCTION(TSqlParser.SCALAR_FUNCTIONContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code SCALAR_FUNCTION}
-	 * labeled alternative in {@link TSqlParser#function_call}.
-	 * @param ctx the parse tree
-	 */
-	void exitSCALAR_FUNCTION(TSqlParser.SCALAR_FUNCTIONContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code BINARY_CHECKSUM}
 	 * labeled alternative in {@link TSqlParser#function_call}.
 	 * @param ctx the parse tree
@@ -4409,6 +4421,66 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIFF(TSqlParser.IFFContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code RANKING_WINDOWED_FUNC}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterRANKING_WINDOWED_FUNC(TSqlParser.RANKING_WINDOWED_FUNCContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code RANKING_WINDOWED_FUNC}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitRANKING_WINDOWED_FUNC(TSqlParser.RANKING_WINDOWED_FUNCContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code AGGREGATE_WINDOWED_FUNC}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterAGGREGATE_WINDOWED_FUNC(TSqlParser.AGGREGATE_WINDOWED_FUNCContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code AGGREGATE_WINDOWED_FUNC}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitAGGREGATE_WINDOWED_FUNC(TSqlParser.AGGREGATE_WINDOWED_FUNCContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ANALYTIC_WINDOWED_FUNC}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterANALYTIC_WINDOWED_FUNC(TSqlParser.ANALYTIC_WINDOWED_FUNCContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ANALYTIC_WINDOWED_FUNC}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitANALYTIC_WINDOWED_FUNC(TSqlParser.ANALYTIC_WINDOWED_FUNCContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SCALAR_FUNCTION}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterSCALAR_FUNCTION(TSqlParser.SCALAR_FUNCTIONContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SCALAR_FUNCTION}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitSCALAR_FUNCTION(TSqlParser.SCALAR_FUNCTIONContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code STRINGAGG}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterSTRINGAGG(TSqlParser.STRINGAGGContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code STRINGAGG}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitSTRINGAGG(TSqlParser.STRINGAGGContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TSqlParser#xml_data_type_methods}.
 	 * @param ctx the parse tree
