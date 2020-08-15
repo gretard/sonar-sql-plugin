@@ -89,17 +89,19 @@ public enum VSQLRules {
             sibling.getNames().getTextItem()
                     .add(org.antlr.sql.dialects.vsql.VSqlParser.Delete_statementContext.class.getSimpleName());
             sibling.getNames().getTextItem()
+                    .add(org.antlr.sql.dialects.vsql.VSqlParser.Insert_statementContext.class.getSimpleName());
+            sibling.getNames().getTextItem()
                     .add(org.antlr.sql.dialects.vsql.VSqlParser.Update_statementContext.class.getSimpleName());
             rule.getRuleImplementation().getChildrenRules().getRuleImplementation().add(sibling);
         }
 
         rule.getRuleImplementation().setRuleMatchType(RuleMatchType.CLASS_ONLY);
         rule.getRuleImplementation().setRuleResultType(RuleResultType.DEFAULT);
-         rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample().add("DELETE FROM temp1;");
+        rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample().add("DELETE FROM temp1;");
         rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample()
                 .add("COMMIT; DELETE FROM temp1;");
-         rule.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample()
-         .add("SELECT 1; DELETE FROM temp1; COMMIT; SELECT 2; ");
+        rule.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample()
+                .add("SELECT 1; DELETE FROM temp1; COMMIT; SELECT 2; ");
         return rule;
     }
 }

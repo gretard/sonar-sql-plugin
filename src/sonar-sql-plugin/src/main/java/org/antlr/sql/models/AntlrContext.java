@@ -13,38 +13,39 @@ import org.sonar.plugins.sql.models.rules.SqlRules;
 
 public class AntlrContext {
 
-	public Lexer lexer;
+    public Lexer lexer;
 
-	public ParseTree root;
+    public ParseTree root;
 
-	public CommonTokenStream stream;
+    public CommonTokenStream stream;
 
-	public DialectLanguageTypesMap types;
+    public DialectLanguageTypesMap types;
 
-	public List<SqlRules> rules = new ArrayList<>();
+    public List<SqlRules> rules = new ArrayList<>();
 
-	public List<SqlRules> getRules() {
-		return rules;
-	}
+    public List<SqlRules> getRules() {
+        return rules;
+    }
 
-	public boolean isComment(Token token) {
-		return types.getCommentTokens().contains(token.getType());
-	}
+    public boolean isComment(Token token) {
+        return types.getCommentTokens().contains(token.getType());
+    }
 
-	public ParseTree getRoot() {
-		return root;
-	}
+    public ParseTree getRoot() {
+        return root;
+    }
 
-	public boolean isString(Token token) {
-		return types.getStringTokens().contains(token.getType());
-	}
+    public boolean isString(Token token) {
+        return types.getStringTokens().contains(token.getType());
+    }
 
-	public boolean isKeyword(Token token) {
-		String symbolicName = lexer.getVocabulary().getSymbolicName(token.getType());
-		return (StringUtils.equalsAnyIgnoreCase(symbolicName, token.getText()));
-	}
+    public boolean isKeyword(Token token) {
+        String symbolicName = lexer.getVocabulary().getSymbolicName(token.getType());
+        return symbolicName != null && ((StringUtils.equalsAnyIgnoreCase(symbolicName, token.getText()))
+                || symbolicName.toLowerCase().contains(token.getText().toLowerCase()));
+    }
 
-	public List<? extends Token> getAllTokens() {
-		return stream.getTokens();
-	}
+    public List<? extends Token> getAllTokens() {
+        return stream.getTokens();
+    }
 }
