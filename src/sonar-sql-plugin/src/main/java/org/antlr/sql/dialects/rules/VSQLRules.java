@@ -95,12 +95,11 @@ public enum VSQLRules {
 
         rule.getRuleImplementation().setRuleMatchType(RuleMatchType.CLASS_ONLY);
         rule.getRuleImplementation().setRuleResultType(RuleResultType.DEFAULT);
-        // rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample().add("DELETE
-        // FROM temp1;");
+         rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample().add("DELETE FROM temp1;");
         rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample()
                 .add("COMMIT; DELETE FROM temp1;");
-        // rule.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample()
-        // .add("SELECT 1; DELETE FROM temp1; COMMIT; SELECT 2; ");
+         rule.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample()
+         .add("SELECT 1; DELETE FROM temp1; COMMIT; SELECT 2; ");
         return rule;
     }
 }
