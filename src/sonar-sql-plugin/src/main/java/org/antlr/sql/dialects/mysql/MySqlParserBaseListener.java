@@ -1,4 +1,4 @@
-// Generated from grammars-v4\sql\mysql\Positive-Technologies\MySqlParser.g4 by ANTLR 4.7.2
+// Generated from MySqlParser.g4 by ANTLR 4.7.2
 package org.antlr.sql.dialects.mysql;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -743,6 +743,18 @@ public class MySqlParserBaseListener implements MySqlParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSerialDefaultColumnConstraint(MySqlParser.SerialDefaultColumnConstraintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCheckColumnConstraint(MySqlParser.CheckColumnConstraintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCheckColumnConstraint(MySqlParser.CheckColumnConstraintContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -5519,6 +5531,30 @@ public class MySqlParserBaseListener implements MySqlParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSpatialDataType(MySqlParser.SpatialDataTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLongVarcharDataType(MySqlParser.LongVarcharDataTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLongVarcharDataType(MySqlParser.LongVarcharDataTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLongVarbinaryDataType(MySqlParser.LongVarbinaryDataTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLongVarbinaryDataType(MySqlParser.LongVarbinaryDataTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

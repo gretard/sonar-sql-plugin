@@ -20,7 +20,7 @@ public class IssuesProvider {
 
 	private final ViolationsAnalyzer violationsAnalyzer = new ViolationsAnalyzer();
 	private final ViolationsSearcher searcher = new ViolationsSearcher();
-
+	boolean force = true;
 	public SqlIssuesList analyze(AntlrContext ctx) {
 		final SqlIssuesList list = new SqlIssuesList();
 
@@ -29,7 +29,7 @@ public class IssuesProvider {
 
 		List<FoundMatch> matches = visitor.getMatches();
 
-		if (LOGGER.isDebugEnabled()) {
+		if (force || LOGGER.isDebugEnabled()) {
 			LOGGER.debug(() -> "FOUND matches: " + matches.size());
 		}
 		for (FoundMatch m : matches) {
@@ -37,7 +37,7 @@ public class IssuesProvider {
 			Map<RuleImplementation, List<IParsedNode>> checkedRules = searcher.search(m);
 			final FoundViolation violations = violationsAnalyzer.isMatch(checkedRules);
 
-			if (LOGGER.isDebugEnabled()) {
+			if (force || LOGGER.isDebugEnabled()) {
 				LOGGER.debug(() -> "MATCH checked: [" + m.node.getText() + "] " + m.node.getLine() + " "
 						+ m.node.getClassName() + ". Issues found: "
 						+ violations.violatingNodes.stream()

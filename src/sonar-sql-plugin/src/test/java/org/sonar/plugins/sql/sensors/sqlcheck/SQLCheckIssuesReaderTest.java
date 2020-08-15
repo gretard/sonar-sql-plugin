@@ -12,23 +12,23 @@ import org.sonar.api.utils.internal.JUnitTempFolder;
 import org.sonar.plugins.sql.issues.SqlIssuesList;
 
 public class SQLCheckIssuesReaderTest {
-	@Rule
-	public TemporaryFolder folder = new TemporaryFolder();
+    @Rule
+    public TemporaryFolder folder = new TemporaryFolder();
 
-	@org.junit.Rule
-	public JUnitTempFolder temp = new JUnitTempFolder();
+    @org.junit.Rule
+    public JUnitTempFolder temp = new JUnitTempFolder();
 
-	@Test
-	public void test() throws IOException {
+    @Test
+    public void test() throws IOException {
 
-		File baseFile = folder.newFile("results.txt");
-		FileUtils.copyURLToFile(getClass().getResource("/external/sqlcheck.txt"), baseFile);
+        File baseFile = folder.newFile("results.txt");
+        FileUtils.copyURLToFile(getClass().getResource("/external/sqlcheck.txt"), baseFile);
 
-		SQLCheckIssuesReader sut = new SQLCheckIssuesReader();
-		SqlIssuesList results = sut.read("-", baseFile);
+        SQLCheckIssuesReader sut = new SQLCheckIssuesReader();
+        SqlIssuesList results = sut.read("-", baseFile);
 
-		Assert.assertEquals(4, results.getaLLIssues().size());
+        Assert.assertEquals(4, results.getaLLIssues().size());
 
-	}
+    }
 
 }

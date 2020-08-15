@@ -1,4 +1,4 @@
-// Generated from grammars-v4\sql\mysql\Positive-Technologies\MySqlParser.g4 by ANTLR 4.7.2
+// Generated from MySqlParser.g4 by ANTLR 4.7.2
 package org.antlr.sql.dialects.mysql;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -401,6 +401,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSerialDefaultColumnConstraint(MySqlParser.SerialDefaultColumnConstraintContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code checkColumnConstraint}
+	 * labeled alternative in {@link MySqlParser#columnConstraint}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCheckColumnConstraint(MySqlParser.CheckColumnConstraintContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code primaryKeyTableConstraint}
 	 * labeled alternative in {@link MySqlParser#tableConstraint}.
@@ -2987,6 +2994,20 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSpatialDataType(MySqlParser.SpatialDataTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code longVarcharDataType}
+	 * labeled alternative in {@link MySqlParser#dataType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLongVarcharDataType(MySqlParser.LongVarcharDataTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code longVarbinaryDataType}
+	 * labeled alternative in {@link MySqlParser#dataType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLongVarbinaryDataType(MySqlParser.LongVarbinaryDataTypeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#collectionOptions}.
 	 * @param ctx the parse tree

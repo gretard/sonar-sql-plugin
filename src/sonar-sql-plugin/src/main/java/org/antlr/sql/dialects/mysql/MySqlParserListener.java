@@ -1,4 +1,4 @@
-// Generated from grammars-v4\sql\mysql\Positive-Technologies\MySqlParser.g4 by ANTLR 4.7.2
+// Generated from MySqlParser.g4 by ANTLR 4.7.2
 package org.antlr.sql.dialects.mysql;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -667,6 +667,18 @@ public interface MySqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSerialDefaultColumnConstraint(MySqlParser.SerialDefaultColumnConstraintContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code checkColumnConstraint}
+	 * labeled alternative in {@link MySqlParser#columnConstraint}.
+	 * @param ctx the parse tree
+	 */
+	void enterCheckColumnConstraint(MySqlParser.CheckColumnConstraintContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code checkColumnConstraint}
+	 * labeled alternative in {@link MySqlParser#columnConstraint}.
+	 * @param ctx the parse tree
+	 */
+	void exitCheckColumnConstraint(MySqlParser.CheckColumnConstraintContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code primaryKeyTableConstraint}
 	 * labeled alternative in {@link MySqlParser#tableConstraint}.
@@ -5043,6 +5055,30 @@ public interface MySqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSpatialDataType(MySqlParser.SpatialDataTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code longVarcharDataType}
+	 * labeled alternative in {@link MySqlParser#dataType}.
+	 * @param ctx the parse tree
+	 */
+	void enterLongVarcharDataType(MySqlParser.LongVarcharDataTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code longVarcharDataType}
+	 * labeled alternative in {@link MySqlParser#dataType}.
+	 * @param ctx the parse tree
+	 */
+	void exitLongVarcharDataType(MySqlParser.LongVarcharDataTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code longVarbinaryDataType}
+	 * labeled alternative in {@link MySqlParser#dataType}.
+	 * @param ctx the parse tree
+	 */
+	void enterLongVarbinaryDataType(MySqlParser.LongVarbinaryDataTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code longVarbinaryDataType}
+	 * labeled alternative in {@link MySqlParser#dataType}.
+	 * @param ctx the parse tree
+	 */
+	void exitLongVarbinaryDataType(MySqlParser.LongVarbinaryDataTypeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MySqlParser#collectionOptions}.
 	 * @param ctx the parse tree

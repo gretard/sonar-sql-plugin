@@ -34,4 +34,8 @@ public interface IParsedNode {
 	public default int getIndex2() {
 		return 0;
 	}
+	
+	public default int getGlobalIndex() {
+	    return 0;
+	}
 }

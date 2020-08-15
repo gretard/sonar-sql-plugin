@@ -14,6 +14,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+import org.sonar.api.issue.Issue;
+import org.sonar.api.utils.log.LoggerLevel;
+import org.sonar.api.utils.log.Loggers;
 import org.sonar.plugins.sql.issues.SqlIssue;
 import org.sonar.plugins.sql.issues.SqlIssuesList;
 import org.sonar.plugins.sql.models.rules.Rule;
@@ -22,71 +25,73 @@ import org.sonar.plugins.sql.models.rules.SqlRules;
 @RunWith(Parameterized.class)
 public class PluginRulesITCase {
 
-	private final IssuesProvider sut = new IssuesProvider();
+    private final IssuesProvider sut = new IssuesProvider();
 
-	@Parameters(name = "{3}: {1} - {0} ({index})")
-	public static Iterable<Object[]> data() throws Throwable {
+    @Parameters(name = "{3}: {1} - {0} ({index})")
+    public static Iterable<Object[]> data() throws Throwable {
 
-		final List<Object[]> data = new ArrayList<>();
+        final List<Object[]> data = new ArrayList<>();
 
-		List<SqlRules> rules = SQLDialectRules.INSTANCE.getRules();
+        List<SqlRules> rules = SQLDialectRules.INSTANCE.getRules();
 
-		for (final SqlRules rule : rules) {
-			for (final Rule r : rule.getRule()) {
-				r.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample().forEach(t -> {
-					data.add(new Object[] { t, r.getKey(), r, Dialects.valueOf(rule.getDialect().toUpperCase()), true
+        for (final SqlRules rule : rules) {
+            for (final Rule r : rule.getRule()) {
+                r.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample().forEach(t -> {
+                    data.add(new Object[] { t, r.getKey(), r, Dialects.valueOf(rule.getDialect().toUpperCase()), true
 
-					});
+                    });
 
-				});
+                });
 
-				r.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample().forEach(t -> {
-					data.add(new Object[] { t, r.getKey(), r, Dialects.valueOf(rule.getDialect().toUpperCase()), false
+                r.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample().forEach(t -> {
+                    data.add(new Object[] { t, r.getKey(), r, Dialects.valueOf(rule.getDialect().toUpperCase()), false
 
-					});
+                    });
 
-				});
-			}
-		}
+                });
+            }
+        }
 
-		return data;
-	}
+        return data;
+    }
 
-	@Test
-	public void test() throws Throwable {
-		AntlrContext ctx = dialect.parse(text);
-		SqlRules a = new SqlRules();
-		a.getRule().add(rule);
-		ctx.rules = Arrays.asList(a);
-		SqlIssuesList list = sut.analyze(ctx);
-		Collection<SqlIssue> issues = list.getaLLIssues();
-		if (issueExists && issues.isEmpty() || !issueExists && !issues.isEmpty()) {
-			PrettyPrinter.print(ctx.root, 0, ctx.stream);
-		}
+    @Test
+    public void test() throws Throwable {
+        Loggers.get(IssuesProvider.class).setLevel(LoggerLevel.DEBUG);
+        AntlrContext ctx = dialect.parse(text);
+        SqlRules a = new SqlRules();
+        a.getRule().add(rule);
+        ctx.rules = Arrays.asList(a);
+        SqlIssuesList list = sut.analyze(ctx);
+        Collection<SqlIssue> issues = list.getaLLIssues();
 
-		Assert.assertTrue("Found issues on : " + text + " for rule: " + rule.getKey()+" "+rule.getName()+" expected: "+issueExists,
-				!issues.isEmpty() == issueExists);
+        if (issueExists && issues.isEmpty() || !issueExists && !issues.isEmpty()) {
+            PrettyPrinter.print(ctx.root, 0, ctx.stream);
+        }
 
-	}
+        Assert.assertTrue("Found issues on : " + text + " for rule: " + rule.getKey() + " " + rule.getName()
+                + " expected: " + issueExists, !issues.isEmpty() == issueExists);
 
-	@Test
-	public void testRuleContainsViolationMessgae() throws Throwable {
+    }
 
-		Assert.assertNotNull("Rule " + rule.getKey() + " does not contain violation message",
-				rule.getRuleImplementation().getRuleViolationMessage());
+    @Test
+    public void testRuleContainsViolationMessgae() throws Throwable {
 
-	}
+        Assert.assertNotNull("Rule " + rule.getKey() + " does not contain violation message",
+                rule.getRuleImplementation().getRuleViolationMessage());
 
-	private String text;
-	private Rule rule;
-	private Dialects dialect;
-	private boolean issueExists;
+    }
 
-	public PluginRulesITCase(String text, String ruleId, Rule rule, Dialects dialect, boolean issueExists) {
-		this.text = text;
-		this.rule = rule;
-		this.dialect = dialect;
-		this.issueExists = issueExists;
+    private String text;
+    private Rule rule;
+    private Dialects dialect;
+    private boolean issueExists;
 
-	}
+    public PluginRulesITCase(String text, String ruleId, Rule rule, Dialects dialect, boolean issueExists) {
+        this.text = text;
+        this.rule = rule;
+        this.dialect = dialect;
+        this.issueExists = issueExists;
+
+    }
 }

@@ -1,4 +1,4 @@
-// Generated from grammars-v4\sql\tsql\TSqlLexer.g4 by ANTLR 4.7.2
+// Generated from TSqlLexer.g4 by ANTLR 4.7.2
 package org.antlr.sql.dialects.tsql;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;

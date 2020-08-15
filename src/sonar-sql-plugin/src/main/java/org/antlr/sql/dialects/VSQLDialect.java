@@ -1,8 +1,5 @@
 package org.antlr.sql.dialects;
 
-import org.antlr.sql.dialects.mysql.MySqlParser.DmlStatementContext;
-import org.antlr.sql.dialects.mysql.MySqlParser.PredicateExpressionContext;
-import org.antlr.sql.dialects.mysql.MySqlParser.ScalarFunctionCallContext;
 import org.antlr.sql.dialects.vsql.VSqlLexer;
 import org.antlr.sql.dialects.vsql.VSqlParser;
 import org.antlr.v4.runtime.CharStream;
@@ -23,21 +20,13 @@ public class VSQLDialect extends BaseDialect {
         p.removeErrorListeners();
         return p.root();
     }
-/*
- *  .addCognitiveComplexityType(PredicateExpressionContext.class)
-                .addCognitiveComplexityType(DmlStatementContext.class)
-                .addCognitiveComplexityType(ScalarFunctionCallContext.class)
-                .addComplexityType(PredicateExpressionContext.class);
- */
+
     @Override
     protected DialectLanguageTypesMap getTypesMap() {
         return new DialectLanguageTypesMap().addCommentToken(VSqlParser.COMMENT)
                 .addCommentToken(VSqlParser.LINE_COMMENT).addStringToken(VSqlParser.DOUBLE_QUOTE_STRING)
-                .addStringToken(VSqlParser.SINGLE_QUOTE_STRING)
-               // .addComplexityType(TSqlParser.Search_condition_notContext.class)
-                .addComplexityType(VSqlParser.ExpressionContext.class)
+                .addStringToken(VSqlParser.SINGLE_QUOTE_STRING).addComplexityType(VSqlParser.ExpressionContext.class)
 
-               // .addCognitiveComplexityType(VSqlParser..class)
                 .addCognitiveComplexityType(VSqlParser.FunctionCallContext.class)
                 .addCognitiveComplexityType(VSqlParser.JoinPredicateContext.class)
                 .addCognitiveComplexityType(VSqlParser.Orderby_clauseContext.class)

@@ -42,6 +42,8 @@ public enum RuleDistanceIndexMatchType {
     MORE("More"),
     @XmlEnumValue("Less")
     LESS("Less"),
+    @XmlEnumValue("BeforeOrAfter")
+    BEFOREORAFTER("BeforeOrAfter"),
     @XmlEnumValue("Equals")
     EQUALS("Equals");
     private final String value;
