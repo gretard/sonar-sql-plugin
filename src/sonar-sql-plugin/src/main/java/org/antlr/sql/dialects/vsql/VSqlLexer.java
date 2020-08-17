@@ -1,4 +1,4 @@
-// Generated from antlr4-grammar-vsql\antlr4-grammar-vsql\src\main\antlr4\VSqlLexer.g4 by ANTLR 4.7.2
+// Generated from antlr4-grammar-vsql/antlr4-grammar-vsql/src/main/antlr4/VSqlLexer.g4 by ANTLR 4.8
 package org.antlr.sql.dialects.vsql;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
@@ -11,7 +11,7 @@ import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class VSqlLexer extends Lexer {
-	static { RuntimeMetaData.checkVersion("4.7.2", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.8", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =

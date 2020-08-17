@@ -19,6 +19,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 import org.sonar.api.batch.fs.internal.DefaultInputFile;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
+import org.sonar.api.batch.sensor.highlighting.TypeOfText;
 import org.sonar.api.batch.sensor.internal.SensorContextTester;
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.utils.internal.JUnitTempFolder;
@@ -27,61 +28,60 @@ import org.sonar.plugins.sql.Constants;
 @RunWith(Parameterized.class)
 public class HighlightingFillerTest {
 
-    HighlighterFiller filler = new HighlighterFiller();
+	HighlighterFiller filler = new HighlighterFiller();
 
-    @Parameters(name = "{0} ({index})")
-    public static Iterable<Object[]> data() throws Throwable {
+	@Parameters(name = "{0} ({index})")
+	public static Iterable<Object[]> data() throws Throwable {
 
-        List<Object[]> data = new ArrayList<>();
-        /*
-         * data.add(new Object[] { Dialects.MYSQL, 17 }); data.add(new Object[] {
-         * Dialects.PSSQL, 7 }); data.add(new Object[] { Dialects.TSQL, 9 });
-         */
-        data.add(new Object[] { Dialects.VSQL, 9 });
-        return data;
-    }
+		List<Object[]> data = new ArrayList<>();
 
-    @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
+		data.add(new Object[] { Dialects.MYSQL, 17 });
+		data.add(new Object[] { Dialects.PSSQL, 7 });
+		data.add(new Object[] { Dialects.TSQL, 9 });
 
-    @org.junit.Rule
-    public JUnitTempFolder temp = new JUnitTempFolder();
+		data.add(new Object[] { Dialects.VSQL, 9 });
+		return data;
+	}
 
-    private Dialects dialect;
+	@Rule
+	public TemporaryFolder folder = new TemporaryFolder();
 
-    private int expected;
+	@org.junit.Rule
+	public JUnitTempFolder temp = new JUnitTempFolder();
 
-    public HighlightingFillerTest(Dialects dialect, int expected) {
-        this.dialect = dialect;
-        this.expected = expected;
-    }
+	private Dialects dialect;
 
-    @Test
-    public void testComplexity() throws IOException {
-        SensorContextTester ctxTester = SensorContextTester.create(folder.getRoot());
-        ctxTester.fileSystem().setWorkDir(folder.getRoot().toPath());
+	private int expected;
 
-        File baseFile = folder.newFile("test.sql");
+	public HighlightingFillerTest(Dialects dialect, int expected) {
+		this.dialect = dialect;
+		this.expected = expected;
+	}
 
-        FileUtils.copyURLToFile(getClass().getResource("/tsql/sample1.sql"), baseFile);
-        String contents = new String(Files.readAllBytes(baseFile.toPath()));
+	@Test
+	public void testComplexity() throws IOException {
+		SensorContextTester ctxTester = SensorContextTester.create(folder.getRoot());
+		ctxTester.fileSystem().setWorkDir(folder.getRoot().toPath());
 
-        DefaultInputFile ti = new TestInputFileBuilder("test", folder.getRoot(), baseFile).initMetadata(contents)
-                .setLanguage(Constants.languageKey).setContents(contents).setProjectBaseDir(folder.getRoot().toPath())
-                .build();
-        ctxTester.fileSystem().add(ti);
+		File baseFile = folder.newFile("test.sql");
 
-        AntlrContext antlrContext = dialect.parse("SELECT * From facts.test where x = 4;\r\n");
+		FileUtils.copyURLToFile(getClass().getResource("/tsql/sample1.sql"), baseFile);
+		String contents = new String(Files.readAllBytes(baseFile.toPath()));
 
-        PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
+		DefaultInputFile ti = new TestInputFileBuilder("test", folder.getRoot(), baseFile).initMetadata(contents)
+				.setLanguage(Constants.languageKey).setContents(contents).setProjectBaseDir(folder.getRoot().toPath())
+				.build();
+		ctxTester.fileSystem().add(ti);
 
-        filler.fill(ti, ctxTester, antlrContext);
-        antlrContext.getAllTokens().forEach(x-> {
-            
-        //   antlrContext.lexer.getVocabulary().
-         //   System.out.println(x.getText()+" " +x.getType()+" "+antlrContext.lexer.getVocabulary().getDisplayName(x.getType())+" "+antlrContext.lexer.getVocabulary().getLiteralName(x.getType())+" "+antlrContext.lexer.getVocabulary().getSymbolicName(x.getType())+" "+antlrContext.lexer.getVocabulary().getSymbolicName(x.getType()));
-        });
+		AntlrContext antlrContext = dialect.parse("SELECT * From facts.test where name = 4;\r\n");
 
-    }
+		PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
+
+		filler.fill(ti, ctxTester, antlrContext);
+		List<TypeOfText> res = ctxTester.highlightingTypeAt("test:test.sql", 1, 1);
+		Assert.assertEquals(1, res.size());
+		Assert.assertEquals("KEYWORD", res.get(0).name());
+
+	}
 
 }

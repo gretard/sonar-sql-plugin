@@ -1,4 +1,4 @@
-// Generated from MySqlParser.g4 by ANTLR 4.7.2
+// Generated from grammars-v4/sql/mysql/Positive-Technologies/MySqlParser.g4 by ANTLR 4.8
 package org.antlr.sql.dialects.mysql;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -1787,6 +1787,18 @@ public class MySqlParserBaseListener implements MySqlParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAlterByRenameIndex(MySqlParser.AlterByRenameIndexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAlterByAlterIndexVisibility(MySqlParser.AlterByAlterIndexVisibilityContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAlterByAlterIndexVisibility(MySqlParser.AlterByAlterIndexVisibilityContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

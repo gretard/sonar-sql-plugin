@@ -1,4 +1,4 @@
-// Generated from MySqlParser.g4 by ANTLR 4.7.2
+// Generated from grammars-v4/sql/mysql/Positive-Technologies/MySqlParser.g4 by ANTLR 4.8
 package org.antlr.sql.dialects.mysql;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -1677,6 +1677,18 @@ public interface MySqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAlterByRenameIndex(MySqlParser.AlterByRenameIndexContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code alterByAlterIndexVisibility}
+	 * labeled alternative in {@link MySqlParser#alterSpecification}.
+	 * @param ctx the parse tree
+	 */
+	void enterAlterByAlterIndexVisibility(MySqlParser.AlterByAlterIndexVisibilityContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code alterByAlterIndexVisibility}
+	 * labeled alternative in {@link MySqlParser#alterSpecification}.
+	 * @param ctx the parse tree
+	 */
+	void exitAlterByAlterIndexVisibility(MySqlParser.AlterByAlterIndexVisibilityContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code alterByDropIndex}
 	 * labeled alternative in {@link MySqlParser#alterSpecification}.

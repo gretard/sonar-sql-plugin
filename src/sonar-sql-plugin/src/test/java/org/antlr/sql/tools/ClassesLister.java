@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.antlr.sql.dialects.vsql.VSqlParser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.apache.commons.io.FileUtils;
 import org.sonar.api.internal.google.common.reflect.ClassPath;
@@ -30,7 +31,8 @@ public class ClassesLister {
 
 		List<ListData> data = Arrays.asList(new ListData("TSQL", "org.antlr.sql.dialects.tsql.TSqlParser$"),
 				new ListData("PSSQL", "org.antlr.sql.dialects.psql.PostgreSQLParser$"),
-				new ListData("MySQL", "org.antlr.sql.dialects.mysql.MySqlParser$"));
+				new ListData("MySQL", "org.antlr.sql.dialects.mysql.MySqlParser$"),
+				new ListData("VSQL", "org.antlr.sql.dialects.vsql.VSqlParser$"));
 		final ClassLoader loader = Thread.currentThread().getContextClassLoader();
 
 		for (ListData dataItem : data) {

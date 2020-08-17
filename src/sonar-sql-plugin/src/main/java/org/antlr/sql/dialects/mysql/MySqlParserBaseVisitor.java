@@ -1,4 +1,4 @@
-// Generated from MySqlParser.g4 by ANTLR 4.7.2
+// Generated from grammars-v4/sql/mysql/Positive-Technologies/MySqlParser.g4 by ANTLR 4.8
 package org.antlr.sql.dialects.mysql;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -1047,6 +1047,13 @@ public class MySqlParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitAlterByRenameIndex(MySqlParser.AlterByRenameIndexContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitAlterByAlterIndexVisibility(MySqlParser.AlterByAlterIndexVisibilityContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

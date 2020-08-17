@@ -1,4 +1,4 @@
-// Generated from antlr4-grammar-vsql\antlr4-grammar-vsql\src\main\antlr4\VSqlParser.g4 by ANTLR 4.7.2
+// Generated from antlr4-grammar-vsql/antlr4-grammar-vsql/src/main/antlr4/VSqlParser.g4 by ANTLR 4.8
 package org.antlr.sql.dialects.vsql;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 

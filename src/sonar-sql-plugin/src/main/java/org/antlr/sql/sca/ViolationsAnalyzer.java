@@ -84,12 +84,27 @@ public class ViolationsAnalyzer {
                 .sorted(Comparator.comparing(RuleImplementation::getIndex)).collect(Collectors.toList());
         int prev = 0;
         for (RuleImplementation rule : rules) {
+        	   if (LOGGER.isDebugEnabled()) {
+                   LOGGER.debug(
+                           () -> "Checking rules: " + rule.getIndex()+" "+rule.getRuleViolationMessage()+" "+rule.getDistanceCheckType()+" "+items.get(rule).size());
+               }
             if (rule.getIndex() == 0 || rule.getDistanceCheckType() != RuleDistanceIndexMatchType.BEFOREORAFTER) {
                 continue;
             }
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug(
+                        () -> "Checking nodes: " + rule.getIndex()+" "+rule.getRuleViolationMessage()+" "+rule.getDistanceCheckType()+" "+items.get(rule).size());
+            }
             for (IParsedNode node : items.get(rule)) {
-
+            	   if (LOGGER.isDebugEnabled()) {
+                       LOGGER.debug(
+                               () -> "Checking nodes00: " + rule.getIndex()+" "+rule.getRuleViolationMessage()+" "+rule.getDistanceCheckType()+" "+items.get(rule).size());
+                   }
                 if (node.getGlobalIndex() < prev) {
+                	   if (LOGGER.isDebugEnabled()) {
+                           LOGGER.debug(
+                                   () -> "FOUND node: " + rule.getIndex()+" "+rule.getRuleViolationMessage()+" "+rule.getDistanceCheckType()+" "+items.get(rule).size());
+                       }
                     orderViodlated = true;
                     violation.violatingNodes.add(node);
                     break;

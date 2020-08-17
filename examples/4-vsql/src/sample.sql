@@ -1,0 +1,3 @@
+DELETE FROM temp1;
+
+SELECT 1;
