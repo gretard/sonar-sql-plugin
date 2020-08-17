@@ -12,7 +12,7 @@
  <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jdk.min.version>1.8</jdk.min.version>
-	<grammars>grammars-v4/tsql</grammars>
+	<grammars>.</grammars>
 	<grammars.out.dir>tsql</grammars.out.dir>
 	<grammars.package>org.antlr.sql.dialects.tsql</grammars.package>
   </properties>
