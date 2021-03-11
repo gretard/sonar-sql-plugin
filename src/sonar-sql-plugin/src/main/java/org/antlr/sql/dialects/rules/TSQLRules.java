@@ -273,6 +273,7 @@ public enum TSQLRules {
 		main.getNames().getTextItem().add(IdContext.class.getSimpleName());
 		main.setTextCheckType(TextCheckType.CONTAINS);
 		main.getTextToFind().getTextItem().add("IX_");
+		main.getTextToFind().getTextItem().add("IXU_");
 		main.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
 		main.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
 
