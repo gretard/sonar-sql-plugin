@@ -83,7 +83,7 @@ sonar.sql.dialect=mysql
 ```
 
 ### VSQL ###
-Sonar settings for vsql (Vertica SQL). 
+Sonar settings for vsql (Vertica SQL). You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/4-vsql)
 ```
 sonar.projectKey=examples.sql.vsql.project
 sonar.projectName=examples.sql.vsql.project
