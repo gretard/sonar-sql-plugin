@@ -428,7 +428,7 @@ public enum BaseRules implements IBaseRules {
 		r.setDebtRemediationFunctionCoefficient("3min");
 		r.setName("OR verb is used in a WHERE clause");
 		RuleImplementation rImpl = new RuleImplementation();
-		rImpl.setRuleViolationMessage("Consider using UNION ALL instead of OR in a WHERE clause.");
+		rImpl.setRuleViolationMessage("Consider using UNION/UNION ALL instead of OR in a WHERE clause.");
 		r.setRuleImplementation(rImpl);
 		rImpl.getCompliantRulesCodeExamples().getRuleCodeExample()
 				.add("SELECT name, surname, count from dbo.test where name = 'or' and surname = 'TestOR';");
