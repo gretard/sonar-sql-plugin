@@ -55,7 +55,6 @@ sonar.sources=src
 sonar.language=sql
 # optional as plugin defaults to tsql
 sonar.sql.dialect=tsql
-
 ```
 
 ### PostgreSQL ###
@@ -81,6 +80,19 @@ sonar.sources=src
 sonar.language=sql
 sonar.sql.dialect=mysql
 ```
+
+### VSQL ###
+Sonar settings for vsql. 
+```
+sonar.projectKey=examples.sql.vsql.project
+sonar.projectName=examples.sql.vsql.project
+sonar.projectVersion=1.1
+sonar.sources=src
+# optional
+sonar.language=sql
+sonar.sql.dialect=vsql
+```
+
 ## Plugin configuration ##
 The following options are available for configuration:
 
