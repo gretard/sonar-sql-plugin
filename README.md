@@ -15,6 +15,7 @@ Currently plug-in supports:
   - [TSQL](https://github.com/antlr/grammars-v4/tree/master/sql/tsql)
   - [MySQL](https://github.com/antlr/grammars-v4/tree/master/sql/mysql/Positive-Technologies)
   - [PostgreSQL](https://github.com/tshprecher/antlr_psql)
+  - [VSQL](https://github.com/gretard/antlr4-grammar-vsql)
 - Reporting of issues found by:
   - [SQLCodeGuard](https://www.red-gate.com/products/sql-development/sql-code-guard/index) 
   - [MSBuild](https://msdn.microsoft.com/en-us/library/dd172133(v=vs.100).aspx)
@@ -82,7 +83,7 @@ sonar.sql.dialect=mysql
 ```
 
 ### VSQL ###
-Sonar settings for vsql. 
+Sonar settings for vsql (Vertica SQL). 
 ```
 sonar.projectKey=examples.sql.vsql.project
 sonar.projectName=examples.sql.vsql.project
