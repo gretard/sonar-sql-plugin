@@ -59,7 +59,7 @@ sonar.sql.dialect=tsql
 ```
 
 ### PostgreSQL ###
-Sonar settings for pssql. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/2-psql)
+Sonar settings for pssql. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/2-pssql)
 ```
 sonar.projectKey=examples.sql.mysql.project
 sonar.projectName=examples.sql.mysql.project
@@ -71,7 +71,7 @@ sonar.sql.dialect=pssql
 ```
 
 ### MySQL ###
-Sonar settings for mysql. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/3-msql)
+Sonar settings for mysql. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/3-mysql)
 ```
 sonar.projectKey=examples.sql.mysql.project
 sonar.projectName=examples.sql.mysql.project
