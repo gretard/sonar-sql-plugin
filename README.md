@@ -2,7 +2,7 @@
 [![Gitter](https://badges.gitter.im/sonar-sql-plugin/community.svg)](https://gitter.im/sonar-sql-plugin/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Build Status](https://dev.azure.com/kgreta/sonar-sql-plugin/_apis/build/status/gretard.sonar-sql-plugin?branchName=master)](https://dev.azure.com/kgreta/sonar-sql-plugin/_build/latest?definitionId=2&branchName=master)
 
-  SQL language (T-SQL, MySQL and PostgreSQL dialects) plugin for [SonarQube](https://www.sonarqube.org/) 
+  SQL language (T-SQL, MySQL, PostgreSQL and Vertica SQL dialects) plugin for [SonarQube](https://www.sonarqube.org/) 
 
 ## Donating ##
 You can support this [project and others](https://github.com/gretard) via [Paypal](https://www.paypal.me/greta514284/)
@@ -15,6 +15,7 @@ Currently plug-in supports:
   - [TSQL](https://github.com/antlr/grammars-v4/tree/master/sql/tsql)
   - [MySQL](https://github.com/antlr/grammars-v4/tree/master/sql/mysql/Positive-Technologies)
   - [PostgreSQL](https://github.com/tshprecher/antlr_psql)
+  - [VSQL](https://github.com/gretard/antlr4-grammar-vsql)
 - Reporting of issues found by:
   - [SQLCodeGuard](https://www.red-gate.com/products/sql-development/sql-code-guard/index) 
   - [MSBuild](https://msdn.microsoft.com/en-us/library/dd172133(v=vs.100).aspx)
@@ -55,11 +56,10 @@ sonar.sources=src
 sonar.language=sql
 # optional as plugin defaults to tsql
 sonar.sql.dialect=tsql
-
 ```
 
 ### PostgreSQL ###
-Sonar settings for pssql. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/2-psql)
+Sonar settings for pssql. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/2-pssql)
 ```
 sonar.projectKey=examples.sql.mysql.project
 sonar.projectName=examples.sql.mysql.project
@@ -71,7 +71,7 @@ sonar.sql.dialect=pssql
 ```
 
 ### MySQL ###
-Sonar settings for mysql. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/3-msql)
+Sonar settings for mysql. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/3-mysql)
 ```
 sonar.projectKey=examples.sql.mysql.project
 sonar.projectName=examples.sql.mysql.project
@@ -81,6 +81,19 @@ sonar.sources=src
 sonar.language=sql
 sonar.sql.dialect=mysql
 ```
+
+### VSQL ###
+Sonar settings for vsql (Vertica SQL). You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/4-vsql)
+```
+sonar.projectKey=examples.sql.vsql.project
+sonar.projectName=examples.sql.vsql.project
+sonar.projectVersion=1.1
+sonar.sources=src
+# optional
+sonar.language=sql
+sonar.sql.dialect=vsql
+```
+
 ## Plugin configuration ##
 The following options are available for configuration:
 

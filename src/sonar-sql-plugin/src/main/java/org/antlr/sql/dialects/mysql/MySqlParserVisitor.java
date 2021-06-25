@@ -980,6 +980,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAlterByDropColumn(MySqlParser.AlterByDropColumnContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code alterByDropConstraintCheck}
+	 * labeled alternative in {@link MySqlParser#alterSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByDropConstraintCheck(MySqlParser.AlterByDropConstraintCheckContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code alterByDropPrimaryKey}
 	 * labeled alternative in {@link MySqlParser#alterSpecification}.
 	 * @param ctx the parse tree
@@ -1635,6 +1642,18 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFromClause(MySqlParser.FromClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#groupByClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGroupByClause(MySqlParser.GroupByClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingClause(MySqlParser.HavingClauseContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#groupByItem}.
 	 * @param ctx the parse tree
@@ -3334,6 +3353,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpressionAtomPredicate(MySqlParser.ExpressionAtomPredicateContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code jsonMemberOfPredicate}
+	 * labeled alternative in {@link MySqlParser#predicate}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJsonMemberOfPredicate(MySqlParser.JsonMemberOfPredicateContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code inPredicate}
 	 * labeled alternative in {@link MySqlParser#predicate}.
 	 * @param ctx the parse tree
@@ -3397,13 +3423,6 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCollateExpressionAtom(MySqlParser.CollateExpressionAtomContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code subqueryExpessionAtom}
-	 * labeled alternative in {@link MySqlParser#expressionAtom}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSubqueryExpessionAtom(MySqlParser.SubqueryExpessionAtomContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code mysqlVariableExpressionAtom}
 	 * labeled alternative in {@link MySqlParser#expressionAtom}.
 	 * @param ctx the parse tree
@@ -3432,6 +3451,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMathExpressionAtom(MySqlParser.MathExpressionAtomContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code existsExpressionAtom}
+	 * labeled alternative in {@link MySqlParser#expressionAtom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExistsExpressionAtom(MySqlParser.ExistsExpressionAtomContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code intervalExpressionAtom}
 	 * labeled alternative in {@link MySqlParser#expressionAtom}.
 	 * @param ctx the parse tree
@@ -3439,12 +3465,19 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIntervalExpressionAtom(MySqlParser.IntervalExpressionAtomContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code existsExpessionAtom}
+	 * Visit a parse tree produced by the {@code jsonExpressionAtom}
 	 * labeled alternative in {@link MySqlParser#expressionAtom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExistsExpessionAtom(MySqlParser.ExistsExpessionAtomContext ctx);
+	T visitJsonExpressionAtom(MySqlParser.JsonExpressionAtomContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code subqueryExpressionAtom}
+	 * labeled alternative in {@link MySqlParser#expressionAtom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubqueryExpressionAtom(MySqlParser.SubqueryExpressionAtomContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code constantExpressionAtom}
 	 * labeled alternative in {@link MySqlParser#expressionAtom}.
@@ -3510,6 +3543,12 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMathOperator(MySqlParser.MathOperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#jsonOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJsonOperator(MySqlParser.JsonOperatorContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#charsetNameBase}.
 	 * @param ctx the parse tree
