@@ -40,9 +40,7 @@ public class AntlrContext {
     }
 
     public boolean isKeyword(Token token) {
-    	
         String symbolicName = lexer.getVocabulary().getSymbolicName(token.getType());
-        System.out.println(symbolicName+" "+token.getText());
         return symbolicName != null && ((StringUtils.equalsAnyIgnoreCase(symbolicName, token.getText()))
                 || symbolicName.toLowerCase().contains(token.getText().toLowerCase()));
     }
