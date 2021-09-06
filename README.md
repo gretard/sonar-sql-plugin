@@ -108,3 +108,39 @@ The following options are available for configuration:
 - **sonar.sql.sca.timeout** - timeout value for static code analysis done by plugin in seconds. *Defaults to 3600*
 - **sonar.sql.sca.maxfilesize** - limit in bytes for files to be analyzed by plugin. *Defaults to 2097152*
 - **sonar.sql.rules.skip** - comma separated list of repoKey:ruleId pairs to select rules which will not be reported by the plugin, i.e. tsql-cg:ST008
+
+## Contributing ##
+Added container definitions for easy development with VSCode. Download the [remote containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) and let it figure out the maven targets. 
+<img width="1917" alt="vscode_remote_containers_extension_maven" src="https://user-images.githubusercontent.com/3657015/125957363-653c9f6f-b5cc-4a3c-96ef-9dc18d0f8bfb.png">
+1) Then you can lifecycle > package target to build the plugin. The .jar file will end up in the *sonar-sql-plugin/src/sonar-sql-plugin/target/* folder.
+2) Copy the jar to the plugins folder of your sonarqube instance
+```
+cp ~/workspace/sonar-sql-plugin/src/sonar-sql-plugin/target/sonar-sql-plugin-1.1.0.jar ~/workspace/sonarqube/extensions/plugins
+```
+3) Start sonarqube
+  * first time create the container
+```
+docker run -i --name sonarqube \
+  -p 9000:9000 \
+  -v ~/workspace/sonarqube/conf:/opt/sonarqube/conf \
+  -v ~/workspace/sonarqube/extensions:/opt/sonarqube/extensions \
+  -v ~/workspace/sonarqube/logs:/opt/sonarqube/logs \
+  -v ~/workspace/sonarqube/data:/opt/sonarqube/data \
+  sonarqube:8.9.0-community
+```
+  * next time only start the container
+```
+docker start sonarqube
+```
+4) Scan your code (I use a docker scanner)
+```
+docker run \
+    --rm \
+    -e SONAR_HOST_URL="http://127.0.0.1:9000" \
+    -e SONAR_LOGIN="YOUR_ADMIN_TOKEN_HERE" \
+    --network="host" \
+    -v "FOLDER_WITH_THE_CODE:/usr/src" \
+    sonarsource/sonar-scanner-cli -X
+```
+5) (optional) Stop sonarqube
+6) Rinse - repeat 
