@@ -14,6 +14,26 @@ public class ParseTreeNode implements IParsedNode {
 
     private ParseTree tree;
 
+    private int globalIndex;
+
+    private int distance;
+
+    private int index;
+
+    private int index2;
+
+    public ParseTreeNode(ParseTree tree) {
+        this.tree = tree;
+    }
+
+    public ParseTreeNode(ParseTree tree, int distance, int index, int index2) {
+        this.tree = tree;
+        this.distance = distance;
+        this.index = index;
+        this.index2 = index2;
+    }
+
+    @Override
     public int getDistance() {
         return distance;
     }
@@ -43,44 +63,14 @@ public class ParseTreeNode implements IParsedNode {
         return true;
     }
 
+    @Override
     public int getIndex() {
         return index;
     }
 
+    @Override
     public int getIndex2() {
         return index2;
-    }
-
-    private int globalIndex;
-    private int distance;
-    private int index;
-    private int index2;
-
-    public ParseTreeNode(ParseTree tree) {
-        this.tree = tree;
-    }
-
-    public ParseTreeNode(ParseTree tree, int distance, int index, int index2) {
-        this.tree = tree;
-        this.distance = distance;
-        this.index = index;
-        this.index2 = index2;
-    }
-
-    static void visit(final List<IParsedNode> nodes, final ParseTree tree, int level) {
-        if (tree == null) {
-            return;
-        }
-
-        final int newLevel = level + 1;
-        final int c = tree.getChildCount();
-        int j = c * -1;
-        for (int i = 0; i < c; i++) {
-            final ParseTree child = tree.getChild(i);
-            final ParseTreeNode node = new ParseTreeNode(child, newLevel, i + 1, j++);
-            nodes.add(node);
-            visit(nodes, child, newLevel);
-        }
     }
 
     @Override
@@ -124,6 +114,7 @@ public class ParseTreeNode implements IParsedNode {
         return this.tree.getText();
     }
 
+    @Override
     public IParsedNode[] getChildren() {
         final List<IParsedNode> nodes = new ArrayList<>();
         if (this.tree == null) {
@@ -133,6 +124,7 @@ public class ParseTreeNode implements IParsedNode {
         return nodes.toArray(new IParsedNode[0]);
     }
 
+    @Override
     public IParsedNode[] getSiblings() {
         final List<IParsedNode> nodes = new ArrayList<>();
         if (this.tree == null || this.tree.getParent() == null) {
@@ -144,6 +136,7 @@ public class ParseTreeNode implements IParsedNode {
 
     }
 
+    @Override
     public IParsedNode[] getParents() {
         List<IParsedNode> nodes = new ArrayList<>();
         if (this.tree == null) {
@@ -160,7 +153,7 @@ public class ParseTreeNode implements IParsedNode {
         return nodes.toArray(new IParsedNode[0]);
     }
 
-    // @Override
+    @Override
     public IParsedNode getControlFlowParent() {
         if (this.tree == null) {
             return null;
@@ -218,7 +211,7 @@ public class ParseTreeNode implements IParsedNode {
         return parseTreeItem;
     }
 
-    private int assign(ParseTree tree, int level) {
+    private int assign(final ParseTree tree, int level) {
         if (tree == null) {
             return level;
         }
@@ -230,5 +223,21 @@ public class ParseTreeNode implements IParsedNode {
             }
         }
         return level;
+    }
+
+    private static void visit(final List<IParsedNode> nodes, final ParseTree tree, int level) {
+        if (tree == null) {
+            return;
+        }
+
+        final int newLevel = level + 1;
+        final int c = tree.getChildCount();
+        int j = c * -1;
+        for (int i = 0; i < c; i++) {
+            final ParseTree child = tree.getChild(i);
+            final ParseTreeNode node = new ParseTreeNode(child, newLevel, i + 1, j++);
+            nodes.add(node);
+            visit(nodes, child, newLevel);
+        }
     }
 }

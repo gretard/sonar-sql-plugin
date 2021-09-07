@@ -20,7 +20,7 @@ function Setup-SqlCodeGuard {
 }
 
 function Setup-SonarScanner {
-    $url = "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-windows.zip"
+    $url = "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-windows.zip"
     $output = "$baseToolsDir\scanner.zip";
 	$outputDir = "$baseToolsDir\sonar-scanner"
 	[Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12

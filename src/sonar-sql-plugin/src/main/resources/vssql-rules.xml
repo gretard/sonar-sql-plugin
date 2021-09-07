@@ -1,7 +1,8 @@
 <sql-rules>
 	<rule>
 		<key>Microsoft.Rules.Data.SR0001</key>
-		<name>SR0001: Avoid SELECT * in stored procedures, views, and table-valued functions</name>
+		<name>SR0001: Avoid SELECT * in stored procedures, views, and
+			table-valued functions</name>
 		<internalKey>SR0001</internalKey>
 		<descriptionFormat>HTML</descriptionFormat>
 		<description><![CDATA[
@@ -48,11 +49,13 @@ END
 		<tag>design</tag>
 		<remediationFunction>LINEAR</remediationFunction>
 		<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
-		<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+		<debtRemediationFunctionCoefficient>5min
+		</debtRemediationFunctionCoefficient>
 	</rule>
 	<rule>
 		<key>Microsoft.Rules.Data.SR0008</key>
-		<name>SR0008: Consider using SCOPE_IDENTITY instead of @@IDENTITY</name>
+		<name>SR0008: Consider using SCOPE_IDENTITY instead of @@IDENTITY
+		</name>
 		<internalKey>SR0008</internalKey>
 		<descriptionFormat>HTML</descriptionFormat>
 		<description><![CDATA[
@@ -100,11 +103,13 @@ END</code></pre>
 		<tag>design</tag>
 		<remediationFunction>LINEAR</remediationFunction>
 		<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
-		<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+		<debtRemediationFunctionCoefficient>5min
+		</debtRemediationFunctionCoefficient>
 	</rule>
 	<rule>
 		<key>Microsoft.Rules.Data.SR0009</key>
-		<name>SR0009: Avoid using types of variable length that are size 1 or 2</name>
+		<name>SR0009: Avoid using types of variable length that are size 1 or
+			2</name>
 		<internalKey>SR0009</internalKey>
 		<descriptionFormat>HTML</descriptionFormat>
 		<description><![CDATA[
@@ -150,11 +155,13 @@ ON [PRIMARY]</code></pre>
 		<tag>design</tag>
 		<remediationFunction>LINEAR</remediationFunction>
 		<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
-		<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+		<debtRemediationFunctionCoefficient>5min
+		</debtRemediationFunctionCoefficient>
 	</rule>
 	<rule>
 		<key>Microsoft.Rules.Data.SR0010</key>
-		<name>SR0010: Avoid using deprecated syntax when you join tables or views</name>
+		<name>SR0010: Avoid using deprecated syntax when you join tables or
+			views</name>
 		<internalKey>SR0010</internalKey>
 		<descriptionFormat>HTML</descriptionFormat>
 		<description><![CDATA[
@@ -234,11 +241,13 @@ ON [T2].[ID] = [T2].[ID]</code></pre>
 		<tag>design</tag>
 		<remediationFunction>LINEAR</remediationFunction>
 		<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
-		<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+		<debtRemediationFunctionCoefficient>5min
+		</debtRemediationFunctionCoefficient>
 	</rule>
 	<rule>
 		<key>Microsoft.Rules.Data.SR0013</key>
-		<name>SR0013: Output parameter (parameter) is not populated in all code paths</name>
+		<name>SR0013: Output parameter (parameter) is not populated in all
+			code paths</name>
 		<internalKey>SR0013</internalKey>
 		<descriptionFormat>HTML</descriptionFormat>
 		<description><![CDATA[
@@ -297,11 +306,13 @@ END</code></pre>
 		<tag>design</tag>
 		<remediationFunction>LINEAR</remediationFunction>
 		<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
-		<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+		<debtRemediationFunctionCoefficient>5min
+		</debtRemediationFunctionCoefficient>
 	</rule>
 	<rule>
 		<key>Microsoft.Rules.Data.SR0014</key>
-		<name>SR0014: Data loss might occur when casting from {Type1} to {Type2}</name>
+		<name>SR0014: Data loss might occur when casting from {Type1} to
+			{Type2}</name>
 		<internalKey>SR0014</internalKey>
 		<descriptionFormat>HTML</descriptionFormat>
 		<description><![CDATA[
@@ -365,7 +376,8 @@ END</code></pre>
 		<tag>design</tag>
 		<remediationFunction>LINEAR</remediationFunction>
 		<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
-		<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+		<debtRemediationFunctionCoefficient>5min
+		</debtRemediationFunctionCoefficient>
 	</rule>
 	<rule>
 		<key>Microsoft.Rules.Data.SR0011</key>
@@ -419,7 +431,8 @@ ON [PRIMARY]</code></pre>
 		<tag>naming</tag>
 		<remediationFunction>LINEAR</remediationFunction>
 		<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
-		<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+		<debtRemediationFunctionCoefficient>5min
+		</debtRemediationFunctionCoefficient>
 	</rule>
 	<rule>
 		<key>Microsoft.Rules.Data.SR0012</key>
@@ -457,7 +470,8 @@ FROM varchar(11) NOT NULL ;</code></pre>
 		<tag>naming</tag>
 		<remediationFunction>LINEAR</remediationFunction>
 		<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
-		<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+		<debtRemediationFunctionCoefficient>5min
+		</debtRemediationFunctionCoefficient>
 	</rule>
 	<rule>
 		<key>Microsoft.Rules.Data.SR0016</key>
@@ -507,11 +521,13 @@ END</code></pre>
 		<tag>naming</tag>
 		<remediationFunction>LINEAR</remediationFunction>
 		<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
-		<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+		<debtRemediationFunctionCoefficient>5min
+		</debtRemediationFunctionCoefficient>
 	</rule>
 	<rule>
 		<key>Microsoft.Rules.Data.SR0004</key>
-		<name>SR0004: Avoid using columns that do not have indexes as test expressions in IN predicates</name>
+		<name>SR0004: Avoid using columns that do not have indexes as test
+			expressions in IN predicates</name>
 		<internalKey>SR0004</internalKey>
 		<descriptionFormat>HTML</descriptionFormat>
 		<description><![CDATA[
@@ -549,11 +565,13 @@ ON [dbo].[Table2] (c1);</code></pre>
 		<tag>performance</tag>
 		<remediationFunction>LINEAR</remediationFunction>
 		<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
-		<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+		<debtRemediationFunctionCoefficient>5min
+		</debtRemediationFunctionCoefficient>
 	</rule>
 	<rule>
 		<key>Microsoft.Rules.Data.SR0005</key>
-		<name>SR0005: Avoid using patterns that start with “%” in LIKE predicates</name>
+		<name>SR0005: Avoid using patterns that start with “%” in LIKE
+			predicates</name>
 		<internalKey>SR0005</internalKey>
 		<descriptionFormat>HTML</descriptionFormat>
 		<description><![CDATA[
@@ -588,11 +606,13 @@ WHERE Comment LIKE 'A%'
 		<tag>performance</tag>
 		<remediationFunction>LINEAR</remediationFunction>
 		<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
-		<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+		<debtRemediationFunctionCoefficient>5min
+		</debtRemediationFunctionCoefficient>
 	</rule>
 	<rule>
 		<key>Microsoft.Rules.Data.SR0006</key>
-		<name>SR0006: Move a column reference to one side of a comparison operator to use a column index</name>
+		<name>SR0006: Move a column reference to one side of a comparison
+			operator to use a column index</name>
 		<internalKey>SR0006</internalKey>
 		<descriptionFormat>HTML</descriptionFormat>
 		<description><![CDATA[
@@ -632,11 +652,13 @@ WHERE ([c1] > (@param1 - 5))</code></pre>
 		<tag>performance</tag>
 		<remediationFunction>LINEAR</remediationFunction>
 		<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
-		<debtRemediationFunctionCoefficient>10min</debtRemediationFunctionCoefficient>
+		<debtRemediationFunctionCoefficient>10min
+		</debtRemediationFunctionCoefficient>
 	</rule>
 	<rule>
 		<key>Microsoft.Rules.Data.SR0007</key>
-		<name>SR0007: Use ISNULL(column, default_value) on nullable columns in expressions</name>
+		<name>SR0007: Use ISNULL(column, default_value) on nullable columns in
+			expressions</name>
 		<internalKey>SR0007</internalKey>
 		<descriptionFormat>HTML</descriptionFormat>
 		<description><![CDATA[
@@ -684,11 +706,13 @@ END</code></pre>
 		<tag>performance</tag>
 		<remediationFunction>LINEAR</remediationFunction>
 		<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
-		<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+		<debtRemediationFunctionCoefficient>5min
+		</debtRemediationFunctionCoefficient>
 	</rule>
 	<rule>
 		<key>Microsoft.Rules.Data.SR0015</key>
-		<name>SR0015: Extract deterministic function calls from WHERE predicates</name>
+		<name>SR0015: Extract deterministic function calls from WHERE
+			predicates</name>
 		<internalKey>SR0015</internalKey>
 		<descriptionFormat>HTML</descriptionFormat>
 		<description><![CDATA[
@@ -735,6 +759,7 @@ END</code></pre>
 		<tag>performance</tag>
 		<remediationFunction>LINEAR</remediationFunction>
 		<remediationFunctionBaseEffort></remediationFunctionBaseEffort>
-		<debtRemediationFunctionCoefficient>5min</debtRemediationFunctionCoefficient>
+		<debtRemediationFunctionCoefficient>5min
+		</debtRemediationFunctionCoefficient>
 	</rule>
 </sql-rules>

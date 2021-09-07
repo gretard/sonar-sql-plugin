@@ -27,101 +27,109 @@ import org.w3c.dom.NodeList;
 
 public class CGIssuesSensor extends BaseSensor implements Sensor {
 
-	private static final Logger LOGGER = Loggers.get(CGIssuesSensor.class);
+    private static final Logger LOGGER = Loggers.get(CGIssuesSensor.class);
 
-	private final String repositoryName = Constants.TSQL_CG_ENGINEID;
+    private final String repositoryName = Constants.TSQL_CG_ENGINEID;
 
-	private final TempFolder tempFolder;
+    private final TempFolder tempFolder;
 
-	@Override
-	public void describe(SensorDescriptor descriptor) {
-		descriptor.onlyOnLanguage(Constants.languageKey).onlyWhenConfiguration(x -> x.get(Constants.PLUGIN_SQL_DIALECT)
-				.orElse(Dialects.TSQL.name()).equalsIgnoreCase(Dialects.TSQL.name()));
+    @Override
+    public void describe(SensorDescriptor descriptor) {
+        descriptor.onlyOnLanguage(Constants.languageKey).onlyWhenConfiguration(x -> x.get(Constants.PLUGIN_SQL_DIALECT)
+                .orElse(Dialects.TSQL.name()).equalsIgnoreCase(Dialects.TSQL.name()));
 
-	}
+    }
 
-	public CGIssuesSensor(final TempFolder tempFolder) {
-		this.tempFolder = tempFolder;
+    public CGIssuesSensor(final TempFolder tempFolder) {
+        this.tempFolder = tempFolder;
 
-	}
+    }
 
-	protected SqlIssuesList read(final InputStream stream) throws Exception {
+    protected SqlIssuesList read(final InputStream stream) throws Exception {
 
-		SqlIssuesList issuesList = new SqlIssuesList();
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder = factory.newDocumentBuilder();
+        SqlIssuesList issuesList = new SqlIssuesList();
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
 
-		Document doc = builder.parse(stream);
+        Document doc = builder.parse(stream);
 
-		NodeList list = doc.getElementsByTagName("issue");
+        NodeList list = doc.getElementsByTagName("issue");
 
-		for (int i = 0; i < list.getLength(); i++) {
-			try {
-				Node n = list.item(i);
+        for (int i = 0; i < list.getLength(); i++) {
+            try {
+                Node n = list.item(i);
 
-				String fileName = XmlHelper.readAttribute(n.getParentNode(), "fullname", null);
-				String line = XmlHelper.readAttribute(n, "line", null);
-				String message = XmlHelper.readAttribute(n, "text", null);
-				String description = XmlHelper.readAttribute(n, "message", null);
+                String fileName = XmlHelper.readAttribute(n.getParentNode(), "fullname", null);
+                String line = XmlHelper.readAttribute(n, "line", null);
+                String message = XmlHelper.readAttribute(n, "text", null);
+                String description = XmlHelper.readAttribute(n, "message", null);
 
-				String severity = XmlHelper.readAttribute(n, "severity", null);
-				String key = XmlHelper.readAttribute(n, "code", null);
+                String severity = XmlHelper.readAttribute(n, "severity", null);
+                String key = XmlHelper.readAttribute(n, "code", null);
 
-				SqlIssue issue = new SqlIssue();
-				issue.fileName = fileName;
-				issue.isAdhoc = true;
-				issue.isExternal = true;
-				issue.key = key;
-				issue.repo = repositoryName;
-				issue.name = message;
-				issue.message = message;
-				issue.description = description;
-				issue.line = Integer.parseInt(line);
-				issue.severity = severity;
-				issuesList.addIssue(issue);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+                SqlIssue issue = new SqlIssue();
+                issue.fileName = fileName;
+                issue.isAdhoc = false;
+                issue.isExternal = true;
+                issue.key = key;
+                issue.repo = "external_"+repositoryName;
+                issue.name = message;
+                issue.message = message;
+                issue.description = description;
+                issue.line = Integer.parseInt(line);
+                issue.severity = severity;
+                if ("error".equalsIgnoreCase(severity)) {
+                    issue.debtRemediationEffort = 10;
+                    issue.severity = "BLOCKER";
+                }
+                if ("warning".equalsIgnoreCase(severity)) {
+                    issue.debtRemediationEffort = 5;
+                    issue.severity = "MAJOR";
+                }
+                issuesList.addIssue(issue);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-		}
+        }
 
-		return issuesList;
-	}
+        return issuesList;
+    }
 
-	@Override
-	public void execute(SensorContext context) {
-		final String externalTool = context.config().get(Constants.TSQL_CG_PATH).orElse(Constants.TSQL_CG_PATH_DEFAULT)
-				.toLowerCase();
-		final String sourceDir = context.fileSystem().baseDir().getAbsolutePath();
-		try {
-			if (!Files.exists(Paths.get(externalTool))) {
-				LOGGER.info("Skip running external tool as executable not found {}", externalTool);
-				return;
-			}
+    @Override
+    public void execute(SensorContext context) {
+        final String externalTool = context.config().get(Constants.TSQL_CG_PATH).orElse(Constants.TSQL_CG_PATH_DEFAULT)
+                .toLowerCase();
+        final String sourceDir = context.fileSystem().baseDir().getAbsolutePath();
+        try {
+            if (!Files.exists(Paths.get(externalTool))) {
+                LOGGER.info("Skip running external tool as executable not found {}", externalTool);
+                return;
+            }
 
-			final File tempResultsFile = tempFolder.newFile("temp", "results.xml");
+            final File tempResultsFile = tempFolder.newFile("temp", "results.xml");
 
-			final String[] args = new String[] { externalTool, "-source", sourceDir, "-out",
-					tempResultsFile.getAbsolutePath(), "/include:all" };
+            final String[] args = new String[] { externalTool, "-source", sourceDir, "-out",
+                    tempResultsFile.getAbsolutePath(), "/include:all" };
 
-			final Process process = new ProcessBuilder(args).inheritIO().start();
-			LOGGER.debug("Running SQLCodeGuard with {}", Arrays.toString(args));
+            final Process process = new ProcessBuilder(args).inheritIO().start();
+            LOGGER.debug("Running SQLCodeGuard with {}", Arrays.toString(args));
 
-			final int result = process.waitFor();
-			if (!tempResultsFile.exists() || tempResultsFile.length() == 0) {
-				LOGGER.warn("SQLCodeGuard returned with '{}'. Arguments were: {}", result, Arrays.toString(args));
-				return;
-			}
-			try (final BOMInputStream stream = new BOMInputStream(new FileInputStream(tempResultsFile))) {
+            final int result = process.waitFor();
+            if (!tempResultsFile.exists() || tempResultsFile.length() == 0) {
+                LOGGER.warn("SQLCodeGuard returned with '{}'. Arguments were: {}", result, Arrays.toString(args));
+                return;
+            }
+            try (final BOMInputStream stream = new BOMInputStream(new FileInputStream(tempResultsFile))) {
 
-				final SqlIssuesList issues = read(stream);
-				addIssues(context, issues, null);
-			}
+                final SqlIssuesList issues = read(stream);
+                addIssues(context, issues, null);
+            }
 
-		} catch (Throwable e) {
-			LOGGER.warn("Unexpected error", e);
-		}
+        } catch (Throwable e) {
+            LOGGER.warn("Unexpected error", e);
+        }
 
-	}
+    }
 
 }

@@ -47,6 +47,6 @@ public final class Constants {
 
 	public static final String PLUGIN_SQL_SCA_MAX_FILE_SIZE = "sonar.sql.sca.maxfilesize";
 
-	public static final long PLUGIN_SQL_SCA_MAX_FILE_SIZE_DEFAULT = 1024 * 1024 * 2;
+	public static final long PLUGIN_SQL_SCA_MAX_FILE_SIZE_DEFAULT = 1024 * 1024 * 2l;
 
 }

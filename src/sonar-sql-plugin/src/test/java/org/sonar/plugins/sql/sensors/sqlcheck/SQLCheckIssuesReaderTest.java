@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import org.sonar.api.utils.internal.JUnitTempFolder;
+import org.sonar.api.impl.utils.JUnitTempFolder;
 import org.sonar.plugins.sql.issues.SqlIssuesList;
 
 public class SQLCheckIssuesReaderTest {
@@ -16,7 +16,7 @@ public class SQLCheckIssuesReaderTest {
     public TemporaryFolder folder = new TemporaryFolder();
 
     @org.junit.Rule
-    public JUnitTempFolder temp = new JUnitTempFolder();
+    public JUnitTempFolder temp = new org.sonar.api.impl.utils.JUnitTempFolder();
 
     @Test
     public void test() throws IOException {
