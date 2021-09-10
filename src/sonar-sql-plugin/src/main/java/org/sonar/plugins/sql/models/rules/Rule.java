@@ -64,7 +64,9 @@ import javax.xml.bind.annotation.XmlType;
     "tag",
     "ruleImplementation",
     "source",
-    "ruleType"
+    "ruleType",
+    "ruleAppliesTo",
+    "ruleReportsOn"
 })
 @XmlRootElement(name = "rule")
 public class Rule {
