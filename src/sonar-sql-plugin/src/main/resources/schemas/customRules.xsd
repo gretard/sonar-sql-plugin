@@ -146,8 +146,11 @@
   <xs:element name="tag" type="xs:string"/>
   <xs:element name="source" type="xs:string"/>
   <xs:element name="rule">
+    
     <xs:complexType>
+     
       <xs:sequence>
+      
         <xs:element ref="key"/>
         <xs:element ref="name"/>
         <xs:element ref="internalKey"/>
@@ -163,6 +166,9 @@
         <xs:element ref="ruleImplementation"/>
         <xs:element ref="source"/>
         <xs:element ref="ruleType"/>
+        <xs:element name="ruleAppliesTo" type="xs:string"/>
+        <xs:element name="ruleReportsOn" type="xs:string"/>
+
       </xs:sequence>
     </xs:complexType>
   </xs:element>

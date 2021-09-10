@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <sql-rules repoName="demo" repoKey="demoKey" isAdhoc="false">
   
-    <rule ruleAppliesTo="comments">
+    <rule ruleAppliesTo="comments" ruleReportsOn="file">
         <key>C002</key>
         <name>test</name>
         <internalKey>IC002</internalKey>
@@ -11,6 +11,8 @@
         <debtRemediationFunctionCoefficient>2min</debtRemediationFunctionCoefficient>
         <tag>design</tag>
         <ruleType>BUG</ruleType>
+        <ruleAppliesTo>comments</ruleAppliesTo>
+        <ruleReportsOn>file</ruleReportsOn>
         <ruleImplementation>
             <names>
                 <textItem>Select_list_elemContext</textItem>

@@ -45,6 +45,8 @@ public class AdhocRulesProviderTest {
         Assert.assertEquals("code", rule.getRuleAppliesTo());
         Assert.assertEquals("design", rule.getTag());
         Assert.assertNotNull(rule.getRuleImplementation());
+        Assert.assertEquals("line", rule.getRuleReportsOn());
+
 
     }
     @Test
@@ -62,6 +64,8 @@ public class AdhocRulesProviderTest {
         Assert.assertNotNull(rule.getDescription());
         Assert.assertEquals(null, rule.getDescriptionFormat());
         Assert.assertEquals("IC002", rule.getInternalKey());
+        Assert.assertEquals("file", rule.getRuleReportsOn());
+
         Assert.assertEquals("C002", rule.getKey());
         Assert.assertEquals("test", rule.getName());
         Assert.assertEquals("BUG", rule.getRuleType());

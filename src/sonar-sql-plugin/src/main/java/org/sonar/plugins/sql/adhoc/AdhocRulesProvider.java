@@ -186,7 +186,8 @@ public class AdhocRulesProvider {
                     Node parent = list.item(i);
                     org.sonar.plugins.sql.models.rules.Rule rule = new Rule();
                     rule.setKey(XmlHelper.getNodeValue(parent, "key"));
-                    rule.setRuleAppliesTo(XmlHelper.readAttribute(parent, "ruleAppliesTo", "code"));
+                    rule.setRuleAppliesTo(XmlHelper.getNodeValue(parent, "ruleAppliesTo", "code"));
+                    rule.setRuleReportsOn(XmlHelper.getNodeValue(parent, "ruleReportsOn", "line"));
                     rule.setName(XmlHelper.getNodeValue(parent, "name"));
                     rule.setInternalKey(XmlHelper.getNodeValue(parent, "internalKey"));
                     rule.setDescription(XmlHelper.getNodeValue(parent, "description"));

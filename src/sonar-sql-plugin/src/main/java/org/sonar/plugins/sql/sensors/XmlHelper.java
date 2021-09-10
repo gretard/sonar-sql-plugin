@@ -42,7 +42,16 @@ public final class XmlHelper {
         }
         return null;
     }
-
+    public static final String getNodeValue(Node parent, String name, String defaultValue) {
+        NodeList children = parent.getChildNodes();
+        for (int i = 0; i < children.getLength(); i++) {
+            Node child = children.item(i);
+            if (name.equalsIgnoreCase(child.getNodeName())) {
+                return child.getTextContent();
+            }
+        }
+        return defaultValue;
+    }
     public static final <T> T getNodeValue2(Node parent, String name, Function<String, T> func, T defaultValue) {
         NodeList children = parent.getChildNodes();
         for (int i = 0; i < children.getLength(); i++) {
