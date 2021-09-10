@@ -33,6 +33,7 @@ Tutorials:
 ## Requirements ##
 Different plugin versions supports the following:
 - 1.0.0 - Sonarqube 7.4+versions
+- 1.2.0 - Sonarqube 9+versions
 
 ## Installation ##
 1. Download and install SonarQube
