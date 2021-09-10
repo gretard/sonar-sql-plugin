@@ -72,7 +72,7 @@ public class CGIssuesSensor extends BaseSensor implements Sensor {
                 issue.isAdhoc = false;
                 issue.isExternal = true;
                 issue.key = key;
-                issue.repo = "external_"+repositoryName;
+                issue.repo = repositoryName;
                 issue.name = message;
                 issue.message = message;
                 issue.description = description;

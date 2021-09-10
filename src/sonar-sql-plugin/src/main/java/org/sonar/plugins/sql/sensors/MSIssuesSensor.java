@@ -87,7 +87,7 @@ public class MSIssuesSensor extends BaseSensor implements Sensor {
                 issue.fileName = XmlHelper.getNodeValue(parent, "SourceFile");
                 issue.message = XmlHelper.getNodeValue(parent, "ProblemDescription");
                 issue.line = Integer.parseInt(XmlHelper.getNodeValue(parent, "Line"));
-                issue.repo = "external_" + repositoryName;
+                issue.repo = repositoryName;
                 issue.isExternal = true;
                 issue.debtRemediationEffort = 2l;
 
