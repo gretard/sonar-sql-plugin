@@ -14,7 +14,8 @@ public class DefaultNodesMatcher implements INodesMatcher {
 	public boolean matches(final IParsedNode item, final IParsedNode parent, final RuleImplementation rule) {
 
 		for (final IMatcher matcher : matchers) {
-			if (!matcher.match(item, rule)) {
+		    boolean res = matcher.match(item, rule);
+			if (!res) {
 				return false;
 			}
 		}

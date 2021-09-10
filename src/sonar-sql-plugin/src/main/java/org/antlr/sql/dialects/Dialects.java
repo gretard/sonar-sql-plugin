@@ -1,9 +1,12 @@
 package org.antlr.sql.dialects;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.antlr.sql.dialects.rules.CommonRules;
 import org.antlr.sql.models.AntlrContext;
+import org.sonar.plugins.sql.models.rules.Rule;
 import org.sonar.plugins.sql.models.rules.SqlRules;
 
 public enum Dialects {
@@ -15,7 +18,7 @@ public enum Dialects {
 
     public AntlrContext parse(String text, List<SqlRules> rules) {
         AntlrContext ctx = this.dialect.parse(text);
-
+        ctx.initialContents = text;
         SQLDialectRules.INSTANCE.getRules().forEach(r -> {
             if (r.getDialect() == null || this.name().equalsIgnoreCase(r.getDialect())) {
                 ctx.rules.add(r);
@@ -28,6 +31,7 @@ public enum Dialects {
                 ctx.rules.add(r);
             }
         });
+        ctx.rules.addAll(CommonRules.INSTANCE.getRules());
 
         return ctx;
     }

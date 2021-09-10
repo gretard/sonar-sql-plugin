@@ -18,10 +18,12 @@ public class AntlrContext {
     public ParseTree root;
 
     public CommonTokenStream stream;
-
+    public boolean isCodeRules = true;
     public DialectLanguageTypesMap types;
 
-    public List<SqlRules> rules = new ArrayList<>();
+    public String initialContents;
+    
+    public final List<SqlRules> rules = new ArrayList<>();
 
     public List<SqlRules> getRules() {
         return rules;

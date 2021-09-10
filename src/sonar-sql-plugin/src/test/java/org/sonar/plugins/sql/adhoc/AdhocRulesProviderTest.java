@@ -20,7 +20,7 @@ public class AdhocRulesProviderTest {
     public JUnitTempFolder temp = new org.sonar.api.impl.utils.JUnitTempFolder();
 
     @Test
-    public void testRuleDetailsAreParsedProperly() throws Exception {
+    public void testRuleDetailsAreParsedProperlyToDefaults() throws Exception {
         File baseFile = temp.newFile();
 
         FileUtils.copyURLToFile(getClass().getResource("/external/rule1.customRules"), baseFile);
@@ -42,6 +42,35 @@ public class AdhocRulesProviderTest {
         Assert.assertEquals(null, rule.getRemediationFunctionBaseEffort());
         Assert.assertEquals(null, rule.getSource());
         Assert.assertEquals(null, rule.getStatus());
+        Assert.assertEquals("code", rule.getRuleAppliesTo());
+        Assert.assertEquals("design", rule.getTag());
+        Assert.assertNotNull(rule.getRuleImplementation());
+
+    }
+    @Test
+    public void testRuleDetailsAreParsedProperly() throws Exception {
+        File baseFile = temp.newFile();
+
+        FileUtils.copyURLToFile(getClass().getResource("/external/rule3.customRules"), baseFile);
+        SqlRules rules = AdhocRulesProvider.read(baseFile);
+        Assert.assertEquals("demo", rules.getRepoName());
+        Assert.assertEquals("demoKey", rules.getRepoKey());
+        Assert.assertEquals(true, rules.isIsAdhoc());
+        Assert.assertEquals(1, rules.getRule().size());
+        Rule rule = rules.getRule().get(0);
+        Assert.assertEquals("2min", rule.getDebtRemediationFunctionCoefficient());
+        Assert.assertNotNull(rule.getDescription());
+        Assert.assertEquals(null, rule.getDescriptionFormat());
+        Assert.assertEquals("IC002", rule.getInternalKey());
+        Assert.assertEquals("C002", rule.getKey());
+        Assert.assertEquals("test", rule.getName());
+        Assert.assertEquals("BUG", rule.getRuleType());
+        Assert.assertEquals("MINOR", rule.getSeverity());
+        Assert.assertEquals("LINEAR", rule.getRemediationFunction());
+        Assert.assertEquals(null, rule.getRemediationFunctionBaseEffort());
+        Assert.assertEquals(null, rule.getSource());
+        Assert.assertEquals(null, rule.getStatus());
+        Assert.assertEquals("comments", rule.getRuleAppliesTo());
         Assert.assertEquals("design", rule.getTag());
         Assert.assertNotNull(rule.getRuleImplementation());
 

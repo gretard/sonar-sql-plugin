@@ -37,7 +37,7 @@ public class SQLSensorTest {
 
         SQLSensor s = new SQLSensor();
         s.execute(ctxTester);
-        Assert.assertEquals(1, ctxTester.allIssues().size());
+        Assert.assertEquals(2, ctxTester.allIssues().size());
 
     }
 
@@ -57,7 +57,7 @@ public class SQLSensorTest {
         SQLSensor s = new SQLSensor();
         s.execute(ctxTester);
 
-        Assert.assertEquals(2, ctxTester.allIssues().size());
+        Assert.assertEquals(3, ctxTester.allIssues().size());
 
     }
 
@@ -77,10 +77,10 @@ public class SQLSensorTest {
         SQLSensor s = new SQLSensor();
         s.execute(ctxTester);
 
-        Assert.assertEquals(2, ctxTester.allIssues().size());
+        Assert.assertEquals(3, ctxTester.allIssues().size());
         Assert.assertEquals(0, ctxTester.allExternalIssues().size());
         Assert.assertEquals(0, ctxTester.allAdHocRules().size());
 
     }
-
+   
 }

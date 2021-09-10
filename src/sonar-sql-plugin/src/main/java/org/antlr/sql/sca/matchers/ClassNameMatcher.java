@@ -14,7 +14,6 @@ public class ClassNameMatcher implements IMatcher {
 			return true;
 		}
 		final List<String> names = ruleImplementation.getNames().getTextItem();
-
 		boolean result =  names.contains(item.getClassName());
 		return result;
 	}

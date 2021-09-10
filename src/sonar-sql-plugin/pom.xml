@@ -5,7 +5,7 @@
 
 	<groupId>org.sonar.plugins</groupId>
 	<artifactId>sonar-sql-plugin</artifactId>
-	<version>1.1.2</version>
+	<version>1.2.0</version>
 	<packaging>sonar-plugin</packaging>
 
 	<name>SQL language plugin</name>
@@ -14,9 +14,10 @@
 	<url>https://github.com/gretard/sonar-sql-plugin</url>
 
 	<properties>
-			<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<sonar.apiVersion>9.0.1.46107</sonar.apiVersion>
-
+		<sonar.login>admin</sonar.login>
+		<sonar.password>admin</sonar.password>
 		<jdk.min.version>1.9</jdk.min.version>
 		<maven.compiler.target>1.9</maven.compiler.target>
 		<maven.source.target>1.9</maven.source.target>
@@ -81,7 +82,7 @@
 		<dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr4-runtime</artifactId>
-			<version>4.8-1</version>
+			<version>4.9.2</version>
 		</dependency>
 
 	</dependencies>

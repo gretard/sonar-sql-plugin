@@ -18,6 +18,7 @@ import org.sonar.api.utils.log.Loggers;
 import org.sonar.plugins.sql.Constants;
 import org.sonar.plugins.sql.adhoc.AdhocRulesProvider;
 import org.sonar.plugins.sql.fillers.CognitiveComplexityFiller;
+import org.sonar.plugins.sql.fillers.CommentIssuesFiller;
 import org.sonar.plugins.sql.fillers.CpdTokensFiller;
 import org.sonar.plugins.sql.fillers.CyclomaticComplexityFiller;
 import org.sonar.plugins.sql.fillers.Filler;
@@ -28,77 +29,82 @@ import org.sonar.plugins.sql.models.rules.SqlRules;
 
 public class SQLSensor implements Sensor {
 
-	private static final Logger LOGGER = Loggers.get(SQLSensor.class);
+    private static final Logger LOGGER = Loggers.get(SQLSensor.class);
 
-	private final Filler fillers[] = { new CognitiveComplexityFiller(), new CyclomaticComplexityFiller(),
-			new LineMetricsFiller(), new HighlighterFiller(), new CpdTokensFiller(), new IssuesFiller() };
-	private final AdhocRulesProvider adhocRulesProvider = new AdhocRulesProvider();
+    private final Filler fillers[] = { new CognitiveComplexityFiller(), new CyclomaticComplexityFiller(),
+            new LineMetricsFiller(), new HighlighterFiller(), new CpdTokensFiller(), new IssuesFiller(),
+            new CommentIssuesFiller()
 
-	@Override
-	public void describe(final SensorDescriptor descriptor) {
-		descriptor.onlyOnLanguage(Constants.languageKey);
-	}
+    };
+    private final AdhocRulesProvider adhocRulesProvider = new AdhocRulesProvider();
 
-	@Override
-	public void execute(final SensorContext context) {
+    @Override
+    public void describe(final SensorDescriptor descriptor) {
+        descriptor.onlyOnLanguage(Constants.languageKey);
+    }
 
-		final Configuration config = context.config();
+    @Override
+    public void execute(final SensorContext context) {
 
-		final String dialect = config.get(Constants.PLUGIN_SQL_DIALECT).orElse("tsql").toUpperCase();
-		final long timeout = config.getLong(Constants.PLUGIN_SQL_SCA_TIMEOUT)
-				.orElse(Constants.PLUGIN_SQL_SCA_TIMEOUT_DEFAULT);
-		final long maxFileSize = config.getLong(Constants.PLUGIN_SQL_SCA_MAX_FILE_SIZE)
-				.orElse(Constants.PLUGIN_SQL_SCA_MAX_FILE_SIZE_DEFAULT);
+        final Configuration config = context.config();
 
-		if (!EnumUtils.isValidEnum(Dialects.class, dialect)) {
-			LOGGER.warn("Undefined dialect was passed: {}. Supported dialects are: {}", dialect, Dialects.values());
-			return;
-		}
-		
-		final Dialects sqlDialect = Dialects.valueOf(dialect.toUpperCase());
-		final ExecutorService service = Executors.newWorkStealingPool();
-		final org.sonar.api.batch.fs.FileSystem fs = context.fileSystem();
-		final Iterable<InputFile> files = fs.inputFiles(fs.predicates().hasLanguage(Constants.languageKey));
-		final List<SqlRules> customRules = adhocRulesProvider.getAdhocRules(
-				config.get(Constants.PLUGIN_SQL_EXTERNAL_RULES_SUFFIX)
-						.orElse(Constants.PLUGIN_SQL_EXTERNAL_RULES_SUFFIXES_DEFAULT),
-				context.fileSystem().baseDir().getAbsolutePath(),
-				config.getStringArray(Constants.PLUGIN_SQL_EXTERNAL_RULES_SEARCH_PATH));
+        final String dialect = config.get(Constants.PLUGIN_SQL_DIALECT).orElse("tsql").toUpperCase();
+        final long timeout = config.getLong(Constants.PLUGIN_SQL_SCA_TIMEOUT)
+                .orElse(Constants.PLUGIN_SQL_SCA_TIMEOUT_DEFAULT);
+        final long maxFileSize = config.getLong(Constants.PLUGIN_SQL_SCA_MAX_FILE_SIZE)
+                .orElse(Constants.PLUGIN_SQL_SCA_MAX_FILE_SIZE_DEFAULT);
 
-		LOGGER.debug("Found {} number of custom rules", customRules.size());
-		files.forEach(inputFile -> {
-			service.execute(new Runnable() {
+        if (!EnumUtils.isValidEnum(Dialects.class, dialect)) {
+            LOGGER.warn("Undefined dialect was passed: {}. Supported dialects are: {}", dialect, Dialects.values());
+            return;
+        }
 
-				@SuppressWarnings("deprecation")
-				@Override
-				public void run() {
-					try {
-						if (inputFile.file().length() > maxFileSize) {
-							LOGGER.debug("Skipping {} file as its size exceeds {} bytes. You can increase this limit by setting {} property", inputFile, maxFileSize, Constants.PLUGIN_SQL_SCA_MAX_FILE_SIZE);
+        final Dialects sqlDialect = Dialects.valueOf(dialect.toUpperCase());
+        final ExecutorService service = Executors.newWorkStealingPool();
+        final org.sonar.api.batch.fs.FileSystem fs = context.fileSystem();
+        final Iterable<InputFile> files = fs.inputFiles(fs.predicates().hasLanguage(Constants.languageKey));
+        final List<SqlRules> customRules = adhocRulesProvider.getAdhocRules(
+                config.get(Constants.PLUGIN_SQL_EXTERNAL_RULES_SUFFIX)
+                        .orElse(Constants.PLUGIN_SQL_EXTERNAL_RULES_SUFFIXES_DEFAULT),
+                context.fileSystem().baseDir().getAbsolutePath(),
+                config.getStringArray(Constants.PLUGIN_SQL_EXTERNAL_RULES_SEARCH_PATH));
 
-							return;
-						}
-						final AntlrContext ctx = sqlDialect.parse(inputFile.contents(), customRules);
-						for (final Filler filler : fillers) {
-							filler.fill(inputFile, context, ctx);
-						}
+        LOGGER.debug("Found {} number of custom rules", customRules.size());
+        files.forEach(inputFile -> {
+            service.execute(new Runnable() {
 
-					} catch (Throwable e) {
-						LOGGER.warn("Unexpected exception while analyzing file: " + inputFile, e);
-					}
+                @SuppressWarnings("deprecation")
+                @Override
+                public void run() {
+                    try {
+                        if (inputFile.file().length() > maxFileSize) {
+                            LOGGER.debug(
+                                    "Skipping {} file as its size exceeds {} bytes. You can increase this limit by setting {} property",
+                                    inputFile, maxFileSize, Constants.PLUGIN_SQL_SCA_MAX_FILE_SIZE);
 
-				}
-			});
+                            return;
+                        }
+                        final AntlrContext ctx = sqlDialect.parse(inputFile.contents(), customRules);
+                        for (final Filler filler : fillers) {
+                            filler.fill(inputFile, context, ctx);
+                        }
 
-		});
-		service.shutdown();
-		try {
-			service.awaitTermination(timeout, TimeUnit.SECONDS);
-			service.shutdownNow();
-		} catch (Throwable e) {
-			LOGGER.warn("Unexpected exception while waiting for executor service to finish.", e);
-		}
+                    } catch (Throwable e) {
+                        LOGGER.warn("Unexpected exception while analyzing file: " + inputFile, e);
+                    }
 
-	}
+                }
+            });
+
+        });
+        service.shutdown();
+        try {
+            service.awaitTermination(timeout, TimeUnit.SECONDS);
+            service.shutdownNow();
+        } catch (Throwable e) {
+            LOGGER.warn("Unexpected exception while waiting for executor service to finish.", e);
+        }
+
+    }
 
 }

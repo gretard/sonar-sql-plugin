@@ -92,7 +92,7 @@ public enum MySQLRules {
 		impl.getChildrenRules().getRuleImplementation().add(child2);
 		impl.getNames().getTextItem().add(InsertStatementContext.class.getSimpleName());
 		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		impl.setRuleResultType(RuleResultType.DEFAULT);
+		impl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
 
 		return rule;
 	}
@@ -156,7 +156,7 @@ public enum MySQLRules {
 
 		rImpl.getNames().getTextItem().add(FromClauseContext.class.getSimpleName());
 		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-
+		rImpl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND); 
 		RuleImplementation child = new RuleImplementation();
 		child.getTextToFind().getTextItem().add("or");
 		child.setTextCheckType(TextCheckType.STRICT);
@@ -174,6 +174,8 @@ public enum MySQLRules {
 
 		rImpl.getNames().getTextItem().add(UnionStatementContext.class.getSimpleName());
 		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+	    rImpl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND); 
+
 		RuleImplementation child = new RuleImplementation();
 		child.getTextToFind().getTextItem().add("all");
 		child.setTextCheckType(TextCheckType.STRICT);
@@ -226,7 +228,7 @@ public enum MySQLRules {
 		impl.getNames().getTextItem().add(OrderByExpressionContext.class.getSimpleName());
 
 		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		impl.setRuleResultType(RuleResultType.DEFAULT);
+		impl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
 		return rule;
 	}
 

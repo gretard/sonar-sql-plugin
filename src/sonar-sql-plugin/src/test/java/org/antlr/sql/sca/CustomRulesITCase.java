@@ -1,6 +1,7 @@
 package org.antlr.sql.sca;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -16,6 +17,7 @@ import org.antlr.sql.models.AntlrContext;
 import org.junit.Assert;
 import org.junit.Test;
 import org.sonar.plugins.sql.adhoc.AdhocRulesProvider;
+import org.sonar.plugins.sql.issues.RuleToCheck;
 import org.sonar.plugins.sql.issues.SqlIssue;
 import org.sonar.plugins.sql.models.rules.Rule;
 import org.sonar.plugins.sql.models.rules.RuleDistanceIndexMatchType;
@@ -28,6 +30,7 @@ public class CustomRulesITCase {
 
     TSQLDialect d = new TSQLDialect();
 
+    IssuesProvider sut = new IssuesProvider();
     @Test
     public void testRules() throws Exception {
 
@@ -88,10 +91,8 @@ public class CustomRulesITCase {
         String s = "update test set x = 1 from dbo.testUpdate as t1 inner join dbo.tss with (nolock) as t2 \r\non t1.id = t2.id \r\nleft join dbo.gg on t1.id = t2.id";
 
         AntlrContext ctx = d.parse(s);
-        ctx.rules.clear();
-        ctx.rules.add(rules);
-        // PrettyPrinter.print(ctx.root, 0, null);
-        Map<String, Set<SqlIssue>> issues = sut.analyze(ctx).getIssues();
+        Map<String, Set<SqlIssue>> issues = sut.check(RuleToCheck.createCodeList2(rules), ctx.root)
+                .getIssues();
 
         for (Entry<String, Set<SqlIssue>> is : issues.entrySet()) {
             System.out.println("ISSUE: " + is + " " + is.getValue());
@@ -100,7 +101,7 @@ public class CustomRulesITCase {
         Assert.assertFalse(s, issues.isEmpty());
     }
 
-    private final IssuesProvider sut = new IssuesProvider();
+   // private final IssuesProvider sut = new IssuesProvider();
 
     @Test
     public void test() throws Exception {
@@ -111,7 +112,9 @@ public class CustomRulesITCase {
                 AntlrContext ctx = d.parse(t);
                 ctx.rules.clear();
                 ctx.rules.add(rules);
-                Map<String, Set<SqlIssue>> issues = sut.analyze(ctx).getIssues();
+                Map<String, Set<SqlIssue>> issues = sut.check(RuleToCheck.createCodeList2(rules), ctx.root)
+                        .getIssues();
+                
                 for (Entry<String, Set<SqlIssue>> is : issues.entrySet()) {
                     System.out.println("ISSUE: " + is + " " + is.getValue());
                 }
@@ -124,7 +127,8 @@ public class CustomRulesITCase {
                 AntlrContext ctx = d.parse(t);
                 ctx.rules.clear();
                 ctx.rules.add(rules);
-                Map<String, Set<SqlIssue>> issues = sut.analyze(ctx).getIssues();
+                Map<String, Set<SqlIssue>> issues = sut.check(RuleToCheck.createCodeList2(rules), ctx.root)
+                        .getIssues();
                 for (Entry<String, Set<SqlIssue>> is : issues.entrySet()) {
                     System.out.println("ISSUE: " + is + " " + is.getValue());
                 }

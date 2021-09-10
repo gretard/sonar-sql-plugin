@@ -99,6 +99,21 @@ public class Rule {
     protected String source;
     @XmlElement(required = true, defaultValue = "CODE_SMELL")
     protected String ruleType = "CODE_SMELL";
+    
+    @XmlElement(required = true)
+    protected String ruleAppliesTo = "code";
+    
+    @XmlElement(required = true)
+    protected String ruleReportsOn = "line";
+    
+
+    public String getRuleReportsOn() {
+        return ruleReportsOn;
+    }
+
+    public void setRuleReportsOn(String ruleReportsOn) {
+        this.ruleReportsOn = ruleReportsOn;
+    }
 
     /**
      * Gets the value of the key property.
@@ -458,6 +473,14 @@ public class Rule {
      */
     public void setRuleType(String value) {
         this.ruleType = value;
+    }
+
+    public String getRuleAppliesTo() {
+        return ruleAppliesTo;
+    }
+
+    public void setRuleAppliesTo(String ruleAppliesTo) {
+        this.ruleAppliesTo = ruleAppliesTo;
     }
 
 }

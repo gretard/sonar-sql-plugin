@@ -115,7 +115,7 @@ public enum PSSQLRules {
 		impl.getNames().getTextItem().add(Order_by_clauseContext.class.getSimpleName());
 
 		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		impl.setRuleResultType(RuleResultType.DEFAULT);
+		impl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
 		impl.setRuleViolationMessage("Positional reference is used instead of column name in an ORDER BY clause.");
 
 		rule.setRuleImplementation(impl);
@@ -241,7 +241,7 @@ public enum PSSQLRules {
 		impl.getNames().getTextItem().add(Order_by_itemContext.class.getSimpleName());
 
 		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		impl.setRuleResultType(RuleResultType.DEFAULT);
+		impl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
 		return rule;
 	}
 

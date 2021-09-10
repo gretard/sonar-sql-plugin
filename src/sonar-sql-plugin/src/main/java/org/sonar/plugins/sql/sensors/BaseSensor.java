@@ -84,6 +84,7 @@ public class BaseSensor {
 
     protected static synchronized void addIssues(SensorContext context, final SqlIssuesList issues,
             final InputFile file) throws IOException {
+     
 
         final List<String> rulesToSkip = Arrays
                 .asList(context.config().getStringArray(Constants.PLUGIN_SQL_RULES_SKIP));

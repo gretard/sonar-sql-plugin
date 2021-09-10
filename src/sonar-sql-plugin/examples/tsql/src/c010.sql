@@ -1,0 +1,24 @@
+/*compliant code*/
+ALTER TABLE dbo.Orders ADD CONSTRAINT PK_OrderId PRIMARY KEY CLUSTERED (Id);
+ALTER TABLE dbo.Orders ADD CONSTRAINT PK_OrderId PRIMARY KEY CLUSTERED (Id);
+/*violating code*/
+CREATE TABLE dbo.Orders
+(
+Id int NOT NULL,
+CONSTRAINT OrderID PRIMARY KEY CLUSTERED (Id) 
+);  
+CREATE TABLE dbo.Orders
+(
+Id int NOT NULL,
+CONSTRAINT OrderID PRIMARY KEY CLUSTERED (Id) 
+);  
+CREATE TABLE dbo.Orders
+(
+Id int NOT NULL,  
+PRIMARY KEY (Id)
+);  
+CREATE TABLE dbo.Orders
+(
+Id int NOT NULL,  
+PRIMARY KEY (Id)
+);  

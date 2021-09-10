@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.antlr.sql.dialects.rules.CommonRules;
 import org.antlr.sql.dialects.rules.MySQLRules;
 import org.antlr.sql.dialects.rules.PSSQLRules;
 import org.antlr.sql.dialects.rules.TSQLRules;
@@ -33,6 +34,10 @@ public enum SQLDialectRules {
         {
             rules.addAll(VSQLRules.INSTANCE.getRules());
         }
+        {
+            rules.addAll(CommonRules.INSTANCE.getRules());
+        }
+      
         return rules;
     }
 

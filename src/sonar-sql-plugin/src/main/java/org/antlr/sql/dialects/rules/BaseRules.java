@@ -84,7 +84,7 @@ public enum BaseRules implements IBaseRules {
 
 		RuleImplementation impl = new RuleImplementation();
 		impl.setRuleViolationMessage("Column list is not specified in an INSERT statement.");
-		impl.getViolatingRulesCodeExamples().getRuleCodeExample().add("INSERT INTO dbo.test VALUES (1,2);");
+		impl.getViolatingRulesCodeExamples().getRuleCodeExample().add("INSERT INTO dbo.test VALUES (1,2);\r\nINSERT INTO dbo.test2 VALUES (1,2);");
 		impl.getCompliantRulesCodeExamples().getRuleCodeExample().add("INSERT INTO dbo.test (a,b) VALUES (1,2);");
 
 		rule.setRuleImplementation(impl);

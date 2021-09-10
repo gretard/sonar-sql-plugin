@@ -17,6 +17,7 @@ import org.junit.runners.Parameterized.Parameters;
 import org.sonar.api.issue.Issue;
 import org.sonar.api.utils.log.LoggerLevel;
 import org.sonar.api.utils.log.Loggers;
+import org.sonar.plugins.sql.fillers.IssuesFiller;
 import org.sonar.plugins.sql.issues.SqlIssue;
 import org.sonar.plugins.sql.issues.SqlIssuesList;
 import org.sonar.plugins.sql.models.rules.Rule;
@@ -25,7 +26,7 @@ import org.sonar.plugins.sql.models.rules.SqlRules;
 @RunWith(Parameterized.class)
 public class PluginRulesITCase {
 
-    private final IssuesProvider sut = new IssuesProvider();
+    private final IssuesFiller sut = new IssuesFiller();
 
     @Parameters(name = "{3}: {1} - {0} ({index})")
     public static Iterable<Object[]> data() throws Throwable {
@@ -34,8 +35,12 @@ public class PluginRulesITCase {
 
         List<SqlRules> rules = SQLDialectRules.INSTANCE.getRules();
 
-        for (final SqlRules rule : rules) {
+        for (final SqlRules rule : rules) { 
+            if (rule.getDialect() == null) {
+                continue;
+            }
             for (final Rule r : rule.getRule()) {
+
                 r.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample().forEach(t -> {
                     data.add(new Object[] { t, r.getKey(), r, Dialects.valueOf(rule.getDialect().toUpperCase()), true
 
@@ -61,8 +66,9 @@ public class PluginRulesITCase {
         AntlrContext ctx = dialect.parse(text);
         SqlRules a = new SqlRules();
         a.getRule().add(rule);
-        ctx.rules = Arrays.asList(a);
-        SqlIssuesList list = sut.analyze(ctx);
+        ctx.rules.clear();
+        ctx.rules.addAll(Arrays.asList(a));
+        SqlIssuesList list = sut.getIssues(ctx);
         Collection<SqlIssue> issues = list.getaLLIssues();
 
         if (issueExists && issues.isEmpty() || !issueExists && !issues.isEmpty()) {
