@@ -16,3 +16,4 @@ Build:
 - mvn antlr4:antlr4 -Dgrammars="grammars-v4/sql/tsql" -Dgrammars.package="org.antlr.sql.dialects.tsql" -Dgrammars.out.dir="tsql"
 - mvn antlr4:antlr4 -Dgrammars="antlr_psql/antlr4" -Dgrammars.package="org.antlr.sql.dialects.psql" -Dgrammars.out.dir="psql"
 - mvn antlr4:antlr4 -Dgrammars="antlr4-grammar-vsql/antlr4-grammar-vsql/src/main/antlr4" -Dgrammars.package="org.antlr.sql.dialects.vsql" -Dgrammars.out.dir="vsql"
+- mvn antlr4:antlr4 -Dgrammars="antlr4-grammar-sql-comments/src/main/antlr4" -Dgrammars.package="org.antlr.sql.dialects.comments" -Dgrammars.out.dir="comments"

@@ -3,8 +3,8 @@ package org.sonar.plugins.sql.fillers;
 import java.io.IOException;
 import java.util.List;
 
-import org.antlr.sql.comments.CommentsGrammarLexer;
-import org.antlr.sql.comments.CommentsGrammarParser;
+import org.antlr.sql.dialects.comments.CommentsGrammarLexer;
+import org.antlr.sql.dialects.comments.CommentsGrammarParser;
 import org.antlr.sql.models.AntlrContext;
 import org.antlr.sql.sca.IssuesProvider;
 import org.antlr.v4.runtime.CharStream;
@@ -45,7 +45,7 @@ public class CommentIssuesFiller extends BaseSensor implements Filler {
 
     }
 
-    SqlIssuesList getIssues(AntlrContext antlrContext) throws IOException {
+  public  SqlIssuesList getIssues(AntlrContext antlrContext) throws IOException {
         ParseTree root = getRoot(antlrContext);
 
         List<RuleToCheck> rulesToCheck = RuleToCheck.createCommentsList(antlrContext.rules.toArray(new SqlRules[0]));

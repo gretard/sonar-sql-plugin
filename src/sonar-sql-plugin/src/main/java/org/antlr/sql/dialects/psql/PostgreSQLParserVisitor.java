@@ -1,4 +1,4 @@
-// Generated from antlr_psql/antlr4/PostgreSQLParser.g4 by ANTLR 4.8
+// Generated from antlr_psql\antlr4\PostgreSQLParser.g4 by ANTLR 4.9.2
 package org.antlr.sql.dialects.psql;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 

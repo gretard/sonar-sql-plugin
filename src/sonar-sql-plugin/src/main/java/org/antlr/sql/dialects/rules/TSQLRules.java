@@ -12,9 +12,11 @@ import org.antlr.sql.dialects.tsql.TSqlParser.Comparison_operatorContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.ConstantContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Create_indexContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Execute_statementContext;
+import org.antlr.sql.dialects.tsql.TSqlParser.Execute_var_stringContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Full_column_nameContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Function_callContext;
-import org.antlr.sql.dialects.tsql.TSqlParser.IdContext;
+import org.antlr.sql.dialects.tsql.TSqlParser.Id_Context;
+import org.antlr.sql.dialects.tsql.TSqlParser.Insert_column_name_listContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Insert_statementContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Order_by_clauseContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Order_by_expressionContext;
@@ -22,7 +24,6 @@ import org.antlr.sql.dialects.tsql.TSqlParser.PredicateContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Primitive_expressionContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.SCALAR_FUNCTIONContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Search_conditionContext;
-import org.antlr.sql.dialects.tsql.TSqlParser.Search_condition_notContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Select_list_elemContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Sql_unionContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.SubqueryContext;
@@ -116,6 +117,8 @@ public enum TSQLRules {
 
         RuleImplementation child2 = new RuleImplementation();
         child2.getNames().getTextItem().add(Column_name_listContext.class.getSimpleName());
+        child2.getNames().getTextItem().add(Insert_column_name_listContext.class.getSimpleName());
+
         child2.setTextCheckType(TextCheckType.DEFAULT);
         child2.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
         child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
@@ -153,7 +156,7 @@ public enum TSQLRules {
         RuleImplementation impl = rule.getRuleImplementation();
 
         RuleImplementation child2 = new RuleImplementation();
-        child2.getNames().getTextItem().add(Primitive_expressionContext.class.getSimpleName());
+        child2.getNames().getTextItem().add(Execute_var_stringContext.class.getSimpleName());
         child2.setTextCheckType(TextCheckType.DEFAULT);
         child2.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
         child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
@@ -208,7 +211,7 @@ public enum TSQLRules {
         ruleImpl.getChildrenRules().getRuleImplementation().add(child2);
 
         RuleImplementation main = new RuleImplementation();
-        main.getNames().getTextItem().add(IdContext.class.getSimpleName());
+        main.getNames().getTextItem().add(Id_Context.class.getSimpleName());
         main.setTextCheckType(TextCheckType.CONTAINS);
         main.getTextToFind().getTextItem().add("PK_");
         main.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
@@ -242,7 +245,7 @@ public enum TSQLRules {
         ruleImpl.getChildrenRules().getRuleImplementation().add(child2);
 
         RuleImplementation main = new RuleImplementation();
-        main.getNames().getTextItem().add(IdContext.class.getSimpleName());
+        main.getNames().getTextItem().add(Id_Context.class.getSimpleName());
         main.setTextCheckType(TextCheckType.CONTAINS);
         main.getTextToFind().getTextItem().add("FK_");
         main.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
@@ -273,7 +276,7 @@ public enum TSQLRules {
         ruleImpl.getChildrenRules().getRuleImplementation().add(child1);
 
         RuleImplementation main = new RuleImplementation();
-        main.getNames().getTextItem().add(IdContext.class.getSimpleName());
+        main.getNames().getTextItem().add(Id_Context.class.getSimpleName());
         main.setTextCheckType(TextCheckType.CONTAINS);
         main.getTextToFind().getTextItem().add("IX_");
         main.getTextToFind().getTextItem().add("IXU_");
@@ -289,7 +292,7 @@ public enum TSQLRules {
 
         Rule rule = baseRules.getNullComparisonRule();
         RuleImplementation rImpl = rule.getRuleImplementation();
-        rImpl.getNames().getTextItem().add(Search_condition_notContext.class.getSimpleName());
+        rImpl.getNames().getTextItem().add(Search_conditionContext.class.getSimpleName());
         rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 
         RuleImplementation child = new RuleImplementation();

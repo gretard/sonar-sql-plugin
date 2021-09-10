@@ -35,7 +35,7 @@ public class CognitiveComplexityFillerTest {
         List<Object[]> data = new ArrayList<>();
         data.add(new Object[] { Dialects.MYSQL, 23 });
         data.add(new Object[] { Dialects.PSSQL, 15 });
-        data.add(new Object[] { Dialects.TSQL, 19 });
+        data.add(new Object[] { Dialects.TSQL, 22 });
         data.add(new Object[] { Dialects.VSQL, 13 });
 
         return data;

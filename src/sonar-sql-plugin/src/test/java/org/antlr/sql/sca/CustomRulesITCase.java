@@ -8,7 +8,7 @@ import java.util.Set;
 
 import org.antlr.sql.dialects.TSQLDialect;
 import org.antlr.sql.dialects.tsql.TSqlParser.Common_table_expressionContext;
-import org.antlr.sql.dialects.tsql.TSqlParser.IdContext;
+import org.antlr.sql.dialects.tsql.TSqlParser.Id_Context;
 import org.antlr.sql.dialects.tsql.TSqlParser.Join_partContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Select_statementContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.Table_source_itemContext;
@@ -31,6 +31,7 @@ public class CustomRulesITCase {
     TSQLDialect d = new TSQLDialect();
 
     IssuesProvider sut = new IssuesProvider();
+
     @Test
     public void testRules() throws Exception {
 
@@ -41,7 +42,7 @@ public class CustomRulesITCase {
 
         {
             RuleImplementation select = new RuleImplementation();
-            select.getNames().getTextItem().add(IdContext.class.getSimpleName());
+            select.getNames().getTextItem().add(Id_Context.class.getSimpleName());
             select.setRuleMatchType(RuleMatchType.FULL);
             select.setRuleViolationMessage("ID");
 
@@ -91,8 +92,7 @@ public class CustomRulesITCase {
         String s = "update test set x = 1 from dbo.testUpdate as t1 inner join dbo.tss with (nolock) as t2 \r\non t1.id = t2.id \r\nleft join dbo.gg on t1.id = t2.id";
 
         AntlrContext ctx = d.parse(s);
-        Map<String, Set<SqlIssue>> issues = sut.check(RuleToCheck.createCodeList2(rules), ctx.root)
-                .getIssues();
+        Map<String, Set<SqlIssue>> issues = sut.check(RuleToCheck.createCodeList2(rules), ctx.root).getIssues();
 
         for (Entry<String, Set<SqlIssue>> is : issues.entrySet()) {
             System.out.println("ISSUE: " + is + " " + is.getValue());
@@ -101,44 +101,4 @@ public class CustomRulesITCase {
         Assert.assertFalse(s, issues.isEmpty());
     }
 
-   // private final IssuesProvider sut = new IssuesProvider();
-
-    @Test
-    public void test() throws Exception {
-        SqlRules rules = AdhocRulesProvider.read(new File("./src/test/resources/tsql/rules2.xml"));
-
-        for (Rule r : rules.getRule()) {
-            for (String t : r.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample()) {
-                AntlrContext ctx = d.parse(t);
-                ctx.rules.clear();
-                ctx.rules.add(rules);
-                Map<String, Set<SqlIssue>> issues = sut.check(RuleToCheck.createCodeList2(rules), ctx.root)
-                        .getIssues();
-                
-                for (Entry<String, Set<SqlIssue>> is : issues.entrySet()) {
-                    System.out.println("ISSUE: " + is + " " + is.getValue());
-                }
-                for (Entry<String, Set<SqlIssue>> temp : issues.entrySet()) {
-                    Assert.assertTrue(t, temp.getValue().size() > 0);
-                }
-
-            }
-            for (String t : r.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample()) {
-                AntlrContext ctx = d.parse(t);
-                ctx.rules.clear();
-                ctx.rules.add(rules);
-                Map<String, Set<SqlIssue>> issues = sut.check(RuleToCheck.createCodeList2(rules), ctx.root)
-                        .getIssues();
-                for (Entry<String, Set<SqlIssue>> is : issues.entrySet()) {
-                    System.out.println("ISSUE: " + is + " " + is.getValue());
-                }
-
-                for (Entry<String, Set<SqlIssue>> temp : issues.entrySet()) {
-                    Assert.assertTrue(t, temp.getValue().isEmpty());
-                }
-            }
-
-        }
-
-    }
 }

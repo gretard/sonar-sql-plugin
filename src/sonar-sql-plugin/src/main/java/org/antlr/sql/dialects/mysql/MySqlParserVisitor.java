@@ -1,4 +1,4 @@
-// Generated from grammars-v4/sql/mysql/Positive-Technologies/MySqlParser.g4 by ANTLR 4.8
+// Generated from grammars-v4\sql\mysql\Positive-Technologies\MySqlParser.g4 by ANTLR 4.9.2
 package org.antlr.sql.dialects.mysql;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -332,6 +332,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDefaultColumnConstraint(MySqlParser.DefaultColumnConstraintContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code visibilityColumnConstraint}
+	 * labeled alternative in {@link MySqlParser#columnConstraint}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVisibilityColumnConstraint(MySqlParser.VisibilityColumnConstraintContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code autoIncrementColumnConstraint}
 	 * labeled alternative in {@link MySqlParser#columnConstraint}.
 	 * @param ctx the parse tree
@@ -637,12 +644,25 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTableOptionTablespace(MySqlParser.TableOptionTablespaceContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code tableOptionTableType}
+	 * labeled alternative in {@link MySqlParser#tableOption}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTableOptionTableType(MySqlParser.TableOptionTableTypeContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code tableOptionUnion}
 	 * labeled alternative in {@link MySqlParser#tableOption}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitTableOptionUnion(MySqlParser.TableOptionUnionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#tableType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTableType(MySqlParser.TableTypeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#tablespaceStorage}.
 	 * @param ctx the parse tree
@@ -698,12 +718,12 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSubPartitionFunctionKey(MySqlParser.SubPartitionFunctionKeyContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code partitionComparision}
+	 * Visit a parse tree produced by the {@code partitionComparison}
 	 * labeled alternative in {@link MySqlParser#partitionDefinition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPartitionComparision(MySqlParser.PartitionComparisionContext ctx);
+	T visitPartitionComparison(MySqlParser.PartitionComparisonContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code partitionListAtom}
 	 * labeled alternative in {@link MySqlParser#partitionDefinition}.
@@ -2264,6 +2284,12 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitGrantStatement(MySqlParser.GrantStatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MySqlParser#roleOption}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRoleOption(MySqlParser.RoleOptionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MySqlParser#grantProxy}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -2289,6 +2315,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitShortRevoke(MySqlParser.ShortRevokeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code roleRevoke}
+	 * labeled alternative in {@link MySqlParser#revokeStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRoleRevoke(MySqlParser.RoleRevokeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#revokeProxy}.
 	 * @param ctx the parse tree
@@ -3199,6 +3232,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitValuesFunctionCall(MySqlParser.ValuesFunctionCallContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code caseExpressionFunctionCall}
+	 * labeled alternative in {@link MySqlParser#specificFunction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseExpressionFunctionCall(MySqlParser.CaseExpressionFunctionCallContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code caseFunctionCall}
 	 * labeled alternative in {@link MySqlParser#specificFunction}.
 	 * @param ctx the parse tree
@@ -3254,6 +3294,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitGetFormatFunctionCall(MySqlParser.GetFormatFunctionCallContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code jsonValueFunctionCall}
+	 * labeled alternative in {@link MySqlParser#specificFunction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJsonValueFunctionCall(MySqlParser.JsonValueFunctionCallContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#caseFuncAlternative}.
 	 * @param ctx the parse tree
@@ -3353,12 +3400,26 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpressionAtomPredicate(MySqlParser.ExpressionAtomPredicateContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code subqueryComparisonPredicate}
+	 * labeled alternative in {@link MySqlParser#predicate}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubqueryComparisonPredicate(MySqlParser.SubqueryComparisonPredicateContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code jsonMemberOfPredicate}
 	 * labeled alternative in {@link MySqlParser#predicate}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitJsonMemberOfPredicate(MySqlParser.JsonMemberOfPredicateContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code binaryComparisonPredicate}
+	 * labeled alternative in {@link MySqlParser#predicate}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBinaryComparisonPredicate(MySqlParser.BinaryComparisonPredicateContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code inPredicate}
 	 * labeled alternative in {@link MySqlParser#predicate}.
@@ -3367,26 +3428,12 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInPredicate(MySqlParser.InPredicateContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code subqueryComparasionPredicate}
-	 * labeled alternative in {@link MySqlParser#predicate}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSubqueryComparasionPredicate(MySqlParser.SubqueryComparasionPredicateContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code betweenPredicate}
 	 * labeled alternative in {@link MySqlParser#predicate}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitBetweenPredicate(MySqlParser.BetweenPredicateContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code binaryComparasionPredicate}
-	 * labeled alternative in {@link MySqlParser#predicate}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBinaryComparasionPredicate(MySqlParser.BinaryComparasionPredicateContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code isNullPredicate}
 	 * labeled alternative in {@link MySqlParser#predicate}.

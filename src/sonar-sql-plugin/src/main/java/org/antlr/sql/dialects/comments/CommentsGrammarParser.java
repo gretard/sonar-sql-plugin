@@ -1,5 +1,5 @@
-// Generated from CommentsGrammar.g4 by ANTLR 4.9.2
-package org.antlr.sql.comments;
+// Generated from antlr4-grammar-sql-comments\src\main\antlr4\CommentsGrammar.g4 by ANTLR 4.9.2
+package org.antlr.sql.dialects.comments;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -129,6 +129,11 @@ public class CommentsGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CommentsGrammarListener ) ((CommentsGrammarListener)listener).exitRoot(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CommentsGrammarVisitor ) return ((CommentsGrammarVisitor<? extends T>)visitor).visitRoot(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final RootContext root() throws RecognitionException {
@@ -193,6 +198,11 @@ public class CommentsGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CommentsGrammarListener ) ((CommentsGrammarListener)listener).exitStatement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CommentsGrammarVisitor ) return ((CommentsGrammarVisitor<? extends T>)visitor).visitStatement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -294,6 +304,11 @@ public class CommentsGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CommentsGrammarListener ) ((CommentsGrammarListener)listener).exitComment(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CommentsGrammarVisitor ) return ((CommentsGrammarVisitor<? extends T>)visitor).visitComment(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final CommentContext comment() throws RecognitionException {
@@ -346,6 +361,11 @@ public class CommentsGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CommentsGrammarListener ) ((CommentsGrammarListener)listener).exitMultiline_comment(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CommentsGrammarVisitor ) return ((CommentsGrammarVisitor<? extends T>)visitor).visitMultiline_comment(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Multiline_commentContext multiline_comment() throws RecognitionException {
@@ -382,6 +402,11 @@ public class CommentsGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CommentsGrammarListener ) ((CommentsGrammarListener)listener).exitLine_comment(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CommentsGrammarVisitor ) return ((CommentsGrammarVisitor<? extends T>)visitor).visitLine_comment(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -460,6 +485,11 @@ public class CommentsGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CommentsGrammarListener ) ((CommentsGrammarListener)listener).exitNon_comment(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CommentsGrammarVisitor ) return ((CommentsGrammarVisitor<? extends T>)visitor).visitNon_comment(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 

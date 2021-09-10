@@ -12,6 +12,7 @@ Supported classes:
 - AlterByAddPrimaryKeyContext
 - AlterByAddSpecialIndexContext
 - AlterByAddUniqueKeyContext
+- AlterByAlterIndexVisibilityContext
 - AlterByAnalyzePartitionContext
 - AlterByChangeColumnContext
 - AlterByChangeDefaultContext
@@ -23,6 +24,7 @@ Supported classes:
 - AlterByDiscardPartitionContext
 - AlterByDiscardTablespaceContext
 - AlterByDropColumnContext
+- AlterByDropConstraintCheckContext
 - AlterByDropForeignKeyContext
 - AlterByDropIndexContext
 - AlterByDropPartitionContext
@@ -71,7 +73,7 @@ Supported classes:
 - AutoIncrementColumnConstraintContext
 - BeginWorkContext
 - BetweenPredicateContext
-- BinaryComparasionPredicateContext
+- BinaryComparisonPredicateContext
 - BinaryExpressionAtomContext
 - BinlogStatementContext
 - BitExpressionAtomContext
@@ -82,6 +84,7 @@ Supported classes:
 - CacheIndexStatementContext
 - CallStatementContext
 - CaseAlternativeContext
+- CaseExpressionFunctionCallContext
 - CaseFuncAlternativeContext
 - CaseFunctionCallContext
 - CaseStatementContext
@@ -92,6 +95,7 @@ Supported classes:
 - CharFunctionCallContext
 - CharsetNameBaseContext
 - CharsetNameContext
+- CheckColumnConstraintContext
 - CheckTableConstraintContext
 - CheckTableContext
 - CheckTableOptionContext
@@ -162,6 +166,8 @@ Supported classes:
 - DescribeObjectClauseContext
 - DescribeStatementsContext
 - DetailRevokeContext
+- DiagnosticsConditionInformationNameContext
+- DiagnosticsStatementContext
 - DimensionDataTypeContext
 - DmlStatementContext
 - DoDbReplicationContext
@@ -185,7 +191,7 @@ Supported classes:
 - EnableTypeContext
 - EngineNameContext
 - ExecuteStatementContext
-- ExistsExpessionAtomContext
+- ExistsExpressionAtomContext
 - ExpressionAtomContext
 - ExpressionAtomPredicateContext
 - ExpressionContext
@@ -216,6 +222,7 @@ Supported classes:
 - GlobalPrivLevelContext
 - GrantProxyContext
 - GrantStatementContext
+- GroupByClauseContext
 - GroupByItemContext
 - GtidsUntilOptionContext
 - GtuidSetContext
@@ -232,6 +239,7 @@ Supported classes:
 - HandlerReadStatementContext
 - HandlerStatementContext
 - HashAuthOptionContext
+- HavingClauseContext
 - HelpStatementContext
 - HexadecimalLiteralContext
 - IfExistsContext
@@ -261,6 +269,10 @@ Supported classes:
 - IsNullPredicateContext
 - IterateStatementContext
 - JoinPartContext
+- JsonExpressionAtomContext
+- JsonMemberOfPredicateContext
+- JsonOperatorContext
+- JsonValueFunctionCallContext
 - KeywordsCanBeIdContext
 - KillStatementContext
 - LeaveStatementContext
@@ -284,6 +296,8 @@ Supported classes:
 - LockTablesContext
 - LogicalExpressionContext
 - LogicalOperatorContext
+- LongVarbinaryDataTypeContext
+- LongVarcharDataTypeContext
 - LoopStatementContext
 - MasterBoolOptionContext
 - MasterDecimalOptionContext
@@ -313,7 +327,7 @@ Supported classes:
 - OuterJoinContext
 - OwnerStatementContext
 - ParenthesisSelectContext
-- PartitionComparisionContext
+- PartitionComparisonContext
 - PartitionDefinerAtomContext
 - PartitionDefinerVectorContext
 - PartitionDefinitionContext
@@ -379,10 +393,13 @@ Supported classes:
 - ResetMasterContext
 - ResetSlaveContext
 - ResetStatementContext
+- ResignalStatementContext
 - ReturnStatementContext
 - RevokeProxyContext
 - RevokeStatementContext
 - RewriteDbReplicationContext
+- RoleOptionContext
+- RoleRevokeContext
 - RollbackStatementContext
 - RollbackWorkContext
 - RootContext
@@ -450,6 +467,8 @@ Supported classes:
 - ShowSlaveStatusContext
 - ShowStatementContext
 - ShutdownStatementContext
+- SignalConditionInformationContext
+- SignalStatementContext
 - SimpleAuthOptionContext
 - SimpleDataTypeContext
 - SimpleDescribeStatementContext
@@ -484,8 +503,8 @@ Supported classes:
 - SubPartitionFunctionKeyContext
 - SubpartitionDefinitionContext
 - SubpartitionFunctionDefinitionContext
-- SubqueryComparasionPredicateContext
-- SubqueryExpessionAtomContext
+- SubqueryComparisonPredicateContext
+- SubqueryExpressionAtomContext
 - SubqueryTableItemContext
 - SubstrFunctionCallContext
 - TableConstraintContext
@@ -516,6 +535,7 @@ Supported classes:
 - TableOptionRecalculationContext
 - TableOptionRowFormatContext
 - TableOptionSamplePageContext
+- TableOptionTableTypeContext
 - TableOptionTablespaceContext
 - TableOptionUnionContext
 - TablePairContext
@@ -525,6 +545,7 @@ Supported classes:
 - TableSourceNestedContext
 - TableSourcesContext
 - TableSourcesItemContext
+- TableTypeContext
 - TablesContext
 - TablespaceStorageContext
 - ThreadTypeContext
@@ -566,6 +587,7 @@ Supported classes:
 - UuidSetContext
 - ValuesFunctionCallContext
 - VariableClauseContext
+- VisibilityColumnConstraintContext
 - WeightFunctionCallContext
 - WhileStatementContext
 - WildDoTableReplicationContext

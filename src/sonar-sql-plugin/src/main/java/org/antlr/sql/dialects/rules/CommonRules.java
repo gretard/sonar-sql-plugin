@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.antlr.sql.comments.CommentsGrammarParser.CommentContext;
-import org.antlr.sql.comments.CommentsGrammarParser.Multiline_commentContext;
-import org.antlr.sql.dialects.Dialects;
+import org.antlr.sql.dialects.comments.CommentsGrammarParser.Multiline_commentContext;
 import org.sonar.plugins.sql.models.rules.Rule;
 import org.sonar.plugins.sql.models.rules.RuleDistanceIndexMatchType;
-import org.sonar.plugins.sql.models.rules.RuleImplementation;
 import org.sonar.plugins.sql.models.rules.RuleMatchType;
 import org.sonar.plugins.sql.models.rules.RuleResultType;
 import org.sonar.plugins.sql.models.rules.SqlRules;
@@ -52,38 +49,13 @@ public enum CommonRules {
         rule.getRuleImplementation().setIndexCheckType(RuleDistanceIndexMatchType.EQUALS);
 
         rule.setRuleAppliesTo("comments");
-        
+
         rule.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample()
                 .add("/* AUTHOR: test\r\nDate: 2020-01-01\r\n */\r\n SELECT * FROM test_table1;");
         rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample()
                 .add("SELECT * FROM test_table1;");
-
-//        RuleImplementation child = new RuleImplementation();
-//        child.setRuleResultType(RuleResultType.SKIP_IF_FOUND);
-//        child.setIndex(4);
-//        child.getNames().getTextItem().add(Multiline_commentContext.class.getSimpleName());
-//        child.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-//        child.setIndexCheckType(RuleDistanceIndexMatchType.MORE);
-//        rule.getRuleImplementation().getChildrenRules().getRuleImplementation().add(child);
-//        
-        {
-            RuleImplementation child2 = new RuleImplementation();
-            child2.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
-            child2.setIndex(4);
-            child2.getNames().getTextItem().add(Multiline_commentContext.class.getSimpleName());
-            child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-           child2.setIndexCheckType(RuleDistanceIndexMatchType.EQUALS);
-          //  rule.getRuleImplementation().getChildrenRules().getRuleImplementation().add(child2);
-        }
-//        {
-//            RuleImplementation child2 = new RuleImplementation();
-//            child2.setRuleResultType(RuleResultType.SKIP_IF_FOUND);
-//            child2.setIndex(4);
-//            child2.getNames().getTextItem().add(Multiline_commentContext.class.getSimpleName());
-//            child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-//            child2.setIndexCheckType(RuleDistanceIndexMatchType.MORE);
-//            rule.getRuleImplementation().getChildrenRules().getRuleImplementation().add(child2);
-//        }
+        rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample()
+                .add("SELECT * FROM test_table1; /*additionalComment*/ ");
         return rule;
     }
 

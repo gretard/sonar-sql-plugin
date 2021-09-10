@@ -34,7 +34,7 @@ public class CyclomaticComplexityFillerTest {
         List<Object[]> data = new ArrayList<>();
         data.add(new Object[] { Dialects.MYSQL, 17 });
         data.add(new Object[] { Dialects.PSSQL, 7 });
-        data.add(new Object[] { Dialects.TSQL, 9 });
+        data.add(new Object[] { Dialects.TSQL, 11 });
         return data;
     }
 
