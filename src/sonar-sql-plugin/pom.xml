@@ -5,7 +5,7 @@
 
 	<groupId>org.sonar.plugins</groupId>
 	<artifactId>sonar-sql-plugin</artifactId>
-	<version>1.2.0</version>
+	<version>1.2.1</version>
 	<packaging>sonar-plugin</packaging>
 
 	<name>SQL language plugin</name>
@@ -15,7 +15,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<sonar.apiVersion>9.0.1.46107</sonar.apiVersion>
+		<sonar.apiVersion>8.9.2.46101</sonar.apiVersion>
 		<sonar.login>admin</sonar.login>
 		<sonar.password>admin</sonar.password>
 		<jdk.min.version>1.9</jdk.min.version>
@@ -104,7 +104,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.0.0-M1</version>
+				<version>3.3.1</version>
 				<configuration>
 				</configuration>
 			</plugin>
@@ -121,7 +121,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.0</version>
+				<version>3.8.1</version>
 				<configuration>
 					<source>${jdk.min.version}</source>
 					<target>${jdk.min.version}</target>
