@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<sql-rules repoName="Demo adhoc rules" repoKey="tsqlDemoRepoAdhoc" isAdhoc="true">
+<sql-rules repoName="Demo adhoc rules" repoKey="tsqlDemoRepoAdhoc" isAdhoc="true" dialect="tsql">
    <rule>
         <key>C001</key>
         <name>DEMO: WAITFOR is used</name>
