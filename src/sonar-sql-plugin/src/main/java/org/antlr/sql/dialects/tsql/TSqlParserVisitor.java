@@ -1,4 +1,4 @@
-// Generated from grammars-v4\sql\tsql\TSqlParser.g4 by ANTLR 4.9.2
+// Generated from grammars-v4/sql/tsql/TSqlParser.g4 by ANTLR 4.9.3
 package org.antlr.sql.dialects.tsql;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -1426,6 +1426,18 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCreate_index(TSqlParser.Create_indexContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#alter_index}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlter_index(TSqlParser.Alter_indexContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#rebuild_partition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRebuild_partition(TSqlParser.Rebuild_partitionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TSqlParser#create_columnstore_index}.
 	 * @param ctx the parse tree

@@ -1,4 +1,4 @@
-// Generated from grammars-v4\sql\tsql\TSqlParser.g4 by ANTLR 4.9.2
+// Generated from grammars-v4/sql/tsql/TSqlParser.g4 by ANTLR 4.9.3
 package org.antlr.sql.dialects.tsql;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -2367,6 +2367,26 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCreate_index(TSqlParser.Create_indexContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#alter_index}.
+	 * @param ctx the parse tree
+	 */
+	void enterAlter_index(TSqlParser.Alter_indexContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#alter_index}.
+	 * @param ctx the parse tree
+	 */
+	void exitAlter_index(TSqlParser.Alter_indexContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#rebuild_partition}.
+	 * @param ctx the parse tree
+	 */
+	void enterRebuild_partition(TSqlParser.Rebuild_partitionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#rebuild_partition}.
+	 * @param ctx the parse tree
+	 */
+	void exitRebuild_partition(TSqlParser.Rebuild_partitionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TSqlParser#create_columnstore_index}.
 	 * @param ctx the parse tree

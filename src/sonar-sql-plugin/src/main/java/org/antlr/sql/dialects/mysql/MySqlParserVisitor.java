@@ -1,4 +1,4 @@
-// Generated from grammars-v4\sql\mysql\Positive-Technologies\MySqlParser.g4 by ANTLR 4.9.2
+// Generated from grammars-v4/sql/mysql/Positive-Technologies/MySqlParser.g4 by ANTLR 4.9.3
 package org.antlr.sql.dialects.mysql;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -1675,6 +1675,12 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitHavingClause(MySqlParser.HavingClauseContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MySqlParser#windowClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWindowClause(MySqlParser.WindowClauseContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MySqlParser#groupByItem}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -3190,6 +3196,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAggregateFunctionCall(MySqlParser.AggregateFunctionCallContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code nonAggregateFunctionCall}
+	 * labeled alternative in {@link MySqlParser#functionCall}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNonAggregateFunctionCall(MySqlParser.NonAggregateFunctionCallContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code scalarFunctionCall}
 	 * labeled alternative in {@link MySqlParser#functionCall}.
 	 * @param ctx the parse tree
@@ -3333,6 +3346,66 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAggregateWindowedFunction(MySqlParser.AggregateWindowedFunctionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#nonAggregateWindowedFunction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNonAggregateWindowedFunction(MySqlParser.NonAggregateWindowedFunctionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#overClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOverClause(MySqlParser.OverClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#windowSpec}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWindowSpec(MySqlParser.WindowSpecContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#windowName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWindowName(MySqlParser.WindowNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#frameClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFrameClause(MySqlParser.FrameClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#frameUnits}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFrameUnits(MySqlParser.FrameUnitsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#frameExtent}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFrameExtent(MySqlParser.FrameExtentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#frameBetween}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFrameBetween(MySqlParser.FrameBetweenContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#frameRange}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFrameRange(MySqlParser.FrameRangeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#partitionClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPartitionClause(MySqlParser.PartitionClauseContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#scalarFunctionName}.
 	 * @param ctx the parse tree

@@ -1,4 +1,4 @@
-// Generated from grammars-v4\sql\tsql\TSqlParser.g4 by ANTLR 4.9.2
+// Generated from grammars-v4/sql/tsql/TSqlParser.g4 by ANTLR 4.9.3
 package org.antlr.sql.dialects.tsql;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -1663,6 +1663,20 @@ public class TSqlParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitCreate_index(TSqlParser.Create_indexContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitAlter_index(TSqlParser.Alter_indexContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitRebuild_partition(TSqlParser.Rebuild_partitionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

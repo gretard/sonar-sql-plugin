@@ -1,4 +1,4 @@
-// Generated from grammars-v4\sql\tsql\TSqlParser.g4 by ANTLR 4.9.2
+// Generated from grammars-v4/sql/tsql/TSqlParser.g4 by ANTLR 4.9.3
 package org.antlr.sql.dialects.tsql;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -2843,6 +2843,30 @@ public class TSqlParserBaseListener implements TSqlParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCreate_index(TSqlParser.Create_indexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAlter_index(TSqlParser.Alter_indexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAlter_index(TSqlParser.Alter_indexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRebuild_partition(TSqlParser.Rebuild_partitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRebuild_partition(TSqlParser.Rebuild_partitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

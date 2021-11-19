@@ -1,4 +1,4 @@
-// Generated from grammars-v4\sql\mysql\Positive-Technologies\MySqlParser.g4 by ANTLR 4.9.2
+// Generated from grammars-v4/sql/mysql/Positive-Technologies/MySqlParser.g4 by ANTLR 4.9.3
 package org.antlr.sql.dialects.mysql;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -2830,6 +2830,16 @@ public interface MySqlParserListener extends ParseTreeListener {
 	 */
 	void exitHavingClause(MySqlParser.HavingClauseContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MySqlParser#windowClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterWindowClause(MySqlParser.WindowClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#windowClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitWindowClause(MySqlParser.WindowClauseContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MySqlParser#groupByItem}.
 	 * @param ctx the parse tree
 	 */
@@ -5384,6 +5394,18 @@ public interface MySqlParserListener extends ParseTreeListener {
 	 */
 	void exitAggregateFunctionCall(MySqlParser.AggregateFunctionCallContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code nonAggregateFunctionCall}
+	 * labeled alternative in {@link MySqlParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterNonAggregateFunctionCall(MySqlParser.NonAggregateFunctionCallContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code nonAggregateFunctionCall}
+	 * labeled alternative in {@link MySqlParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitNonAggregateFunctionCall(MySqlParser.NonAggregateFunctionCallContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code scalarFunctionCall}
 	 * labeled alternative in {@link MySqlParser#functionCall}.
 	 * @param ctx the parse tree
@@ -5629,6 +5651,106 @@ public interface MySqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAggregateWindowedFunction(MySqlParser.AggregateWindowedFunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#nonAggregateWindowedFunction}.
+	 * @param ctx the parse tree
+	 */
+	void enterNonAggregateWindowedFunction(MySqlParser.NonAggregateWindowedFunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#nonAggregateWindowedFunction}.
+	 * @param ctx the parse tree
+	 */
+	void exitNonAggregateWindowedFunction(MySqlParser.NonAggregateWindowedFunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#overClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterOverClause(MySqlParser.OverClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#overClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitOverClause(MySqlParser.OverClauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#windowSpec}.
+	 * @param ctx the parse tree
+	 */
+	void enterWindowSpec(MySqlParser.WindowSpecContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#windowSpec}.
+	 * @param ctx the parse tree
+	 */
+	void exitWindowSpec(MySqlParser.WindowSpecContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#windowName}.
+	 * @param ctx the parse tree
+	 */
+	void enterWindowName(MySqlParser.WindowNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#windowName}.
+	 * @param ctx the parse tree
+	 */
+	void exitWindowName(MySqlParser.WindowNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#frameClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterFrameClause(MySqlParser.FrameClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#frameClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitFrameClause(MySqlParser.FrameClauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#frameUnits}.
+	 * @param ctx the parse tree
+	 */
+	void enterFrameUnits(MySqlParser.FrameUnitsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#frameUnits}.
+	 * @param ctx the parse tree
+	 */
+	void exitFrameUnits(MySqlParser.FrameUnitsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#frameExtent}.
+	 * @param ctx the parse tree
+	 */
+	void enterFrameExtent(MySqlParser.FrameExtentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#frameExtent}.
+	 * @param ctx the parse tree
+	 */
+	void exitFrameExtent(MySqlParser.FrameExtentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#frameBetween}.
+	 * @param ctx the parse tree
+	 */
+	void enterFrameBetween(MySqlParser.FrameBetweenContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#frameBetween}.
+	 * @param ctx the parse tree
+	 */
+	void exitFrameBetween(MySqlParser.FrameBetweenContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#frameRange}.
+	 * @param ctx the parse tree
+	 */
+	void enterFrameRange(MySqlParser.FrameRangeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#frameRange}.
+	 * @param ctx the parse tree
+	 */
+	void exitFrameRange(MySqlParser.FrameRangeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#partitionClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterPartitionClause(MySqlParser.PartitionClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#partitionClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitPartitionClause(MySqlParser.PartitionClauseContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MySqlParser#scalarFunctionName}.
 	 * @param ctx the parse tree

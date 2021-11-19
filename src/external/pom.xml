@@ -22,7 +22,7 @@
     <plugin>
 		<groupId>org.antlr</groupId>
 				<artifactId>antlr4-maven-plugin</artifactId>
-				<version>4.9.2</version>
+				<version>4.9.3</version>
 				<configuration>
 					<sourceDirectory>${basedir}</sourceDirectory>
 					<outputDirectory>${basedir}/../sonar-sql-plugin/src/main/java/org/antlr/sql/dialects/${grammars.out.dir}</outputDirectory>
