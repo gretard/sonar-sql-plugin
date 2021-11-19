@@ -142,7 +142,7 @@ public class BaseSensor {
                     newIssue.at(loc).save();
 
                 } catch (Throwable e) {
-                    LOGGER.warn("Unexpected error adding issue on file " + fileName, e);
+                    LOGGER.warn("Unexpected error adding issue on file " + fileName+" for issue: "+issue, e);
 
                 }
             }
