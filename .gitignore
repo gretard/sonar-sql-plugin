@@ -30,3 +30,6 @@ examples/1-tsql/tools
 .settings
 .project
 .classpath
+
+**/tools/**
+
