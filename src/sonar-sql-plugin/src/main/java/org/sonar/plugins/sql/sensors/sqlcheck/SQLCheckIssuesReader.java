@@ -61,6 +61,7 @@ public class SQLCheckIssuesReader {
                         issue.repo = Constants.SQL_SQLCHECK_ENGINEID;
                         issue.isAdhoc = true;
                         issue.isExternal = true;
+                        issue.key = extractName(issueName);
                         list.addIssue(issue);
                     } catch (Exception e) {
                         LOGGER.info("Unexpected error reading: {}. Exception was: {}", line, e);

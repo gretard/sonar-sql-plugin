@@ -5,7 +5,7 @@
 
 	<groupId>org.sonar.plugins</groupId>
 	<artifactId>sonar-sql-plugin</artifactId>
-	<version>1.2.2</version>
+	<version>1.2.3</version>
 	<packaging>sonar-plugin</packaging>
 
 	<name>SQL language plugin</name>

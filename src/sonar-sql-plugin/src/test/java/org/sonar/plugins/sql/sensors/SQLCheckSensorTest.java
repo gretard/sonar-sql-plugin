@@ -46,6 +46,6 @@ public class SQLCheckSensorTest {
 
         Assert.assertEquals(3, ctxTester.allExternalIssues().size());
         Assert.assertEquals(0, ctxTester.allIssues().size());
-        Assert.assertEquals(0, ctxTester.allAdHocRules().size());
+        Assert.assertEquals(3, ctxTester.allAdHocRules().size());
     }
 }
