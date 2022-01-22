@@ -52,13 +52,13 @@ public class MySqlParserBaseListener implements MySqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEmptyStatement(MySqlParser.EmptyStatementContext ctx) { }
+	@Override public void enterEmptyStatement_(MySqlParser.EmptyStatement_Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEmptyStatement(MySqlParser.EmptyStatementContext ctx) { }
+	@Override public void exitEmptyStatement_(MySqlParser.EmptyStatement_Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -335,6 +335,18 @@ public class MySqlParserBaseListener implements MySqlParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCreateDatabaseOption(MySqlParser.CreateDatabaseOptionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCharSet(MySqlParser.CharSetContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCharSet(MySqlParser.CharSetContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

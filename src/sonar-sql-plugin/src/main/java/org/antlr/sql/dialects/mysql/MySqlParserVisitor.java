@@ -29,11 +29,11 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSqlStatement(MySqlParser.SqlStatementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MySqlParser#emptyStatement}.
+	 * Visit a parse tree produced by {@link MySqlParser#emptyStatement_}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitEmptyStatement(MySqlParser.EmptyStatementContext ctx);
+	T visitEmptyStatement_(MySqlParser.EmptyStatement_Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#ddlStatement}.
 	 * @param ctx the parse tree
@@ -175,6 +175,12 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCreateDatabaseOption(MySqlParser.CreateDatabaseOptionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#charSet}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCharSet(MySqlParser.CharSetContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#ownerStatement}.
 	 * @param ctx the parse tree

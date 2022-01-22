@@ -38,15 +38,15 @@ public interface MySqlParserListener extends ParseTreeListener {
 	 */
 	void exitSqlStatement(MySqlParser.SqlStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MySqlParser#emptyStatement}.
+	 * Enter a parse tree produced by {@link MySqlParser#emptyStatement_}.
 	 * @param ctx the parse tree
 	 */
-	void enterEmptyStatement(MySqlParser.EmptyStatementContext ctx);
+	void enterEmptyStatement_(MySqlParser.EmptyStatement_Context ctx);
 	/**
-	 * Exit a parse tree produced by {@link MySqlParser#emptyStatement}.
+	 * Exit a parse tree produced by {@link MySqlParser#emptyStatement_}.
 	 * @param ctx the parse tree
 	 */
-	void exitEmptyStatement(MySqlParser.EmptyStatementContext ctx);
+	void exitEmptyStatement_(MySqlParser.EmptyStatement_Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link MySqlParser#ddlStatement}.
 	 * @param ctx the parse tree
@@ -283,6 +283,16 @@ public interface MySqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCreateDatabaseOption(MySqlParser.CreateDatabaseOptionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MySqlParser#charSet}.
+	 * @param ctx the parse tree
+	 */
+	void enterCharSet(MySqlParser.CharSetContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MySqlParser#charSet}.
+	 * @param ctx the parse tree
+	 */
+	void exitCharSet(MySqlParser.CharSetContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MySqlParser#ownerStatement}.
 	 * @param ctx the parse tree
