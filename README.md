@@ -110,6 +110,16 @@ The following options are available for configuration:
 - **sonar.sql.sca.maxfilesize** - limit in bytes for files to be analyzed by plugin. *Defaults to 2097152*
 - **sonar.sql.rules.skip** - comma separated list of repoKey:ruleId pairs to select rules which will not be reported by the plugin, i.e. tsql-cg:ST008
 
+### Using together with PLSQL plugin
+
+Please configure additional properties:
+
+- When you want PLSQL plugin execution ( this will disable execution sql plugin):
+`sonar.lang.patterns.sql=na`
+
+- When you want SQL plugin execution ( this will disable pssql plugin): 
+`sonar.lang.patterns.plsqlopen=na`
+
 ## Contributing ##
 Added container definitions for easy development with VSCode. Download the [remote containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) and let it figure out the maven targets. 
 <img width="1917" alt="vscode_remote_containers_extension_maven" src="https://user-images.githubusercontent.com/3657015/125957363-653c9f6f-b5cc-4a3c-96ef-9dc18d0f8bfb.png">
