@@ -155,3 +155,13 @@ docker run \
 ```
 5) (optional) Stop sonarqube
 6) Rinse - repeat 
+
+### Adding a new grammar support ###
+
+0. Check how external parsers and lexers are generated from external sources at ./src/external/README.md  
+1. Generate lexer and parser, example package: org.antlr.sql.dialects.vsql
+2. Implement SQLDialect extending BaseDialect.class, i.e. VSQLDialect
+3. Implement sql rules, example VSQLRules
+4. Register rules at SQLDialectRules
+5. Update ./src/external/README.md with references to your added grammar
+
