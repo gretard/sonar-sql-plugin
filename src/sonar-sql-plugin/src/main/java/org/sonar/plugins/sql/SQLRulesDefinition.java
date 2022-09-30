@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import org.antlr.sql.dialects.SQLDialectRules;
+import org.sonar.api.rules.RuleType;
 import org.sonar.api.server.debt.DebtRemediationFunction;
 import org.sonar.api.server.debt.internal.DefaultDebtRemediationFunction;
 import org.sonar.api.server.rule.RulesDefinition;
@@ -32,6 +33,7 @@ public class SQLRulesDefinition implements RulesDefinition {
                         (Objects.equals(gapMultiplier, "")) ? null : gapMultiplier,
                         (Objects.equals(baseEffort, "")) ? null : baseEffort);
                 x1Rule.setDebtRemediationFunction(func);
+                x1Rule.setType(RuleType.valueOf(rule.getRuleType()));
                 x1Rule.setActivatedByDefault(true);
 
             }
