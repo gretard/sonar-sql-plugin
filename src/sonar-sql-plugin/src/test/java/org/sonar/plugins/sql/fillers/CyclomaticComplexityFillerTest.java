@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.antlr.sql.dialects.Dialects;
 import org.antlr.sql.models.AntlrContext;
+import org.antlr.sql.tools.PrettyPrinter;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -35,6 +36,8 @@ public class CyclomaticComplexityFillerTest {
         data.add(new Object[] { Dialects.MYSQL, 17 });
         data.add(new Object[] { Dialects.PSSQL, 7 });
         data.add(new Object[] { Dialects.TSQL, 11 });
+        data.add(new Object[] { Dialects.PSQLV2, 19 });
+
         return data;
     }
 
@@ -74,7 +77,7 @@ public class CyclomaticComplexityFillerTest {
                         + " HAVING COUNT(*) > 1 union all select * from dbo.test ORDER BY 1, 2;\r\n INSERT INTO dbo.test(a,b) VALUES (1,2);\r\n"
                         + " DELETE  FROM dbo.test; \r\n TRUNCATE TABLE x; \r\n UPDATE dbo.test set id = 1 where x = 4;\r\n");
 
-        // PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
+       // PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
 
         filler.fill(ti, ctxTester, antlrContext);
 

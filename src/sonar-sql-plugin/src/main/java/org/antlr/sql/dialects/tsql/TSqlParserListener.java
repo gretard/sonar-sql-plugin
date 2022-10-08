@@ -1,4 +1,4 @@
-// Generated from grammars-v4/sql/tsql/TSqlParser.g4 by ANTLR 4.9.3
+// Generated from java-escape by ANTLR 4.11.1
 package org.antlr.sql.dialects.tsql;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -2368,6 +2368,26 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitCreate_index(TSqlParser.Create_indexContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TSqlParser#create_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void enterCreate_index_options(TSqlParser.Create_index_optionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#create_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void exitCreate_index_options(TSqlParser.Create_index_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#relational_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void enterRelational_index_option(TSqlParser.Relational_index_optionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#relational_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void exitRelational_index_option(TSqlParser.Relational_index_optionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TSqlParser#alter_index}.
 	 * @param ctx the parse tree
 	 */
@@ -2377,6 +2397,76 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAlter_index(TSqlParser.Alter_indexContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#resumable_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void enterResumable_index_options(TSqlParser.Resumable_index_optionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#resumable_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void exitResumable_index_options(TSqlParser.Resumable_index_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#resumable_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void enterResumable_index_option(TSqlParser.Resumable_index_optionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#resumable_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void exitResumable_index_option(TSqlParser.Resumable_index_optionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#reorganize_partition}.
+	 * @param ctx the parse tree
+	 */
+	void enterReorganize_partition(TSqlParser.Reorganize_partitionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#reorganize_partition}.
+	 * @param ctx the parse tree
+	 */
+	void exitReorganize_partition(TSqlParser.Reorganize_partitionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#reorganize_options}.
+	 * @param ctx the parse tree
+	 */
+	void enterReorganize_options(TSqlParser.Reorganize_optionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#reorganize_options}.
+	 * @param ctx the parse tree
+	 */
+	void exitReorganize_options(TSqlParser.Reorganize_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#reorganize_option}.
+	 * @param ctx the parse tree
+	 */
+	void enterReorganize_option(TSqlParser.Reorganize_optionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#reorganize_option}.
+	 * @param ctx the parse tree
+	 */
+	void exitReorganize_option(TSqlParser.Reorganize_optionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#set_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void enterSet_index_options(TSqlParser.Set_index_optionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#set_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void exitSet_index_options(TSqlParser.Set_index_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#set_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void enterSet_index_option(TSqlParser.Set_index_optionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#set_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void exitSet_index_option(TSqlParser.Set_index_optionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TSqlParser#rebuild_partition}.
 	 * @param ctx the parse tree
@@ -2388,6 +2478,56 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitRebuild_partition(TSqlParser.Rebuild_partitionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TSqlParser#rebuild_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void enterRebuild_index_options(TSqlParser.Rebuild_index_optionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#rebuild_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void exitRebuild_index_options(TSqlParser.Rebuild_index_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#rebuild_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void enterRebuild_index_option(TSqlParser.Rebuild_index_optionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#rebuild_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void exitRebuild_index_option(TSqlParser.Rebuild_index_optionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#single_partition_rebuild_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void enterSingle_partition_rebuild_index_options(TSqlParser.Single_partition_rebuild_index_optionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#single_partition_rebuild_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void exitSingle_partition_rebuild_index_options(TSqlParser.Single_partition_rebuild_index_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#single_partition_rebuild_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void enterSingle_partition_rebuild_index_option(TSqlParser.Single_partition_rebuild_index_optionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#single_partition_rebuild_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void exitSingle_partition_rebuild_index_option(TSqlParser.Single_partition_rebuild_index_optionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#on_partitions}.
+	 * @param ctx the parse tree
+	 */
+	void enterOn_partitions(TSqlParser.On_partitionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#on_partitions}.
+	 * @param ctx the parse tree
+	 */
+	void exitOn_partitions(TSqlParser.On_partitionsContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TSqlParser#create_columnstore_index}.
 	 * @param ctx the parse tree
 	 */
@@ -2397,6 +2537,26 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCreate_columnstore_index(TSqlParser.Create_columnstore_indexContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#create_columnstore_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void enterCreate_columnstore_index_options(TSqlParser.Create_columnstore_index_optionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#create_columnstore_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void exitCreate_columnstore_index_options(TSqlParser.Create_columnstore_index_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#columnstore_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void enterColumnstore_index_option(TSqlParser.Columnstore_index_optionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#columnstore_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void exitColumnstore_index_option(TSqlParser.Columnstore_index_optionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TSqlParser#create_nonclustered_columnstore_index}.
 	 * @param ctx the parse tree
@@ -2417,6 +2577,26 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCreate_xml_index(TSqlParser.Create_xml_indexContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#xml_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void enterXml_index_options(TSqlParser.Xml_index_optionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#xml_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void exitXml_index_options(TSqlParser.Xml_index_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#xml_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void enterXml_index_option(TSqlParser.Xml_index_optionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#xml_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void exitXml_index_option(TSqlParser.Xml_index_optionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TSqlParser#create_or_alter_procedure}.
 	 * @param ctx the parse tree
@@ -2588,6 +2768,26 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitUpdate_statistics(TSqlParser.Update_statisticsContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TSqlParser#update_statistics_options}.
+	 * @param ctx the parse tree
+	 */
+	void enterUpdate_statistics_options(TSqlParser.Update_statistics_optionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#update_statistics_options}.
+	 * @param ctx the parse tree
+	 */
+	void exitUpdate_statistics_options(TSqlParser.Update_statistics_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#update_statistics_option}.
+	 * @param ctx the parse tree
+	 */
+	void enterUpdate_statistics_option(TSqlParser.Update_statistics_optionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#update_statistics_option}.
+	 * @param ctx the parse tree
+	 */
+	void exitUpdate_statistics_option(TSqlParser.Update_statistics_optionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TSqlParser#create_table}.
 	 * @param ctx the parse tree
 	 */
@@ -2617,6 +2817,36 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTable_options(TSqlParser.Table_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#table_option}.
+	 * @param ctx the parse tree
+	 */
+	void enterTable_option(TSqlParser.Table_optionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#table_option}.
+	 * @param ctx the parse tree
+	 */
+	void exitTable_option(TSqlParser.Table_optionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#create_table_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void enterCreate_table_index_options(TSqlParser.Create_table_index_optionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#create_table_index_options}.
+	 * @param ctx the parse tree
+	 */
+	void exitCreate_table_index_options(TSqlParser.Create_table_index_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#create_table_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void enterCreate_table_index_option(TSqlParser.Create_table_index_optionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#create_table_index_option}.
+	 * @param ctx the parse tree
+	 */
+	void exitCreate_table_index_option(TSqlParser.Create_table_index_optionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TSqlParser#create_view}.
 	 * @param ctx the parse tree
@@ -3608,16 +3838,6 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitTransaction_statement(TSqlParser.Transaction_statementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TSqlParser#go_batch_statement}.
-	 * @param ctx the parse tree
-	 */
-	void enterGo_batch_statement(TSqlParser.Go_batch_statementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TSqlParser#go_batch_statement}.
-	 * @param ctx the parse tree
-	 */
-	void exitGo_batch_statement(TSqlParser.Go_batch_statementContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link TSqlParser#go_statement}.
 	 * @param ctx the parse tree
 	 */
@@ -3808,6 +4028,26 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitColumn_definition(TSqlParser.Column_definitionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TSqlParser#column_definition_element}.
+	 * @param ctx the parse tree
+	 */
+	void enterColumn_definition_element(TSqlParser.Column_definition_elementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#column_definition_element}.
+	 * @param ctx the parse tree
+	 */
+	void exitColumn_definition_element(TSqlParser.Column_definition_elementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#column_modifier}.
+	 * @param ctx the parse tree
+	 */
+	void enterColumn_modifier(TSqlParser.Column_modifierContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#column_modifier}.
+	 * @param ctx the parse tree
+	 */
+	void exitColumn_modifier(TSqlParser.Column_modifierContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TSqlParser#materialized_column_definition}.
 	 * @param ctx the parse tree
 	 */
@@ -3828,6 +4068,26 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitColumn_constraint(TSqlParser.Column_constraintContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TSqlParser#column_index}.
+	 * @param ctx the parse tree
+	 */
+	void enterColumn_index(TSqlParser.Column_indexContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#column_index}.
+	 * @param ctx the parse tree
+	 */
+	void exitColumn_index(TSqlParser.Column_indexContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#on_partition_or_filegroup}.
+	 * @param ctx the parse tree
+	 */
+	void enterOn_partition_or_filegroup(TSqlParser.On_partition_or_filegroupContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#on_partition_or_filegroup}.
+	 * @param ctx the parse tree
+	 */
+	void exitOn_partition_or_filegroup(TSqlParser.On_partition_or_filegroupContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TSqlParser#table_constraint}.
 	 * @param ctx the parse tree
 	 */
@@ -3837,6 +4097,46 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTable_constraint(TSqlParser.Table_constraintContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#connection_node}.
+	 * @param ctx the parse tree
+	 */
+	void enterConnection_node(TSqlParser.Connection_nodeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#connection_node}.
+	 * @param ctx the parse tree
+	 */
+	void exitConnection_node(TSqlParser.Connection_nodeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#primary_key_options}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrimary_key_options(TSqlParser.Primary_key_optionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#primary_key_options}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrimary_key_options(TSqlParser.Primary_key_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#foreign_key_options}.
+	 * @param ctx the parse tree
+	 */
+	void enterForeign_key_options(TSqlParser.Foreign_key_optionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#foreign_key_options}.
+	 * @param ctx the parse tree
+	 */
+	void exitForeign_key_options(TSqlParser.Foreign_key_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#check_constraint}.
+	 * @param ctx the parse tree
+	 */
+	void enterCheck_constraint(TSqlParser.Check_constraintContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#check_constraint}.
+	 * @param ctx the parse tree
+	 */
+	void exitCheck_constraint(TSqlParser.Check_constraintContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TSqlParser#on_delete}.
 	 * @param ctx the parse tree
@@ -3858,25 +4158,25 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitOn_update(TSqlParser.On_updateContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TSqlParser#index_options}.
+	 * Enter a parse tree produced by {@link TSqlParser#alter_table_index_options}.
 	 * @param ctx the parse tree
 	 */
-	void enterIndex_options(TSqlParser.Index_optionsContext ctx);
+	void enterAlter_table_index_options(TSqlParser.Alter_table_index_optionsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TSqlParser#index_options}.
+	 * Exit a parse tree produced by {@link TSqlParser#alter_table_index_options}.
 	 * @param ctx the parse tree
 	 */
-	void exitIndex_options(TSqlParser.Index_optionsContext ctx);
+	void exitAlter_table_index_options(TSqlParser.Alter_table_index_optionsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TSqlParser#index_option}.
+	 * Enter a parse tree produced by {@link TSqlParser#alter_table_index_option}.
 	 * @param ctx the parse tree
 	 */
-	void enterIndex_option(TSqlParser.Index_optionContext ctx);
+	void enterAlter_table_index_option(TSqlParser.Alter_table_index_optionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TSqlParser#index_option}.
+	 * Exit a parse tree produced by {@link TSqlParser#alter_table_index_option}.
 	 * @param ctx the parse tree
 	 */
-	void exitIndex_option(TSqlParser.Index_optionContext ctx);
+	void exitAlter_table_index_option(TSqlParser.Alter_table_index_optionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TSqlParser#declare_cursor}.
 	 * @param ctx the parse tree
@@ -3957,6 +4257,16 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpression(TSqlParser.ExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#parameter}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameter(TSqlParser.ParameterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#parameter}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameter(TSqlParser.ParameterContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TSqlParser#time_zone}.
 	 * @param ctx the parse tree
@@ -4158,6 +4468,16 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitOrder_by_clause(TSqlParser.Order_by_clauseContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TSqlParser#select_order_by_clause}.
+	 * @param ctx the parse tree
+	 */
+	void enterSelect_order_by_clause(TSqlParser.Select_order_by_clauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#select_order_by_clause}.
+	 * @param ctx the parse tree
+	 */
+	void exitSelect_order_by_clause(TSqlParser.Select_order_by_clauseContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TSqlParser#for_clause}.
 	 * @param ctx the parse tree
 	 */
@@ -4187,6 +4507,16 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitOrder_by_expression(TSqlParser.Order_by_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#grouping_sets_item}.
+	 * @param ctx the parse tree
+	 */
+	void enterGrouping_sets_item(TSqlParser.Grouping_sets_itemContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#grouping_sets_item}.
+	 * @param ctx the parse tree
+	 */
+	void exitGrouping_sets_item(TSqlParser.Grouping_sets_itemContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TSqlParser#group_by_item}.
 	 * @param ctx the parse tree
@@ -4518,16 +4848,6 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitFull_column_name_list(TSqlParser.Full_column_name_listContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TSqlParser#table_name_with_hint}.
-	 * @param ctx the parse tree
-	 */
-	void enterTable_name_with_hint(TSqlParser.Table_name_with_hintContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TSqlParser#table_name_with_hint}.
-	 * @param ctx the parse tree
-	 */
-	void exitTable_name_with_hint(TSqlParser.Table_name_with_hintContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link TSqlParser#rowset_function}.
 	 * @param ctx the parse tree
 	 */
@@ -4642,6 +4962,18 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitPARTITION_FUNC(TSqlParser.PARTITION_FUNCContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code HIERARCHYID_METHOD}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterHIERARCHYID_METHOD(TSqlParser.HIERARCHYID_METHODContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HIERARCHYID_METHOD}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitHIERARCHYID_METHOD(TSqlParser.HIERARCHYID_METHODContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TSqlParser#partition_function}.
 	 * @param ctx the parse tree
 	 */
@@ -4672,6 +5004,846 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitFreetext_predicate(TSqlParser.Freetext_predicateContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code APP_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterAPP_NAME(TSqlParser.APP_NAMEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code APP_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitAPP_NAME(TSqlParser.APP_NAMEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code APPLOCK_MODE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterAPPLOCK_MODE(TSqlParser.APPLOCK_MODEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code APPLOCK_MODE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitAPPLOCK_MODE(TSqlParser.APPLOCK_MODEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code APPLOCK_TEST}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterAPPLOCK_TEST(TSqlParser.APPLOCK_TESTContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code APPLOCK_TEST}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitAPPLOCK_TEST(TSqlParser.APPLOCK_TESTContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ASSEMBLYPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterASSEMBLYPROPERTY(TSqlParser.ASSEMBLYPROPERTYContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ASSEMBLYPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitASSEMBLYPROPERTY(TSqlParser.ASSEMBLYPROPERTYContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code COL_LENGTH}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterCOL_LENGTH(TSqlParser.COL_LENGTHContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code COL_LENGTH}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitCOL_LENGTH(TSqlParser.COL_LENGTHContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code COL_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterCOL_NAME(TSqlParser.COL_NAMEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code COL_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitCOL_NAME(TSqlParser.COL_NAMEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code COLUMNPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterCOLUMNPROPERTY(TSqlParser.COLUMNPROPERTYContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code COLUMNPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitCOLUMNPROPERTY(TSqlParser.COLUMNPROPERTYContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code DATABASEPROPERTYEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterDATABASEPROPERTYEX(TSqlParser.DATABASEPROPERTYEXContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code DATABASEPROPERTYEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitDATABASEPROPERTYEX(TSqlParser.DATABASEPROPERTYEXContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code DB_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterDB_ID(TSqlParser.DB_IDContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code DB_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitDB_ID(TSqlParser.DB_IDContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code DB_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterDB_NAME(TSqlParser.DB_NAMEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code DB_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitDB_NAME(TSqlParser.DB_NAMEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FILE_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterFILE_ID(TSqlParser.FILE_IDContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FILE_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitFILE_ID(TSqlParser.FILE_IDContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FILE_IDEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterFILE_IDEX(TSqlParser.FILE_IDEXContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FILE_IDEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitFILE_IDEX(TSqlParser.FILE_IDEXContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FILE_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterFILE_NAME(TSqlParser.FILE_NAMEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FILE_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitFILE_NAME(TSqlParser.FILE_NAMEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FILEGROUP_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterFILEGROUP_ID(TSqlParser.FILEGROUP_IDContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FILEGROUP_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitFILEGROUP_ID(TSqlParser.FILEGROUP_IDContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FILEGROUP_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterFILEGROUP_NAME(TSqlParser.FILEGROUP_NAMEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FILEGROUP_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitFILEGROUP_NAME(TSqlParser.FILEGROUP_NAMEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FILEGROUPPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterFILEGROUPPROPERTY(TSqlParser.FILEGROUPPROPERTYContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FILEGROUPPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitFILEGROUPPROPERTY(TSqlParser.FILEGROUPPROPERTYContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FILEPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterFILEPROPERTY(TSqlParser.FILEPROPERTYContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FILEPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitFILEPROPERTY(TSqlParser.FILEPROPERTYContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FILEPROPERTYEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterFILEPROPERTYEX(TSqlParser.FILEPROPERTYEXContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FILEPROPERTYEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitFILEPROPERTYEX(TSqlParser.FILEPROPERTYEXContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FULLTEXTCATALOGPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterFULLTEXTCATALOGPROPERTY(TSqlParser.FULLTEXTCATALOGPROPERTYContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FULLTEXTCATALOGPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitFULLTEXTCATALOGPROPERTY(TSqlParser.FULLTEXTCATALOGPROPERTYContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FULLTEXTSERVICEPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterFULLTEXTSERVICEPROPERTY(TSqlParser.FULLTEXTSERVICEPROPERTYContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FULLTEXTSERVICEPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitFULLTEXTSERVICEPROPERTY(TSqlParser.FULLTEXTSERVICEPROPERTYContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code INDEX_COL}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterINDEX_COL(TSqlParser.INDEX_COLContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code INDEX_COL}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitINDEX_COL(TSqlParser.INDEX_COLContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code INDEXKEY_PROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterINDEXKEY_PROPERTY(TSqlParser.INDEXKEY_PROPERTYContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code INDEXKEY_PROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitINDEXKEY_PROPERTY(TSqlParser.INDEXKEY_PROPERTYContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code INDEXPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterINDEXPROPERTY(TSqlParser.INDEXPROPERTYContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code INDEXPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitINDEXPROPERTY(TSqlParser.INDEXPROPERTYContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NEXT_VALUE_FOR}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterNEXT_VALUE_FOR(TSqlParser.NEXT_VALUE_FORContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NEXT_VALUE_FOR}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitNEXT_VALUE_FOR(TSqlParser.NEXT_VALUE_FORContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code OBJECT_DEFINITION}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterOBJECT_DEFINITION(TSqlParser.OBJECT_DEFINITIONContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code OBJECT_DEFINITION}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitOBJECT_DEFINITION(TSqlParser.OBJECT_DEFINITIONContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code OBJECT_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterOBJECT_ID(TSqlParser.OBJECT_IDContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code OBJECT_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitOBJECT_ID(TSqlParser.OBJECT_IDContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code OBJECT_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterOBJECT_NAME(TSqlParser.OBJECT_NAMEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code OBJECT_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitOBJECT_NAME(TSqlParser.OBJECT_NAMEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code OBJECT_SCHEMA_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterOBJECT_SCHEMA_NAME(TSqlParser.OBJECT_SCHEMA_NAMEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code OBJECT_SCHEMA_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitOBJECT_SCHEMA_NAME(TSqlParser.OBJECT_SCHEMA_NAMEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code OBJECTPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterOBJECTPROPERTY(TSqlParser.OBJECTPROPERTYContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code OBJECTPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitOBJECTPROPERTY(TSqlParser.OBJECTPROPERTYContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code OBJECTPROPERTYEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterOBJECTPROPERTYEX(TSqlParser.OBJECTPROPERTYEXContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code OBJECTPROPERTYEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitOBJECTPROPERTYEX(TSqlParser.OBJECTPROPERTYEXContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ORIGINAL_DB_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterORIGINAL_DB_NAME(TSqlParser.ORIGINAL_DB_NAMEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ORIGINAL_DB_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitORIGINAL_DB_NAME(TSqlParser.ORIGINAL_DB_NAMEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code PARSENAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterPARSENAME(TSqlParser.PARSENAMEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code PARSENAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitPARSENAME(TSqlParser.PARSENAMEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SCHEMA_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterSCHEMA_ID(TSqlParser.SCHEMA_IDContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SCHEMA_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitSCHEMA_ID(TSqlParser.SCHEMA_IDContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SCHEMA_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterSCHEMA_NAME(TSqlParser.SCHEMA_NAMEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SCHEMA_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitSCHEMA_NAME(TSqlParser.SCHEMA_NAMEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SCOPE_IDENTITY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterSCOPE_IDENTITY(TSqlParser.SCOPE_IDENTITYContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SCOPE_IDENTITY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitSCOPE_IDENTITY(TSqlParser.SCOPE_IDENTITYContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SERVERPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterSERVERPROPERTY(TSqlParser.SERVERPROPERTYContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SERVERPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitSERVERPROPERTY(TSqlParser.SERVERPROPERTYContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code STATS_DATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterSTATS_DATE(TSqlParser.STATS_DATEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code STATS_DATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitSTATS_DATE(TSqlParser.STATS_DATEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TYPE_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterTYPE_ID(TSqlParser.TYPE_IDContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TYPE_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitTYPE_ID(TSqlParser.TYPE_IDContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TYPE_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterTYPE_NAME(TSqlParser.TYPE_NAMEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TYPE_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitTYPE_NAME(TSqlParser.TYPE_NAMEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TYPEPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterTYPEPROPERTY(TSqlParser.TYPEPROPERTYContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TYPEPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitTYPEPROPERTY(TSqlParser.TYPEPROPERTYContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ASCII}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterASCII(TSqlParser.ASCIIContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ASCII}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitASCII(TSqlParser.ASCIIContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CHAR}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterCHAR(TSqlParser.CHARContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CHAR}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitCHAR(TSqlParser.CHARContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CHARINDEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterCHARINDEX(TSqlParser.CHARINDEXContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CHARINDEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitCHARINDEX(TSqlParser.CHARINDEXContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CONCAT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterCONCAT(TSqlParser.CONCATContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CONCAT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitCONCAT(TSqlParser.CONCATContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CONCAT_WS}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterCONCAT_WS(TSqlParser.CONCAT_WSContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CONCAT_WS}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitCONCAT_WS(TSqlParser.CONCAT_WSContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code DIFFERENCE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterDIFFERENCE(TSqlParser.DIFFERENCEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code DIFFERENCE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitDIFFERENCE(TSqlParser.DIFFERENCEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FORMAT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterFORMAT(TSqlParser.FORMATContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FORMAT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitFORMAT(TSqlParser.FORMATContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code LEFT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterLEFT(TSqlParser.LEFTContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code LEFT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitLEFT(TSqlParser.LEFTContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code LEN}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterLEN(TSqlParser.LENContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code LEN}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitLEN(TSqlParser.LENContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code LOWER}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterLOWER(TSqlParser.LOWERContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code LOWER}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitLOWER(TSqlParser.LOWERContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code LTRIM}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterLTRIM(TSqlParser.LTRIMContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code LTRIM}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitLTRIM(TSqlParser.LTRIMContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NCHAR}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterNCHAR(TSqlParser.NCHARContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NCHAR}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitNCHAR(TSqlParser.NCHARContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code PATINDEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterPATINDEX(TSqlParser.PATINDEXContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code PATINDEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitPATINDEX(TSqlParser.PATINDEXContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code QUOTENAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterQUOTENAME(TSqlParser.QUOTENAMEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code QUOTENAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitQUOTENAME(TSqlParser.QUOTENAMEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code REPLACE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterREPLACE(TSqlParser.REPLACEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code REPLACE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitREPLACE(TSqlParser.REPLACEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code REPLICATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterREPLICATE(TSqlParser.REPLICATEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code REPLICATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitREPLICATE(TSqlParser.REPLICATEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code REVERSE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterREVERSE(TSqlParser.REVERSEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code REVERSE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitREVERSE(TSqlParser.REVERSEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code RIGHT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterRIGHT(TSqlParser.RIGHTContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code RIGHT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitRIGHT(TSqlParser.RIGHTContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code RTRIM}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterRTRIM(TSqlParser.RTRIMContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code RTRIM}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitRTRIM(TSqlParser.RTRIMContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SOUNDEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterSOUNDEX(TSqlParser.SOUNDEXContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SOUNDEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitSOUNDEX(TSqlParser.SOUNDEXContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SPACE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterSPACE(TSqlParser.SPACEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SPACE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitSPACE(TSqlParser.SPACEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code STR}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterSTR(TSqlParser.STRContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code STR}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitSTR(TSqlParser.STRContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code STRINGAGG}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterSTRINGAGG(TSqlParser.STRINGAGGContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code STRINGAGG}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitSTRINGAGG(TSqlParser.STRINGAGGContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code STRING_ESCAPE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterSTRING_ESCAPE(TSqlParser.STRING_ESCAPEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code STRING_ESCAPE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitSTRING_ESCAPE(TSqlParser.STRING_ESCAPEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code STUFF}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterSTUFF(TSqlParser.STUFFContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code STUFF}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitSTUFF(TSqlParser.STUFFContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SUBSTRING}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterSUBSTRING(TSqlParser.SUBSTRINGContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SUBSTRING}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitSUBSTRING(TSqlParser.SUBSTRINGContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TRANSLATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterTRANSLATE(TSqlParser.TRANSLATEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TRANSLATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitTRANSLATE(TSqlParser.TRANSLATEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TRIM}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterTRIM(TSqlParser.TRIMContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TRIM}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitTRIM(TSqlParser.TRIMContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code UNICODE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterUNICODE(TSqlParser.UNICODEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code UNICODE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitUNICODE(TSqlParser.UNICODEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code UPPER}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterUPPER(TSqlParser.UPPERContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code UPPER}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitUPPER(TSqlParser.UPPERContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code BINARY_CHECKSUM}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
 	 * @param ctx the parse tree
@@ -4683,6 +5855,318 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBINARY_CHECKSUM(TSqlParser.BINARY_CHECKSUMContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CHECKSUM}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterCHECKSUM(TSqlParser.CHECKSUMContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CHECKSUM}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitCHECKSUM(TSqlParser.CHECKSUMContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code COMPRESS}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterCOMPRESS(TSqlParser.COMPRESSContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code COMPRESS}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitCOMPRESS(TSqlParser.COMPRESSContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CONNECTIONPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterCONNECTIONPROPERTY(TSqlParser.CONNECTIONPROPERTYContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CONNECTIONPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitCONNECTIONPROPERTY(TSqlParser.CONNECTIONPROPERTYContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CONTEXT_INFO}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterCONTEXT_INFO(TSqlParser.CONTEXT_INFOContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CONTEXT_INFO}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitCONTEXT_INFO(TSqlParser.CONTEXT_INFOContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CURRENT_REQUEST_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterCURRENT_REQUEST_ID(TSqlParser.CURRENT_REQUEST_IDContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CURRENT_REQUEST_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitCURRENT_REQUEST_ID(TSqlParser.CURRENT_REQUEST_IDContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CURRENT_TRANSACTION_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterCURRENT_TRANSACTION_ID(TSqlParser.CURRENT_TRANSACTION_IDContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CURRENT_TRANSACTION_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitCURRENT_TRANSACTION_ID(TSqlParser.CURRENT_TRANSACTION_IDContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code DECOMPRESS}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterDECOMPRESS(TSqlParser.DECOMPRESSContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code DECOMPRESS}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitDECOMPRESS(TSqlParser.DECOMPRESSContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ERROR_LINE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterERROR_LINE(TSqlParser.ERROR_LINEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ERROR_LINE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitERROR_LINE(TSqlParser.ERROR_LINEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ERROR_MESSAGE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterERROR_MESSAGE(TSqlParser.ERROR_MESSAGEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ERROR_MESSAGE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitERROR_MESSAGE(TSqlParser.ERROR_MESSAGEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ERROR_NUMBER}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterERROR_NUMBER(TSqlParser.ERROR_NUMBERContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ERROR_NUMBER}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitERROR_NUMBER(TSqlParser.ERROR_NUMBERContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ERROR_PROCEDURE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterERROR_PROCEDURE(TSqlParser.ERROR_PROCEDUREContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ERROR_PROCEDURE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitERROR_PROCEDURE(TSqlParser.ERROR_PROCEDUREContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ERROR_SEVERITY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterERROR_SEVERITY(TSqlParser.ERROR_SEVERITYContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ERROR_SEVERITY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitERROR_SEVERITY(TSqlParser.ERROR_SEVERITYContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ERROR_STATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterERROR_STATE(TSqlParser.ERROR_STATEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ERROR_STATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitERROR_STATE(TSqlParser.ERROR_STATEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FORMATMESSAGE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterFORMATMESSAGE(TSqlParser.FORMATMESSAGEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FORMATMESSAGE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitFORMATMESSAGE(TSqlParser.FORMATMESSAGEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code GET_FILESTREAM_TRANSACTION_CONTEXT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterGET_FILESTREAM_TRANSACTION_CONTEXT(TSqlParser.GET_FILESTREAM_TRANSACTION_CONTEXTContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code GET_FILESTREAM_TRANSACTION_CONTEXT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitGET_FILESTREAM_TRANSACTION_CONTEXT(TSqlParser.GET_FILESTREAM_TRANSACTION_CONTEXTContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code GETANSINULL}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterGETANSINULL(TSqlParser.GETANSINULLContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code GETANSINULL}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitGETANSINULL(TSqlParser.GETANSINULLContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HOST_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterHOST_ID(TSqlParser.HOST_IDContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HOST_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitHOST_ID(TSqlParser.HOST_IDContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HOST_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterHOST_NAME(TSqlParser.HOST_NAMEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HOST_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitHOST_NAME(TSqlParser.HOST_NAMEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ISNULL}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterISNULL(TSqlParser.ISNULLContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ISNULL}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitISNULL(TSqlParser.ISNULLContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ISNUMERIC}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterISNUMERIC(TSqlParser.ISNUMERICContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ISNUMERIC}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitISNUMERIC(TSqlParser.ISNUMERICContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code MIN_ACTIVE_ROWVERSION}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterMIN_ACTIVE_ROWVERSION(TSqlParser.MIN_ACTIVE_ROWVERSIONContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code MIN_ACTIVE_ROWVERSION}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitMIN_ACTIVE_ROWVERSION(TSqlParser.MIN_ACTIVE_ROWVERSIONContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NEWID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterNEWID(TSqlParser.NEWIDContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NEWID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitNEWID(TSqlParser.NEWIDContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NEWSEQUENTIALID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterNEWSEQUENTIALID(TSqlParser.NEWSEQUENTIALIDContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NEWSEQUENTIALID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitNEWSEQUENTIALID(TSqlParser.NEWSEQUENTIALIDContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ROWCOUNT_BIG}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterROWCOUNT_BIG(TSqlParser.ROWCOUNT_BIGContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ROWCOUNT_BIG}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitROWCOUNT_BIG(TSqlParser.ROWCOUNT_BIGContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SESSION_CONTEXT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterSESSION_CONTEXT(TSqlParser.SESSION_CONTEXTContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SESSION_CONTEXT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitSESSION_CONTEXT(TSqlParser.SESSION_CONTEXTContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code XACT_STATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterXACT_STATE(TSqlParser.XACT_STATEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code XACT_STATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitXACT_STATE(TSqlParser.XACT_STATEContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code CAST}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
@@ -4720,18 +6204,6 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitCONVERT(TSqlParser.CONVERTContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code CHECKSUM}
-	 * labeled alternative in {@link TSqlParser#built_in_functions}.
-	 * @param ctx the parse tree
-	 */
-	void enterCHECKSUM(TSqlParser.CHECKSUMContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code CHECKSUM}
-	 * labeled alternative in {@link TSqlParser#built_in_functions}.
-	 * @param ctx the parse tree
-	 */
-	void exitCHECKSUM(TSqlParser.CHECKSUMContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code COALESCE}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
 	 * @param ctx the parse tree
@@ -4743,6 +6215,18 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCOALESCE(TSqlParser.COALESCEContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CURRENT_DATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterCURRENT_DATE(TSqlParser.CURRENT_DATEContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CURRENT_DATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitCURRENT_DATE(TSqlParser.CURRENT_DATEContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code CURRENT_TIMESTAMP}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
@@ -4852,18 +6336,6 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitIDENTITY(TSqlParser.IDENTITYContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code MIN_ACTIVE_ROWVERSION}
-	 * labeled alternative in {@link TSqlParser#built_in_functions}.
-	 * @param ctx the parse tree
-	 */
-	void enterMIN_ACTIVE_ROWVERSION(TSqlParser.MIN_ACTIVE_ROWVERSIONContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code MIN_ACTIVE_ROWVERSION}
-	 * labeled alternative in {@link TSqlParser#built_in_functions}.
-	 * @param ctx the parse tree
-	 */
-	void exitMIN_ACTIVE_ROWVERSION(TSqlParser.MIN_ACTIVE_ROWVERSIONContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code NULLIF}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
 	 * @param ctx the parse tree
@@ -4875,18 +6347,6 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNULLIF(TSqlParser.NULLIFContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code STUFF}
-	 * labeled alternative in {@link TSqlParser#built_in_functions}.
-	 * @param ctx the parse tree
-	 */
-	void enterSTUFF(TSqlParser.STUFFContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code STUFF}
-	 * labeled alternative in {@link TSqlParser#built_in_functions}.
-	 * @param ctx the parse tree
-	 */
-	void exitSTUFF(TSqlParser.STUFFContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code SESSION_USER}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
@@ -4924,17 +6384,17 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitUSER(TSqlParser.USERContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ISNULL}
+	 * Enter a parse tree produced by the {@code PARSE}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
 	 * @param ctx the parse tree
 	 */
-	void enterISNULL(TSqlParser.ISNULLContext ctx);
+	void enterPARSE(TSqlParser.PARSEContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ISNULL}
+	 * Exit a parse tree produced by the {@code PARSE}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
 	 * @param ctx the parse tree
 	 */
-	void exitISNULL(TSqlParser.ISNULLContext ctx);
+	void exitPARSE(TSqlParser.PARSEContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code XML_DATA_TYPE_FUNC}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
@@ -4959,18 +6419,6 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIIF(TSqlParser.IIFContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code STRINGAGG}
-	 * labeled alternative in {@link TSqlParser#built_in_functions}.
-	 * @param ctx the parse tree
-	 */
-	void enterSTRINGAGG(TSqlParser.STRINGAGGContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code STRINGAGG}
-	 * labeled alternative in {@link TSqlParser#built_in_functions}.
-	 * @param ctx the parse tree
-	 */
-	void exitSTRINGAGG(TSqlParser.STRINGAGGContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TSqlParser#xml_data_type_methods}.
 	 * @param ctx the parse tree
@@ -5062,6 +6510,26 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitModify_call(TSqlParser.Modify_callContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TSqlParser#hierarchyid_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterHierarchyid_call(TSqlParser.Hierarchyid_callContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#hierarchyid_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitHierarchyid_call(TSqlParser.Hierarchyid_callContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#hierarchyid_static_method}.
+	 * @param ctx the parse tree
+	 */
+	void enterHierarchyid_static_method(TSqlParser.Hierarchyid_static_methodContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#hierarchyid_static_method}.
+	 * @param ctx the parse tree
+	 */
+	void exitHierarchyid_static_method(TSqlParser.Hierarchyid_static_methodContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TSqlParser#nodes_method}.
 	 * @param ctx the parse tree
 	 */
@@ -5132,15 +6600,35 @@ public interface TSqlParserListener extends ParseTreeListener {
 	 */
 	void exitWith_table_hints(TSqlParser.With_table_hintsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TSqlParser#insert_with_table_hints}.
+	 * Enter a parse tree produced by {@link TSqlParser#deprecated_table_hint}.
 	 * @param ctx the parse tree
 	 */
-	void enterInsert_with_table_hints(TSqlParser.Insert_with_table_hintsContext ctx);
+	void enterDeprecated_table_hint(TSqlParser.Deprecated_table_hintContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TSqlParser#insert_with_table_hints}.
+	 * Exit a parse tree produced by {@link TSqlParser#deprecated_table_hint}.
 	 * @param ctx the parse tree
 	 */
-	void exitInsert_with_table_hints(TSqlParser.Insert_with_table_hintsContext ctx);
+	void exitDeprecated_table_hint(TSqlParser.Deprecated_table_hintContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#sybase_legacy_hints}.
+	 * @param ctx the parse tree
+	 */
+	void enterSybase_legacy_hints(TSqlParser.Sybase_legacy_hintsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#sybase_legacy_hints}.
+	 * @param ctx the parse tree
+	 */
+	void exitSybase_legacy_hints(TSqlParser.Sybase_legacy_hintsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TSqlParser#sybase_legacy_hint}.
+	 * @param ctx the parse tree
+	 */
+	void enterSybase_legacy_hint(TSqlParser.Sybase_legacy_hintContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TSqlParser#sybase_legacy_hint}.
+	 * @param ctx the parse tree
+	 */
+	void exitSybase_legacy_hint(TSqlParser.Sybase_legacy_hintContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TSqlParser#table_hint}.
 	 * @param ctx the parse tree

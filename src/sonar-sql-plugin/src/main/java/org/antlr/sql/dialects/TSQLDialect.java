@@ -25,6 +25,7 @@ public class TSQLDialect extends BaseDialect {
 	protected DialectLanguageTypesMap getTypesMap() {
 		return new DialectLanguageTypesMap().addCommentToken(TSqlParser.COMMENT)
 				.addCommentToken(TSqlParser.LINE_COMMENT).addStringToken(TSqlParser.STRING)
+			
 				.addComplexityType(TSqlParser.Search_conditionContext.class)
 				.addComplexityType(TSqlParser.Try_catch_statementContext.class)
 

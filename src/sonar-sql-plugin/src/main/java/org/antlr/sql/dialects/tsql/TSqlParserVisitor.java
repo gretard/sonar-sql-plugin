@@ -1,4 +1,4 @@
-// Generated from grammars-v4/sql/tsql/TSqlParser.g4 by ANTLR 4.9.3
+// Generated from java-escape by ANTLR 4.11.1
 package org.antlr.sql.dialects.tsql;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -1427,11 +1427,65 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCreate_index(TSqlParser.Create_indexContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TSqlParser#create_index_options}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCreate_index_options(TSqlParser.Create_index_optionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#relational_index_option}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRelational_index_option(TSqlParser.Relational_index_optionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TSqlParser#alter_index}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitAlter_index(TSqlParser.Alter_indexContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#resumable_index_options}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitResumable_index_options(TSqlParser.Resumable_index_optionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#resumable_index_option}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitResumable_index_option(TSqlParser.Resumable_index_optionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#reorganize_partition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReorganize_partition(TSqlParser.Reorganize_partitionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#reorganize_options}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReorganize_options(TSqlParser.Reorganize_optionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#reorganize_option}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReorganize_option(TSqlParser.Reorganize_optionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#set_index_options}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSet_index_options(TSqlParser.Set_index_optionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#set_index_option}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSet_index_option(TSqlParser.Set_index_optionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TSqlParser#rebuild_partition}.
 	 * @param ctx the parse tree
@@ -1439,11 +1493,53 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRebuild_partition(TSqlParser.Rebuild_partitionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TSqlParser#rebuild_index_options}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRebuild_index_options(TSqlParser.Rebuild_index_optionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#rebuild_index_option}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRebuild_index_option(TSqlParser.Rebuild_index_optionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#single_partition_rebuild_index_options}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSingle_partition_rebuild_index_options(TSqlParser.Single_partition_rebuild_index_optionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#single_partition_rebuild_index_option}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSingle_partition_rebuild_index_option(TSqlParser.Single_partition_rebuild_index_optionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#on_partitions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOn_partitions(TSqlParser.On_partitionsContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TSqlParser#create_columnstore_index}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitCreate_columnstore_index(TSqlParser.Create_columnstore_indexContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#create_columnstore_index_options}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCreate_columnstore_index_options(TSqlParser.Create_columnstore_index_optionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#columnstore_index_option}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColumnstore_index_option(TSqlParser.Columnstore_index_optionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TSqlParser#create_nonclustered_columnstore_index}.
 	 * @param ctx the parse tree
@@ -1456,6 +1552,18 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCreate_xml_index(TSqlParser.Create_xml_indexContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#xml_index_options}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitXml_index_options(TSqlParser.Xml_index_optionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#xml_index_option}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitXml_index_option(TSqlParser.Xml_index_optionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TSqlParser#create_or_alter_procedure}.
 	 * @param ctx the parse tree
@@ -1559,6 +1667,18 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitUpdate_statistics(TSqlParser.Update_statisticsContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TSqlParser#update_statistics_options}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUpdate_statistics_options(TSqlParser.Update_statistics_optionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#update_statistics_option}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUpdate_statistics_option(TSqlParser.Update_statistics_optionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TSqlParser#create_table}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -1576,6 +1696,24 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTable_options(TSqlParser.Table_optionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#table_option}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTable_option(TSqlParser.Table_optionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#create_table_index_options}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCreate_table_index_options(TSqlParser.Create_table_index_optionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#create_table_index_option}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCreate_table_index_option(TSqlParser.Create_table_index_optionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TSqlParser#create_view}.
 	 * @param ctx the parse tree
@@ -2171,12 +2309,6 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTransaction_statement(TSqlParser.Transaction_statementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TSqlParser#go_batch_statement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGo_batch_statement(TSqlParser.Go_batch_statementContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link TSqlParser#go_statement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -2291,6 +2423,18 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitColumn_definition(TSqlParser.Column_definitionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TSqlParser#column_definition_element}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColumn_definition_element(TSqlParser.Column_definition_elementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#column_modifier}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColumn_modifier(TSqlParser.Column_modifierContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TSqlParser#materialized_column_definition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -2303,11 +2447,47 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitColumn_constraint(TSqlParser.Column_constraintContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TSqlParser#column_index}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColumn_index(TSqlParser.Column_indexContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#on_partition_or_filegroup}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOn_partition_or_filegroup(TSqlParser.On_partition_or_filegroupContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TSqlParser#table_constraint}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitTable_constraint(TSqlParser.Table_constraintContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#connection_node}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConnection_node(TSqlParser.Connection_nodeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#primary_key_options}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrimary_key_options(TSqlParser.Primary_key_optionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#foreign_key_options}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForeign_key_options(TSqlParser.Foreign_key_optionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#check_constraint}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCheck_constraint(TSqlParser.Check_constraintContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TSqlParser#on_delete}.
 	 * @param ctx the parse tree
@@ -2321,17 +2501,17 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitOn_update(TSqlParser.On_updateContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TSqlParser#index_options}.
+	 * Visit a parse tree produced by {@link TSqlParser#alter_table_index_options}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIndex_options(TSqlParser.Index_optionsContext ctx);
+	T visitAlter_table_index_options(TSqlParser.Alter_table_index_optionsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TSqlParser#index_option}.
+	 * Visit a parse tree produced by {@link TSqlParser#alter_table_index_option}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIndex_option(TSqlParser.Index_optionContext ctx);
+	T visitAlter_table_index_option(TSqlParser.Alter_table_index_optionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TSqlParser#declare_cursor}.
 	 * @param ctx the parse tree
@@ -2380,6 +2560,12 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpression(TSqlParser.ExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#parameter}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameter(TSqlParser.ParameterContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TSqlParser#time_zone}.
 	 * @param ctx the parse tree
@@ -2501,6 +2687,12 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitOrder_by_clause(TSqlParser.Order_by_clauseContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TSqlParser#select_order_by_clause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelect_order_by_clause(TSqlParser.Select_order_by_clauseContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TSqlParser#for_clause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -2518,6 +2710,12 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOrder_by_expression(TSqlParser.Order_by_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#grouping_sets_item}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGrouping_sets_item(TSqlParser.Grouping_sets_itemContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TSqlParser#group_by_item}.
 	 * @param ctx the parse tree
@@ -2717,12 +2915,6 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFull_column_name_list(TSqlParser.Full_column_name_listContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TSqlParser#table_name_with_hint}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTable_name_with_hint(TSqlParser.Table_name_with_hintContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link TSqlParser#rowset_function}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -2790,6 +2982,13 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPARTITION_FUNC(TSqlParser.PARTITION_FUNCContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code HIERARCHYID_METHOD}
+	 * labeled alternative in {@link TSqlParser#function_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHIERARCHYID_METHOD(TSqlParser.HIERARCHYID_METHODContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TSqlParser#partition_function}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -2808,12 +3007,684 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFreetext_predicate(TSqlParser.Freetext_predicateContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code APP_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAPP_NAME(TSqlParser.APP_NAMEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code APPLOCK_MODE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAPPLOCK_MODE(TSqlParser.APPLOCK_MODEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code APPLOCK_TEST}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAPPLOCK_TEST(TSqlParser.APPLOCK_TESTContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ASSEMBLYPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitASSEMBLYPROPERTY(TSqlParser.ASSEMBLYPROPERTYContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code COL_LENGTH}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCOL_LENGTH(TSqlParser.COL_LENGTHContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code COL_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCOL_NAME(TSqlParser.COL_NAMEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code COLUMNPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCOLUMNPROPERTY(TSqlParser.COLUMNPROPERTYContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DATABASEPROPERTYEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDATABASEPROPERTYEX(TSqlParser.DATABASEPROPERTYEXContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DB_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDB_ID(TSqlParser.DB_IDContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DB_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDB_NAME(TSqlParser.DB_NAMEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FILE_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFILE_ID(TSqlParser.FILE_IDContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FILE_IDEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFILE_IDEX(TSqlParser.FILE_IDEXContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FILE_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFILE_NAME(TSqlParser.FILE_NAMEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FILEGROUP_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFILEGROUP_ID(TSqlParser.FILEGROUP_IDContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FILEGROUP_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFILEGROUP_NAME(TSqlParser.FILEGROUP_NAMEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FILEGROUPPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFILEGROUPPROPERTY(TSqlParser.FILEGROUPPROPERTYContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FILEPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFILEPROPERTY(TSqlParser.FILEPROPERTYContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FILEPROPERTYEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFILEPROPERTYEX(TSqlParser.FILEPROPERTYEXContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FULLTEXTCATALOGPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFULLTEXTCATALOGPROPERTY(TSqlParser.FULLTEXTCATALOGPROPERTYContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FULLTEXTSERVICEPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFULLTEXTSERVICEPROPERTY(TSqlParser.FULLTEXTSERVICEPROPERTYContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code INDEX_COL}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitINDEX_COL(TSqlParser.INDEX_COLContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code INDEXKEY_PROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitINDEXKEY_PROPERTY(TSqlParser.INDEXKEY_PROPERTYContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code INDEXPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitINDEXPROPERTY(TSqlParser.INDEXPROPERTYContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NEXT_VALUE_FOR}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNEXT_VALUE_FOR(TSqlParser.NEXT_VALUE_FORContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code OBJECT_DEFINITION}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOBJECT_DEFINITION(TSqlParser.OBJECT_DEFINITIONContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code OBJECT_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOBJECT_ID(TSqlParser.OBJECT_IDContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code OBJECT_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOBJECT_NAME(TSqlParser.OBJECT_NAMEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code OBJECT_SCHEMA_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOBJECT_SCHEMA_NAME(TSqlParser.OBJECT_SCHEMA_NAMEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code OBJECTPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOBJECTPROPERTY(TSqlParser.OBJECTPROPERTYContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code OBJECTPROPERTYEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOBJECTPROPERTYEX(TSqlParser.OBJECTPROPERTYEXContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ORIGINAL_DB_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitORIGINAL_DB_NAME(TSqlParser.ORIGINAL_DB_NAMEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PARSENAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPARSENAME(TSqlParser.PARSENAMEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SCHEMA_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSCHEMA_ID(TSqlParser.SCHEMA_IDContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SCHEMA_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSCHEMA_NAME(TSqlParser.SCHEMA_NAMEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SCOPE_IDENTITY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSCOPE_IDENTITY(TSqlParser.SCOPE_IDENTITYContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SERVERPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSERVERPROPERTY(TSqlParser.SERVERPROPERTYContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code STATS_DATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTATS_DATE(TSqlParser.STATS_DATEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TYPE_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTYPE_ID(TSqlParser.TYPE_IDContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TYPE_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTYPE_NAME(TSqlParser.TYPE_NAMEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TYPEPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTYPEPROPERTY(TSqlParser.TYPEPROPERTYContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ASCII}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitASCII(TSqlParser.ASCIIContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CHAR}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCHAR(TSqlParser.CHARContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CHARINDEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCHARINDEX(TSqlParser.CHARINDEXContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CONCAT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCONCAT(TSqlParser.CONCATContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CONCAT_WS}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCONCAT_WS(TSqlParser.CONCAT_WSContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DIFFERENCE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDIFFERENCE(TSqlParser.DIFFERENCEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FORMAT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFORMAT(TSqlParser.FORMATContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LEFT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLEFT(TSqlParser.LEFTContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LEN}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLEN(TSqlParser.LENContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LOWER}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLOWER(TSqlParser.LOWERContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LTRIM}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLTRIM(TSqlParser.LTRIMContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NCHAR}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNCHAR(TSqlParser.NCHARContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PATINDEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPATINDEX(TSqlParser.PATINDEXContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code QUOTENAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitQUOTENAME(TSqlParser.QUOTENAMEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code REPLACE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitREPLACE(TSqlParser.REPLACEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code REPLICATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitREPLICATE(TSqlParser.REPLICATEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code REVERSE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitREVERSE(TSqlParser.REVERSEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RIGHT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRIGHT(TSqlParser.RIGHTContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RTRIM}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRTRIM(TSqlParser.RTRIMContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SOUNDEX}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSOUNDEX(TSqlParser.SOUNDEXContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SPACE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSPACE(TSqlParser.SPACEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code STR}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTR(TSqlParser.STRContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code STRINGAGG}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTRINGAGG(TSqlParser.STRINGAGGContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code STRING_ESCAPE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTRING_ESCAPE(TSqlParser.STRING_ESCAPEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code STUFF}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTUFF(TSqlParser.STUFFContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SUBSTRING}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSUBSTRING(TSqlParser.SUBSTRINGContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TRANSLATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTRANSLATE(TSqlParser.TRANSLATEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TRIM}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTRIM(TSqlParser.TRIMContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code UNICODE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUNICODE(TSqlParser.UNICODEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code UPPER}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUPPER(TSqlParser.UPPERContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code BINARY_CHECKSUM}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitBINARY_CHECKSUM(TSqlParser.BINARY_CHECKSUMContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CHECKSUM}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCHECKSUM(TSqlParser.CHECKSUMContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code COMPRESS}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCOMPRESS(TSqlParser.COMPRESSContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CONNECTIONPROPERTY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCONNECTIONPROPERTY(TSqlParser.CONNECTIONPROPERTYContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CONTEXT_INFO}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCONTEXT_INFO(TSqlParser.CONTEXT_INFOContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CURRENT_REQUEST_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCURRENT_REQUEST_ID(TSqlParser.CURRENT_REQUEST_IDContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CURRENT_TRANSACTION_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCURRENT_TRANSACTION_ID(TSqlParser.CURRENT_TRANSACTION_IDContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DECOMPRESS}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDECOMPRESS(TSqlParser.DECOMPRESSContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ERROR_LINE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitERROR_LINE(TSqlParser.ERROR_LINEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ERROR_MESSAGE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitERROR_MESSAGE(TSqlParser.ERROR_MESSAGEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ERROR_NUMBER}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitERROR_NUMBER(TSqlParser.ERROR_NUMBERContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ERROR_PROCEDURE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitERROR_PROCEDURE(TSqlParser.ERROR_PROCEDUREContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ERROR_SEVERITY}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitERROR_SEVERITY(TSqlParser.ERROR_SEVERITYContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ERROR_STATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitERROR_STATE(TSqlParser.ERROR_STATEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FORMATMESSAGE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFORMATMESSAGE(TSqlParser.FORMATMESSAGEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GET_FILESTREAM_TRANSACTION_CONTEXT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGET_FILESTREAM_TRANSACTION_CONTEXT(TSqlParser.GET_FILESTREAM_TRANSACTION_CONTEXTContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GETANSINULL}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGETANSINULL(TSqlParser.GETANSINULLContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HOST_ID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHOST_ID(TSqlParser.HOST_IDContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HOST_NAME}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHOST_NAME(TSqlParser.HOST_NAMEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ISNULL}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitISNULL(TSqlParser.ISNULLContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ISNUMERIC}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitISNUMERIC(TSqlParser.ISNUMERICContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MIN_ACTIVE_ROWVERSION}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMIN_ACTIVE_ROWVERSION(TSqlParser.MIN_ACTIVE_ROWVERSIONContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NEWID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNEWID(TSqlParser.NEWIDContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NEWSEQUENTIALID}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNEWSEQUENTIALID(TSqlParser.NEWSEQUENTIALIDContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ROWCOUNT_BIG}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitROWCOUNT_BIG(TSqlParser.ROWCOUNT_BIGContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SESSION_CONTEXT}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSESSION_CONTEXT(TSqlParser.SESSION_CONTEXTContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code XACT_STATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitXACT_STATE(TSqlParser.XACT_STATEContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code CAST}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
@@ -2836,19 +3707,19 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCONVERT(TSqlParser.CONVERTContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code CHECKSUM}
-	 * labeled alternative in {@link TSqlParser#built_in_functions}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCHECKSUM(TSqlParser.CHECKSUMContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code COALESCE}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitCOALESCE(TSqlParser.COALESCEContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CURRENT_DATE}
+	 * labeled alternative in {@link TSqlParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCURRENT_DATE(TSqlParser.CURRENT_DATEContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code CURRENT_TIMESTAMP}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
@@ -2913,26 +3784,12 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIDENTITY(TSqlParser.IDENTITYContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code MIN_ACTIVE_ROWVERSION}
-	 * labeled alternative in {@link TSqlParser#built_in_functions}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMIN_ACTIVE_ROWVERSION(TSqlParser.MIN_ACTIVE_ROWVERSIONContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code NULLIF}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitNULLIF(TSqlParser.NULLIFContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code STUFF}
-	 * labeled alternative in {@link TSqlParser#built_in_functions}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSTUFF(TSqlParser.STUFFContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code SESSION_USER}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
@@ -2955,12 +3812,12 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitUSER(TSqlParser.USERContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ISNULL}
+	 * Visit a parse tree produced by the {@code PARSE}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitISNULL(TSqlParser.ISNULLContext ctx);
+	T visitPARSE(TSqlParser.PARSEContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code XML_DATA_TYPE_FUNC}
 	 * labeled alternative in {@link TSqlParser#built_in_functions}.
@@ -2975,13 +3832,6 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIIF(TSqlParser.IIFContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code STRINGAGG}
-	 * labeled alternative in {@link TSqlParser#built_in_functions}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSTRINGAGG(TSqlParser.STRINGAGGContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TSqlParser#xml_data_type_methods}.
 	 * @param ctx the parse tree
@@ -3037,6 +3887,18 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitModify_call(TSqlParser.Modify_callContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TSqlParser#hierarchyid_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHierarchyid_call(TSqlParser.Hierarchyid_callContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#hierarchyid_static_method}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHierarchyid_static_method(TSqlParser.Hierarchyid_static_methodContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TSqlParser#nodes_method}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -3079,11 +3941,23 @@ public interface TSqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWith_table_hints(TSqlParser.With_table_hintsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TSqlParser#insert_with_table_hints}.
+	 * Visit a parse tree produced by {@link TSqlParser#deprecated_table_hint}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInsert_with_table_hints(TSqlParser.Insert_with_table_hintsContext ctx);
+	T visitDeprecated_table_hint(TSqlParser.Deprecated_table_hintContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#sybase_legacy_hints}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSybase_legacy_hints(TSqlParser.Sybase_legacy_hintsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TSqlParser#sybase_legacy_hint}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSybase_legacy_hint(TSqlParser.Sybase_legacy_hintContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TSqlParser#table_hint}.
 	 * @param ctx the parse tree

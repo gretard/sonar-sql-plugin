@@ -10,6 +10,10 @@ import org.apache.commons.lang3.StringUtils;
 
 public class PrettyPrinter {
 
+	public static void printTokens(AntlrContext context) {
+		context.getAllTokens().forEach(t -> System.out.println(t));
+	}
+
 	public static void print(final ParseTree node, final int level, CommonTokenStream stream) {
 		final Interval sourceInterval = node.getSourceInterval();
 		int line = -1;

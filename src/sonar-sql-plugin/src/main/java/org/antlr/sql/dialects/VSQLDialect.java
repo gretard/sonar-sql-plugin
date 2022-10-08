@@ -25,7 +25,8 @@ public class VSQLDialect extends BaseDialect {
     protected DialectLanguageTypesMap getTypesMap() {
         return new DialectLanguageTypesMap().addCommentToken(VSqlParser.COMMENT)
                 .addCommentToken(VSqlParser.LINE_COMMENT).addStringToken(VSqlParser.DOUBLE_QUOTE_STRING)
-                .addStringToken(VSqlParser.SINGLE_QUOTE_STRING).addComplexityType(VSqlParser.ExpressionContext.class)
+                .addStringToken(VSqlParser.SINGLE_QUOTE_STRING)
+                .addComplexityType(VSqlParser.ExpressionContext.class)
 
                 .addCognitiveComplexityType(VSqlParser.FunctionCallContext.class)
                 .addCognitiveComplexityType(VSqlParser.JoinPredicateContext.class)

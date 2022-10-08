@@ -1,4 +1,4 @@
-// Generated from antlr4-grammar-sql-comments/src/main/antlr4/CommentsGrammar.g4 by ANTLR 4.9.3
+// Generated from java-escape by ANTLR 4.11.1
 package org.antlr.sql.dialects.comments;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
 
-@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
+@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class CommentsGrammarParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.9.3", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.11.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -93,7 +93,7 @@ public class CommentsGrammarParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "CommentsGrammar.g4"; }
+	public String getGrammarFileName() { return "java-escape"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -109,6 +109,7 @@ public class CommentsGrammarParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class RootContext extends ParserRuleContext {
 		public List<StatementContext> statement() {
 			return getRuleContexts(StatementContext.class);
@@ -156,7 +157,7 @@ public class CommentsGrammarParser extends Parser {
 				setState(15); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << COMMENT) | (1L << LINE_COMMENT) | (1L << DOUBLE_QUOTE_ID) | (1L << SQUARE_BRACKET_ID) | (1L << LOCAL_ID) | (1L << DECIMAL) | (1L << ID) | (1L << STRING) | (1L << BINARY) | (1L << FLOAT) | (1L << REAL) | (1L << EQUAL) | (1L << GREATER) | (1L << LESS) | (1L << EXCLAMATION) | (1L << PLUS_ASSIGN) | (1L << MINUS_ASSIGN) | (1L << MULT_ASSIGN) | (1L << DIV_ASSIGN) | (1L << MOD_ASSIGN) | (1L << AND_ASSIGN) | (1L << XOR_ASSIGN) | (1L << OR_ASSIGN) | (1L << DOUBLE_BAR) | (1L << DOT) | (1L << UNDERLINE) | (1L << AT) | (1L << SHARP) | (1L << DOLLAR) | (1L << LR_BRACKET) | (1L << RR_BRACKET) | (1L << COMMA) | (1L << SEMI) | (1L << COLON) | (1L << DOUBLE_COLON) | (1L << STAR) | (1L << DIVIDE) | (1L << MODULE) | (1L << PLUS) | (1L << MINUS) | (1L << BIT_NOT) | (1L << BIT_OR) | (1L << BIT_AND) | (1L << BIT_XOR))) != 0) );
+			} while ( ((_la) & ~0x3f) == 0 && ((1L << _la) & 140737488355292L) != 0 );
 			setState(18);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
@@ -180,6 +181,7 @@ public class CommentsGrammarParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class StatementContext extends ParserRuleContext {
 		public CommentContext comment() {
 			return getRuleContext(CommentContext.class,0);
@@ -285,6 +287,7 @@ public class CommentsGrammarParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class CommentContext extends ParserRuleContext {
 		public Multiline_commentContext multiline_comment() {
 			return getRuleContext(Multiline_commentContext.class,0);
@@ -347,6 +350,7 @@ public class CommentsGrammarParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Multiline_commentContext extends ParserRuleContext {
 		public TerminalNode COMMENT() { return getToken(CommentsGrammarParser.COMMENT, 0); }
 		public Multiline_commentContext(ParserRuleContext parent, int invokingState) {
@@ -389,6 +393,7 @@ public class CommentsGrammarParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Line_commentContext extends ParserRuleContext {
 		public TerminalNode LINE_COMMENT() { return getToken(CommentsGrammarParser.LINE_COMMENT, 0); }
 		public Line_commentContext(ParserRuleContext parent, int invokingState) {
@@ -431,6 +436,7 @@ public class CommentsGrammarParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Non_commentContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(CommentsGrammarParser.ID, 0); }
 		public TerminalNode DOUBLE_QUOTE_ID() { return getToken(CommentsGrammarParser.DOUBLE_QUOTE_ID, 0); }
@@ -502,7 +508,7 @@ public class CommentsGrammarParser extends Parser {
 			{
 			setState(32);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DOUBLE_QUOTE_ID) | (1L << SQUARE_BRACKET_ID) | (1L << LOCAL_ID) | (1L << DECIMAL) | (1L << ID) | (1L << STRING) | (1L << BINARY) | (1L << FLOAT) | (1L << REAL) | (1L << EQUAL) | (1L << GREATER) | (1L << LESS) | (1L << EXCLAMATION) | (1L << PLUS_ASSIGN) | (1L << MINUS_ASSIGN) | (1L << MULT_ASSIGN) | (1L << DIV_ASSIGN) | (1L << MOD_ASSIGN) | (1L << AND_ASSIGN) | (1L << XOR_ASSIGN) | (1L << OR_ASSIGN) | (1L << DOUBLE_BAR) | (1L << DOT) | (1L << UNDERLINE) | (1L << AT) | (1L << SHARP) | (1L << DOLLAR) | (1L << LR_BRACKET) | (1L << RR_BRACKET) | (1L << COMMA) | (1L << SEMI) | (1L << COLON) | (1L << DOUBLE_COLON) | (1L << STAR) | (1L << DIVIDE) | (1L << MODULE) | (1L << PLUS) | (1L << MINUS) | (1L << BIT_NOT) | (1L << BIT_OR) | (1L << BIT_AND) | (1L << BIT_XOR))) != 0)) ) {
+			if ( !(((_la) & ~0x3f) == 0 && ((1L << _la) & 140737488355280L) != 0) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -524,16 +530,29 @@ public class CommentsGrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\60%\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\6\2\20\n\2\r\2\16\2\21\3\2\5\2"+
-		"\25\n\2\3\3\3\3\5\3\31\n\3\3\4\3\4\5\4\35\n\4\3\5\3\5\3\6\3\6\3\7\3\7"+
-		"\3\7\2\2\b\2\4\6\b\n\f\2\3\4\2\6\6\b\60\2\"\2\17\3\2\2\2\4\30\3\2\2\2"+
-		"\6\34\3\2\2\2\b\36\3\2\2\2\n \3\2\2\2\f\"\3\2\2\2\16\20\5\4\3\2\17\16"+
-		"\3\2\2\2\20\21\3\2\2\2\21\17\3\2\2\2\21\22\3\2\2\2\22\24\3\2\2\2\23\25"+
-		"\7\2\2\3\24\23\3\2\2\2\24\25\3\2\2\2\25\3\3\2\2\2\26\31\5\6\4\2\27\31"+
-		"\5\f\7\2\30\26\3\2\2\2\30\27\3\2\2\2\31\5\3\2\2\2\32\35\5\b\5\2\33\35"+
-		"\5\n\6\2\34\32\3\2\2\2\34\33\3\2\2\2\35\7\3\2\2\2\36\37\7\4\2\2\37\t\3"+
-		"\2\2\2 !\7\5\2\2!\13\3\2\2\2\"#\t\2\2\2#\r\3\2\2\2\6\21\24\30\34";
+		"\u0004\u0001.#\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002\u0002"+
+		"\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002\u0005"+
+		"\u0007\u0005\u0001\u0000\u0004\u0000\u000e\b\u0000\u000b\u0000\f\u0000"+
+		"\u000f\u0001\u0000\u0003\u0000\u0013\b\u0000\u0001\u0001\u0001\u0001\u0003"+
+		"\u0001\u0017\b\u0001\u0001\u0002\u0001\u0002\u0003\u0002\u001b\b\u0002"+
+		"\u0001\u0003\u0001\u0003\u0001\u0004\u0001\u0004\u0001\u0005\u0001\u0005"+
+		"\u0001\u0005\u0000\u0000\u0006\u0000\u0002\u0004\u0006\b\n\u0000\u0001"+
+		"\u0002\u0000\u0004\u0004\u0006. \u0000\r\u0001\u0000\u0000\u0000\u0002"+
+		"\u0016\u0001\u0000\u0000\u0000\u0004\u001a\u0001\u0000\u0000\u0000\u0006"+
+		"\u001c\u0001\u0000\u0000\u0000\b\u001e\u0001\u0000\u0000\u0000\n \u0001"+
+		"\u0000\u0000\u0000\f\u000e\u0003\u0002\u0001\u0000\r\f\u0001\u0000\u0000"+
+		"\u0000\u000e\u000f\u0001\u0000\u0000\u0000\u000f\r\u0001\u0000\u0000\u0000"+
+		"\u000f\u0010\u0001\u0000\u0000\u0000\u0010\u0012\u0001\u0000\u0000\u0000"+
+		"\u0011\u0013\u0005\u0000\u0000\u0001\u0012\u0011\u0001\u0000\u0000\u0000"+
+		"\u0012\u0013\u0001\u0000\u0000\u0000\u0013\u0001\u0001\u0000\u0000\u0000"+
+		"\u0014\u0017\u0003\u0004\u0002\u0000\u0015\u0017\u0003\n\u0005\u0000\u0016"+
+		"\u0014\u0001\u0000\u0000\u0000\u0016\u0015\u0001\u0000\u0000\u0000\u0017"+
+		"\u0003\u0001\u0000\u0000\u0000\u0018\u001b\u0003\u0006\u0003\u0000\u0019"+
+		"\u001b\u0003\b\u0004\u0000\u001a\u0018\u0001\u0000\u0000\u0000\u001a\u0019"+
+		"\u0001\u0000\u0000\u0000\u001b\u0005\u0001\u0000\u0000\u0000\u001c\u001d"+
+		"\u0005\u0002\u0000\u0000\u001d\u0007\u0001\u0000\u0000\u0000\u001e\u001f"+
+		"\u0005\u0003\u0000\u0000\u001f\t\u0001\u0000\u0000\u0000 !\u0007\u0000"+
+		"\u0000\u0000!\u000b\u0001\u0000\u0000\u0000\u0004\u000f\u0012\u0016\u001a";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

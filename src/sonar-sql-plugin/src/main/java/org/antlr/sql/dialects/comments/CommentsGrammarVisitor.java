@@ -1,4 +1,4 @@
-// Generated from antlr4-grammar-sql-comments/src/main/antlr4/CommentsGrammar.g4 by ANTLR 4.9.3
+// Generated from java-escape by ANTLR 4.11.1
 package org.antlr.sql.dialects.comments;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
