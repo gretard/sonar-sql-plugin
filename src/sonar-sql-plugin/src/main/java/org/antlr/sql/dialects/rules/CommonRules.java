@@ -15,8 +15,6 @@ public enum CommonRules {
 
     INSTANCE;
 
-    BaseRules baseRules = BaseRules.INSTANCE;
-
     public List<SqlRules> getRules() {
         List<SqlRules> rules = new ArrayList<>();
         {

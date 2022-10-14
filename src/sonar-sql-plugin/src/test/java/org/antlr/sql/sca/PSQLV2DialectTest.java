@@ -53,7 +53,7 @@ public class PSQLV2DialectTest {
 	}
 
 	private static AntlrContext parse(String sql) {
-		AntlrContext antlrContext = Dialects.PSQLV2.parse(sql);
+		AntlrContext antlrContext = Dialects.PSSQLV2.parse(sql);
 
 		PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
 		PrettyPrinter.printTokens(antlrContext);

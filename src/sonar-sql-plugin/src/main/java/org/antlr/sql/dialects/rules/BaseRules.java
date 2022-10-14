@@ -10,16 +10,11 @@ import org.sonar.plugins.sql.models.rules.RuleMode;
 import org.sonar.plugins.sql.models.rules.RuleResultType;
 import org.sonar.plugins.sql.models.rules.TextCheckType;
 
-public enum BaseRules implements IBaseRules {
+public enum BaseRules {
 
 	INSTANCE;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getWaitForRule()
-	 */
-	@Override
+
 	public Rule getWaitForRule() {
 		Rule rule = new Rule();
 		rule.setKey("C001");
@@ -35,12 +30,6 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getSelectAllRule()
-	 */
-	@Override
 	public Rule getSelectAllRule() {
 		Rule rule = new Rule();
 		rule.setKey("C002");
@@ -64,12 +53,7 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getInsertRule()
-	 */
-	@Override
+	
 	public Rule getInsertRule() {
 		Rule rule = new Rule();
 		rule.setKey("C003");
@@ -92,12 +76,6 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getOrderByRule()
-	 */
-	@Override
 	public Rule getOrderByRule() {
 		Rule rule = new Rule();
 		rule.setKey("C004");
@@ -118,12 +96,6 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getExecRule()
-	 */
-	@Override
 	public Rule getExecRule() {
 		Rule rule = new Rule();
 		rule.setKey("C005");
@@ -151,12 +123,6 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getSchemaRule()
-	 */
-	@Override
 	public Rule getSchemaRule() {
 		Rule rule = new Rule();
 		rule.setKey("C006");
@@ -175,12 +141,7 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getNoLockRule()
-	 */
-	@Override
+	
 	public Rule getNoLockRule() {
 		Rule rule = new Rule();
 		rule.setKey("C007");
@@ -203,12 +164,6 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getCursorRule()
-	 */
-	@Override
 	public Rule getCursorRule() {
 		Rule rule = new Rule();
 		rule.setKey("C006");
@@ -228,12 +183,6 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getMultipleDeclarations()
-	 */
-	@Override
 	public Rule getMultipleDeclarations() {
 		Rule rule = new Rule();
 		rule.setKey("C007");
@@ -253,12 +202,6 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getSameFlow()
-	 */
-	@Override
 	public Rule getSameFlow() {
 		Rule rule = new Rule();
 		rule.setKey("C008");
@@ -278,12 +221,7 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getPKRule()
-	 */
-	@Override
+
 	public Rule getPKRule() {
 		RuleImplementation ruleImpl = new RuleImplementation();
 
@@ -311,12 +249,7 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getFKRule()
-	 */
-	@Override
+
 	public Rule getFKRule() {
 		RuleImplementation ruleImpl = new RuleImplementation();
 
@@ -341,13 +274,6 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	// Search_conditionContext
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getIndexNamingRule()
-	 */
-	@Override
 	public Rule getIndexNamingRule() {
 		RuleImplementation ruleImpl = new RuleImplementation();
 
@@ -374,12 +300,6 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getNullComparisonRule()
-	 */
-	@Override
 	public Rule getNullComparisonRule() {
 		Rule r = new Rule();
 		r.setKey("C012");
@@ -410,12 +330,6 @@ public enum BaseRules implements IBaseRules {
 		return r;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getWhereWithOrVsUnionRule()
-	 */
-	@Override
 	public Rule getWhereWithOrVsUnionRule() {
 		Rule r = new Rule();
 		r.setKey("C014");
@@ -438,12 +352,6 @@ public enum BaseRules implements IBaseRules {
 		return r;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getUnionVsUnionALLRule()
-	 */
-	@Override
 	public Rule getUnionVsUnionALLRule() {
 		Rule r = new Rule();
 		r.setKey("C015");
@@ -469,12 +377,7 @@ public enum BaseRules implements IBaseRules {
 		return r;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getExistsVsInRule()
-	 */
-	@Override
+
 	public Rule getExistsVsInRule() {
 		Rule rule = new Rule();
 		rule.setKey("C016");
@@ -503,12 +406,7 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getOrderByRuleWithoutAscDesc()
-	 */
-	@Override
+
 	public Rule getOrderByRuleWithoutAscDesc() {
 		Rule rule = new Rule();
 		rule.setKey("C017");
@@ -532,18 +430,12 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getFileTooLargeRule()
-	 */
-	@Override
 	public Rule getFileTooLargeRule() {
 		Rule rule = new Rule();
 		rule.setKey("C018");
 		rule.setInternalKey("C018");
 		rule.setName("File too large");
-		rule.setDescription("<h2>Description</h2><p>File is too large. Consider splitting it..</p>");
+		rule.setDescription("<h2>Description</h2><p>File is too large. Consider splitting it.</p>");
 		rule.setTag("understanding");
 		rule.setSeverity("MAJOR");
 		rule.setRemediationFunction("LINEAR");
@@ -552,12 +444,6 @@ public enum BaseRules implements IBaseRules {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getSargRule()
-	 */
-	@Override
 	public Rule getSargRule() {
 		Rule rule = new Rule();
 		rule.setKey("C009");
@@ -589,12 +475,7 @@ public enum BaseRules implements IBaseRules {
 		return rule;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.sql.dialects.rules.IBaseRules#getDeclareRule()
-	 */
-	@Override
+
 	public Rule getDeclareRule() {
 		Rule r = new Rule();
 		r.setInternalKey("C011");

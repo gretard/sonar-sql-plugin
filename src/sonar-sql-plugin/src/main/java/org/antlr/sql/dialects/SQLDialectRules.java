@@ -9,6 +9,7 @@ import java.util.TreeMap;
 import org.antlr.sql.dialects.rules.CommonRules;
 import org.antlr.sql.dialects.rules.MySQLRules;
 import org.antlr.sql.dialects.rules.PSSQLRules;
+import org.antlr.sql.dialects.rules.PSSQLV2Rules;
 import org.antlr.sql.dialects.rules.TSQLRules;
 import org.antlr.sql.dialects.rules.VSQLRules;
 import org.sonar.plugins.sql.models.rules.Rule;
@@ -37,6 +38,10 @@ public enum SQLDialectRules {
         {
             rules.addAll(CommonRules.INSTANCE.getRules());
         }
+        {
+            rules.addAll(PSSQLV2Rules.INSTANCE.getRules());
+        }
+
       
         return rules;
     }

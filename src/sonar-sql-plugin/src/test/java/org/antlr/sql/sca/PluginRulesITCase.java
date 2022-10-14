@@ -69,7 +69,7 @@ public class PluginRulesITCase {
         ctx.rules.addAll(Arrays.asList(a));
         SqlIssuesList list = sut.getIssues(ctx);
         Collection<SqlIssue> issues = list.getaLLIssues();
-
+        
         if (issueExists && issues.isEmpty() || !issueExists && !issues.isEmpty()) {
             PrettyPrinter.print(ctx.root, 0, ctx.stream);
         }

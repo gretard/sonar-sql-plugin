@@ -6,6 +6,7 @@ Supported classes:
 - AlterByAddCheckTableConstraintContext
 - AlterByAddColumnContext
 - AlterByAddColumnsContext
+- AlterByAddDefinitionsContext
 - AlterByAddForeignKeyContext
 - AlterByAddIndexContext
 - AlterByAddPartitionContext
@@ -56,6 +57,7 @@ Supported classes:
 - AlterInstanceContext
 - AlterLogfileGroupContext
 - AlterProcedureContext
+- AlterSequenceContext
 - AlterServerContext
 - AlterSimpleDatabaseContext
 - AlterSpecificationContext
@@ -93,6 +95,7 @@ Supported classes:
 - ChannelFlushOptionContext
 - ChannelOptionContext
 - CharFunctionCallContext
+- CharSetContext
 - CharsetNameBaseContext
 - CharsetNameContext
 - CheckColumnConstraintContext
@@ -112,6 +115,7 @@ Supported classes:
 - ColumnDefinitionContext
 - CommentColumnConstraintContext
 - CommitWorkContext
+- CommonTableExpressionsContext
 - ComparisonOperatorContext
 - CompoundStatementContext
 - ConnectionOptionContext
@@ -130,6 +134,8 @@ Supported classes:
 - CreateIndexContext
 - CreateLogfileGroupContext
 - CreateProcedureContext
+- CreateRoleContext
+- CreateSequenceContext
 - CreateServerContext
 - CreateTableContext
 - CreateTablespaceInnodbContext
@@ -140,6 +146,8 @@ Supported classes:
 - CreateUserMysqlV56Context
 - CreateUserMysqlV57Context
 - CreateViewContext
+- CteColumnNameContext
+- CteNameContext
 - CurrentSchemaPriviLevelContext
 - CurrentTimestampContext
 - CursorStatementContext
@@ -180,6 +188,8 @@ Supported classes:
 - DropIndexContext
 - DropLogfileGroupContext
 - DropProcedureContext
+- DropRoleContext
+- DropSequenceContext
 - DropServerContext
 - DropTableContext
 - DropTablespaceContext
@@ -187,7 +197,7 @@ Supported classes:
 - DropUserContext
 - DropViewContext
 - ElifAlternativeContext
-- EmptyStatementContext
+- EmptyStatement_Context
 - EnableTypeContext
 - EngineNameContext
 - ExecuteStatementContext
@@ -206,6 +216,11 @@ Supported classes:
 - FlushTableOptionContext
 - ForeignKeyTableConstraintContext
 - FormatColumnConstraintContext
+- FrameBetweenContext
+- FrameClauseContext
+- FrameExtentContext
+- FrameRangeContext
+- FrameUnitsContext
 - FromClauseContext
 - FullColumnNameContext
 - FullColumnNameExpressionAtomContext
@@ -292,6 +307,7 @@ Supported classes:
 - LoadedTableIndexesContext
 - LockActionContext
 - LockClauseContext
+- LockOptionContext
 - LockTableElementContext
 - LockTablesContext
 - LogicalExpressionContext
@@ -317,6 +333,8 @@ Supported classes:
 - NaturalJoinContext
 - NestedExpressionAtomContext
 - NestedRowExpressionAtomContext
+- NonAggregateFunctionCallContext
+- NonAggregateWindowedFunctionContext
 - NotExpressionContext
 - NullColumnConstraintContext
 - NullNotnullContext
@@ -325,8 +343,10 @@ Supported classes:
 - OrderByClauseContext
 - OrderByExpressionContext
 - OuterJoinContext
+- OverClauseContext
 - OwnerStatementContext
 - ParenthesisSelectContext
+- PartitionClauseContext
 - PartitionComparisonContext
 - PartitionDefinerAtomContext
 - PartitionDefinerVectorContext
@@ -398,6 +418,7 @@ Supported classes:
 - RevokeProxyContext
 - RevokeStatementContext
 - RewriteDbReplicationContext
+- RoleNameContext
 - RoleOptionContext
 - RoleRevokeContext
 - RollbackStatementContext
@@ -428,6 +449,7 @@ Supported classes:
 - SelectSpecContext
 - SelectStarElementContext
 - SelectStatementContext
+- SequenceSpecContext
 - SerialDefaultColumnConstraintContext
 - ServerOptionContext
 - SetAutocommitContext
@@ -437,6 +459,7 @@ Supported classes:
 - SetNewValueInsideTriggerContext
 - SetPasswordContext
 - SetPasswordStatementContext
+- SetRoleContext
 - SetStatementContext
 - SetTransactionContext
 - SetTransactionStatementContext
@@ -512,6 +535,7 @@ Supported classes:
 - TableIndexesContext
 - TableNameContext
 - TableOptionAutoIncrementContext
+- TableOptionAutoextendSizeContext
 - TableOptionAverageContext
 - TableOptionCharsetContext
 - TableOptionChecksumContext
@@ -523,6 +547,7 @@ Supported classes:
 - TableOptionDataDirectoryContext
 - TableOptionDelayContext
 - TableOptionEncryptionContext
+- TableOptionEngineAttributeContext
 - TableOptionEngineContext
 - TableOptionIndexDirectoryContext
 - TableOptionInsertMethodContext
@@ -535,6 +560,8 @@ Supported classes:
 - TableOptionRecalculationContext
 - TableOptionRowFormatContext
 - TableOptionSamplePageContext
+- TableOptionSecondaryEngineAttributeContext
+- TableOptionStartTransactionContext
 - TableOptionTableTypeContext
 - TableOptionTablespaceContext
 - TableOptionUnionContext
@@ -588,10 +615,15 @@ Supported classes:
 - ValuesFunctionCallContext
 - VariableClauseContext
 - VisibilityColumnConstraintContext
+- WaitNowaitClauseContext
 - WeightFunctionCallContext
 - WhileStatementContext
 - WildDoTableReplicationContext
 - WildIgnoreTableReplicationContext
+- WindowClauseContext
+- WindowNameContext
+- WindowSpecContext
+- WithClauseContext
 - XaCommitWorkContext
 - XaEndTransactionContext
 - XaPrepareStatementContext

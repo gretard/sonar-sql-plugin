@@ -15,25 +15,28 @@ Currently plug-in supports:
   - [TSQL](https://github.com/antlr/grammars-v4/tree/master/sql/tsql)
   - [MySQL](https://github.com/antlr/grammars-v4/tree/master/sql/mysql/Positive-Technologies)
   - [PostgreSQL](https://github.com/tshprecher/antlr_psql)
+  - [PostgreSQL](https://github.com/antlr/grammars-v4/tree/master/sql/postgresql)
   - [VSQL](https://github.com/gretard/antlr4-grammar-vsql)
 - Reporting of issues found by:
   - [SQLCodeGuard](https://www.red-gate.com/products/sql-development/sql-code-guard/index) 
   - [MSBuild](https://msdn.microsoft.com/en-us/library/dd172133(v=vs.100).aspx)
   - [SQLCheck](https://github.com/jarulraj/sqlcheck)
-  - Custom rules reported by [plugin](https://github.com/gretard/sonar-sql-plugin/blob/master/docs/pluginRules.md)
+  - SQL code violations reported by the [plugin](https://github.com/gretard/sonar-sql-plugin/blob/master/docs/pluginRules.md)
 - Reporting of code coverage calculated by [SQLCover](https://github.com/GoEddie/SQLCover)
 - Lines and comment lines measures reporting
 - Cognitive and cyclomatic complexity metrics reporting
-- Custom user rules. Configuration can be found at [here](https://github.com/gretard/sonar-sql-plugin/blob/master/docs/customRulesSetup.md)
+- Custom user rules. Users can define additional detection rules in the declarative format for the supported SQL dialects. These rules can report code violations specific to the code base and domain. For example, user wants to see code violdations where after each INSERT statement COMMIT statement is not found. Plugin does not report such code, however, if user defines custom rule in the declarative format, then SonarQube will report such violations. More details can be found at [here](https://github.com/gretard/sonar-sql-plugin/blob/master/docs/customRulesSetup.md)
 
 ## Tutorials ##
 Tutorials:
 - [Integrating Redgate SQL Code Guard with SonarQube](https://www.red-gate.com/hub/product-learning/sql-change-automation/integrating-redgate-sql-code-guard-with-sonarqube)
+- [Scanning a TSQL Project With SonarQube](https://dzone.com/articles/getting-tsql-project-scanned-with-sonarqube)
 
 ## Requirements ##
 Different plugin versions supports the following:
 - 1.0.0 - Sonarqube 7.4+versions
 - 1.2.0 - Sonarqube 9+versions
+- 1.3.0 - Sonarqube 9+versions
 
 ## Installation ##
 1. Download and install SonarQube
@@ -62,14 +65,15 @@ sonar.sql.dialect=tsql
 ### PostgreSQL ###
 Sonar settings for pssql. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/2-pssql)
 ```
-sonar.projectKey=examples.sql.mysql.project
-sonar.projectName=examples.sql.mysql.project
+sonar.projectKey=examples.sql.psql.project
+sonar.projectName=examples.sql.psql.project
 sonar.projectVersion=1.1
 sonar.sources=src
 # optional
 sonar.language=sql
 sonar.sql.dialect=pssql
 ```
+
 
 ### MySQL ###
 Sonar settings for mysql. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/3-mysql)
@@ -126,6 +130,7 @@ Added container definitions for easy development with VSCode. Download the [remo
 1) Then you can lifecycle > package target to build the plugin. The .jar file will end up in the *sonar-sql-plugin/src/sonar-sql-plugin/target/* folder.
 2) Copy the jar to the plugins folder of your sonarqube instance
 ```
+mkdir -p ~/workspace/sonarqube/extensions/plugins
 cp ~/workspace/sonar-sql-plugin/src/sonar-sql-plugin/target/sonar-sql-plugin-1.1.0.jar ~/workspace/sonarqube/extensions/plugins
 ```
 3) Start sonarqube
@@ -137,7 +142,7 @@ docker run -i --name sonarqube \
   -v ~/workspace/sonarqube/extensions:/opt/sonarqube/extensions \
   -v ~/workspace/sonarqube/logs:/opt/sonarqube/logs \
   -v ~/workspace/sonarqube/data:/opt/sonarqube/data \
-  sonarqube:8.9.0-community
+  sonarqube
 ```
   * next time only start the container
 ```
@@ -149,6 +154,7 @@ docker run \
     --rm \
     -e SONAR_HOST_URL="http://127.0.0.1:9000" \
     -e SONAR_LOGIN="YOUR_ADMIN_TOKEN_HERE" \
+    -e SONAR_PASSWORD="YOUR_ADMIN_PWD_HERE" \
     --network="host" \
     -v "FOLDER_WITH_THE_CODE:/usr/src" \
     sonarsource/sonar-scanner-cli -X
