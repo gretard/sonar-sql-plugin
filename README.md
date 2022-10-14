@@ -36,7 +36,6 @@ Tutorials:
 Different plugin versions supports the following:
 - 1.0.0 - Sonarqube 7.4+versions
 - 1.2.0 - Sonarqube 9+versions
-- 1.3.0 - Sonarqube 9+versions
 
 ## Installation ##
 1. Download and install SonarQube
@@ -71,7 +70,7 @@ sonar.projectVersion=1.1
 sonar.sources=src
 # optional
 sonar.language=sql
-sonar.sql.dialect=pssql
+sonar.sql.dialect=pssqlv2
 ```
 
 
@@ -102,7 +101,7 @@ sonar.sql.dialect=vsql
 ## Plugin configuration ##
 The following options are available for configuration:
 
-- **sonar.sql.dialect** - SQL dialect for analysis. *Defaults to tsql*. Supported values are : tsql, mysql, pssql
+- **sonar.sql.dialect** - SQL dialect for analysis. *Defaults to tsql*. Supported values are : tsql, mysql, pssql, pssql, pssqlv2.
 - **sonar.sql.rules.path** - path to custome rules, can be directory or absolute file. *Defaults to .*. Multiple values are supported.
 - **sonar.sql.rules.suffix** - custom rules suffix
 - **sonar.sql.tsql.ms.report** - suffix to search path directories for MSBuild report. *Defaults to staticcodeanalysis.results.xml*. Can be absolute or relative

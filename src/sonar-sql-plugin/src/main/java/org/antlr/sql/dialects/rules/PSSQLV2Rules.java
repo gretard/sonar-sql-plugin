@@ -116,9 +116,11 @@ public enum PSSQLV2Rules {
 		child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 
 		impl.getChildrenRules().getRuleImplementation().add(child2);
+		
 		impl.getNames().getTextItem().add(InsertstmtContext.class.getSimpleName());
 		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 		impl.setRuleResultType(RuleResultType.DEFAULT);
+		impl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
 
 		return rule;
 	}
