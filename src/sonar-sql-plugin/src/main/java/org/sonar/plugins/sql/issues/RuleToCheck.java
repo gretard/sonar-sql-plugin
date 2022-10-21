@@ -57,6 +57,22 @@ public class RuleToCheck {
         return items;
     }
 
+
+    public static List<RuleToCheck> createCodeList2(List<SqlRules> list) {
+        List<RuleToCheck> items = new LinkedList<>();
+        for (SqlRules item : list) {
+            item.getRule().forEach(rule -> {
+                if (rule.getRuleAppliesTo() == null || "code".equalsIgnoreCase(rule.getRuleAppliesTo())) {
+                    items.add(new RuleToCheck(item, rule));
+                }
+            });
+        }
+
+        return items;
+    }
+
+    
+    
     public static List<RuleToCheck> createCommentsList(SqlRules... list) {
         List<RuleToCheck> items = new LinkedList<>();
         for (SqlRules item : list) {

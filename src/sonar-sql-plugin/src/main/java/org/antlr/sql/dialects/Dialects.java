@@ -1,6 +1,8 @@
 package org.antlr.sql.dialects;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.antlr.sql.dialects.rules.CommonRules;
@@ -13,6 +15,24 @@ public enum Dialects {
 
 	public AntlrContext parse(String text) {
 		return parse(text, Collections.emptyList());
+	}
+
+	public List<SqlRules> getDialectRules(SqlRules... additionalRules) {
+		var rules = new LinkedList<SqlRules>();
+		SQLDialectRules.INSTANCE.getRules().forEach(r -> {
+			if (r.getDialect() == null || this.name().equalsIgnoreCase(r.getDialect())) {
+				rules.add(r);
+			}
+
+		});
+
+		rules.addAll(CommonRules.INSTANCE.getRules());
+		rules.addAll(Arrays.asList(additionalRules));
+		return rules;
+	}
+
+	public AntlrContext parseInitialContext(String text) {
+		return this.dialect.parse(text);
 	}
 
 	public AntlrContext parse(String text, List<SqlRules> rules) {

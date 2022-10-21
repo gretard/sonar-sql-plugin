@@ -24,7 +24,7 @@ public class RulesHelperTool {
             System.out.println("\taction (print or  verify)");
             System.out.println("\ttype (text or  file)");
             System.out.println("\tvalue (sql string or path to folder) ");
-            System.out.println("\tdialect (tsql, pssql, mysql) ");
+            System.out.println("\tdialect (tsql, pssql, mysql, pssql, pssqlv2) ");
 
             System.out.println("Example:\r\nprint text \"SELECT * FROM dbo.test;\" tsql\r\n");
             System.out.println("Example:\r\nverify file \"c:/tests/customRules.rules;\" mysql");

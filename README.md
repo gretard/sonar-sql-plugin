@@ -123,6 +123,59 @@ Please configure additional properties:
 - When you want SQL plugin execution ( this will disable pssql plugin): 
 `sonar.lang.patterns.plsqlopen=na`
 
+## Using command line tools
+With the plugin - there are additional 2 cli tools available (they are not required for sonar execution):
+
+ - **sql-sca-cli.jar** - allows to execute sql code analysis from the command line
+ - **rulesHelper.jar** - command line helper tool for writing custom sql rules
+ 
+### sql-sca-cli
+Usage:
+
+- ```java -jar sql-sca-cli.jar --help``` - will print help
+- ```java -jar sql-sca-cli.jar```  - will scan current directory
+- ```java -jar sql-sca-cli.jar -i /home/test``` - will scan test directory
+ 
+Full help info:
+ ```usage: sql-sca-cli
+ -c,--custom-rules-path <arg>           path to custom rules directory,
+                                        defaults to current directory
+ -csuffix,--custom-rules-suffix <arg>   custom rules suffix, defaults to:
+                                        .customRules
+ -d,--dialect <arg>                     SQL dialect, defaults to: tsql,
+                                        possible values: [TSQL, PSSQL,
+                                        MYSQL, VSQL, PSSQLV2]
+ -h,--help                              show help
+ -i,--input <arg>                       input directory for analysis,
+                                        defaults to current directory
+ -p,--prefixes <arg>                    file prefixes for analysis,
+                                        defaults to: .sql
+ -warnOnly,--warnOnly                   flag whether tool should report
+                                        warnings only
+```
+
+### rulesHelper
+Usage:
+
+- ```java -jar rulesHelper.jar``` - will print help
+- ```java -jar rulesHelper.jar print text "SELECT * FROM dbo.test;" tsql``` - will print parsed AST tree for TSQL dialect
+
+Full help info:
+
+```
+Please pass the following: 
+	action (print or  verify)
+	type (text or  file)
+	value (sql string or path to folder) 
+	dialect (tsql, pssql, mysql, pssql, pssqlv2) 
+Example:
+print text "SELECT * FROM dbo.test;" tsql
+
+Example:
+verify file "c:/tests/customRules.rules;" mysql
+```
+
+
 ## Contributing ##
 Added container definitions for easy development with VSCode. Download the [remote containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) and let it figure out the maven targets. 
 <img width="1917" alt="vscode_remote_containers_extension_maven" src="https://user-images.githubusercontent.com/3657015/125957363-653c9f6f-b5cc-4a3c-96ef-9dc18d0f8bfb.png">
