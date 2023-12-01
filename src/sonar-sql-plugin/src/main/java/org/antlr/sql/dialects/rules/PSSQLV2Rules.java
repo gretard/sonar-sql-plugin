@@ -5,21 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.antlr.sql.dialects.Dialects;
-import org.antlr.sql.dialects.mysql.MySqlParser.InsertStatementContext;
-import org.antlr.sql.dialects.mysql.MySqlParser.UidListContext;
-import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Combine_clauseContext;
-import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.ExprContext;
-import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Func_callContext;
 import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.IdentifierContext;
-import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Order_by_clauseContext;
-import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Order_by_itemContext;
-import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.PredicateContext;
-import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Select_stmtContext;
 import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Where_clauseContext;
 import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.A_exprContext;
-import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.A_expr_andContext;
 import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.A_expr_inContext;
-import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.A_expr_likeContext;
 import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.C_expr_exprContext;
 import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.Func_applicationContext;
 import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.Func_exprContext;
@@ -28,8 +17,8 @@ import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.Insert_column_listContext;
 import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.InsertstmtContext;
 import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.Opt_sort_clauseContext;
 import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.Select_clauseContext;
-import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.Set_operator_with_all_or_distinctContext;
 import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.SortbyContext;
+import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.StmtmultiContext;
 import org.antlr.v4.runtime.tree.TerminalNodeImpl;
 import org.sonar.plugins.sql.models.rules.Rule;
 import org.sonar.plugins.sql.models.rules.RuleDistanceIndexMatchType;
@@ -42,7 +31,7 @@ import org.sonar.plugins.sql.models.rules.TextCheckType;
 public enum PSSQLV2Rules {
 
 	INSTANCE;
-	
+
 	BaseRules baseRules = BaseRules.INSTANCE;
 
 	public List<SqlRules> getRules() {
@@ -53,18 +42,9 @@ public enum PSSQLV2Rules {
 			customRules.setRepoName("SQL Plugin checks");
 			customRules.setDialect(Dialects.PSSQLV2.name());
 			customRules.getRule()
-					.addAll(Arrays.asList(
-							getWaitForRule(),
-							getSelectAllRule(),   
-							getInsertRule(),
-							getOrderByRule(), 
-							getSargRule(),
-							getNullComparisonRule(), 
-							getWhereWithOrVsUnionRule(), 
-							getUnionVsUnionALLRule(),
-							getExistsVsInRule(), 
-							getOrderByRuleWithoutAscDesc())
-							);
+					.addAll(Arrays.asList(getWaitForRule(), getSelectAllRule(), getInsertRule(), getOrderByRule(),
+							getSargRule(), getNullComparisonRule(), getWhereWithOrVsUnionRule(),
+							getUnionVsUnionALLRule(), getExistsVsInRule(), getOrderByRuleWithoutAscDesc()));
 			rules.add(customRules);
 		}
 		return rules;
@@ -116,7 +96,7 @@ public enum PSSQLV2Rules {
 		child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 
 		impl.getChildrenRules().getRuleImplementation().add(child2);
-		
+
 		impl.getNames().getTextItem().add(InsertstmtContext.class.getSimpleName());
 		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 		impl.setRuleResultType(RuleResultType.DEFAULT);
@@ -200,7 +180,7 @@ public enum PSSQLV2Rules {
 		Rule rule = baseRules.getUnionVsUnionALLRule();
 		RuleImplementation rImpl = rule.getRuleImplementation();
 
-		rImpl.getNames().getTextItem().add(Set_operator_with_all_or_distinctContext.class.getSimpleName());
+		rImpl.getNames().getTextItem().add(StmtmultiContext.class.getSimpleName());
 		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 		{
 			RuleImplementation child = new RuleImplementation();

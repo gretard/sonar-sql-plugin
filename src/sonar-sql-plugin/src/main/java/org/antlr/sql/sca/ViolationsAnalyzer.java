@@ -10,8 +10,6 @@ import java.util.stream.Collectors;
 
 import org.antlr.sql.sca.nodes.IParsedNode;
 import org.apache.commons.lang3.StringUtils;
-import org.sonar.api.utils.log.Logger;
-import org.sonar.api.utils.log.Loggers;
 import org.sonar.plugins.sql.issues.RuleToCheck;
 import org.sonar.plugins.sql.issues.SqlIssue;
 import org.sonar.plugins.sql.models.rules.Rule;

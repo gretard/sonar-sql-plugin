@@ -1,6 +1,5 @@
 package org.sonar.plugins.sql;
 
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Objects;
 

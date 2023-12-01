@@ -1,9 +1,9 @@
 package org.antlr.sql.dialects.psqlv2;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.Lexer;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
+
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.Lexer;
 
 public abstract class PostgreSQLLexerBase extends Lexer {
     protected final Deque<String> tags = new ArrayDeque<>();

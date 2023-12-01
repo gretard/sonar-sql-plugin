@@ -200,18 +200,6 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCreateView(MySqlParser.CreateViewContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MySqlParser#createSequence}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCreateSequence(MySqlParser.CreateSequenceContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MySqlParser#sequenceSpec}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSequenceSpec(MySqlParser.SequenceSpecContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link MySqlParser#createDatabaseOption}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -223,6 +211,12 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCharSet(MySqlParser.CharSetContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#currentUserExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCurrentUserExpression(MySqlParser.CurrentUserExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#ownerStatement}.
 	 * @param ctx the parse tree
@@ -386,6 +380,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitVisibilityColumnConstraint(MySqlParser.VisibilityColumnConstraintContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code invisibilityColumnConstraint}
+	 * labeled alternative in {@link MySqlParser#columnConstraint}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInvisibilityColumnConstraint(MySqlParser.InvisibilityColumnConstraintContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code autoIncrementColumnConstraint}
 	 * labeled alternative in {@link MySqlParser#columnConstraint}.
@@ -622,6 +623,27 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTableOptionEncryption(MySqlParser.TableOptionEncryptionContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code tableOptionPageCompressed}
+	 * labeled alternative in {@link MySqlParser#tableOption}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTableOptionPageCompressed(MySqlParser.TableOptionPageCompressedContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code tableOptionPageCompressionLevel}
+	 * labeled alternative in {@link MySqlParser#tableOption}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTableOptionPageCompressionLevel(MySqlParser.TableOptionPageCompressionLevelContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code tableOptionEncryptionKeyId}
+	 * labeled alternative in {@link MySqlParser#tableOption}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTableOptionEncryptionKeyId(MySqlParser.TableOptionEncryptionKeyIdContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code tableOptionIndexDirectory}
 	 * labeled alternative in {@link MySqlParser#tableOption}.
 	 * @param ctx the parse tree
@@ -726,6 +748,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTableOptionTableType(MySqlParser.TableOptionTableTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code tableOptionTransactional}
+	 * labeled alternative in {@link MySqlParser#tableOption}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTableOptionTransactional(MySqlParser.TableOptionTransactionalContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code tableOptionUnion}
 	 * labeled alternative in {@link MySqlParser#tableOption}.
@@ -964,12 +993,6 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAlterView(MySqlParser.AlterViewContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MySqlParser#alterSequence}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterSequence(MySqlParser.AlterSequenceContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code alterByTableOption}
 	 * labeled alternative in {@link MySqlParser#alterSpecification}.
 	 * @param ctx the parse tree
@@ -1032,6 +1055,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAlterByAddCheckTableConstraint(MySqlParser.AlterByAddCheckTableConstraintContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByAlterCheckTableConstraint}
+	 * labeled alternative in {@link MySqlParser#alterSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByAlterCheckTableConstraint(MySqlParser.AlterByAlterCheckTableConstraintContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code alterBySetAlgorithm}
 	 * labeled alternative in {@link MySqlParser#alterSpecification}.
@@ -1096,6 +1126,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAlterByDropPrimaryKey(MySqlParser.AlterByDropPrimaryKeyContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code alterByDropIndex}
+	 * labeled alternative in {@link MySqlParser#alterSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByDropIndex(MySqlParser.AlterByDropIndexContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code alterByRenameIndex}
 	 * labeled alternative in {@link MySqlParser#alterSpecification}.
 	 * @param ctx the parse tree
@@ -1103,19 +1140,19 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAlterByRenameIndex(MySqlParser.AlterByRenameIndexContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code alterByAlterColumnDefault}
+	 * labeled alternative in {@link MySqlParser#alterSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByAlterColumnDefault(MySqlParser.AlterByAlterColumnDefaultContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code alterByAlterIndexVisibility}
 	 * labeled alternative in {@link MySqlParser#alterSpecification}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitAlterByAlterIndexVisibility(MySqlParser.AlterByAlterIndexVisibilityContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByDropIndex}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByDropIndex(MySqlParser.AlterByDropIndexContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code alterByDropForeignKey}
 	 * labeled alternative in {@link MySqlParser#alterSpecification}.
@@ -1194,117 +1231,124 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAlterByValidate(MySqlParser.AlterByValidateContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code alterByAddPartition}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByAddPartition(MySqlParser.AlterByAddPartitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByDropPartition}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByDropPartition(MySqlParser.AlterByDropPartitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByDiscardPartition}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByDiscardPartition(MySqlParser.AlterByDiscardPartitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByImportPartition}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByImportPartition(MySqlParser.AlterByImportPartitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByTruncatePartition}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByTruncatePartition(MySqlParser.AlterByTruncatePartitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByCoalescePartition}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByCoalescePartition(MySqlParser.AlterByCoalescePartitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByReorganizePartition}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByReorganizePartition(MySqlParser.AlterByReorganizePartitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByExchangePartition}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByExchangePartition(MySqlParser.AlterByExchangePartitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByAnalyzePartition}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByAnalyzePartition(MySqlParser.AlterByAnalyzePartitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByCheckPartition}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByCheckPartition(MySqlParser.AlterByCheckPartitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByOptimizePartition}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByOptimizePartition(MySqlParser.AlterByOptimizePartitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByRebuildPartition}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByRebuildPartition(MySqlParser.AlterByRebuildPartitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByRepairPartition}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByRepairPartition(MySqlParser.AlterByRepairPartitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByRemovePartitioning}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByRemovePartitioning(MySqlParser.AlterByRemovePartitioningContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterByUpgradePartitioning}
-	 * labeled alternative in {@link MySqlParser#alterSpecification}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterByUpgradePartitioning(MySqlParser.AlterByUpgradePartitioningContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code alterByAddDefinitions}
 	 * labeled alternative in {@link MySqlParser#alterSpecification}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitAlterByAddDefinitions(MySqlParser.AlterByAddDefinitionsContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterPartition}
+	 * labeled alternative in {@link MySqlParser#alterSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterPartition(MySqlParser.AlterPartitionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByAddPartition}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByAddPartition(MySqlParser.AlterByAddPartitionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByDropPartition}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByDropPartition(MySqlParser.AlterByDropPartitionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByDiscardPartition}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByDiscardPartition(MySqlParser.AlterByDiscardPartitionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByImportPartition}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByImportPartition(MySqlParser.AlterByImportPartitionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByTruncatePartition}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByTruncatePartition(MySqlParser.AlterByTruncatePartitionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByCoalescePartition}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByCoalescePartition(MySqlParser.AlterByCoalescePartitionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByReorganizePartition}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByReorganizePartition(MySqlParser.AlterByReorganizePartitionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByExchangePartition}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByExchangePartition(MySqlParser.AlterByExchangePartitionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByAnalyzePartition}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByAnalyzePartition(MySqlParser.AlterByAnalyzePartitionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByCheckPartition}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByCheckPartition(MySqlParser.AlterByCheckPartitionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByOptimizePartition}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByOptimizePartition(MySqlParser.AlterByOptimizePartitionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByRebuildPartition}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByRebuildPartition(MySqlParser.AlterByRebuildPartitionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByRepairPartition}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByRepairPartition(MySqlParser.AlterByRepairPartitionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByRemovePartitioning}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByRemovePartitioning(MySqlParser.AlterByRemovePartitioningContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alterByUpgradePartitioning}
+	 * labeled alternative in {@link MySqlParser#alterPartitionSpecification}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlterByUpgradePartitioning(MySqlParser.AlterByUpgradePartitioningContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#dropDatabase}.
 	 * @param ctx the parse tree
@@ -1383,12 +1427,6 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSetRole(MySqlParser.SetRoleContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MySqlParser#dropSequence}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDropSequence(MySqlParser.DropSequenceContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#renameTable}.
 	 * @param ctx the parse tree
@@ -1484,11 +1522,24 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitUnionParenthesisSelect(MySqlParser.UnionParenthesisSelectContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code withLateralStatement}
+	 * labeled alternative in {@link MySqlParser#selectStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWithLateralStatement(MySqlParser.WithLateralStatementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MySqlParser#updateStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitUpdateStatement(MySqlParser.UpdateStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#valuesStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitValuesStatement(MySqlParser.ValuesStatementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#insertStatementValue}.
 	 * @param ctx the parse tree
@@ -1594,6 +1645,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTableSourceNested(MySqlParser.TableSourceNestedContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code tableJson}
+	 * labeled alternative in {@link MySqlParser#tableSource}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTableJson(MySqlParser.TableJsonContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code atomTableItem}
 	 * labeled alternative in {@link MySqlParser#tableSourceItem}.
 	 * @param ctx the parse tree
@@ -1655,6 +1713,12 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNaturalJoin(MySqlParser.NaturalJoinContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MySqlParser#joinSpec}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJoinSpec(MySqlParser.JoinSpecContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MySqlParser#queryExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -1690,6 +1754,42 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitUnionStatement(MySqlParser.UnionStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#lateralStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLateralStatement(MySqlParser.LateralStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#jsonTable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJsonTable(MySqlParser.JsonTableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#jsonColumnList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJsonColumnList(MySqlParser.JsonColumnListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#jsonColumn}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJsonColumn(MySqlParser.JsonColumnContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#jsonOnEmpty}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJsonOnEmpty(MySqlParser.JsonOnEmptyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#jsonOnError}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJsonOnError(MySqlParser.JsonOnErrorContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#selectSpec}.
 	 * @param ctx the parse tree
@@ -2364,12 +2464,12 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAlterUserMysqlV56(MySqlParser.AlterUserMysqlV56Context ctx);
 	/**
-	 * Visit a parse tree produced by the {@code alterUserMysqlV57}
+	 * Visit a parse tree produced by the {@code alterUserMysqlV80}
 	 * labeled alternative in {@link MySqlParser#alterUser}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAlterUserMysqlV57(MySqlParser.AlterUserMysqlV57Context ctx);
+	T visitAlterUserMysqlV80(MySqlParser.AlterUserMysqlV80Context ctx);
 	/**
 	 * Visit a parse tree produced by the {@code createUserMysqlV56}
 	 * labeled alternative in {@link MySqlParser#createUser}.
@@ -2378,12 +2478,12 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCreateUserMysqlV56(MySqlParser.CreateUserMysqlV56Context ctx);
 	/**
-	 * Visit a parse tree produced by the {@code createUserMysqlV57}
+	 * Visit a parse tree produced by the {@code createUserMysqlV80}
 	 * labeled alternative in {@link MySqlParser#createUser}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCreateUserMysqlV57(MySqlParser.CreateUserMysqlV57Context ctx);
+	T visitCreateUserMysqlV80(MySqlParser.CreateUserMysqlV80Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#dropUser}.
 	 * @param ctx the parse tree
@@ -2454,12 +2554,19 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitUserSpecification(MySqlParser.UserSpecificationContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code passwordAuthOption}
+	 * Visit a parse tree produced by the {@code hashAuthOption}
 	 * labeled alternative in {@link MySqlParser#userAuthOption}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPasswordAuthOption(MySqlParser.PasswordAuthOptionContext ctx);
+	T visitHashAuthOption(MySqlParser.HashAuthOptionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code randomAuthOption}
+	 * labeled alternative in {@link MySqlParser#userAuthOption}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRandomAuthOption(MySqlParser.RandomAuthOptionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code stringAuthOption}
 	 * labeled alternative in {@link MySqlParser#userAuthOption}.
@@ -2468,12 +2575,12 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStringAuthOption(MySqlParser.StringAuthOptionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code hashAuthOption}
+	 * Visit a parse tree produced by the {@code moduleAuthOption}
 	 * labeled alternative in {@link MySqlParser#userAuthOption}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitHashAuthOption(MySqlParser.HashAuthOptionContext ctx);
+	T visitModuleAuthOption(MySqlParser.ModuleAuthOptionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code simpleAuthOption}
 	 * labeled alternative in {@link MySqlParser#userAuthOption}.
@@ -2481,6 +2588,26 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSimpleAuthOption(MySqlParser.SimpleAuthOptionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#authOptionClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAuthOptionClause(MySqlParser.AuthOptionClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code module}
+	 * labeled alternative in {@link MySqlParser#authenticationRule}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitModule(MySqlParser.ModuleContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code passwordModuleOption}
+	 * labeled alternative in {@link MySqlParser#authenticationRule}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPasswordModuleOption(MySqlParser.PasswordModuleOptionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#tlsOption}.
 	 * @param ctx the parse tree
@@ -2954,6 +3081,18 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSignalConditionInformation(MySqlParser.SignalConditionInformationContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MySqlParser#withStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWithStatement(MySqlParser.WithStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#tableStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTableStatement(MySqlParser.TableStatementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MySqlParser#diagnosticsStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -3010,6 +3149,18 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIndexColumnName(MySqlParser.IndexColumnNameContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MySqlParser#simpleUserName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSimpleUserName(MySqlParser.SimpleUserNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#hostName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHostName(MySqlParser.HostNameContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MySqlParser#userName}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -3039,6 +3190,12 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitEngineName(MySqlParser.EngineNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#engineNameBase}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEngineNameBase(MySqlParser.EngineNameBaseContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#uuidSet}.
 	 * @param ctx the parse tree
@@ -3131,19 +3288,19 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStringDataType(MySqlParser.StringDataTypeContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code nationalStringDataType}
-	 * labeled alternative in {@link MySqlParser#dataType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNationalStringDataType(MySqlParser.NationalStringDataTypeContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code nationalVaryingStringDataType}
 	 * labeled alternative in {@link MySqlParser#dataType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitNationalVaryingStringDataType(MySqlParser.NationalVaryingStringDataTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code nationalStringDataType}
+	 * labeled alternative in {@link MySqlParser#dataType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNationalStringDataType(MySqlParser.NationalStringDataTypeContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code dimensionDataType}
 	 * labeled alternative in {@link MySqlParser#dataType}.
@@ -3223,6 +3380,12 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitUidList(MySqlParser.UidListContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MySqlParser#fullColumnNameList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFullColumnNameList(MySqlParser.FullColumnNameListContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MySqlParser#tables}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -3295,17 +3458,17 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIfNotExists(MySqlParser.IfNotExistsContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MySqlParser#orReplace}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOrReplace(MySqlParser.OrReplaceContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MySqlParser#waitNowaitClause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitWaitNowaitClause(MySqlParser.WaitNowaitClauseContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MySqlParser#lockOption}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLockOption(MySqlParser.LockOptionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code specificFunctionCall}
 	 * labeled alternative in {@link MySqlParser#functionCall}.
@@ -3355,6 +3518,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSimpleFunctionCall(MySqlParser.SimpleFunctionCallContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code currentUser}
+	 * labeled alternative in {@link MySqlParser#specificFunction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCurrentUser(MySqlParser.CurrentUserContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code dataTypeFunctionCall}
 	 * labeled alternative in {@link MySqlParser#specificFunction}.
@@ -3668,6 +3838,13 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCollateExpressionAtom(MySqlParser.CollateExpressionAtomContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code variableAssignExpressionAtom}
+	 * labeled alternative in {@link MySqlParser#expressionAtom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariableAssignExpressionAtom(MySqlParser.VariableAssignExpressionAtomContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code mysqlVariableExpressionAtom}
 	 * labeled alternative in {@link MySqlParser#expressionAtom}.
 	 * @param ctx the parse tree
@@ -3783,11 +3960,17 @@ public interface MySqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBitOperator(MySqlParser.BitOperatorContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MySqlParser#mathOperator}.
+	 * Visit a parse tree produced by {@link MySqlParser#multOperator}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMathOperator(MySqlParser.MathOperatorContext ctx);
+	T visitMultOperator(MySqlParser.MultOperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MySqlParser#addOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAddOperator(MySqlParser.AddOperatorContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MySqlParser#jsonOperator}.
 	 * @param ctx the parse tree

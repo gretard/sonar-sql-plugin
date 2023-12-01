@@ -8,6 +8,7 @@ import org.antlr.sql.dialects.Dialects;
 import org.antlr.sql.dialects.mysql.MySqlParser.ComparisonOperatorContext;
 import org.antlr.sql.dialects.mysql.MySqlParser.ConstantContext;
 import org.antlr.sql.dialects.mysql.MySqlParser.FromClauseContext;
+import org.antlr.sql.dialects.mysql.MySqlParser.FullColumnNameListContext;
 import org.antlr.sql.dialects.mysql.MySqlParser.InsertStatementContext;
 import org.antlr.sql.dialects.mysql.MySqlParser.LikePredicateContext;
 import org.antlr.sql.dialects.mysql.MySqlParser.LogicalOperatorContext;
@@ -19,7 +20,6 @@ import org.antlr.sql.dialects.mysql.MySqlParser.ScalarFunctionCallContext;
 import org.antlr.sql.dialects.mysql.MySqlParser.ScalarFunctionNameContext;
 import org.antlr.sql.dialects.mysql.MySqlParser.SelectStarElementContext;
 import org.antlr.sql.dialects.mysql.MySqlParser.UidContext;
-import org.antlr.sql.dialects.mysql.MySqlParser.UidListContext;
 import org.antlr.sql.dialects.mysql.MySqlParser.UnionStatementContext;
 import org.antlr.v4.runtime.tree.TerminalNodeImpl;
 import org.sonar.plugins.sql.models.rules.Rule;
@@ -32,6 +32,7 @@ import org.sonar.plugins.sql.models.rules.TextCheckType;
 public enum MySQLRules {
 
 	INSTANCE;
+
 	BaseRules baseRules = BaseRules.INSTANCE;
 
 	public List<SqlRules> getRules() {
@@ -84,7 +85,7 @@ public enum MySQLRules {
 		RuleImplementation impl = rule.getRuleImplementation();
 
 		RuleImplementation child2 = new RuleImplementation();
-		child2.getNames().getTextItem().add(UidListContext.class.getSimpleName());
+		child2.getNames().getTextItem().add(FullColumnNameListContext.class.getSimpleName());
 		child2.setTextCheckType(TextCheckType.DEFAULT);
 		child2.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
 		child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
@@ -156,7 +157,7 @@ public enum MySQLRules {
 
 		rImpl.getNames().getTextItem().add(FromClauseContext.class.getSimpleName());
 		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		rImpl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND); 
+		rImpl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
 		RuleImplementation child = new RuleImplementation();
 		child.getTextToFind().getTextItem().add("or");
 		child.setTextCheckType(TextCheckType.STRICT);
@@ -174,7 +175,7 @@ public enum MySQLRules {
 
 		rImpl.getNames().getTextItem().add(UnionStatementContext.class.getSimpleName());
 		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-	    rImpl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND); 
+		rImpl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
 
 		RuleImplementation child = new RuleImplementation();
 		child.getTextToFind().getTextItem().add("all");

@@ -3,7 +3,6 @@ package org.sonar.plugins.sql;
 import java.util.List;
 
 import org.antlr.sql.dialects.SQLDialectRules;
-import org.antlr.sql.dialects.rules.CommonRules;
 import org.sonar.api.server.profile.BuiltInQualityProfilesDefinition;
 import org.sonar.plugins.sql.models.rules.Rule;
 import org.sonar.plugins.sql.models.rules.SqlRules;

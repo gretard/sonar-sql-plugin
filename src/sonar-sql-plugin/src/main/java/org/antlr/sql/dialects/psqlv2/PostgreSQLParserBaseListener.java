@@ -5539,6 +5539,54 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMergestmt(PostgreSQLParser.MergestmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMergestmt(PostgreSQLParser.MergestmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMerge_insert_clause(PostgreSQLParser.Merge_insert_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMerge_insert_clause(PostgreSQLParser.Merge_insert_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMerge_update_clause(PostgreSQLParser.Merge_update_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMerge_update_clause(PostgreSQLParser.Merge_update_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMerge_delete_clause(PostgreSQLParser.Merge_delete_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMerge_delete_clause(PostgreSQLParser.Merge_delete_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDeletestmt(PostgreSQLParser.DeletestmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -5779,61 +5827,25 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSimple_select(PostgreSQLParser.Simple_selectContext ctx) { }
+	@Override public void enterSimple_select_intersect(PostgreSQLParser.Simple_select_intersectContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSimple_select(PostgreSQLParser.Simple_selectContext ctx) { }
+	@Override public void exitSimple_select_intersect(PostgreSQLParser.Simple_select_intersectContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnion(PostgreSQLParser.UnionContext ctx) { }
+	@Override public void enterSimple_select_pramary(PostgreSQLParser.Simple_select_pramaryContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnion(PostgreSQLParser.UnionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterIntersect(PostgreSQLParser.IntersectContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIntersect(PostgreSQLParser.IntersectContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterExcept(PostgreSQLParser.ExceptContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitExcept(PostgreSQLParser.ExceptContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSet_operator_with_all_or_distinct(PostgreSQLParser.Set_operator_with_all_or_distinctContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSet_operator_with_all_or_distinct(PostgreSQLParser.Set_operator_with_all_or_distinctContext ctx) { }
+	@Override public void exitSimple_select_pramary(PostgreSQLParser.Simple_select_pramaryContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -6355,6 +6367,18 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterNon_ansi_join(PostgreSQLParser.Non_ansi_joinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNon_ansi_join(PostgreSQLParser.Non_ansi_joinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterTable_ref(PostgreSQLParser.Table_refContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -6386,6 +6410,18 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitOpt_alias_clause(PostgreSQLParser.Opt_alias_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTable_alias_clause(PostgreSQLParser.Table_alias_clauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTable_alias_clause(PostgreSQLParser.Table_alias_clauseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -7010,6 +7046,18 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitA_expr_and(PostgreSQLParser.A_expr_andContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterA_expr_between(PostgreSQLParser.A_expr_betweenContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitA_expr_between(PostgreSQLParser.A_expr_betweenContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -8263,6 +8311,18 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTable_alias(PostgreSQLParser.Table_aliasContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTable_alias(PostgreSQLParser.Table_aliasContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterType_function_name(PostgreSQLParser.Type_function_nameContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -8366,6 +8426,18 @@ public class PostgreSQLParserBaseListener implements PostgreSQLParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitReserved_keyword(PostgreSQLParser.Reserved_keywordContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBuiltin_function_name(PostgreSQLParser.Builtin_function_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBuiltin_function_name(PostgreSQLParser.Builtin_function_nameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

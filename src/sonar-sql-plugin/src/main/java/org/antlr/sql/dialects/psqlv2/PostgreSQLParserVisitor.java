@@ -2773,6 +2773,30 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitReturning_clause(PostgreSQLParser.Returning_clauseContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#mergestmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMergestmt(PostgreSQLParser.MergestmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#merge_insert_clause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMerge_insert_clause(PostgreSQLParser.Merge_insert_clauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#merge_update_clause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMerge_update_clause(PostgreSQLParser.Merge_update_clauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#merge_delete_clause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMerge_delete_clause(PostgreSQLParser.Merge_delete_clauseContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#deletestmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -2893,38 +2917,17 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelect_clause(PostgreSQLParser.Select_clauseContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PostgreSQLParser#simple_select}.
+	 * Visit a parse tree produced by {@link PostgreSQLParser#simple_select_intersect}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSimple_select(PostgreSQLParser.Simple_selectContext ctx);
+	T visitSimple_select_intersect(PostgreSQLParser.Simple_select_intersectContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code union}
-	 * labeled alternative in {@link PostgreSQLParser#set_operator}.
+	 * Visit a parse tree produced by {@link PostgreSQLParser#simple_select_pramary}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitUnion(PostgreSQLParser.UnionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code intersect}
-	 * labeled alternative in {@link PostgreSQLParser#set_operator}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIntersect(PostgreSQLParser.IntersectContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code except}
-	 * labeled alternative in {@link PostgreSQLParser#set_operator}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExcept(PostgreSQLParser.ExceptContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link PostgreSQLParser#set_operator_with_all_or_distinct}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSet_operator_with_all_or_distinct(PostgreSQLParser.Set_operator_with_all_or_distinctContext ctx);
+	T visitSimple_select_pramary(PostgreSQLParser.Simple_select_pramaryContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#with_clause}.
 	 * @param ctx the parse tree
@@ -3184,6 +3187,12 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFrom_list(PostgreSQLParser.From_listContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#non_ansi_join}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNon_ansi_join(PostgreSQLParser.Non_ansi_joinContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#table_ref}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -3201,6 +3210,12 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOpt_alias_clause(PostgreSQLParser.Opt_alias_clauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#table_alias_clause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTable_alias_clause(PostgreSQLParser.Table_alias_clauseContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#func_alias_clause}.
 	 * @param ctx the parse tree
@@ -3513,6 +3528,12 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitA_expr_and(PostgreSQLParser.A_expr_andContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#a_expr_between}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitA_expr_between(PostgreSQLParser.A_expr_betweenContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#a_expr_in}.
 	 * @param ctx the parse tree
@@ -4145,6 +4166,12 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitColid(PostgreSQLParser.ColidContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#table_alias}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTable_alias(PostgreSQLParser.Table_aliasContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#type_function_name}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -4198,6 +4225,12 @@ public interface PostgreSQLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitReserved_keyword(PostgreSQLParser.Reserved_keywordContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PostgreSQLParser#builtin_function_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBuiltin_function_name(PostgreSQLParser.Builtin_function_nameContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PostgreSQLParser#pl_function}.
 	 * @param ctx the parse tree

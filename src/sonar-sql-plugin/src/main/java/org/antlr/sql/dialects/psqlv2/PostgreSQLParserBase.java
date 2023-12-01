@@ -1,8 +1,13 @@
 package org.antlr.sql.dialects.psqlv2;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import org.antlr.v4.runtime.*;
+
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.Parser;
+import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.TokenStream;
 
 public abstract class PostgreSQLParserBase extends Parser {
 

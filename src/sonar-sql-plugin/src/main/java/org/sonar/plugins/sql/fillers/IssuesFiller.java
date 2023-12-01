@@ -5,10 +5,6 @@ import java.util.List;
 
 import org.antlr.sql.models.AntlrContext;
 import org.antlr.sql.sca.IssuesProvider;
-import org.antlr.sql.sca.ViolationsAnalyzer;
-import org.antlr.sql.sca.ViolationsSearcher2;
-import org.antlr.sql.sca.ViolationsAnalyzer.FoundViolation;
-import org.antlr.sql.visitors.RulesMatchingVisitor2;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.utils.log.Logger;

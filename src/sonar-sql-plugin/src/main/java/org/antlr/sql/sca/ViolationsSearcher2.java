@@ -5,11 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.antlr.sql.sca.matchers.DefaultNodesMatcher;
-import org.antlr.sql.sca.matchers.INodesMatcher;
 import org.antlr.sql.sca.nodes.IParsedNode;
 import org.sonar.plugins.sql.issues.RuleToCheck;
-import org.sonar.plugins.sql.issues.RuleToCheck.CandidateCheck;
-import org.sonar.plugins.sql.issues.RuleToCheck.RuleCheckResult;
 import org.sonar.plugins.sql.models.rules.RuleImplementation;
 
 public class ViolationsSearcher2 {
