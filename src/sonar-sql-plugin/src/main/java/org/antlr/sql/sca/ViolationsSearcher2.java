@@ -87,7 +87,7 @@ public class ViolationsSearcher2 {
 
         if (!rule.getSiblingsRules().getRuleImplementation().isEmpty()) {
             for (IParsedNode nodeToCheck : item.getSiblings()) {
-                for (RuleImplementation ruleToCheck : rule.getParentRules().getRuleImplementation()) {
+                for (RuleImplementation ruleToCheck : rule.getSiblingsRules().getRuleImplementation()) {
                     visit(nodeToCheck, item, ruleToCheck, matches);
                 }
             }
