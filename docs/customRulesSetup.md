@@ -1,14 +1,15 @@
 # Wiki #
 ## Custom rules ##
-Currently, plugin supports ability to match code against custom rules defined in xml files with specific format. Below are the details how to start using and creating custom rules.
+Currently, plugin supports ability to match code against custom rules defined in xml files in specific format. Below are the details how to use and create custom rules.
 
 
 ### Usage ###
-
-- Create an xml file with custom rules defined, there is an [example file](https://github.com/gretard/sonar-sql-plugin/blob/master/examples/1-tsql/myExampleRepo.customRules). Each file defines a single repository.
-- Put custom file into your base directory of the project or you can specify absolute path to the file.
+To get started using custom rules:
+- Create an xml file with custom rules defined. There is an [example project](https://github.com/gretard/sonar-sql-plugin/blob/master/examples/6-pssql-with-custom-rules). Each xml file defines a single rule repository. You can try scanning example project first.
+- Put custom file into your base directory of the project or you can specify relative/absolute path to the file by setting _sonar.sql.rules.path_ property. You can check _sonar-project.properties_ file for further reference at the [example project](https://github.com/gretard/sonar-sql-plugin/blob/master/examples/6-pssql-with-custom-rules)
 - Run sonar scanner
 
+> Please check sections below for information on how custom rules are defined.
 
 
 ### Creating custom rules ###
@@ -64,10 +65,12 @@ Mandatory fields for rule:
 		- More - checks if node's distance to parent node is more than expected value
 		- Less - checks if node's distance to parent node is less than expected value
 		- Equals - checks if node's distance to parent node is equal to the expected value
+    - ruleAppliesTo - can be code or comments
+    - ruleReportsOn - can be line or file. If file is selected - then violation will be reported once.
 
 Schema can be found at [/sonar-sql-plugin/src/main/resources/schemas/customRules.xsd](https://github.com/gretard/sonar-sql-plugin/blob/master/src/sonar-sql-plugin/src/main/resources/schemas/customRules.xsd).
 
-Below is an example of an xml file contents for with rules:
+Below is an example of an xml file contents with rules:
 
 ```
 <sql-rules repoName="Demo rules" repoKey="tsqlDemoRepo" isAdhoc="true">
@@ -313,7 +316,7 @@ How custom rule works:
 1. Finds all nodes of type *Select_listContext*
 2. As rule mode is set to *SINGLE* and *FailIfFound* - all nodes are checked if any of the nodes contain child where its text value is equal to * as text check mode is set to *Strict*. Then such nodes are reported as having issues. If mode would be set to *Contains*, then statements such as *SELECT 1 * 3* would be reported as well. 
 
-### Creating more complex custom rule with distance ###
+### Creating more complex custom rule with distance checks ###
 
 For example, if you wanted to create a rule requiring that each SELECT statement ends with semicolon, you could use the following definition:
 

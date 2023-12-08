@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sql-rules repoName="CustomCodeRules"  repoKey="customCodeRules" dialect="pssqlv2">
+	<rule>
+		<key>C001</key>
+		<name>Multiline comments missing</name>
+		<description>Test rule to detect missing multile comments</description>
+		<ruleImplementation>
+			<names>
+				<textItem>Multiline_commentContext</textItem>
+			</names>
+			<ruleResultType>FailIfNotFound</ruleResultType>
+			<ruleViolationMessage>File does not have any comments</ruleViolationMessage>
+		</ruleImplementation>
+		<ruleType>CODE_SMELL</ruleType>
+		<ruleAppliesTo>comments</ruleAppliesTo>
+		<ruleReportsOn>file</ruleReportsOn>
+	</rule>
+	
+	<rule>
+		<key>R001</key>
+		<name>Random order is used</name>
+		<description>Result order will not be consistent as call to RANDOM() function was found in ORDER clause</description>
+		<ruleImplementation>
+			<names>
+				<textItem>Sort_clauseContext</textItem>
+			</names>
+			<childrenRules>
+				<ruleImplementation>
+					<names>
+						<textItem>Builtin_function_nameContext</textItem>
+					</names>
+					<textToFind>
+						<textItem>RANDOM</textItem>
+					</textToFind>
+					<ruleMatchType>TextAndClass</ruleMatchType>
+					<ruleResultType>FailIfFound</ruleResultType>
+				</ruleImplementation>
+			</childrenRules>
+			<ruleResultType>SkipIfNotFound</ruleResultType>
+			<ruleViolationMessage>Call to RANDOM() function was found in ORDER clause</ruleViolationMessage>
+		</ruleImplementation>
+		<ruleType>CODE_SMELL</ruleType>
+		<ruleAppliesTo>code</ruleAppliesTo>
+		<ruleReportsOn>line</ruleReportsOn>
+	</rule>
+</sql-rules>

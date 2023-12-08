@@ -4,6 +4,7 @@ Supported classes:
 - A_expr_addContext
 - A_expr_andContext
 - A_expr_at_time_zoneContext
+- A_expr_betweenContext
 - A_expr_caretContext
 - A_expr_collateContext
 - A_expr_compareContext
@@ -102,6 +103,7 @@ Supported classes:
 - BitContext
 - BitwithlengthContext
 - BitwithoutlengthContext
+- Builtin_function_nameContext
 - C_exprContext
 - C_expr_caseContext
 - C_expr_existsContext
@@ -265,7 +267,6 @@ Supported classes:
 - Event_trigger_value_listContext
 - Event_trigger_when_itemContext
 - Event_trigger_when_listContext
-- ExceptContext
 - Exception_sectContext
 - ExclusionconstraintelemContext
 - ExclusionconstraintlistContext
@@ -379,7 +380,6 @@ Supported classes:
 - Insert_restContext
 - Insert_targetContext
 - InsertstmtContext
-- IntersectContext
 - Interval_secondContext
 - Into_clauseContext
 - Into_targetContext
@@ -401,8 +401,13 @@ Supported classes:
 - Loop_bodyContext
 - Make_execsql_stmtContext
 - MathopContext
+- Merge_delete_clauseContext
+- Merge_insert_clauseContext
+- Merge_update_clauseContext
+- MergestmtContext
 - NameContext
 - Name_listContext
+- Non_ansi_joinContext
 - NonreservedwordContext
 - Nonreservedword_or_sconstContext
 - Notify_payloadContext
@@ -672,8 +677,6 @@ Supported classes:
 - SeqoptlistContext
 - Set_clauseContext
 - Set_clause_listContext
-- Set_operatorContext
-- Set_operator_with_all_or_distinctContext
 - Set_restContext
 - Set_rest_moreContext
 - Set_targetContext
@@ -681,7 +684,8 @@ Supported classes:
 - SetresetclauseContext
 - SharpContext
 - SignediconstContext
-- Simple_selectContext
+- Simple_select_intersectContext
+- Simple_select_pramaryContext
 - SimpletypenameContext
 - Sort_clauseContext
 - SortbyContext
@@ -720,6 +724,8 @@ Supported classes:
 - Subquery_OpContext
 - Substr_listContext
 - Table_access_method_clauseContext
+- Table_aliasContext
+- Table_alias_clauseContext
 - Table_func_columnContext
 - Table_func_column_listContext
 - Table_refContext
@@ -767,7 +773,6 @@ Supported classes:
 - TypedtableelementlistContext
 - TypenameContext
 - Unicode_normal_formContext
-- UnionContext
 - UnlistenstmtContext
 - Unreserved_keywordContext
 - UpdatestmtContext

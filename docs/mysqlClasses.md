@@ -1,5 +1,6 @@
 # MySQL
 Supported classes:
+- AddOperatorContext
 - AdministrationStatementContext
 - AggregateFunctionCallContext
 - AggregateWindowedFunctionContext
@@ -13,6 +14,8 @@ Supported classes:
 - AlterByAddPrimaryKeyContext
 - AlterByAddSpecialIndexContext
 - AlterByAddUniqueKeyContext
+- AlterByAlterCheckTableConstraintContext
+- AlterByAlterColumnDefaultContext
 - AlterByAlterIndexVisibilityContext
 - AlterByAnalyzePartitionContext
 - AlterByChangeColumnContext
@@ -56,8 +59,9 @@ Supported classes:
 - AlterFunctionContext
 - AlterInstanceContext
 - AlterLogfileGroupContext
+- AlterPartitionContext
+- AlterPartitionSpecificationContext
 - AlterProcedureContext
-- AlterSequenceContext
 - AlterServerContext
 - AlterSimpleDatabaseContext
 - AlterSpecificationContext
@@ -66,12 +70,14 @@ Supported classes:
 - AlterUpgradeNameContext
 - AlterUserContext
 - AlterUserMysqlV56Context
-- AlterUserMysqlV57Context
+- AlterUserMysqlV80Context
 - AlterViewContext
 - AnalyzeTableContext
 - AssignmentFieldContext
 - AtomTableItemContext
+- AuthOptionClauseContext
 - AuthPluginContext
+- AuthenticationRuleContext
 - AutoIncrementColumnConstraintContext
 - BeginWorkContext
 - BetweenPredicateContext
@@ -135,7 +141,6 @@ Supported classes:
 - CreateLogfileGroupContext
 - CreateProcedureContext
 - CreateRoleContext
-- CreateSequenceContext
 - CreateServerContext
 - CreateTableContext
 - CreateTablespaceInnodbContext
@@ -144,12 +149,14 @@ Supported classes:
 - CreateUdfunctionContext
 - CreateUserContext
 - CreateUserMysqlV56Context
-- CreateUserMysqlV57Context
+- CreateUserMysqlV80Context
 - CreateViewContext
 - CteColumnNameContext
 - CteNameContext
 - CurrentSchemaPriviLevelContext
 - CurrentTimestampContext
+- CurrentUserContext
+- CurrentUserExpressionContext
 - CursorStatementContext
 - DataTypeBaseContext
 - DataTypeContext
@@ -189,7 +196,6 @@ Supported classes:
 - DropLogfileGroupContext
 - DropProcedureContext
 - DropRoleContext
-- DropSequenceContext
 - DropServerContext
 - DropTableContext
 - DropTablespaceContext
@@ -199,6 +205,7 @@ Supported classes:
 - ElifAlternativeContext
 - EmptyStatement_Context
 - EnableTypeContext
+- EngineNameBaseContext
 - EngineNameContext
 - ExecuteStatementContext
 - ExistsExpressionAtomContext
@@ -224,6 +231,7 @@ Supported classes:
 - FromClauseContext
 - FullColumnNameContext
 - FullColumnNameExpressionAtomContext
+- FullColumnNameListContext
 - FullDescribeStatementContext
 - FullIdContext
 - FunctionArgContext
@@ -257,6 +265,7 @@ Supported classes:
 - HavingClauseContext
 - HelpStatementContext
 - HexadecimalLiteralContext
+- HostNameContext
 - IfExistsContext
 - IfNotExistsContext
 - IfStatementContext
@@ -280,16 +289,24 @@ Supported classes:
 - IntervalScheduleContext
 - IntervalTypeBaseContext
 - IntervalTypeContext
+- InvisibilityColumnConstraintContext
 - IsExpressionContext
 - IsNullPredicateContext
 - IterateStatementContext
 - JoinPartContext
+- JoinSpecContext
+- JsonColumnContext
+- JsonColumnListContext
 - JsonExpressionAtomContext
 - JsonMemberOfPredicateContext
+- JsonOnEmptyContext
+- JsonOnErrorContext
 - JsonOperatorContext
+- JsonTableContext
 - JsonValueFunctionCallContext
 - KeywordsCanBeIdContext
 - KillStatementContext
+- LateralStatementContext
 - LeaveStatementContext
 - LengthOneDimensionContext
 - LengthTwoDimensionContext
@@ -307,7 +324,6 @@ Supported classes:
 - LoadedTableIndexesContext
 - LockActionContext
 - LockClauseContext
-- LockOptionContext
 - LockTableElementContext
 - LockTablesContext
 - LogicalExpressionContext
@@ -323,7 +339,9 @@ Supported classes:
 - MasterStringOptionContext
 - MasterUidListOptionContext
 - MathExpressionAtomContext
-- MathOperatorContext
+- ModuleAuthOptionContext
+- ModuleContext
+- MultOperatorContext
 - MultipleDeleteStatementContext
 - MultipleUpdateStatementContext
 - MysqlVariableContext
@@ -340,6 +358,7 @@ Supported classes:
 - NullNotnullContext
 - OpenCursorContext
 - OptimizeTableContext
+- OrReplaceContext
 - OrderByClauseContext
 - OrderByExpressionContext
 - OuterJoinContext
@@ -369,10 +388,10 @@ Supported classes:
 - PartitionOptionNodeGroupContext
 - PartitionOptionTablespaceContext
 - PartitionSimpleContext
-- PasswordAuthOptionContext
 - PasswordConnectionOptionContext
 - PasswordFunctionCallContext
 - PasswordFunctionClauseContext
+- PasswordModuleOptionContext
 - PluginDirConnectionOptionContext
 - PositionFunctionCallContext
 - PreciseScheduleContext
@@ -394,6 +413,7 @@ Supported classes:
 - QueryExpressionNointoContext
 - QuerySpecificationContext
 - QuerySpecificationNointoContext
+- RandomAuthOptionContext
 - ReferenceActionContext
 - ReferenceColumnConstraintContext
 - ReferenceControlTypeContext
@@ -449,7 +469,6 @@ Supported classes:
 - SelectSpecContext
 - SelectStarElementContext
 - SelectStatementContext
-- SequenceSpecContext
 - SerialDefaultColumnConstraintContext
 - ServerOptionContext
 - SetAutocommitContext
@@ -501,6 +520,7 @@ Supported classes:
 - SimpleIndexDeclarationContext
 - SimpleSelectContext
 - SimpleStringsContext
+- SimpleUserNameContext
 - SingleDeleteStatementContext
 - SingleUpdateStatementContext
 - SoundsLikePredicateContext
@@ -533,6 +553,7 @@ Supported classes:
 - TableConstraintContext
 - TableFlushOptionContext
 - TableIndexesContext
+- TableJsonContext
 - TableNameContext
 - TableOptionAutoIncrementContext
 - TableOptionAutoextendSizeContext
@@ -547,6 +568,7 @@ Supported classes:
 - TableOptionDataDirectoryContext
 - TableOptionDelayContext
 - TableOptionEncryptionContext
+- TableOptionEncryptionKeyIdContext
 - TableOptionEngineAttributeContext
 - TableOptionEngineContext
 - TableOptionIndexDirectoryContext
@@ -555,6 +577,8 @@ Supported classes:
 - TableOptionMaxRowsContext
 - TableOptionMinRowsContext
 - TableOptionPackKeysContext
+- TableOptionPageCompressedContext
+- TableOptionPageCompressionLevelContext
 - TableOptionPasswordContext
 - TableOptionPersistentContext
 - TableOptionRecalculationContext
@@ -564,6 +588,7 @@ Supported classes:
 - TableOptionStartTransactionContext
 - TableOptionTableTypeContext
 - TableOptionTablespaceContext
+- TableOptionTransactionalContext
 - TableOptionUnionContext
 - TablePairContext
 - TableSourceBaseContext
@@ -572,6 +597,7 @@ Supported classes:
 - TableSourceNestedContext
 - TableSourcesContext
 - TableSourcesItemContext
+- TableStatementContext
 - TableTypeContext
 - TablesContext
 - TablespaceStorageContext
@@ -613,6 +639,8 @@ Supported classes:
 - UtilityStatementContext
 - UuidSetContext
 - ValuesFunctionCallContext
+- ValuesStatementContext
+- VariableAssignExpressionAtomContext
 - VariableClauseContext
 - VisibilityColumnConstraintContext
 - WaitNowaitClauseContext
@@ -624,6 +652,8 @@ Supported classes:
 - WindowNameContext
 - WindowSpecContext
 - WithClauseContext
+- WithLateralStatementContext
+- WithStatementContext
 - XaCommitWorkContext
 - XaEndTransactionContext
 - XaPrepareStatementContext
