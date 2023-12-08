@@ -27,7 +27,7 @@ public class IndexMatcher implements IMatcher {
                 }
             }
             if (rule.getIndexCheckType() == RuleDistanceIndexMatchType.MORE) {
-                if (rule.getIndex() < val) {
+                if (val < rule.getIndex()) {
                     return false;
                 }
             }
@@ -49,7 +49,7 @@ public class IndexMatcher implements IMatcher {
                 }
             }
             if (rule.getIndexCheckType() == RuleDistanceIndexMatchType.MORE) {
-                if (rule.getIndex() < val) {
+                if (val < rule.getIndex()) {
                     return false;
                 }
             }
