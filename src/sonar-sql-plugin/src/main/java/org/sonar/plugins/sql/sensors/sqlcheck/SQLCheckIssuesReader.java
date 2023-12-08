@@ -3,7 +3,7 @@ package org.sonar.plugins.sql.sensors.sqlcheck;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.List;
+import java.util.regex.Pattern;
 
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
@@ -12,87 +12,56 @@ import org.sonar.plugins.sql.issues.SqlIssue;
 import org.sonar.plugins.sql.issues.SqlIssuesList;
 
 public class SQLCheckIssuesReader {
-    private static final Logger LOGGER = Loggers.get(SQLCheckIssuesReader.class);
+	private static final Logger LOGGER = Loggers.get(SQLCheckIssuesReader.class);
 
-    public SqlIssuesList read(String inputFile, File file) throws IOException {
-        SqlIssuesList list = new SqlIssuesList();
-        List<String> lines = Files.readAllLines(file.toPath());
+	private static final Pattern issueDescriptionPattern = Pattern.compile("●\\s+(.*):?\\r?\\n([^●]+)");
+	private static final Pattern riskPattern = Pattern.compile("\\[([^\\]]+)\\]:\\s+(\\(.+\\))\\s+(\\(.+\\))\\s+(.+)");
 
-        for (int i = 0; i < lines.size(); i++) {
-            String line = lines.get(i);
-            if (!line.startsWith("SQL Statement: ")) {
-                continue;
-            }
-            String severityDescription = lines.get(i + 1).trim();
-            for (int j = i + 2; j < lines.size(); j++) {
-                String issueName = lines.get(j).trim();
-                ;
-                if (issueName.isEmpty()) {
-                    continue;
-                }
+	public SqlIssuesList read(String inputFile, File file) throws IOException {
+		var list = new SqlIssuesList();
+		try {
+			var txt = Files.readString(file.toPath());
+			var matcher = riskPattern.matcher(txt);
 
-                if (lines.get(j).startsWith("------") || lines.get(j).startsWith("SQL Statement")) {
-                    break;
-                }
-                if (issueName.startsWith("● ")) {
-                    try {
-                        StringBuilder descriptionSb = new StringBuilder();
-                        for (int z = j + 1; z < lines.size(); z++) {
-                            String tempLine = lines.get(z).trim();
-                            if (tempLine.startsWith("● ") || tempLine.isEmpty()
-                                    || tempLine.startsWith("SQL Statement")) {
-                                break;
-                            }
-                            if (tempLine.equalsIgnoreCase("Problems:")) {
-                                continue;
-                            }
+			var matchResults = matcher.results().toList();
+			for (int i = 0; i < matchResults.size(); i++) {
 
-                            descriptionSb.append(tempLine);
-                        }
-                        if (descriptionSb.length() == 0 || severityDescription.isEmpty() || issueName.isEmpty()) {
-                            continue;
-                        }
-                        SqlIssue issue = new SqlIssue();
-                        issue.description = descriptionSb.toString().trim();
-                        issue.fileName = inputFile;
-                        issue.severity = extractSeverity(severityDescription);
-                        issue.message = extractMessage(severityDescription);
-                        issue.name = extractName(issueName);
-                        issue.repo = Constants.SQL_SQLCHECK_ENGINEID;
-                        issue.isAdhoc = true;
-                        issue.isExternal = true;
-                        issue.key = extractName(issueName);
-                        list.addIssue(issue);
-                    } catch (Exception e) {
-                        LOGGER.info("Unexpected error reading: {}. Exception was: {}", line, e);
-                    }
-                }
+				var matchResult = matchResults.get(i);
 
-            }
+				var risk = matchResult.group(2).replace("(", "").replace(")", "");
+				var patternName = matchResult.group(4);
 
-        }
+				var startIndex = matchResult.end();
+				var endIndex = i == matchResults.size() - 1 ? txt.length() : matchResults.get(i + 1).start();
 
-        return list;
-    }
+				var descriptionSearchString = txt.substring(startIndex, endIndex);
+				var descriptionsMatcher = issueDescriptionPattern.matcher(descriptionSearchString);
+				descriptionsMatcher.results().forEach(dm -> {
 
-    private String extractName(String issueName) {
-        return issueName.replace("● ", "");
-    }
+					var problem = dm.group(1).trim();
+					if (problem.endsWith(":")) {
+						problem = problem.substring(0, problem.length() - 1);
+					}
 
-    private String extractMessage(String severityDescription) {
-        String[] data = severityDescription.split("\\)", 3);
-        if (data.length < 3) {
-            return "Unknown";
-        }
-        return data[2].trim();
-    }
+					var description = dm.group(2).trim().split("==================== Summary ===================")[0];
 
-    private String extractSeverity(String severityDescription) {
-        String[] data = severityDescription.split("\\(", 3);
-        if (data.length < 3) {
-            return "HIGH RISK";
-        }
-        String severity = data[1].replace("(", "").replace(")", "").trim();
-        return severity;
-    }
+					var issue = new SqlIssue();
+					issue.description = description;
+					issue.fileName = inputFile;
+					issue.severity = risk;
+					issue.message = String.format("[%s] %s", patternName, problem);
+					issue.name = String.format("[%s] %s", patternName, problem);
+					issue.repo = Constants.SQL_SQLCHECK_ENGINEID;
+					issue.isAdhoc = true;
+					issue.isExternal = true;
+					issue.key = String.format("[%s] %s", patternName, problem);
+					list.addIssue(issue);
+				});
+			}
+		} catch (Exception e) {
+			LOGGER.warn("Unexpected error parsing file", e);
+		}
+		return list;
+	}
+
 }
