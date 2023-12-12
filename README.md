@@ -43,7 +43,7 @@ Different plugin versions supports the following:
 3. Start SonarQube and enable rules
 4. [TSQL] (Optional) Install [SQLCodeGuard](https://www.red-gate.com/products/sql-development/sql-code-guard/index) into your build machine where you plan to run sonar scanner
 5. [TSQL, MySQL, PotsgreSQL] (Optional) - Install [SQLCheck](https://github.com/jarulraj/sqlcheck) into your build machine where you plan to run sonar scanner
-6. [TSQL] (Optional) Setup SQLCover reorting. You can check tsql example at here for full setup.
+6. [TSQL] (Optional) Setup SQLCover reorting. You can check tsql example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/1-tsql) for full setup.
 
 ## Getting started ###
 Please see examples on how to use different dialects.
@@ -98,6 +98,22 @@ sonar.language=sql
 sonar.sql.dialect=vsql
 ```
 
+### Custom rules example ###
+This is an example for sonar settings for project which uses custom plugin rules from local directory (located at ./rules directory). You can check full example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/6-pssql-with-custom-rules)
+```
+sonar.projectKey=pssql.custom.rules
+sonar.projectName=Test PSSQL custom rules project
+sonar.projectVersion=1.0
+sonar.sources=src
+
+# optional
+sonar.language=sql
+sonar.sql.dialect=pssqlv2
+
+# change these
+sonar.sql.rules.path=./rules
+```
+
 ## Plugin configuration ##
 The following options are available for configuration:
 
@@ -124,35 +140,10 @@ Please configure additional properties:
 `sonar.lang.patterns.plsqlopen=na`
 
 ## Using command line tools
-With the plugin - there are additional 2 cli tools available (they are not required for sonar execution):
+With the plugin - there is additional cli tool available (they are not required for sonar execution):
 
- - **sql-sca-cli.jar** - allows to execute sql code analysis from the command line
  - **rulesHelper.jar** - command line helper tool for writing custom sql rules
- 
-### sql-sca-cli
-Usage:
 
-- ```java -jar sql-sca-cli.jar --help``` - will print help
-- ```java -jar sql-sca-cli.jar```  - will scan current directory
-- ```java -jar sql-sca-cli.jar -i /home/test``` - will scan test directory
- 
-Full help info:
- ```usage: sql-sca-cli
- -c,--custom-rules-path <arg>           path to custom rules directory,
-                                        defaults to current directory
- -csuffix,--custom-rules-suffix <arg>   custom rules suffix, defaults to:
-                                        .customRules
- -d,--dialect <arg>                     SQL dialect, defaults to: tsql,
-                                        possible values: [TSQL, PSSQL,
-                                        MYSQL, VSQL, PSSQLV2]
- -h,--help                              show help
- -i,--input <arg>                       input directory for analysis,
-                                        defaults to current directory
- -p,--prefixes <arg>                    file prefixes for analysis,
-                                        defaults to: .sql
- -warnOnly,--warnOnly                   flag whether tool should report
-                                        warnings only
-```
 
 ### rulesHelper
 Usage:
@@ -177,6 +168,7 @@ verify file "c:/tests/customRules.rules;" mysql
 
 
 ## Contributing ##
+### Developing locally
 Added container definitions for easy development with VSCode. Download the [remote containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) and let it figure out the maven targets. 
 <img width="1917" alt="vscode_remote_containers_extension_maven" src="https://user-images.githubusercontent.com/3657015/125957363-653c9f6f-b5cc-4a3c-96ef-9dc18d0f8bfb.png">
 1) Then you can lifecycle > package target to build the plugin. The .jar file will end up in the *sonar-sql-plugin/src/sonar-sql-plugin/target/* folder.
@@ -220,6 +212,5 @@ docker run \
 1. Generate lexer and parser, example package: org.antlr.sql.dialects.vsql
 2. Implement SQLDialect extending BaseDialect.class, i.e. VSQLDialect
 3. Implement sql rules, example VSQLRules
-4. Register rules at SQLDialectRules
+4. Register rules at SQLDialectRules. This step is optional as plugin will support custom rules from user project provided in xml format.
 5. Update ./src/external/README.md with references to your added grammar
-
