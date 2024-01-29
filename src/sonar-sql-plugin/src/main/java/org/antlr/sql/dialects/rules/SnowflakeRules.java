@@ -118,26 +118,8 @@ public enum SnowflakeRules {
 
 	protected Rule getCartesianJoinsRule() {
 
-		Rule r = new Rule();
-		r.setKey("C023");
-		r.setInternalKey("C023");
-		r.setDescription(
-				"<h2>Description</h2><p>Cartesian join without explicit JOIN clause. Consider using explicit JOIN clause.</p>");
-		r.setSeverity("MAJOR");
-		r.setTag("performance");
-		r.setRemediationFunction("LINEAR");
-		r.setDebtRemediationFunctionCoefficient("3min");
-		r.setName("Cartesian join found");
-		RuleImplementation rImpl = new RuleImplementation();
-
-		rImpl.setRuleViolationMessage("Cartesian join without explicit JOIN clause");
-		r.setRuleImplementation(rImpl);
-		rImpl.getCompliantRulesCodeExamples().getRuleCodeExample().add("SELECT name, surname FROM customers c");
-
-		rImpl.getCompliantRulesCodeExamples().getRuleCodeExample()
-				.add("SELECT name, bank_name FROM customers c  inner join banks b on c.bank_id = b.id");
-		rImpl.getViolatingRulesCodeExamples().getRuleCodeExample()
-				.add("SELECT * FROM customers, orders WHERE customers.id = orders.customer_id;");
+		var rule = baseRules.getCartesianJoinsRule();
+		RuleImplementation rImpl = rule.getRuleImplementation();
 
 		rImpl.getNames().getTextItem().add(From_clauseContext.class.getSimpleName());
 		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
@@ -149,7 +131,7 @@ public enum SnowflakeRules {
 		child.setRuleResultType(RuleResultType.FAIL_IF_MORE_FOUND);
 		child.setTimes(1);
 		rImpl.getChildrenRules().getRuleImplementation().add(child);
-		return r;
+		return rule;
 	}
 
 	protected Rule getWhereWithOrVsUnionRule() {

@@ -44,10 +44,24 @@ public enum PSSQLV2Rules {
 			customRules.getRule()
 					.addAll(Arrays.asList(getWaitForRule(), getSelectAllRule(), getInsertRule(), getOrderByRule(),
 							getSargRule(), getNullComparisonRule(), getWhereWithOrVsUnionRule(),
-							getUnionVsUnionALLRule(), getExistsVsInRule(), getOrderByRuleWithoutAscDesc()));
+							getUnionVsUnionALLRule(), getCartesianJoinsRule(), getExistsVsInRule(),
+							getOrderByRuleWithoutAscDesc()));
 			rules.add(customRules);
 		}
 		return rules;
+	}
+
+	protected Rule getCartesianJoinsRule() {
+
+		var rule = baseRules.getCartesianJoinsRule();
+		RuleImplementation rImpl = rule.getRuleImplementation();
+
+		rImpl.getNames().getTextItem()
+				.add(org.antlr.sql.dialects.psqlv2.PostgreSQLParser.Non_ansi_joinContext.class.getSimpleName());
+		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		rImpl.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+
+		return rule;
 	}
 
 	protected Rule getWaitForRule() {

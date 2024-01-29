@@ -2,7 +2,11 @@ package org.antlr.sql.dialects;
 
 import org.antlr.sql.dialects.snowflake.SnowflakeLexer;
 import org.antlr.sql.dialects.snowflake.SnowflakeParser;
-import org.antlr.sql.dialects.snowflake.SnowflakeParser.*;
+import org.antlr.sql.dialects.snowflake.SnowflakeParser.Group_by_clauseContext;
+import org.antlr.sql.dialects.snowflake.SnowflakeParser.Order_by_clauseContext;
+import org.antlr.sql.dialects.snowflake.SnowflakeParser.PredicateContext;
+import org.antlr.sql.dialects.snowflake.SnowflakeParser.Select_statementContext;
+import org.antlr.sql.dialects.snowflake.SnowflakeParser.Update_statementContext;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;

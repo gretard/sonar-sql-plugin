@@ -45,10 +45,32 @@ public enum MySQLRules {
 			customRules.getRule()
 					.addAll(Arrays.asList(getWaitForRule(), getSelectAllRule(), getInsertRule(), getOrderByRule(),
 							getSargRule(), getNullComparisonRule(), getWhereWithOrVsUnionRule(),
-							getUnionVsUnionALLRule(), getExistsVsInRule(), getOrderByRuleWithoutAscDesc()));
+							getUnionVsUnionALLRule(), getCartesianJoinsRule(), getExistsVsInRule(),
+							getOrderByRuleWithoutAscDesc()));
 			rules.add(customRules);
 		}
 		return rules;
+	}
+
+	protected Rule getCartesianJoinsRule() {
+
+		var rule = baseRules.getCartesianJoinsRule();
+		RuleImplementation parent = rule.getRuleImplementation();
+
+		parent.getNames().getTextItem()
+				.add(org.antlr.sql.dialects.mysql.MySqlParser.FromClauseContext.class.getSimpleName());
+		parent.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		
+		RuleImplementation child = new RuleImplementation();
+
+		child.getNames().getTextItem()
+				.add(org.antlr.sql.dialects.mysql.MySqlParser.TableSourceBaseContext.class.getSimpleName());
+		child.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		child.setRuleResultType(RuleResultType.FAIL_IF_MORE_FOUND);
+		child.setTimes(1);
+
+		parent.getChildrenRules().getRuleImplementation().add(child);
+		return rule;
 	}
 
 	protected Rule getWaitForRule() {

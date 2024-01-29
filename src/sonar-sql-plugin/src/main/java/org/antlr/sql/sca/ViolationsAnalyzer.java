@@ -94,6 +94,13 @@ public class ViolationsAnalyzer {
 				continue;
 			}
 
+			if (RuleResultType.SKIP_IF_MORE_FOUND == impl.getRuleResultType() && values.size() > impl.getTimes()) {
+				skipSatisfied = true;
+			}
+
+			if (RuleResultType.SKIP_IF_LESS_FOUND == impl.getRuleResultType() && values.size() < impl.getTimes()) {
+				skipSatisfied = true;
+			}
 			if (RuleResultType.SKIP_IF_FOUND == impl.getRuleResultType() && !values.isEmpty()) {
 				skipSatisfied = true;
 			}
@@ -111,6 +118,7 @@ public class ViolationsAnalyzer {
 				violation.violatingNodes.addAll(values);
 			}
 
+			System.out.println(impl.getRuleResultType()+" "+values.size());
 			if (RuleResultType.FAIL_IF_MORE_FOUND == impl.getRuleResultType() && values.size() > impl.getTimes()) {
 				failuresFound = true;
 				violation.violatingNodes.addAll(values);

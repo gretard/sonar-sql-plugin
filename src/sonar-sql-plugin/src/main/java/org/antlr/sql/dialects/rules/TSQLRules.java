@@ -56,12 +56,29 @@ public enum TSQLRules {
 					.addAll(Arrays.asList(getWaitForRule(), getSelectAllRule(), getInsertRule(), getOrderByRule(),
 							getExecRule(), getNoLockRule(), getSargRule(), getPKRule(), getFKRule(),
 							getNullComparisonRule(), getIndexNamingRule(), getWhereWithOrVsUnionRule(),
-							getUnionVsUnionALLRule(), getExistsVsInRule(), getOrderByRuleWithoutAscDesc()
+							getUnionVsUnionALLRule(), getExistsVsInRule(), getOrderByRuleWithoutAscDesc(),
+							getCartesianJoinsRule()
+					// getCursorRule()
+					// baseRules.getDeclareRule(),
+//							baseRules.getMultipleDeclarations())
 
 					));
 			rules.add(customRules);
 		}
 		return rules;
+	}
+
+	protected Rule getCartesianJoinsRule() {
+
+		var rule = baseRules.getCartesianJoinsRule();
+		RuleImplementation parent = rule.getRuleImplementation();
+
+		parent.getNames().getTextItem()
+				.add(org.antlr.sql.dialects.tsql.TSqlParser.Non_ansi_joinContext.class.getSimpleName());
+		parent.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		parent.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+
+		return rule;
 	}
 
 	protected Rule getWaitForRule() {

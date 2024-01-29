@@ -51,6 +51,11 @@ public enum RuleResultType {
     FAIL_IF_MORE_FOUND("FailIfMoreFound"),
     @XmlEnumValue("SkipIfFound")
     SKIP_IF_FOUND("SkipIfFound"),
+    
+	@XmlEnumValue("SkipIfLessFound")
+	SKIP_IF_LESS_FOUND("SkipIfLessFound"), 
+	@XmlEnumValue("SkipIfMoreFound")
+	SKIP_IF_MORE_FOUND("FailIfMoreFound"),
     @XmlEnumValue("SkipIfNotFound")
     SKIP_IF_NOT_FOUND("SkipIfNotFound");
     private final String value;
