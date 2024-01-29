@@ -30,7 +30,9 @@ public class ClassesLister {
                 new ListData("PSSQL", "org.antlr.sql.dialects.psql.PostgreSQLParser$"),
                 new ListData("MySQL", "org.antlr.sql.dialects.mysql.MySqlParser$"),
                 new ListData("VSQL", "org.antlr.sql.dialects.vsql.VSqlParser$"),
-                new ListData("PSSQLV2", "org.antlr.sql.dialects.psqlv2.PostgreSQLParser$")
+                new ListData("PSSQLV2", "org.antlr.sql.dialects.psqlv2.PostgreSQLParser$"),
+                new ListData("SNOWFLAKE", "org.antlr.sql.dialects.snowflake.SnowflakeParser$")
+
                 
         		);
         final ClassLoader loader = Thread.currentThread().getContextClassLoader();

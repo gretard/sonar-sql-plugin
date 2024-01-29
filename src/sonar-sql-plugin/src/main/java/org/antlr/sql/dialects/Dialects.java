@@ -11,7 +11,7 @@ import org.sonar.plugins.sql.models.rules.SqlRules;
 
 public enum Dialects {
 	TSQL(new TSQLDialect()), PSSQL(new PsSqlDialect()), MYSQL(new MySqlDialect()), VSQL(new VSQLDialect()),
-	PSSQLV2(new PsSqlV2Dialect());
+	PSSQLV2(new PsSqlV2Dialect()), SNOWFLAKE(new SnowflakeDialect());
 
 	public AntlrContext parse(String text) {
 		return parse(text, Collections.emptyList());

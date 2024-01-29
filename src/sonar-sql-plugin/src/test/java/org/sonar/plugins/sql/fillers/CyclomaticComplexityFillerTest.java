@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.antlr.sql.dialects.Dialects;
 import org.antlr.sql.models.AntlrContext;
-import org.antlr.sql.tools.PrettyPrinter;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -37,6 +36,8 @@ public class CyclomaticComplexityFillerTest {
         data.add(new Object[] { Dialects.PSSQL, 7 });
         data.add(new Object[] { Dialects.TSQL, 11 });
         data.add(new Object[] { Dialects.PSSQLV2, 19 });
+        data.add(new Object[] { Dialects.SNOWFLAKE, 7 });
+
 
         return data;
     }

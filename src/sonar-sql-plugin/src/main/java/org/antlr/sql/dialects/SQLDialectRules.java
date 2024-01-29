@@ -10,84 +10,88 @@ import org.antlr.sql.dialects.rules.CommonRules;
 import org.antlr.sql.dialects.rules.MySQLRules;
 import org.antlr.sql.dialects.rules.PSSQLRules;
 import org.antlr.sql.dialects.rules.PSSQLV2Rules;
+import org.antlr.sql.dialects.rules.SnowflakeRules;
 import org.antlr.sql.dialects.rules.TSQLRules;
 import org.antlr.sql.dialects.rules.VSQLRules;
 import org.sonar.plugins.sql.models.rules.Rule;
 import org.sonar.plugins.sql.models.rules.SqlRules;
 
 public enum SQLDialectRules {
-    INSTANCE;
+	INSTANCE;
 
-    public List<SqlRules> getRules() {
-        List<SqlRules> rules = new ArrayList<>();
+	public List<SqlRules> getRules() {
+		List<SqlRules> rules = new ArrayList<>();
 
-        {
+		{
 
-            rules.addAll(TSQLRules.INSTANCE.getRules());
-        }
-        {
-            rules.addAll(MySQLRules.INSTANCE.getRules());
-        }
-        {
-            rules.addAll(PSSQLRules.INSTANCE.getRules());
-        }
+			rules.addAll(TSQLRules.INSTANCE.getRules());
+		}
+		{
+			rules.addAll(MySQLRules.INSTANCE.getRules());
+		}
+		{
+			rules.addAll(PSSQLRules.INSTANCE.getRules());
+		}
 
-        {
-            rules.addAll(VSQLRules.INSTANCE.getRules());
-        }
-        {
-            rules.addAll(CommonRules.INSTANCE.getRules());
-        }
-        {
-            rules.addAll(PSSQLV2Rules.INSTANCE.getRules());
-        }
+		{
+			rules.addAll(VSQLRules.INSTANCE.getRules());
+		}
+		{
+			rules.addAll(CommonRules.INSTANCE.getRules());
+		}
+		{
+			rules.addAll(PSSQLV2Rules.INSTANCE.getRules());
+		}
 
-      
-        return rules;
-    }
+		{
+			rules.addAll(SnowflakeRules.INSTANCE.getRules());
+		}
 
-    public List<SqlRules> getGroupedRules() {
-        Map<String, Rule> rules = new TreeMap<>();
+		return rules;
+	}
 
-        getRules().forEach(sqlRules -> {
-            sqlRules.getRule().forEach(rule -> {
-                String key = rule.getKey();
-                if (!rules.containsKey(key)) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(rule.getDescription());
-                    if (!rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample().isEmpty()
-                            || !rule.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample()
-                                    .isEmpty()) {
-                        sb.append("<h2>Code examples</h2>");
-                        if (!rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample()
-                                .isEmpty()) {
-                            sb.append("<h3>Non-compliant</h3>");
-                            for (String x : rule.getRuleImplementation().getViolatingRulesCodeExamples()
-                                    .getRuleCodeExample()) {
-                                sb.append("<pre><code>" + x + "</code></pre>");
-                            }
-                        }
+	public List<SqlRules> getGroupedRules() {
+		Map<String, Rule> rules = new TreeMap<>();
 
-                        if (!rule.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample()
-                                .isEmpty()) {
-                            sb.append("<h3>Compliant</h3>");
-                            for (String x : rule.getRuleImplementation().getCompliantRulesCodeExamples()
-                                    .getRuleCodeExample()) {
-                                sb.append("<pre><code>" + x + "</code></pre>");
-                            }
-                        }
-                    }
-                    rule.setDescription(sb.toString());
-                    rules.put(key, rule);
-                }
+		getRules().forEach(sqlRules -> {
+			sqlRules.getRule().forEach(rule -> {
+				String key = rule.getKey();
+				if (!rules.containsKey(key)) {
+					StringBuilder sb = new StringBuilder();
+					sb.append(rule.getDescription());
+					if (!rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample().isEmpty()
+							|| !rule.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample()
+									.isEmpty()) {
+						sb.append("<h2>Code examples</h2>");
+						if (!rule.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample()
+								.isEmpty()) {
+							sb.append("<h3>Non-compliant</h3>");
+							for (String x : rule.getRuleImplementation().getViolatingRulesCodeExamples()
+									.getRuleCodeExample()) {
+								sb.append("<pre><code>" + x + "</code></pre>");
+							}
+						}
 
-            });
+						if (!rule.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample()
+								.isEmpty()) {
+							sb.append("<h3>Compliant</h3>");
+							for (String x : rule.getRuleImplementation().getCompliantRulesCodeExamples()
+									.getRuleCodeExample()) {
+								sb.append("<pre><code>" + x + "</code></pre>");
+							}
+						}
+					}
+					rule.setDescription(sb.toString());
+					rules.put(key, rule);
+				}
 
-        });
-        SqlRules customRules = new SqlRules();
-        customRules.setRepoKey("SQLCC");
-        customRules.setRepoName("SQL Plugin checks");
-        customRules.getRule().addAll(rules.values());
-        return Arrays.asList(customRules);
-    }
+			});
+
+		});
+		SqlRules customRules = new SqlRules();
+		customRules.setRepoKey("SQLCC");
+		customRules.setRepoName("SQL Plugin checks");
+		customRules.getRule().addAll(rules.values());
+		return Arrays.asList(customRules);
+	}
 }
