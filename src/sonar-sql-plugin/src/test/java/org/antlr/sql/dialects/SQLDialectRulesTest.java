@@ -14,7 +14,7 @@ public class SQLDialectRulesTest {
     @Test
     public void testGetRules2() {
         long s = SQLDialectRules.INSTANCE.getRules().get(0).getRule().size();
-        Assert.assertEquals(15, s);
+        Assert.assertEquals(16, s);
 
     }
 

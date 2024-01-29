@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.antlr.sql.dialects.Dialects;
-import org.antlr.sql.dialects.mysql.MySqlParser.InsertStatementContext;
-import org.antlr.sql.dialects.mysql.MySqlParser.UidListContext;
+import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Insert_stmtContext;
+import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Identifier_listContext;
 import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Combine_clauseContext;
 import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.ExprContext;
 import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Func_callContext;
@@ -87,13 +87,13 @@ public enum PSSQLRules {
 		RuleImplementation impl = rule.getRuleImplementation();
 
 		RuleImplementation child2 = new RuleImplementation();
-		child2.getNames().getTextItem().add(UidListContext.class.getSimpleName());
+		child2.getNames().getTextItem().add(Identifier_listContext.class.getSimpleName());
 		child2.setTextCheckType(TextCheckType.DEFAULT);
 		child2.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
 		child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 
 		impl.getChildrenRules().getRuleImplementation().add(child2);
-		impl.getNames().getTextItem().add(InsertStatementContext.class.getSimpleName());
+		impl.getNames().getTextItem().add(Insert_stmtContext.class.getSimpleName());
 		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 		impl.setRuleResultType(RuleResultType.DEFAULT);
 

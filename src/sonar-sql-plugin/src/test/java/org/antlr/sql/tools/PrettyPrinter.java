@@ -1,6 +1,5 @@
 package org.antlr.sql.tools;
 
-import org.antlr.sql.dialects.Dialects;
 import org.antlr.sql.models.AntlrContext;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Token;

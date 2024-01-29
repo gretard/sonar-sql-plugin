@@ -118,7 +118,6 @@ public class ViolationsAnalyzer {
 				violation.violatingNodes.addAll(values);
 			}
 
-			System.out.println(impl.getRuleResultType()+" "+values.size());
 			if (RuleResultType.FAIL_IF_MORE_FOUND == impl.getRuleResultType() && values.size() > impl.getTimes()) {
 				failuresFound = true;
 				violation.violatingNodes.addAll(values);

@@ -1,7 +1,5 @@
 package org.sonar.plugins.sql;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
