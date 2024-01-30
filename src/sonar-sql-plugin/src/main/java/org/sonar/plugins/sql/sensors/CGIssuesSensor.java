@@ -6,10 +6,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.antlr.sql.dialects.Dialects;
 import org.apache.commons.io.input.BOMInputStream;
 import org.sonar.api.batch.sensor.Sensor;
@@ -35,14 +33,17 @@ public class CGIssuesSensor extends BaseSensor implements Sensor {
 
     @Override
     public void describe(SensorDescriptor descriptor) {
-        descriptor.onlyOnLanguage(Constants.languageKey).onlyWhenConfiguration(x -> x.get(Constants.PLUGIN_SQL_DIALECT)
-                .orElse(Dialects.TSQL.name()).equalsIgnoreCase(Dialects.TSQL.name()));
-
+        descriptor
+                .onlyOnLanguage(Constants.languageKey)
+                .onlyWhenConfiguration(
+                        x ->
+                                x.get(Constants.PLUGIN_SQL_DIALECT)
+                                        .orElse(Dialects.TSQL.name())
+                                        .equalsIgnoreCase(Dialects.TSQL.name()));
     }
 
     public CGIssuesSensor(final TempFolder tempFolder) {
         this.tempFolder = tempFolder;
-
     }
 
     protected SqlIssuesList read(final InputStream stream) throws Exception {
@@ -90,7 +91,6 @@ public class CGIssuesSensor extends BaseSensor implements Sensor {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
 
         return issuesList;
@@ -98,8 +98,11 @@ public class CGIssuesSensor extends BaseSensor implements Sensor {
 
     @Override
     public void execute(SensorContext context) {
-        final String externalTool = context.config().get(Constants.TSQL_CG_PATH).orElse(Constants.TSQL_CG_PATH_DEFAULT)
-                .toLowerCase();
+        final String externalTool =
+                context.config()
+                        .get(Constants.TSQL_CG_PATH)
+                        .orElse(Constants.TSQL_CG_PATH_DEFAULT)
+                        .toLowerCase();
         final String sourceDir = context.fileSystem().baseDir().getAbsolutePath();
         try {
             if (!Files.exists(Paths.get(externalTool))) {
@@ -109,18 +112,29 @@ public class CGIssuesSensor extends BaseSensor implements Sensor {
 
             final File tempResultsFile = tempFolder.newFile("temp", "results.xml");
 
-            final String[] args = new String[] { externalTool, "-source", sourceDir, "-out",
-                    tempResultsFile.getAbsolutePath(), "/include:all" };
+            final String[] args =
+                    new String[] {
+                        externalTool,
+                        "-source",
+                        sourceDir,
+                        "-out",
+                        tempResultsFile.getAbsolutePath(),
+                        "/include:all"
+                    };
 
             final Process process = new ProcessBuilder(args).inheritIO().start();
             LOGGER.debug("Running SQLCodeGuard with {}", Arrays.toString(args));
 
             final int result = process.waitFor();
             if (!tempResultsFile.exists() || tempResultsFile.length() == 0) {
-                LOGGER.warn("SQLCodeGuard returned with '{}'. Arguments were: {}", result, Arrays.toString(args));
+                LOGGER.warn(
+                        "SQLCodeGuard returned with '{}'. Arguments were: {}",
+                        result,
+                        Arrays.toString(args));
                 return;
             }
-            try (final BOMInputStream stream = new BOMInputStream(new FileInputStream(tempResultsFile))) {
+            try (final BOMInputStream stream =
+                    new BOMInputStream(new FileInputStream(tempResultsFile))) {
 
                 final SqlIssuesList issues = read(stream);
                 addIssues(context, issues, null);
@@ -129,7 +143,5 @@ public class CGIssuesSensor extends BaseSensor implements Sensor {
         } catch (Throwable e) {
             LOGGER.warn("Unexpected error", e);
         }
-
     }
-
 }

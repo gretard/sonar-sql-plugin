@@ -2,7 +2,6 @@ package org.antlr.sql.models;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.antlr.sql.dialects.DialectLanguageTypesMap;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;
@@ -22,7 +21,7 @@ public class AntlrContext {
     public DialectLanguageTypesMap types;
 
     public String initialContents;
-    
+
     public final List<SqlRules> rules = new ArrayList<>();
 
     public List<SqlRules> getRules() {
@@ -43,8 +42,9 @@ public class AntlrContext {
 
     public boolean isKeyword(Token token) {
         String symbolicName = lexer.getVocabulary().getSymbolicName(token.getType());
-        return symbolicName != null && ((StringUtils.equalsAnyIgnoreCase(symbolicName, token.getText()))
-                || symbolicName.toLowerCase().contains(token.getText().toLowerCase()));
+        return symbolicName != null
+                && ((StringUtils.equalsAnyIgnoreCase(symbolicName, token.getText()))
+                        || symbolicName.toLowerCase().contains(token.getText().toLowerCase()));
     }
 
     public List<? extends Token> getAllTokens() {

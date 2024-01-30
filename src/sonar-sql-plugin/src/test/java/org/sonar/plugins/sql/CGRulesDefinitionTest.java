@@ -18,5 +18,4 @@ public class CGRulesDefinitionTest {
         Assert.assertEquals(1, context.repositories().size());
         Assert.assertEquals(14, context.repositories().get(0).rules().size());
     }
-
 }

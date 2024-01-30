@@ -2,7 +2,6 @@ package org.sonar.plugins.sql.fillers;
 
 import java.io.IOException;
 import java.util.List;
-
 import org.antlr.sql.models.AntlrContext;
 import org.antlr.sql.sca.IssuesProvider;
 import org.sonar.api.batch.fs.InputFile;
@@ -27,12 +26,11 @@ public class IssuesFiller extends BaseSensor implements Filler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public SqlIssuesList getIssues(AntlrContext antlrContext) {
-        List<RuleToCheck> rulesToCheck = RuleToCheck.createCodeList2(antlrContext.rules.toArray(new SqlRules[0]));
+        List<RuleToCheck> rulesToCheck =
+                RuleToCheck.createCodeList2(antlrContext.rules.toArray(new SqlRules[0]));
         return issuesProvider.check(rulesToCheck, antlrContext.root);
     }
-
 }

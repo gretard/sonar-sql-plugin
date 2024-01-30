@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
-
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.sonar.api.batch.fs.FilePredicates;
@@ -36,11 +35,14 @@ public class BaseSensor {
         Set<InputFile> files = new HashSet<>();
         URI uri = new File(path).getCanonicalFile().toURI();
 
-        context.fileSystem().inputFiles(p.hasLanguage(Constants.languageKey)).forEach(i -> {
-            if (uri.equals(i.uri())) {
-                files.add(i);
-            }
-        });
+        context.fileSystem()
+                .inputFiles(p.hasLanguage(Constants.languageKey))
+                .forEach(
+                        i -> {
+                            if (uri.equals(i.uri())) {
+                                files.add(i);
+                            }
+                        });
 
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Found '{}' matches against {} ", Arrays.toString(files.toArray()), path);
@@ -54,40 +56,56 @@ public class BaseSensor {
         final String search = path.replace("[", "").replace("]", "");
         final String temp[] = search.split("\\.");
         final String name = temp[temp.length - 1];
-        context.fileSystem().inputFiles(p.hasLanguage(Constants.languageKey)).forEach(i -> {
+        context.fileSystem()
+                .inputFiles(p.hasLanguage(Constants.languageKey))
+                .forEach(
+                        i -> {
+                            final File file = new File(i.uri());
 
-            final File file = new File(i.uri());
-
-            // schema.name.sql
-            if (search.equals(FilenameUtils.getBaseName(file.getAbsolutePath()).replace("[", "").replace("]", ""))) {
-                files.add(i);
-                return;
-            }
-            // schema/name.sql
-            if (search.equals(file.getParentFile().getName().replace("[", "").replace("]", "") + "."
-                    + FilenameUtils.getBaseName(file.getAbsolutePath().replace("[", "").replace("]", "")))) {
-                files.add(i);
-
-            }
-            // name.sql
-            if (name.equals(FilenameUtils.getBaseName(file.getAbsolutePath().replace("[", "").replace("]", "")))) {
-                files.add(i);
-            }
-
-        });
+                            // schema.name.sql
+                            if (search.equals(
+                                    FilenameUtils.getBaseName(file.getAbsolutePath())
+                                            .replace("[", "")
+                                            .replace("]", ""))) {
+                                files.add(i);
+                                return;
+                            }
+                            // schema/name.sql
+                            if (search.equals(
+                                    file.getParentFile().getName().replace("[", "").replace("]", "")
+                                            + "."
+                                            + FilenameUtils.getBaseName(
+                                                    file.getAbsolutePath()
+                                                            .replace("[", "")
+                                                            .replace("]", "")))) {
+                                files.add(i);
+                            }
+                            // name.sql
+                            if (name.equals(
+                                    FilenameUtils.getBaseName(
+                                            file.getAbsolutePath()
+                                                    .replace("[", "")
+                                                    .replace("]", "")))) {
+                                files.add(i);
+                            }
+                        });
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Found '{}' matches against {} and  {}", Arrays.toString(files.toArray()), path, search);
+            LOGGER.debug(
+                    "Found '{}' matches against {} and  {}",
+                    Arrays.toString(files.toArray()),
+                    path,
+                    search);
         }
 
         return new ArrayList<>(files);
     }
 
-    protected static synchronized void addIssues(SensorContext context, final SqlIssuesList issues,
-            final InputFile file) throws IOException {
-     
+    protected static synchronized void addIssues(
+            SensorContext context, final SqlIssuesList issues, final InputFile file)
+            throws IOException {
 
-        final List<String> rulesToSkip = Arrays
-                .asList(context.config().getStringArray(Constants.PLUGIN_SQL_RULES_SKIP));
+        final List<String> rulesToSkip =
+                Arrays.asList(context.config().getStringArray(Constants.PLUGIN_SQL_RULES_SKIP));
 
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Found {} issues", issues.getaLLIssues().size());
@@ -115,38 +133,54 @@ public class BaseSensor {
                     }
 
                     if (issue.isAdhoc()) {
-                        context.newAdHocRule().description(issue.getDescription()).engineId(issue.getRepo())
-                                .name(issue.getName()).ruleId(issue.getKey())
+                        context.newAdHocRule()
+                                .description(issue.getDescription())
+                                .engineId(issue.getRepo())
+                                .name(issue.getName())
+                                .ruleId(issue.getKey())
                                 .severity(extractSeverity(issue.getSeverity()))
-                                .type(RuleType.valueOf(issue.getRuleType())).save();
+                                .type(RuleType.valueOf(issue.getRuleType()))
+                                .save();
                     }
                     if (issue.isExternal) {
-                        final NewExternalIssue newExternalIssue = context.newExternalIssue().ruleId(issue.getKey())
-                                .engineId(issue.getRepo()).type(RuleType.valueOf(issue.getRuleType()));
+                        final NewExternalIssue newExternalIssue =
+                                context.newExternalIssue()
+                                        .ruleId(issue.getKey())
+                                        .engineId(issue.getRepo())
+                                        .type(RuleType.valueOf(issue.getRuleType()));
                         if (issue.getDebtRemediationEffort() > 0) {
-                            newExternalIssue.remediationEffortMinutes(issue.getDebtRemediationEffort());
+                            newExternalIssue.remediationEffortMinutes(
+                                    issue.getDebtRemediationEffort());
                         }
-                        final NewIssueLocation location = newExternalIssue.newLocation().on(main)
-                                .message(issue.getMessage());
+                        final NewIssueLocation location =
+                                newExternalIssue.newLocation().on(main).message(issue.getMessage());
                         if (issue.getLine() > 0) {
                             location.at(main.selectLine(issue.getLine()));
                         }
-                        newExternalIssue.at(location).severity(extractSeverity(issue.getSeverity())).save();
+                        newExternalIssue
+                                .at(location)
+                                .severity(extractSeverity(issue.getSeverity()))
+                                .save();
                         continue;
                     }
-                    final NewIssue newIssue = context.newIssue().forRule(RuleKey.of(issue.getRepo(), issue.getKey()));
-                    final NewIssueLocation loc = newIssue.newLocation().on(main).message(issue.getMessage());
+                    final NewIssue newIssue =
+                            context.newIssue().forRule(RuleKey.of(issue.getRepo(), issue.getKey()));
+                    final NewIssueLocation loc =
+                            newIssue.newLocation().on(main).message(issue.getMessage());
                     if (issue.getLine() > 0) {
                         loc.at(main.selectLine(issue.getLine()));
                     }
                     newIssue.at(loc).save();
 
                 } catch (Throwable e) {
-                    LOGGER.warn("Unexpected error adding issue on file " + fileName+" for issue: "+issue, e);
-
+                    LOGGER.warn(
+                            "Unexpected error adding issue on file "
+                                    + fileName
+                                    + " for issue: "
+                                    + issue,
+                            e);
                 }
             }
-
         }
     }
 
@@ -174,6 +208,5 @@ public class BaseSensor {
         }
 
         return Severity.MAJOR;
-
     }
 }

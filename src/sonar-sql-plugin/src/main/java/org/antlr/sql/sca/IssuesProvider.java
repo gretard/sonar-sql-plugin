@@ -2,7 +2,6 @@ package org.antlr.sql.sca;
 
 import java.util.List;
 import java.util.Map;
-
 import org.antlr.sql.sca.ViolationsAnalyzer.FoundViolation;
 import org.antlr.sql.visitors.RulesMatchingVisitor2;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -29,13 +28,22 @@ public class IssuesProvider {
 
         if (DEBUG) {
             log("Nodes matching base rules: " + results.size());
-            results.forEach((k, v) -> {
-                log("RULE: " + k.rule.getKey() + " " + v.candidates.size());
-                v.candidates.forEach(i -> {
-                    log("\tNODE: " + i.getText() + " " + i.getGlobalIndex() + " " + i.getLine() + " "
-                            + i.getClassName());
-                });
-            });
+            results.forEach(
+                    (k, v) -> {
+                        log("RULE: " + k.rule.getKey() + " " + v.candidates.size());
+                        v.candidates.forEach(
+                                i -> {
+                                    log(
+                                            "\tNODE: "
+                                                    + i.getText()
+                                                    + " "
+                                                    + i.getGlobalIndex()
+                                                    + " "
+                                                    + i.getLine()
+                                                    + " "
+                                                    + i.getClassName());
+                                });
+                    });
         }
         // find all nodes matching all inner rule implementations
         ViolationsSearcher2 searcher = new ViolationsSearcher2();
@@ -43,18 +51,26 @@ public class IssuesProvider {
 
         if (DEBUG) {
             log("Nodes matching all rules: " + violationSeachResults.size());
-            violationSeachResults.forEach(v -> {
-                log("RULE: " + v.ruleToCheck.rule.getKey());
-                v.map.items.forEach((k, val) -> {
-                    log("NODES: " + k + " " + val.size());
-                    val.forEach(i -> {
-                        log("\tNODE: " + i.getText() + " " + i.getGlobalIndex() + " " + i.getLine() + " "
-                                + i.getClassName());
+            violationSeachResults.forEach(
+                    v -> {
+                        log("RULE: " + v.ruleToCheck.rule.getKey());
+                        v.map.items.forEach(
+                                (k, val) -> {
+                                    log("NODES: " + k + " " + val.size());
+                                    val.forEach(
+                                            i -> {
+                                                log(
+                                                        "\tNODE: "
+                                                                + i.getText()
+                                                                + " "
+                                                                + i.getGlobalIndex()
+                                                                + " "
+                                                                + i.getLine()
+                                                                + " "
+                                                                + i.getClassName());
+                                            });
+                                });
                     });
-                });
-
-            });
-
         }
         // analyze found nodes against rules
         ViolationsAnalyzer an = new ViolationsAnalyzer();
@@ -64,18 +80,35 @@ public class IssuesProvider {
 
             if (DEBUG) {
                 log("VIOLATIONS: " + res.ruleToCheck.rule.getKey() + " " + vio.failuresFound);
-                res.map.items.forEach((k, val) -> {
-                    log("RULES: " + k + " " + val.size() + " " + k.getRuleResultType());
-                    val.forEach(i -> {
-                        log("\tNODE: " + i.getText() + " " + i.getGlobalIndex() + " " + i.getLine() + " "
-                                + i.getClassName());
-                    });
-                });
+                res.map.items.forEach(
+                        (k, val) -> {
+                            log("RULES: " + k + " " + val.size() + " " + k.getRuleResultType());
+                            val.forEach(
+                                    i -> {
+                                        log(
+                                                "\tNODE: "
+                                                        + i.getText()
+                                                        + " "
+                                                        + i.getGlobalIndex()
+                                                        + " "
+                                                        + i.getLine()
+                                                        + " "
+                                                        + i.getClassName());
+                                    });
+                        });
                 log("VIOLATING NODES: " + vio.violatingNodes.size());
-                vio.violatingNodes.forEach(i -> {
-                    log("\tNODE: " + i.getText() + " " + i.getGlobalIndex() + " " + i.getLine() + " "
-                            + i.getClassName());
-                });
+                vio.violatingNodes.forEach(
+                        i -> {
+                            log(
+                                    "\tNODE: "
+                                            + i.getText()
+                                            + " "
+                                            + i.getGlobalIndex()
+                                            + " "
+                                            + i.getLine()
+                                            + " "
+                                            + i.getClassName());
+                        });
             }
 
             if (vio.failuresFound) {
@@ -89,6 +122,5 @@ public class IssuesProvider {
 
     private static void log(String msg) {
         LOGGER.debug(msg);
-
     }
 }

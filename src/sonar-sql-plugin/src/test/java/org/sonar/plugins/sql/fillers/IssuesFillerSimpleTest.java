@@ -1,9 +1,7 @@
 package org.sonar.plugins.sql.fillers;
 
 import java.io.IOException;
-
 import javax.xml.bind.JAXBException;
-
 import org.antlr.sql.dialects.Dialects;
 import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.Builtin_function_nameContext;
 import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.Sort_clauseContext;
@@ -22,112 +20,119 @@ import org.sonar.plugins.sql.models.rules.SqlRules;
 
 public class IssuesFillerSimpleTest {
 
-	@Test
-	public void testCommentIssues() throws IOException {
+    @Test
+    public void testCommentIssues() throws IOException {
 
-		CommentIssuesFiller filler = new CommentIssuesFiller();
+        CommentIssuesFiller filler = new CommentIssuesFiller();
 
-		AntlrContext antlrContext = Dialects.TSQL
-				.parse("/** testas */\r\nSELECT * From facts.test where name = 4;\r\n");
+        AntlrContext antlrContext =
+                Dialects.TSQL.parse(
+                        "/** testas */\r\nSELECT * From facts.test where name = 4;\r\n");
 
-		SqlIssuesList issues = filler.getIssues(antlrContext);
-		Assert.assertEquals(0, issues.getaLLIssues().size());
+        SqlIssuesList issues = filler.getIssues(antlrContext);
+        Assert.assertEquals(0, issues.getaLLIssues().size());
+    }
 
-	}
+    @Test
+    public void testCommentIssuesNoIssues() throws IOException, JAXBException {
 
-	@Test
-	public void testCommentIssuesNoIssues() throws IOException, JAXBException {
+        CommentIssuesFiller filler = new CommentIssuesFiller();
 
-		CommentIssuesFiller filler = new CommentIssuesFiller();
+        AntlrContext antlrContext =
+                Dialects.TSQL.parse("//test\r\nSELECT * From facts.test where name = 4;\r\n");
 
-		AntlrContext antlrContext = Dialects.TSQL.parse("//test\r\nSELECT * From facts.test where name = 4;\r\n");
+        SqlIssuesList issues = filler.getIssues(antlrContext);
+        Assert.assertEquals(1, issues.getaLLIssues().size());
+        RulesToXmlPrinter.writeRules(CommonRules.INSTANCE.getRules().get(0));
+    }
 
-		SqlIssuesList issues = filler.getIssues(antlrContext);
-		Assert.assertEquals(1, issues.getaLLIssues().size());
-		RulesToXmlPrinter.writeRules(CommonRules.INSTANCE.getRules().get(0));
+    @Test
+    public void testCommentIssues2() throws IOException {
 
-	}
+        CommentIssuesFiller filler = new CommentIssuesFiller();
 
-	@Test
-	public void testCommentIssues2() throws IOException {
+        AntlrContext antlrContext =
+                Dialects.TSQL.parse(
+                        "\r\n\r\n"
+                                + "/*aavvv*/SELECT * From facts.test where name = /*aavvv*/"
+                                + " 4;\r\n\r\n");
+        // AntlrContext antlrContext = Dialects.TSQL.parse("\r\nSELECT * From facts.test
+        // where name = 4;\r\n\r\n");
 
-		CommentIssuesFiller filler = new CommentIssuesFiller();
+        // PrettyPrinter.print(filler.getRoot(antlrContext), 0, null);
 
-		AntlrContext antlrContext = Dialects.TSQL
-				.parse("\r\n\r\n/*aavvv*/SELECT * From facts.test where name = /*aavvv*/ 4;\r\n\r\n");
-		// AntlrContext antlrContext = Dialects.TSQL.parse("\r\nSELECT * From facts.test
-		// where name = 4;\r\n\r\n");
+        SqlIssuesList issues = filler.getIssues(antlrContext);
+        Assert.assertEquals(0, issues.getaLLIssues().size());
+    }
 
-		// PrettyPrinter.print(filler.getRoot(antlrContext), 0, null);
+    @Test
+    public void testIssues() throws IOException {
 
-		SqlIssuesList issues = filler.getIssues(antlrContext);
-		Assert.assertEquals(0, issues.getaLLIssues().size());
+        IssuesFiller filler = new IssuesFiller();
 
-	}
+        AntlrContext antlrContext =
+                Dialects.TSQL.parse(
+                        "/** testas */\r\n"
+                                + "SELECT * From facts.test where name = 4;\r\n"
+                                + "select * from dbo.test;");
 
-	@Test
-	public void testIssues() throws IOException {
+        SqlIssuesList issues = filler.getIssues(antlrContext);
+        Assert.assertEquals(2, issues.getaLLIssues().size());
+    }
 
-		IssuesFiller filler = new IssuesFiller();
+    @Test
+    public void testRandomOrderIssue() throws IOException, JAXBException {
 
-		AntlrContext antlrContext = Dialects.TSQL
-				.parse("/** testas */\r\nSELECT * From facts.test where name = 4;\r\nselect * from dbo.test;");
+        Rule rule = new Rule();
+        rule.setKey("R001");
+        rule.setName("Random order is used");
+        rule.setDescription("Rule description");
 
-		SqlIssuesList issues = filler.getIssues(antlrContext);
-		Assert.assertEquals(2, issues.getaLLIssues().size());
+        RuleImplementation ruleImpl = new RuleImplementation();
+        ruleImpl.getNames().getTextItem().add(Builtin_function_nameContext.class.getSimpleName());
+        ruleImpl.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+        ruleImpl.getTextToFind().getTextItem().add("RANDOM");
+        ruleImpl.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
 
-	}
+        RuleImplementation parentRule = new RuleImplementation();
+        parentRule.getNames().getTextItem().add(Sort_clauseContext.class.getSimpleName());
+        parentRule.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+        parentRule.getChildrenRules().getRuleImplementation().add(ruleImpl);
+        parentRule.setRuleViolationMessage("Call to RANDOM() function found in order clause");
 
-	@Test
-	public void testRandomOrderIssue() throws IOException, JAXBException {
+        rule.setRuleImplementation(parentRule);
 
-		Rule rule = new Rule();
-		rule.setKey("R001");
-		rule.setName("Random order is used");
-		rule.setDescription("Rule description");
+        SqlRules rules = new SqlRules();
+        rules.getRule().add(rule);
+        IssuesFiller filler = new IssuesFiller();
+        AntlrContext antlrContext =
+                Dialects.PSSQLV2.parse("SELECT name from names order by random()");
 
-		RuleImplementation ruleImpl = new RuleImplementation();
-		ruleImpl.getNames().getTextItem().add(Builtin_function_nameContext.class.getSimpleName());
-		ruleImpl.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
-		ruleImpl.getTextToFind().getTextItem().add("RANDOM");
-		ruleImpl.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        antlrContext.getRules().clear();
+        antlrContext.getRules().add(rules);
+        // PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
+        // RulesToXmlPrinter.writeRules(rules);
+        SqlIssuesList issues = filler.getIssues(antlrContext);
+        Assert.assertEquals(1, issues.getaLLIssues().size());
+    }
 
-		RuleImplementation parentRule = new RuleImplementation();
-		parentRule.getNames().getTextItem().add(Sort_clauseContext.class.getSimpleName());
-		parentRule.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-		parentRule.getChildrenRules().getRuleImplementation().add(ruleImpl);
-		parentRule.setRuleViolationMessage("Call to RANDOM() function found in order clause");
+    @Test
+    public void testInsertIssues() throws IOException {
 
-		rule.setRuleImplementation(parentRule);
+        IssuesFiller filler = new IssuesFiller();
+        Rule rule =
+                TSQLRules.INSTANCE.getRules().get(0).getRule().stream()
+                        .filter(x -> x.getKey().equals("C003"))
+                        .findFirst()
+                        .get();
+        AntlrContext antlrContext =
+                Dialects.TSQL.parse(
+                        "INSERT INTO dbo.test VALUES (1,2);\r\nINSERT INTO dbo.test VALUES (1,2);");
 
-		SqlRules rules = new SqlRules();
-		rules.getRule().add(rule);
-		IssuesFiller filler = new IssuesFiller();
-		AntlrContext antlrContext = Dialects.PSSQLV2.parse("SELECT name from names order by random()");
+        antlrContext.getRules().get(0).getRule().clear();
+        antlrContext.getRules().get(0).getRule().add(rule);
 
-		antlrContext.getRules().clear();
-		antlrContext.getRules().add(rules);
-		// PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
-		// RulesToXmlPrinter.writeRules(rules);
-		SqlIssuesList issues = filler.getIssues(antlrContext);
-		Assert.assertEquals(1, issues.getaLLIssues().size());
-
-	}
-
-	@Test
-	public void testInsertIssues() throws IOException {
-
-		IssuesFiller filler = new IssuesFiller();
-		Rule rule = TSQLRules.INSTANCE.getRules().get(0).getRule().stream().filter(x -> x.getKey().equals("C003"))
-				.findFirst().get();
-		AntlrContext antlrContext = Dialects.TSQL
-				.parse("INSERT INTO dbo.test VALUES (1,2);\r\nINSERT INTO dbo.test VALUES (1,2);");
-
-		antlrContext.getRules().get(0).getRule().clear();
-		antlrContext.getRules().get(0).getRule().add(rule);
-
-		SqlIssuesList issues = filler.getIssues(antlrContext);
-		Assert.assertEquals(2, issues.getaLLIssues().size());
-
-	}
+        SqlIssuesList issues = filler.getIssues(antlrContext);
+        Assert.assertEquals(2, issues.getaLLIssues().size());
+    }
 }

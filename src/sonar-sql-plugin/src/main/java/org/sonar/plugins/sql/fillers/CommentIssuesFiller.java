@@ -2,7 +2,6 @@ package org.sonar.plugins.sql.fillers;
 
 import java.io.IOException;
 import java.util.List;
-
 import org.antlr.sql.dialects.comments.CommentsGrammarLexer;
 import org.antlr.sql.dialects.comments.CommentsGrammarParser;
 import org.antlr.sql.models.AntlrContext;
@@ -42,21 +41,22 @@ public class CommentIssuesFiller extends BaseSensor implements Filler {
         } catch (IOException e1) {
             LOGGER.warn("Unexpected error adding issues", e1);
         }
-
     }
 
-  public  SqlIssuesList getIssues(AntlrContext antlrContext) throws IOException {
+    public SqlIssuesList getIssues(AntlrContext antlrContext) throws IOException {
         ParseTree root = getRoot(antlrContext);
 
-        List<RuleToCheck> rulesToCheck = RuleToCheck.createCommentsList(antlrContext.rules.toArray(new SqlRules[0]));
+        List<RuleToCheck> rulesToCheck =
+                RuleToCheck.createCommentsList(antlrContext.rules.toArray(new SqlRules[0]));
 
         SqlIssuesList sqlIssuesList = issuesProvider.check(rulesToCheck, root);
         return sqlIssuesList;
     }
 
     ParseTree getRoot(AntlrContext antlrContext) {
-        final CharStream charStream = new CaseChangingCharStream(CharStreams.fromString(antlrContext.initialContents),
-                true);
+        final CharStream charStream =
+                new CaseChangingCharStream(
+                        CharStreams.fromString(antlrContext.initialContents), true);
 
         Lexer lexer = new CommentsGrammarLexer(charStream);
         lexer.removeErrorListeners();
@@ -69,5 +69,4 @@ public class CommentIssuesFiller extends BaseSensor implements Filler {
         ParseTree root = p.root();
         return root;
     }
-
 }

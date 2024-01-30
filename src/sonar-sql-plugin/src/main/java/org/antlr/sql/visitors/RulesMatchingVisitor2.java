@@ -3,7 +3,6 @@ package org.antlr.sql.visitors;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.antlr.sql.sca.matchers.ClassNameMatcher;
 import org.antlr.sql.sca.matchers.TextMatcher;
 import org.antlr.sql.sca.nodes.ParseTreeNode;
@@ -27,9 +26,10 @@ public class RulesMatchingVisitor2 extends AbstractParseTreeVisitor<Void> {
 
     public RulesMatchingVisitor2(List<RuleToCheck> rules) {
         this.rules = rules;
-        rules.forEach(r -> {
-            results.put(r, new RuleCheckResult());
-        });
+        rules.forEach(
+                r -> {
+                    results.put(r, new RuleCheckResult());
+                });
     }
 
     @Override
@@ -46,22 +46,20 @@ public class RulesMatchingVisitor2 extends AbstractParseTreeVisitor<Void> {
             Rule rule = rules.rule;
             RuleImplementation ruleImplementation = rule.getRuleImplementation();
 
-            if (!this.matcher.match(node, ruleImplementation) || !this.textMatcher.match(node, ruleImplementation)) {
+            if (!this.matcher.match(node, ruleImplementation)
+                    || !this.textMatcher.match(node, ruleImplementation)) {
                 continue;
             }
 
             results.get(rules).candidates.add(node);
 
-// TODO: check this
-//            if (RuleMode.GROUP.equals(ruleImplementation.getRuleMode())) {
-//                this.groupMatches.putIfAbsent(node.getText(), match);
-//            } else {
-//                this.matches.add(match);
-//            }
+            // TODO: check this
+            //            if (RuleMode.GROUP.equals(ruleImplementation.getRuleMode())) {
+            //                this.groupMatches.putIfAbsent(node.getText(), match);
+            //            } else {
+            //                this.matches.add(match);
+            //            }
         }
-        return
-
-        defaultResult();
+        return defaultResult();
     }
-
 }

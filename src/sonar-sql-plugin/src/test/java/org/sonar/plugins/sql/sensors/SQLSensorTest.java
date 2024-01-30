@@ -3,7 +3,6 @@ package org.sonar.plugins.sql.sensors;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -16,11 +15,9 @@ import org.sonar.api.impl.utils.JUnitTempFolder;
 import org.sonar.plugins.sql.Constants;
 
 public class SQLSensorTest {
-    @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
+    @Rule public TemporaryFolder folder = new TemporaryFolder();
 
-    @org.junit.Rule
-    public JUnitTempFolder temp = new org.sonar.api.impl.utils.JUnitTempFolder();
+    @org.junit.Rule public JUnitTempFolder temp = new org.sonar.api.impl.utils.JUnitTempFolder();
 
     @SuppressWarnings("deprecation")
     @Test
@@ -31,14 +28,17 @@ public class SQLSensorTest {
         FileUtils.copyURLToFile(getClass().getResource("/tsql/sample1.sql"), baseFile);
 
         String contents = new String(Files.readAllBytes(baseFile.toPath()));
-        DefaultInputFile ti = new TestInputFileBuilder("test", "test.sql").initMetadata(contents).setContents(contents)
-                .setLanguage(Constants.languageKey).build();
+        DefaultInputFile ti =
+                new TestInputFileBuilder("test", "test.sql")
+                        .initMetadata(contents)
+                        .setContents(contents)
+                        .setLanguage(Constants.languageKey)
+                        .build();
         ctxTester.fileSystem().add(ti);
 
         SQLSensor s = new SQLSensor();
         s.execute(ctxTester);
         Assert.assertEquals(2, ctxTester.allIssues().size());
-
     }
 
     @SuppressWarnings("deprecation")
@@ -50,15 +50,18 @@ public class SQLSensorTest {
         FileUtils.copyURLToFile(getClass().getResource("/pssql/sample1.sql"), baseFile);
 
         String contents = new String(Files.readAllBytes(baseFile.toPath()));
-        DefaultInputFile ti = new TestInputFileBuilder("test", "test.sql").initMetadata(contents).setContents(contents)
-                .setLanguage(Constants.languageKey).build();
+        DefaultInputFile ti =
+                new TestInputFileBuilder("test", "test.sql")
+                        .initMetadata(contents)
+                        .setContents(contents)
+                        .setLanguage(Constants.languageKey)
+                        .build();
         ctxTester.fileSystem().add(ti);
 
         SQLSensor s = new SQLSensor();
         s.execute(ctxTester);
 
         Assert.assertEquals(3, ctxTester.allIssues().size());
-
     }
 
     @SuppressWarnings("deprecation")
@@ -70,8 +73,12 @@ public class SQLSensorTest {
         FileUtils.copyURLToFile(getClass().getResource("/mysql/sample1.sql"), baseFile);
 
         String contents = new String(Files.readAllBytes(baseFile.toPath()));
-        DefaultInputFile ti = new TestInputFileBuilder("test", "test.sql").initMetadata(contents).setContents(contents)
-                .setLanguage(Constants.languageKey).build();
+        DefaultInputFile ti =
+                new TestInputFileBuilder("test", "test.sql")
+                        .initMetadata(contents)
+                        .setContents(contents)
+                        .setLanguage(Constants.languageKey)
+                        .build();
         ctxTester.fileSystem().add(ti);
 
         SQLSensor s = new SQLSensor();
@@ -80,7 +87,5 @@ public class SQLSensorTest {
         Assert.assertEquals(3, ctxTester.allIssues().size());
         Assert.assertEquals(0, ctxTester.allExternalIssues().size());
         Assert.assertEquals(0, ctxTester.allAdHocRules().size());
-
     }
-   
 }

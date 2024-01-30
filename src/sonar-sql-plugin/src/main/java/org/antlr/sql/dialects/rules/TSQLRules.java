@@ -3,7 +3,6 @@ package org.antlr.sql.dialects.rules;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.antlr.sql.dialects.Dialects;
 import org.antlr.sql.dialects.tsql.TSqlParser.AsteriskContext;
 import org.antlr.sql.dialects.tsql.TSqlParser.BUILT_IN_FUNCContext;
@@ -40,489 +39,547 @@ import org.sonar.plugins.sql.models.rules.SqlRules;
 import org.sonar.plugins.sql.models.rules.TextCheckType;
 
 public enum TSQLRules {
-
-	INSTANCE;
-
-	BaseRules baseRules = BaseRules.INSTANCE;
-
-	public List<SqlRules> getRules() {
-		List<SqlRules> rules = new ArrayList<>();
-		{
-			SqlRules customRules = new SqlRules();
-			customRules.setRepoKey("SQLCC");
-			customRules.setRepoName("SQL Plugin checks");
-			customRules.setDialect(Dialects.TSQL.name());
-			customRules.getRule()
-					.addAll(Arrays.asList(getWaitForRule(), getSelectAllRule(), getInsertRule(), getOrderByRule(),
-							getExecRule(), getNoLockRule(), getSargRule(), getPKRule(), getFKRule(),
-							getNullComparisonRule(), getIndexNamingRule(), getWhereWithOrVsUnionRule(),
-							getUnionVsUnionALLRule(), getExistsVsInRule(), getOrderByRuleWithoutAscDesc(),
-							getCartesianJoinsRule(), getColumnListRule()
-					// getCursorRule()
-					// baseRules.getDeclareRule(),
-//							baseRules.getMultipleDeclarations())
-
-					));
-			rules.add(customRules);
-		}
-		return rules;
-	}
-
-	protected Rule getColumnListRule() {
-
-		Rule rule = baseRules.getColumnListRule();
-		// find all column refs
-		RuleImplementation parent = rule.getRuleImplementation();
-		parent.getNames().getTextItem()
-				.add(org.antlr.sql.dialects.tsql.TSqlParser.Full_column_nameContext.class.getSimpleName());
-		parent.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		{
-			// only check SELECT clauses
-			RuleImplementation columnRefCheck = new RuleImplementation();
-			columnRefCheck.getNames().getTextItem()
-					.add(org.antlr.sql.dialects.tsql.TSqlParser.Select_listContext.class.getSimpleName());
-			columnRefCheck.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-			columnRefCheck.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-			parent.getParentRules().getRuleImplementation().add(columnRefCheck);
-		}
-
-		{
-			// check if columns contain references
-			RuleImplementation columnRefCheck = new RuleImplementation();
-			columnRefCheck.getNames().getTextItem()
-					.add(org.antlr.sql.dialects.tsql.TSqlParser.Full_table_nameContext.class.getSimpleName());
-			columnRefCheck.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-			columnRefCheck.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
-			parent.getChildrenRules().getRuleImplementation().add(columnRefCheck);
-		}
-
-		{
-			// rule to skip rule for single table queries
-			RuleImplementation querySpec = new RuleImplementation();
-			querySpec.getNames().getTextItem()
-					.add(org.antlr.sql.dialects.tsql.TSqlParser.Select_statementContext.class.getSimpleName());
-			querySpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-
-			// rule to skip rule for single table queries
-			RuleImplementation fromClauseSpec = new RuleImplementation();
-			fromClauseSpec.getNames().getTextItem()
-					.add(org.antlr.sql.dialects.tsql.TSqlParser.Table_sourcesContext.class.getSimpleName());
-			fromClauseSpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-
-			RuleImplementation tableRefs = new RuleImplementation();
-			tableRefs.getNames().getTextItem()
-					.add(org.antlr.sql.dialects.tsql.TSqlParser.Table_source_itemContext.class.getSimpleName());
-			tableRefs.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-			tableRefs.setRuleResultType(RuleResultType.SKIP_IF_LESS_FOUND);
-			tableRefs.setTimes(2);
-
-			fromClauseSpec.getChildrenRules().getRuleImplementation().add(tableRefs);
-			querySpec.getChildrenRules().getRuleImplementation().add(fromClauseSpec);
-			parent.getParentRules().getRuleImplementation().add(querySpec);
-		}
-
-		return rule;
-	}
-
-	protected Rule getCartesianJoinsRule() {
-
-		Rule rule = baseRules.getCartesianJoinsRule();
-		RuleImplementation parent = rule.getRuleImplementation();
-
-		parent.getNames().getTextItem()
-				.add(org.antlr.sql.dialects.tsql.TSqlParser.Non_ansi_joinContext.class.getSimpleName());
-		parent.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		parent.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
-
-		return rule;
-	}
-
-	protected Rule getWaitForRule() {
-		Rule rule = baseRules.getWaitForRule();
-		RuleImplementation impl = rule.getRuleImplementation();
-		impl.getNames().getTextItem().add(Waitfor_statementContext.class.getSimpleName());
-
-		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		impl.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
-		impl.setRuleViolationMessage("WAITFOR is used.");
-		impl.getViolatingRulesCodeExamples().getRuleCodeExample().add("WAITFOR '10:00:00';");
-
-		return rule;
-	}
-
-	protected Rule getSelectAllRule() {
-		Rule rule = baseRules.getSelectAllRule();
-		RuleImplementation impl = rule.getRuleImplementation();
-
-		impl.getNames().getTextItem().add(Select_list_elemContext.class.getSimpleName());
-
-		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		impl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-
-		RuleImplementation child = new RuleImplementation();
-
-		child.getNames().getTextItem().add(AsteriskContext.class.getSimpleName());
-		child.getTextToFind().getTextItem().add("*");
-
-		child.setTextCheckType(TextCheckType.CONTAINS);
-		child.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-		child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-
-		RuleImplementation child2 = new RuleImplementation();
-
-		child2.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
-		child2.getTextToFind().getTextItem().add("*");
-
-		child2.setTextCheckType(TextCheckType.STRICT);
-		child2.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
-		child2.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		child.getChildrenRules().getRuleImplementation().add(child2);
-
-		impl.getChildrenRules().getRuleImplementation().add(child);
-
-		// AsteriskContext
-		return rule;
-	}
-
-	protected Rule getInsertRule() {
-		Rule rule = baseRules.getInsertRule();
-		RuleImplementation impl = rule.getRuleImplementation();
-
-		RuleImplementation child2 = new RuleImplementation();
-		child2.getNames().getTextItem().add(Column_name_listContext.class.getSimpleName());
-		child2.getNames().getTextItem().add(Insert_column_name_listContext.class.getSimpleName());
-
-		child2.setTextCheckType(TextCheckType.DEFAULT);
-		child2.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
-		child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-
-		impl.getChildrenRules().getRuleImplementation().add(child2);
-		impl.getNames().getTextItem().add(Insert_statementContext.class.getSimpleName());
-		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		impl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-		return rule;
-	}
-
-	protected Rule getOrderByRule() {
-		Rule rule = baseRules.getOrderByRule();
-		RuleImplementation impl = rule.getRuleImplementation();
-
-		RuleImplementation child2 = new RuleImplementation();
-		child2.getNames().getTextItem().add(Primitive_constantContext.class.getSimpleName());
-		child2.setTextCheckType(TextCheckType.DEFAULT);
-		child2.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
-		child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-
-		impl.getChildrenRules().getRuleImplementation().add(child2);
-		impl.getNames().getTextItem().add(Order_by_clauseContext.class.getSimpleName());
-
-		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		impl.setRuleResultType(RuleResultType.DEFAULT);
-		impl.setRuleViolationMessage("Positional reference is used instead of column name in an ORDER BY clause.");
-
-		rule.setRuleImplementation(impl);
-		return rule;
-	}
-
-	protected Rule getExecRule() {
-		Rule rule = baseRules.getExecRule();
-		RuleImplementation impl = rule.getRuleImplementation();
-
-		RuleImplementation child2 = new RuleImplementation();
-		child2.getNames().getTextItem().add(Execute_var_stringContext.class.getSimpleName());
-		child2.setTextCheckType(TextCheckType.DEFAULT);
-		child2.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
-		child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-
-		RuleImplementation skipSubRule = new RuleImplementation();
-		skipSubRule.getNames().getTextItem().add(Func_proc_name_server_database_schemaContext.class.getSimpleName());
-		skipSubRule.setTextCheckType(TextCheckType.DEFAULT);
-		skipSubRule.setRuleResultType(RuleResultType.SKIP_IF_FOUND);
-		skipSubRule.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-
-		impl.getChildrenRules().getRuleImplementation().add(child2);
-		impl.getChildrenRules().getRuleImplementation().add(skipSubRule);
-		impl.getNames().getTextItem().add(Execute_statementContext.class.getSimpleName());
-		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		impl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-
-		return rule;
-	}
-
-	protected Rule getNoLockRule() {
-		Rule rule = baseRules.getNoLockRule();
-		RuleImplementation impl = rule.getRuleImplementation();
-
-		impl.getTextToFind().getTextItem().add("NOLOCK");
-		impl.setTextCheckType(TextCheckType.CONTAINS);
-		impl.getNames().getTextItem().add(Table_hintContext.class.getSimpleName());
-		impl.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		impl.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
-
-		return rule;
-	}
-
-	protected Rule getPKRule() {
-		Rule rule = baseRules.getPKRule();
-		RuleImplementation ruleImpl = rule.getRuleImplementation();
-
-		ruleImpl.getNames().getTextItem().add(Table_constraintContext.class.getSimpleName());
-		ruleImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-
-		RuleImplementation child1 = new RuleImplementation();
-		child1.getTextToFind().getTextItem().add("PRIMARY");
-		child1.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
-		child1.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-		child1.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-
-		RuleImplementation child2 = new RuleImplementation();
-		child2.getTextToFind().getTextItem().add("KEY");
-		child2.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
-		child2.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-		child2.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		ruleImpl.getChildrenRules().getRuleImplementation().add(child1);
-		ruleImpl.getChildrenRules().getRuleImplementation().add(child2);
-
-		RuleImplementation main = new RuleImplementation();
-		main.getNames().getTextItem().add(Id_Context.class.getSimpleName());
-		main.setTextCheckType(TextCheckType.CONTAINS);
-		main.getTextToFind().getTextItem().add("PK_");
-		main.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		main.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
-		main.setRuleViolationMessage("Primary key is not defined using suggested naming convention to start with PK_.");
-		main.setDistanceCheckType(RuleDistanceIndexMatchType.EQUALS);
-		ruleImpl.getChildrenRules().getRuleImplementation().add(main);
-
-		return rule;
-	}
-
-	protected Rule getFKRule() {
-		Rule rule = baseRules.getFKRule();
-		RuleImplementation ruleImpl = rule.getRuleImplementation();
-
-		ruleImpl.getNames().getTextItem().add(Table_constraintContext.class.getSimpleName());
-		ruleImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-
-		RuleImplementation child1 = new RuleImplementation();
-		child1.getTextToFind().getTextItem().add("FOREIGN");
-		child1.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
-		child1.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-		child1.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-
-		RuleImplementation child2 = new RuleImplementation();
-		child2.getTextToFind().getTextItem().add("KEY");
-		child2.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
-		child2.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-		child2.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		ruleImpl.getChildrenRules().getRuleImplementation().add(child1);
-		ruleImpl.getChildrenRules().getRuleImplementation().add(child2);
-
-		RuleImplementation main = new RuleImplementation();
-		main.getNames().getTextItem().add(Id_Context.class.getSimpleName());
-		main.setTextCheckType(TextCheckType.CONTAINS);
-		main.getTextToFind().getTextItem().add("FK_");
-		main.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		main.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
-		main.setRuleViolationMessage("Foreign key is not defined using suggested naming convention to start with FK_.");
-		main.setDistanceCheckType(RuleDistanceIndexMatchType.EQUALS);
-
-		ruleImpl.getChildrenRules().getRuleImplementation().add(main);
-
-		return rule;
-	}
-
-	// Search_conditionContext
-	protected Rule getIndexNamingRule() {
-		Rule rule = baseRules.getIndexNamingRule();
-
-		RuleImplementation ruleImpl = rule.getRuleImplementation();
-
-		ruleImpl.getNames().getTextItem().add(Create_indexContext.class.getSimpleName());
-		ruleImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-
-		RuleImplementation child1 = new RuleImplementation();
-		child1.getTextToFind().getTextItem().add("INDEX");
-		child1.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
-		child1.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-		child1.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-
-		ruleImpl.getChildrenRules().getRuleImplementation().add(child1);
-
-		RuleImplementation main = new RuleImplementation();
-		main.getNames().getTextItem().add(Id_Context.class.getSimpleName());
-		main.setTextCheckType(TextCheckType.CONTAINS);
-		main.getTextToFind().getTextItem().add("IX_");
-		main.getTextToFind().getTextItem().add("IXU_");
-		main.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		main.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
-
-		ruleImpl.getChildrenRules().getRuleImplementation().add(main);
-
-		return rule;
-	}
-
-	protected Rule getNullComparisonRule() {
-
-		Rule rule = baseRules.getNullComparisonRule();
-		RuleImplementation rImpl = rule.getRuleImplementation();
-		rImpl.getNames().getTextItem().add(Search_conditionContext.class.getSimpleName());
-		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-
-		RuleImplementation child = new RuleImplementation();
-		child.getTextToFind().getTextItem().add("!=");
-		child.getTextToFind().getTextItem().add("<>");
-		child.getTextToFind().getTextItem().add("=");
-		child.setTextCheckType(TextCheckType.STRICT);
-		child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		child.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-		child.getNames().getTextItem().add(Comparison_operatorContext.class.getSimpleName());
-
-		RuleImplementation childNull = new RuleImplementation();
-
-		childNull.getTextToFind().getTextItem().add("NULL");
-		childNull.setTextCheckType(TextCheckType.STRICT);
-		childNull.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		childNull.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
-		childNull.getNames().getTextItem().add(Primitive_expressionContext.class.getSimpleName());
-
-		rImpl.getChildrenRules().getRuleImplementation().add(child);
-		rImpl.getChildrenRules().getRuleImplementation().add(childNull);
-
-		return rule;
-	}
-
-	protected Rule getWhereWithOrVsUnionRule() {
-
-		Rule rule = baseRules.getWhereWithOrVsUnionRule();
-		RuleImplementation rImpl = rule.getRuleImplementation();
-
-		rImpl.getNames().getTextItem().add(Search_conditionContext.class.getSimpleName());
-		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-
-		RuleImplementation child = new RuleImplementation();
-		child.getTextToFind().getTextItem().add("or");
-		child.setTextCheckType(TextCheckType.STRICT);
-		child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		child.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
-		child.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
-
-		rImpl.getChildrenRules().getRuleImplementation().add(child);
-		return rule;
-	}
-
-	protected Rule getUnionVsUnionALLRule() {
-		Rule rule = baseRules.getUnionVsUnionALLRule();
-		RuleImplementation rImpl = rule.getRuleImplementation();
-
-		rImpl.getNames().getTextItem().add(Sql_unionContext.class.getSimpleName());
-		rImpl.setRuleViolationMessage(
-				"Consider using UNION ALL instead of UNION operator for the performance reasons.");
-		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		rImpl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-
-		RuleImplementation child = new RuleImplementation();
-		child.getTextToFind().getTextItem().add("all");
-		child.setTextCheckType(TextCheckType.STRICT);
-		child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		child.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
-		child.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
-
-		rImpl.getChildrenRules().getRuleImplementation().add(child);
-		return rule;
-	}
-
-	protected Rule getExistsVsInRule() {
-		Rule rule = baseRules.getExistsVsInRule();
-
-		RuleImplementation rImpl = rule.getRuleImplementation();
-		rImpl.getNames().getTextItem().add(PredicateContext.class.getSimpleName());
-		rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		rImpl.setRuleViolationMessage("Consider using EXISTS/NOT EXISTS instead of IN/NOT IN in a clause.");
-
-		RuleImplementation child = new RuleImplementation();
-		child.getTextToFind().getTextItem().add("in");
-		child.setTextCheckType(TextCheckType.STRICT);
-		child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		child.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
-		child.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
-
-		RuleImplementation childSubqueryContext = new RuleImplementation();
-		childSubqueryContext.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		childSubqueryContext.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-		childSubqueryContext.getNames().getTextItem().add(SubqueryContext.class.getSimpleName());
-
-		rImpl.getChildrenRules().getRuleImplementation().add(child);
-		rImpl.getChildrenRules().getRuleImplementation().add(childSubqueryContext);
-		return rule;
-	}
-
-	protected Rule getOrderByRuleWithoutAscDesc() {
-		Rule rule = baseRules.getOrderByRuleWithoutAscDesc();
-
-		RuleImplementation impl = rule.getRuleImplementation();
-
-		RuleImplementation child2 = new RuleImplementation();
-		child2.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
-		child2.getTextToFind().getTextItem().add("asc");
-		child2.getTextToFind().getTextItem().add("desc");
-		child2.setTextCheckType(TextCheckType.STRICT);
-		child2.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
-		child2.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		child2.setRuleViolationMessage("test");
-		impl.getChildrenRules().getRuleImplementation().add(child2);
-		impl.getNames().getTextItem().add(Order_by_expressionContext.class.getSimpleName());
-
-		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		impl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-		return rule;
-	}
-
-	protected Rule getSargRule() {
-
-		Rule rule = baseRules.getSargRule();
-
-		RuleImplementation impl = rule.getRuleImplementation();
-
-		RuleImplementation functionCallContainsColRef = new RuleImplementation();
-		functionCallContainsColRef.getNames().getTextItem().add(Full_column_nameContext.class.getSimpleName());
-		functionCallContainsColRef.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		functionCallContainsColRef.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
-		functionCallContainsColRef
-				.setRuleViolationMessage("Non-sargeable argument found - column referenced in a function.");
-
-		RuleImplementation ruleFunctionCall = new RuleImplementation();
-		ruleFunctionCall.getNames().getTextItem().add(BUILT_IN_FUNCContext.class.getSimpleName());
-		ruleFunctionCall.getNames().getTextItem().add(Function_callContext.class.getSimpleName());
-		ruleFunctionCall.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		ruleFunctionCall.setRuleResultType(RuleResultType.DEFAULT);
-		ruleFunctionCall.getChildrenRules().getRuleImplementation().add(functionCallContainsColRef);
-
-		RuleImplementation predicateContextContainsLike = new RuleImplementation();
-		predicateContextContainsLike.getTextToFind().getTextItem().add("LIKE");
-		predicateContextContainsLike.setTextCheckType(TextCheckType.CONTAINS);
-		predicateContextContainsLike.getNames().getTextItem().add(PredicateContext.class.getSimpleName());
-		predicateContextContainsLike.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		predicateContextContainsLike.setRuleResultType(RuleResultType.DEFAULT);
-
-		RuleImplementation functionCallContainsLikeWildcard = new RuleImplementation();
-		functionCallContainsLikeWildcard.getTextToFind().getTextItem().add("N?[',‘]%(.*?)'");
-		functionCallContainsLikeWildcard.setTextCheckType(TextCheckType.REGEXP);
-		functionCallContainsLikeWildcard.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
-		functionCallContainsLikeWildcard.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
-		functionCallContainsLikeWildcard.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
-		functionCallContainsLikeWildcard
-				.setRuleViolationMessage("Non-sargeable argument found - predicate starts with wildcard. %");
-
-		predicateContextContainsLike.getChildrenRules().getRuleImplementation().add(functionCallContainsLikeWildcard);
-
-		impl.getChildrenRules().getRuleImplementation().add(ruleFunctionCall);
-		impl.getChildrenRules().getRuleImplementation().add(predicateContextContainsLike);
-		impl.setRuleViolationMessage("Non-sargeable argument found");
-		impl.getNames().getTextItem().add(Search_conditionContext.class.getSimpleName());
-		impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		impl.setRuleResultType(RuleResultType.DEFAULT);
-
-		return rule;
-	}
-
+    INSTANCE;
+
+    BaseRules baseRules = BaseRules.INSTANCE;
+
+    public List<SqlRules> getRules() {
+        List<SqlRules> rules = new ArrayList<>();
+        {
+            SqlRules customRules = new SqlRules();
+            customRules.setRepoKey("SQLCC");
+            customRules.setRepoName("SQL Plugin checks");
+            customRules.setDialect(Dialects.TSQL.name());
+            customRules
+                    .getRule()
+                    .addAll(
+                            Arrays.asList(
+                                    getWaitForRule(),
+                                    getSelectAllRule(),
+                                    getInsertRule(),
+                                    getOrderByRule(),
+                                    getExecRule(),
+                                    getNoLockRule(),
+                                    getSargRule(),
+                                    getPKRule(),
+                                    getFKRule(),
+                                    getNullComparisonRule(),
+                                    getIndexNamingRule(),
+                                    getWhereWithOrVsUnionRule(),
+                                    getUnionVsUnionALLRule(),
+                                    getExistsVsInRule(),
+                                    getOrderByRuleWithoutAscDesc(),
+                                    getCartesianJoinsRule(),
+                                    getColumnListRule()
+                                    // getCursorRule()
+                                    // baseRules.getDeclareRule(),
+                                    //							baseRules.getMultipleDeclarations())
+
+                                    ));
+            rules.add(customRules);
+        }
+        return rules;
+    }
+
+    protected Rule getColumnListRule() {
+
+        Rule rule = baseRules.getColumnListRule();
+        // find all column refs
+        RuleImplementation parent = rule.getRuleImplementation();
+        parent.getNames()
+                .getTextItem()
+                .add(
+                        org.antlr.sql.dialects.tsql.TSqlParser.Full_column_nameContext.class
+                                .getSimpleName());
+        parent.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        {
+            // only check SELECT clauses
+            RuleImplementation columnRefCheck = new RuleImplementation();
+            columnRefCheck
+                    .getNames()
+                    .getTextItem()
+                    .add(
+                            org.antlr.sql.dialects.tsql.TSqlParser.Select_listContext.class
+                                    .getSimpleName());
+            columnRefCheck.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+            columnRefCheck.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+            parent.getParentRules().getRuleImplementation().add(columnRefCheck);
+        }
+
+        {
+            // check if columns contain references
+            RuleImplementation columnRefCheck = new RuleImplementation();
+            columnRefCheck
+                    .getNames()
+                    .getTextItem()
+                    .add(
+                            org.antlr.sql.dialects.tsql.TSqlParser.Full_table_nameContext.class
+                                    .getSimpleName());
+            columnRefCheck.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+            columnRefCheck.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
+            parent.getChildrenRules().getRuleImplementation().add(columnRefCheck);
+        }
+
+        {
+            // rule to skip rule for single table queries
+            RuleImplementation querySpec = new RuleImplementation();
+            querySpec
+                    .getNames()
+                    .getTextItem()
+                    .add(
+                            org.antlr.sql.dialects.tsql.TSqlParser.Select_statementContext.class
+                                    .getSimpleName());
+            querySpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+            // rule to skip rule for single table queries
+            RuleImplementation fromClauseSpec = new RuleImplementation();
+            fromClauseSpec
+                    .getNames()
+                    .getTextItem()
+                    .add(
+                            org.antlr.sql.dialects.tsql.TSqlParser.Table_sourcesContext.class
+                                    .getSimpleName());
+            fromClauseSpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+            RuleImplementation tableRefs = new RuleImplementation();
+            tableRefs
+                    .getNames()
+                    .getTextItem()
+                    .add(
+                            org.antlr.sql.dialects.tsql.TSqlParser.Table_source_itemContext.class
+                                    .getSimpleName());
+            tableRefs.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+            tableRefs.setRuleResultType(RuleResultType.SKIP_IF_LESS_FOUND);
+            tableRefs.setTimes(2);
+
+            fromClauseSpec.getChildrenRules().getRuleImplementation().add(tableRefs);
+            querySpec.getChildrenRules().getRuleImplementation().add(fromClauseSpec);
+            parent.getParentRules().getRuleImplementation().add(querySpec);
+        }
+
+        return rule;
+    }
+
+    protected Rule getCartesianJoinsRule() {
+
+        Rule rule = baseRules.getCartesianJoinsRule();
+        RuleImplementation parent = rule.getRuleImplementation();
+
+        parent.getNames()
+                .getTextItem()
+                .add(
+                        org.antlr.sql.dialects.tsql.TSqlParser.Non_ansi_joinContext.class
+                                .getSimpleName());
+        parent.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        parent.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+
+        return rule;
+    }
+
+    protected Rule getWaitForRule() {
+        Rule rule = baseRules.getWaitForRule();
+        RuleImplementation impl = rule.getRuleImplementation();
+        impl.getNames().getTextItem().add(Waitfor_statementContext.class.getSimpleName());
+
+        impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        impl.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+        impl.setRuleViolationMessage("WAITFOR is used.");
+        impl.getViolatingRulesCodeExamples().getRuleCodeExample().add("WAITFOR '10:00:00';");
+
+        return rule;
+    }
+
+    protected Rule getSelectAllRule() {
+        Rule rule = baseRules.getSelectAllRule();
+        RuleImplementation impl = rule.getRuleImplementation();
+
+        impl.getNames().getTextItem().add(Select_list_elemContext.class.getSimpleName());
+
+        impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        impl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+
+        RuleImplementation child = new RuleImplementation();
+
+        child.getNames().getTextItem().add(AsteriskContext.class.getSimpleName());
+        child.getTextToFind().getTextItem().add("*");
+
+        child.setTextCheckType(TextCheckType.CONTAINS);
+        child.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+        child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+
+        RuleImplementation child2 = new RuleImplementation();
+
+        child2.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
+        child2.getTextToFind().getTextItem().add("*");
+
+        child2.setTextCheckType(TextCheckType.STRICT);
+        child2.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+        child2.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        child.getChildrenRules().getRuleImplementation().add(child2);
+
+        impl.getChildrenRules().getRuleImplementation().add(child);
+
+        // AsteriskContext
+        return rule;
+    }
+
+    protected Rule getInsertRule() {
+        Rule rule = baseRules.getInsertRule();
+        RuleImplementation impl = rule.getRuleImplementation();
+
+        RuleImplementation child2 = new RuleImplementation();
+        child2.getNames().getTextItem().add(Column_name_listContext.class.getSimpleName());
+        child2.getNames().getTextItem().add(Insert_column_name_listContext.class.getSimpleName());
+
+        child2.setTextCheckType(TextCheckType.DEFAULT);
+        child2.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
+        child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+        impl.getChildrenRules().getRuleImplementation().add(child2);
+        impl.getNames().getTextItem().add(Insert_statementContext.class.getSimpleName());
+        impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        impl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+        return rule;
+    }
+
+    protected Rule getOrderByRule() {
+        Rule rule = baseRules.getOrderByRule();
+        RuleImplementation impl = rule.getRuleImplementation();
+
+        RuleImplementation child2 = new RuleImplementation();
+        child2.getNames().getTextItem().add(Primitive_constantContext.class.getSimpleName());
+        child2.setTextCheckType(TextCheckType.DEFAULT);
+        child2.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+        child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+        impl.getChildrenRules().getRuleImplementation().add(child2);
+        impl.getNames().getTextItem().add(Order_by_clauseContext.class.getSimpleName());
+
+        impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        impl.setRuleResultType(RuleResultType.DEFAULT);
+        impl.setRuleViolationMessage(
+                "Positional reference is used instead of column name in an ORDER BY clause.");
+
+        rule.setRuleImplementation(impl);
+        return rule;
+    }
+
+    protected Rule getExecRule() {
+        Rule rule = baseRules.getExecRule();
+        RuleImplementation impl = rule.getRuleImplementation();
+
+        RuleImplementation child2 = new RuleImplementation();
+        child2.getNames().getTextItem().add(Execute_var_stringContext.class.getSimpleName());
+        child2.setTextCheckType(TextCheckType.DEFAULT);
+        child2.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+        child2.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+        RuleImplementation skipSubRule = new RuleImplementation();
+        skipSubRule
+                .getNames()
+                .getTextItem()
+                .add(Func_proc_name_server_database_schemaContext.class.getSimpleName());
+        skipSubRule.setTextCheckType(TextCheckType.DEFAULT);
+        skipSubRule.setRuleResultType(RuleResultType.SKIP_IF_FOUND);
+        skipSubRule.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+        impl.getChildrenRules().getRuleImplementation().add(child2);
+        impl.getChildrenRules().getRuleImplementation().add(skipSubRule);
+        impl.getNames().getTextItem().add(Execute_statementContext.class.getSimpleName());
+        impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        impl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+
+        return rule;
+    }
+
+    protected Rule getNoLockRule() {
+        Rule rule = baseRules.getNoLockRule();
+        RuleImplementation impl = rule.getRuleImplementation();
+
+        impl.getTextToFind().getTextItem().add("NOLOCK");
+        impl.setTextCheckType(TextCheckType.CONTAINS);
+        impl.getNames().getTextItem().add(Table_hintContext.class.getSimpleName());
+        impl.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        impl.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+
+        return rule;
+    }
+
+    protected Rule getPKRule() {
+        Rule rule = baseRules.getPKRule();
+        RuleImplementation ruleImpl = rule.getRuleImplementation();
+
+        ruleImpl.getNames().getTextItem().add(Table_constraintContext.class.getSimpleName());
+        ruleImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+        RuleImplementation child1 = new RuleImplementation();
+        child1.getTextToFind().getTextItem().add("PRIMARY");
+        child1.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
+        child1.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+        child1.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+
+        RuleImplementation child2 = new RuleImplementation();
+        child2.getTextToFind().getTextItem().add("KEY");
+        child2.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
+        child2.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+        child2.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        ruleImpl.getChildrenRules().getRuleImplementation().add(child1);
+        ruleImpl.getChildrenRules().getRuleImplementation().add(child2);
+
+        RuleImplementation main = new RuleImplementation();
+        main.getNames().getTextItem().add(Id_Context.class.getSimpleName());
+        main.setTextCheckType(TextCheckType.CONTAINS);
+        main.getTextToFind().getTextItem().add("PK_");
+        main.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        main.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
+        main.setRuleViolationMessage(
+                "Primary key is not defined using suggested naming convention to start with PK_.");
+        main.setDistanceCheckType(RuleDistanceIndexMatchType.EQUALS);
+        ruleImpl.getChildrenRules().getRuleImplementation().add(main);
+
+        return rule;
+    }
+
+    protected Rule getFKRule() {
+        Rule rule = baseRules.getFKRule();
+        RuleImplementation ruleImpl = rule.getRuleImplementation();
+
+        ruleImpl.getNames().getTextItem().add(Table_constraintContext.class.getSimpleName());
+        ruleImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+        RuleImplementation child1 = new RuleImplementation();
+        child1.getTextToFind().getTextItem().add("FOREIGN");
+        child1.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
+        child1.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+        child1.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+
+        RuleImplementation child2 = new RuleImplementation();
+        child2.getTextToFind().getTextItem().add("KEY");
+        child2.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
+        child2.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+        child2.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        ruleImpl.getChildrenRules().getRuleImplementation().add(child1);
+        ruleImpl.getChildrenRules().getRuleImplementation().add(child2);
+
+        RuleImplementation main = new RuleImplementation();
+        main.getNames().getTextItem().add(Id_Context.class.getSimpleName());
+        main.setTextCheckType(TextCheckType.CONTAINS);
+        main.getTextToFind().getTextItem().add("FK_");
+        main.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        main.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
+        main.setRuleViolationMessage(
+                "Foreign key is not defined using suggested naming convention to start with FK_.");
+        main.setDistanceCheckType(RuleDistanceIndexMatchType.EQUALS);
+
+        ruleImpl.getChildrenRules().getRuleImplementation().add(main);
+
+        return rule;
+    }
+
+    // Search_conditionContext
+    protected Rule getIndexNamingRule() {
+        Rule rule = baseRules.getIndexNamingRule();
+
+        RuleImplementation ruleImpl = rule.getRuleImplementation();
+
+        ruleImpl.getNames().getTextItem().add(Create_indexContext.class.getSimpleName());
+        ruleImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+        RuleImplementation child1 = new RuleImplementation();
+        child1.getTextToFind().getTextItem().add("INDEX");
+        child1.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
+        child1.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+        child1.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+
+        ruleImpl.getChildrenRules().getRuleImplementation().add(child1);
+
+        RuleImplementation main = new RuleImplementation();
+        main.getNames().getTextItem().add(Id_Context.class.getSimpleName());
+        main.setTextCheckType(TextCheckType.CONTAINS);
+        main.getTextToFind().getTextItem().add("IX_");
+        main.getTextToFind().getTextItem().add("IXU_");
+        main.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        main.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
+
+        ruleImpl.getChildrenRules().getRuleImplementation().add(main);
+
+        return rule;
+    }
+
+    protected Rule getNullComparisonRule() {
+
+        Rule rule = baseRules.getNullComparisonRule();
+        RuleImplementation rImpl = rule.getRuleImplementation();
+        rImpl.getNames().getTextItem().add(Search_conditionContext.class.getSimpleName());
+        rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+        RuleImplementation child = new RuleImplementation();
+        child.getTextToFind().getTextItem().add("!=");
+        child.getTextToFind().getTextItem().add("<>");
+        child.getTextToFind().getTextItem().add("=");
+        child.setTextCheckType(TextCheckType.STRICT);
+        child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        child.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+        child.getNames().getTextItem().add(Comparison_operatorContext.class.getSimpleName());
+
+        RuleImplementation childNull = new RuleImplementation();
+
+        childNull.getTextToFind().getTextItem().add("NULL");
+        childNull.setTextCheckType(TextCheckType.STRICT);
+        childNull.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        childNull.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+        childNull.getNames().getTextItem().add(Primitive_expressionContext.class.getSimpleName());
+
+        rImpl.getChildrenRules().getRuleImplementation().add(child);
+        rImpl.getChildrenRules().getRuleImplementation().add(childNull);
+
+        return rule;
+    }
+
+    protected Rule getWhereWithOrVsUnionRule() {
+
+        Rule rule = baseRules.getWhereWithOrVsUnionRule();
+        RuleImplementation rImpl = rule.getRuleImplementation();
+
+        rImpl.getNames().getTextItem().add(Search_conditionContext.class.getSimpleName());
+        rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+        RuleImplementation child = new RuleImplementation();
+        child.getTextToFind().getTextItem().add("or");
+        child.setTextCheckType(TextCheckType.STRICT);
+        child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        child.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+        child.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
+
+        rImpl.getChildrenRules().getRuleImplementation().add(child);
+        return rule;
+    }
+
+    protected Rule getUnionVsUnionALLRule() {
+        Rule rule = baseRules.getUnionVsUnionALLRule();
+        RuleImplementation rImpl = rule.getRuleImplementation();
+
+        rImpl.getNames().getTextItem().add(Sql_unionContext.class.getSimpleName());
+        rImpl.setRuleViolationMessage(
+                "Consider using UNION ALL instead of UNION operator for the performance reasons.");
+        rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        rImpl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+
+        RuleImplementation child = new RuleImplementation();
+        child.getTextToFind().getTextItem().add("all");
+        child.setTextCheckType(TextCheckType.STRICT);
+        child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        child.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
+        child.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
+
+        rImpl.getChildrenRules().getRuleImplementation().add(child);
+        return rule;
+    }
+
+    protected Rule getExistsVsInRule() {
+        Rule rule = baseRules.getExistsVsInRule();
+
+        RuleImplementation rImpl = rule.getRuleImplementation();
+        rImpl.getNames().getTextItem().add(PredicateContext.class.getSimpleName());
+        rImpl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        rImpl.setRuleViolationMessage(
+                "Consider using EXISTS/NOT EXISTS instead of IN/NOT IN in a clause.");
+
+        RuleImplementation child = new RuleImplementation();
+        child.getTextToFind().getTextItem().add("in");
+        child.setTextCheckType(TextCheckType.STRICT);
+        child.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        child.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+        child.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
+
+        RuleImplementation childSubqueryContext = new RuleImplementation();
+        childSubqueryContext.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        childSubqueryContext.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+        childSubqueryContext.getNames().getTextItem().add(SubqueryContext.class.getSimpleName());
+
+        rImpl.getChildrenRules().getRuleImplementation().add(child);
+        rImpl.getChildrenRules().getRuleImplementation().add(childSubqueryContext);
+        return rule;
+    }
+
+    protected Rule getOrderByRuleWithoutAscDesc() {
+        Rule rule = baseRules.getOrderByRuleWithoutAscDesc();
+
+        RuleImplementation impl = rule.getRuleImplementation();
+
+        RuleImplementation child2 = new RuleImplementation();
+        child2.getNames().getTextItem().add(TerminalNodeImpl.class.getSimpleName());
+        child2.getTextToFind().getTextItem().add("asc");
+        child2.getTextToFind().getTextItem().add("desc");
+        child2.setTextCheckType(TextCheckType.STRICT);
+        child2.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
+        child2.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        child2.setRuleViolationMessage("test");
+        impl.getChildrenRules().getRuleImplementation().add(child2);
+        impl.getNames().getTextItem().add(Order_by_expressionContext.class.getSimpleName());
+
+        impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        impl.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+        return rule;
+    }
+
+    protected Rule getSargRule() {
+
+        Rule rule = baseRules.getSargRule();
+
+        RuleImplementation impl = rule.getRuleImplementation();
+
+        RuleImplementation functionCallContainsColRef = new RuleImplementation();
+        functionCallContainsColRef
+                .getNames()
+                .getTextItem()
+                .add(Full_column_nameContext.class.getSimpleName());
+        functionCallContainsColRef.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        functionCallContainsColRef.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+        functionCallContainsColRef.setRuleViolationMessage(
+                "Non-sargeable argument found - column referenced in a function.");
+
+        RuleImplementation ruleFunctionCall = new RuleImplementation();
+        ruleFunctionCall.getNames().getTextItem().add(BUILT_IN_FUNCContext.class.getSimpleName());
+        ruleFunctionCall.getNames().getTextItem().add(Function_callContext.class.getSimpleName());
+        ruleFunctionCall.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        ruleFunctionCall.setRuleResultType(RuleResultType.DEFAULT);
+        ruleFunctionCall.getChildrenRules().getRuleImplementation().add(functionCallContainsColRef);
+
+        RuleImplementation predicateContextContainsLike = new RuleImplementation();
+        predicateContextContainsLike.getTextToFind().getTextItem().add("LIKE");
+        predicateContextContainsLike.setTextCheckType(TextCheckType.CONTAINS);
+        predicateContextContainsLike
+                .getNames()
+                .getTextItem()
+                .add(PredicateContext.class.getSimpleName());
+        predicateContextContainsLike.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        predicateContextContainsLike.setRuleResultType(RuleResultType.DEFAULT);
+
+        RuleImplementation functionCallContainsLikeWildcard = new RuleImplementation();
+        functionCallContainsLikeWildcard.getTextToFind().getTextItem().add("N?[',‘]%(.*?)'");
+        functionCallContainsLikeWildcard.setTextCheckType(TextCheckType.REGEXP);
+        functionCallContainsLikeWildcard
+                .getNames()
+                .getTextItem()
+                .add(TerminalNodeImpl.class.getSimpleName());
+        functionCallContainsLikeWildcard.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+        functionCallContainsLikeWildcard.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
+        functionCallContainsLikeWildcard.setRuleViolationMessage(
+                "Non-sargeable argument found - predicate starts with wildcard. %");
+
+        predicateContextContainsLike
+                .getChildrenRules()
+                .getRuleImplementation()
+                .add(functionCallContainsLikeWildcard);
+
+        impl.getChildrenRules().getRuleImplementation().add(ruleFunctionCall);
+        impl.getChildrenRules().getRuleImplementation().add(predicateContextContainsLike);
+        impl.setRuleViolationMessage("Non-sargeable argument found");
+        impl.getNames().getTextItem().add(Search_conditionContext.class.getSimpleName());
+        impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        impl.setRuleResultType(RuleResultType.DEFAULT);
+
+        return rule;
+    }
 }

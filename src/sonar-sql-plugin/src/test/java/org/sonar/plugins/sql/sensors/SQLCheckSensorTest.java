@@ -3,7 +3,6 @@ package org.sonar.plugins.sql.sensors;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Assume;
@@ -18,11 +17,9 @@ import org.sonar.plugins.sql.Constants;
 
 public class SQLCheckSensorTest {
 
-    @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
+    @Rule public TemporaryFolder folder = new TemporaryFolder();
 
-    @org.junit.Rule
-    public JUnitTempFolder temp = new org.sonar.api.impl.utils.JUnitTempFolder();
+    @org.junit.Rule public JUnitTempFolder temp = new org.sonar.api.impl.utils.JUnitTempFolder();
 
     @Test
     public void testExecute() throws IOException {
@@ -36,9 +33,13 @@ public class SQLCheckSensorTest {
         FileUtils.copyURLToFile(getClass().getResource("/tsql/sample1.sql"), baseFile);
         String contents = new String(Files.readAllBytes(baseFile.toPath()));
 
-        DefaultInputFile ti = new TestInputFileBuilder("test", folder.getRoot(), baseFile).initMetadata(contents)
-                .setLanguage(Constants.languageKey).setContents(contents).setProjectBaseDir(folder.getRoot().toPath())
-                .build();
+        DefaultInputFile ti =
+                new TestInputFileBuilder("test", folder.getRoot(), baseFile)
+                        .initMetadata(contents)
+                        .setLanguage(Constants.languageKey)
+                        .setContents(contents)
+                        .setProjectBaseDir(folder.getRoot().toPath())
+                        .build();
         ctxTester.fileSystem().add(ti);
 
         SqlCheckSensor s = new SqlCheckSensor(temp);

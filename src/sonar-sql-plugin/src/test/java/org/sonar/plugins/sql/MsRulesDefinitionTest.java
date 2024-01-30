@@ -16,10 +16,9 @@ public class MsRulesDefinitionTest {
 
         Assert.assertEquals(1, context.repositories().size());
         Assert.assertEquals(14, context.repositories().get(0).rules().size());
-        
-        Assert.assertTrue(context.repositories().get(0).rules().stream().allMatch(x->x.type() == RuleType.CODE_SMELL));
 
-
+        Assert.assertTrue(
+                context.repositories().get(0).rules().stream()
+                        .allMatch(x -> x.type() == RuleType.CODE_SMELL));
     }
-
 }

@@ -10,10 +10,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.commons.io.input.BOMInputStream;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
@@ -48,19 +46,41 @@ public class AdhocRulesProvider {
         rule.setDistance(XmlHelper.getNodeValue2(parent, "distance", v -> Integer.parseInt(v), 0));
         rule.setIndex(XmlHelper.getNodeValue2(parent, "index", v -> Integer.parseInt(v), 0));
 
-        rule.setIndexCheckType(XmlHelper.getNodeValue2(parent, "indexCheckType",
-                v -> RuleDistanceIndexMatchType.fromValue(v), RuleDistanceIndexMatchType.DEFAULT));
-        rule.setDistanceCheckType(XmlHelper.getNodeValue2(parent, "distanceCheckType",
-                v -> RuleDistanceIndexMatchType.fromValue(v), RuleDistanceIndexMatchType.DEFAULT));
-        rule.setRuleMode(XmlHelper.getNodeValue2(parent, "ruleMode", v -> RuleMode.fromValue(v), RuleMode.DEFAULT));
-        rule.setRuleMatchType(XmlHelper.getNodeValue2(parent, "ruleMatchType", v -> RuleMatchType.fromValue(v),
-                RuleMatchType.DEFAULT));
+        rule.setIndexCheckType(
+                XmlHelper.getNodeValue2(
+                        parent,
+                        "indexCheckType",
+                        v -> RuleDistanceIndexMatchType.fromValue(v),
+                        RuleDistanceIndexMatchType.DEFAULT));
+        rule.setDistanceCheckType(
+                XmlHelper.getNodeValue2(
+                        parent,
+                        "distanceCheckType",
+                        v -> RuleDistanceIndexMatchType.fromValue(v),
+                        RuleDistanceIndexMatchType.DEFAULT));
+        rule.setRuleMode(
+                XmlHelper.getNodeValue2(
+                        parent, "ruleMode", v -> RuleMode.fromValue(v), RuleMode.DEFAULT));
+        rule.setRuleMatchType(
+                XmlHelper.getNodeValue2(
+                        parent,
+                        "ruleMatchType",
+                        v -> RuleMatchType.fromValue(v),
+                        RuleMatchType.DEFAULT));
 
-        rule.setRuleResultType(XmlHelper.getNodeValue2(parent, "ruleResultType", v -> RuleResultType.fromValue(v),
-                RuleResultType.DEFAULT));
+        rule.setRuleResultType(
+                XmlHelper.getNodeValue2(
+                        parent,
+                        "ruleResultType",
+                        v -> RuleResultType.fromValue(v),
+                        RuleResultType.DEFAULT));
 
-        rule.setTextCheckType(XmlHelper.getNodeValue2(parent, "textCheckType", v -> TextCheckType.fromValue(v),
-                TextCheckType.DEFAULT));
+        rule.setTextCheckType(
+                XmlHelper.getNodeValue2(
+                        parent,
+                        "textCheckType",
+                        v -> TextCheckType.fromValue(v),
+                        TextCheckType.DEFAULT));
 
         Node names = XmlHelper.getNode(parent, "names");
         if (names != null) {
@@ -93,7 +113,9 @@ public class AdhocRulesProvider {
                 if (child.getNodeType() != Node.ELEMENT_NODE) {
                     continue;
                 }
-                rule.getViolatingRulesCodeExamples().getRuleCodeExample().add(child.getTextContent());
+                rule.getViolatingRulesCodeExamples()
+                        .getRuleCodeExample()
+                        .add(child.getTextContent());
             }
         }
         Node compliantRulesCodeExamples = XmlHelper.getNode(parent, "compliantRulesCodeExamples");
@@ -104,7 +126,9 @@ public class AdhocRulesProvider {
                 if (child.getNodeType() != Node.ELEMENT_NODE) {
                     continue;
                 }
-                rule.getCompliantRulesCodeExamples().getRuleCodeExample().add(child.getTextContent());
+                rule.getCompliantRulesCodeExamples()
+                        .getRuleCodeExample()
+                        .add(child.getTextContent());
             }
         }
 
@@ -163,7 +187,6 @@ public class AdhocRulesProvider {
         }
 
         parents.add(rule);
-
     }
 
     public static SqlRules read(final File file) throws Exception {
@@ -192,11 +215,13 @@ public class AdhocRulesProvider {
                     rule.setInternalKey(XmlHelper.getNodeValue(parent, "internalKey"));
                     rule.setDescription(XmlHelper.getNodeValue(parent, "description"));
                     rule.setSeverity(XmlHelper.getNodeValue(parent, "severity"));
-                    rule.setRemediationFunction(XmlHelper.getNodeValue(parent, "remediationFunction"));
+                    rule.setRemediationFunction(
+                            XmlHelper.getNodeValue(parent, "remediationFunction"));
                     rule.setDebtRemediationFunctionCoefficient(
                             XmlHelper.getNodeValue(parent, "debtRemediationFunctionCoefficient"));
                     rule.setTag(XmlHelper.getNodeValue(parent, "tag"));
-                    rule.setRuleType(XmlHelper.getNodeValue2(parent, "ruleType", v -> v, "CODE_SMELL"));
+                    rule.setRuleType(
+                            XmlHelper.getNodeValue2(parent, "ruleType", v -> v, "CODE_SMELL"));
 
                     Node imp = XmlHelper.getNode(parent, "ruleImplementation");
                     List<RuleImplementation> main = new LinkedList<RuleImplementation>();
@@ -212,7 +237,6 @@ public class AdhocRulesProvider {
             }
 
             return rules;
-
         }
     }
 
@@ -228,9 +252,10 @@ public class AdhocRulesProvider {
         }
 
         for (final String path : pathsToSearch) {
-            LOGGER.debug(() -> {
-                return "Searching custom/adhoc rules at: " + path;
-            });
+            LOGGER.debug(
+                    () -> {
+                        return "Searching custom/adhoc rules at: " + path;
+                    });
             File file = new File(path);
             if (!file.isAbsolute()) {
                 file = new File(baseDir, path);
@@ -247,21 +272,26 @@ public class AdhocRulesProvider {
 
                     try (Stream<Path> stream = Files.walk(file.toPath())) {
                         stream.filter(
-                                p -> Files.isRegularFile(p) && p.getFileName().toString().toLowerCase().contains(s))
-                                .forEach(p -> {
-                                    try {
-                                        rules.add(read(p.toFile()));
-                                    } catch (Exception e) {
-                                        LOGGER.warn("Unexpected error reading file: " + p, e);
-                                    }
-                                });
+                                        p ->
+                                                Files.isRegularFile(p)
+                                                        && p.getFileName()
+                                                                .toString()
+                                                                .toLowerCase()
+                                                                .contains(s))
+                                .forEach(
+                                        p -> {
+                                            try {
+                                                rules.add(read(p.toFile()));
+                                            } catch (Exception e) {
+                                                LOGGER.warn(
+                                                        "Unexpected error reading file: " + p, e);
+                                            }
+                                        });
                     }
                 } catch (IOException e) {
                     LOGGER.warn("Unexpected error reading files at: " + file, e);
-
                 }
             }
-
         }
         return rules;
     }

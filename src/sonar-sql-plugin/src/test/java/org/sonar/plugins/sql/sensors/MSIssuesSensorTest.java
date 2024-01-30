@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
-
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Assume;
@@ -20,18 +19,16 @@ import org.sonar.plugins.sql.Constants;
 
 public class MSIssuesSensorTest {
 
-    @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
+    @Rule public TemporaryFolder folder = new TemporaryFolder();
 
-    @Rule
-    public LogTester logTester = new LogTester();
+    @Rule public LogTester logTester = new LogTester();
 
-    @Rule
-    public JUnitTempFolder temp = new org.sonar.api.impl.utils.JUnitTempFolder();
+    @Rule public JUnitTempFolder temp = new org.sonar.api.impl.utils.JUnitTempFolder();
 
     @Test
     public void testExecute() throws IOException {
-        Assume.assumeFalse("OS not mac", System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0);
+        Assume.assumeFalse(
+                "OS not mac", System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0);
 
         SensorContextTester ctxTester = SensorContextTester.create(folder.getRoot());
         ctxTester.fileSystem().setWorkDir(folder.getRoot().toPath());
@@ -40,19 +37,30 @@ public class MSIssuesSensorTest {
 
         File resFile = folder.newFile("staticcodeanalysis.results.xml");
 
-        FileUtils.write(resFile,
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" + "<Problems>" + "<Problem>" + "<Line>1</Line>"
-                        + "<Rule>S1</Rule>" + "<ProblemDescription>Test</ProblemDescription>"
+        FileUtils.write(
+                resFile,
+                "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n"
+                        + "<Problems>"
+                        + "<Problem>"
+                        + "<Line>1</Line>"
+                        + "<Rule>S1</Rule>"
+                        + "<ProblemDescription>Test</ProblemDescription>"
                         + "<Severity>MAJOR</Severity>"
-
-                        + "<SourceFile>" + baseFile.getAbsolutePath() + "</SourceFile>" + "</Problem></Problems>",
+                        + "<SourceFile>"
+                        + baseFile.getAbsolutePath()
+                        + "</SourceFile>"
+                        + "</Problem></Problems>",
                 Charset.defaultCharset());
 
         FileUtils.copyURLToFile(getClass().getResource("/tsql/sample2.sql"), baseFile);
         String contents = new String(Files.readAllBytes(baseFile.toPath()));
 
-        DefaultInputFile ti = new TestInputFileBuilder("test", folder.getRoot(), baseFile).initMetadata(contents)
-                .setLanguage(Constants.languageKey).setContents(contents).build();
+        DefaultInputFile ti =
+                new TestInputFileBuilder("test", folder.getRoot(), baseFile)
+                        .initMetadata(contents)
+                        .setLanguage(Constants.languageKey)
+                        .setContents(contents)
+                        .build();
         ctxTester.fileSystem().add(ti);
         MSIssuesSensor s = new MSIssuesSensor();
         s.execute(ctxTester);
@@ -60,5 +68,4 @@ public class MSIssuesSensorTest {
         Assert.assertEquals(0, ctxTester.allIssues().size());
         Assert.assertEquals(0, ctxTester.allAdHocRules().size());
     }
-
 }
