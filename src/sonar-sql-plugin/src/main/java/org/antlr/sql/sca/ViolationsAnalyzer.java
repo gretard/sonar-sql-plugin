@@ -90,10 +90,10 @@ public class ViolationsAnalyzer {
 
 			RuleImplementation impl = item.getKey();
 			List<IParsedNode> values = item.getValue();
+
 			if (RuleResultType.DEFAULT == impl.getRuleResultType()) {
 				continue;
 			}
-
 			if (RuleResultType.SKIP_IF_MORE_FOUND == impl.getRuleResultType() && values.size() > impl.getTimes()) {
 				skipSatisfied = true;
 			}

@@ -45,12 +45,76 @@ public enum PSSQLV2Rules {
 					.addAll(Arrays.asList(getWaitForRule(), getSelectAllRule(), getInsertRule(), getOrderByRule(),
 							getSargRule(), getNullComparisonRule(), getWhereWithOrVsUnionRule(),
 							getUnionVsUnionALLRule(), getCartesianJoinsRule(), getExistsVsInRule(),
-							getOrderByRuleWithoutAscDesc()));
+							getOrderByRuleWithoutAscDesc(), getColumnListRule()));
 			rules.add(customRules);
 		}
 		return rules;
 	}
 
+	protected Rule getColumnListRule() {
+
+		var rule = baseRules.getColumnListRule();
+		// find all column refs
+		RuleImplementation parent = rule.getRuleImplementation();
+		parent.getNames().getTextItem()
+				.add(org.antlr.sql.dialects.psqlv2.PostgreSQLParser.ColumnrefContext.class.getSimpleName());
+		parent.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+		// filter only select columns
+		{
+			RuleImplementation querySpec = new RuleImplementation();
+			querySpec.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.psqlv2.PostgreSQLParser.Opt_target_listContext.class.getSimpleName());
+			querySpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			querySpec.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+			parent.getParentRules().getRuleImplementation().add(querySpec);
+		}
+		{
+			// check if columns contain references
+			RuleImplementation columnRefCheck = new RuleImplementation();
+			columnRefCheck.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.psqlv2.PostgreSQLParser.IndirectionContext.class.getSimpleName());
+			columnRefCheck.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			columnRefCheck.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
+			parent.getChildrenRules().getRuleImplementation().add(columnRefCheck);
+		}
+		{
+			// check if columns contain references
+			RuleImplementation columnRefCheck = new RuleImplementation();
+			columnRefCheck.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.psqlv2.PostgreSQLParser.Select_clauseContext.class.getSimpleName());
+			columnRefCheck.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			columnRefCheck.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+			parent.getParentRules().getRuleImplementation().add(columnRefCheck);
+		}
+		//
+		{
+			// rule to skip rule for single table queries
+			RuleImplementation querySpec = new RuleImplementation();
+			querySpec.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.psqlv2.PostgreSQLParser.StmtContext.class.getSimpleName());
+			querySpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+			
+			RuleImplementation fromClauseRule = new RuleImplementation();
+			fromClauseRule.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.psqlv2.PostgreSQLParser.From_clauseContext.class.getSimpleName());
+			fromClauseRule.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			
+			RuleImplementation tableRefs = new RuleImplementation();
+			tableRefs.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.psqlv2.PostgreSQLParser.Qualified_nameContext.class.getSimpleName());
+			tableRefs.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			tableRefs.setRuleResultType(RuleResultType.SKIP_IF_LESS_FOUND);
+			tableRefs.setTimes(2);
+
+			fromClauseRule.getChildrenRules().getRuleImplementation().add(tableRefs);
+			querySpec.getChildrenRules().getRuleImplementation().add(fromClauseRule);
+			parent.getParentRules().getRuleImplementation().add(querySpec);
+		}
+
+		return rule;
+	}
 	protected Rule getCartesianJoinsRule() {
 
 		var rule = baseRules.getCartesianJoinsRule();

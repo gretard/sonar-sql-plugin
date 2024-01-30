@@ -545,10 +545,38 @@ public enum BaseRules {
 		rImpl.getCompliantRulesCodeExamples().getRuleCodeExample()
 				.add("SELECT name, bank_name FROM customers c  inner join banks b on c.bank_id = b.id");
 		rImpl.getViolatingRulesCodeExamples().getRuleCodeExample()
-				.add("SELECT * FROM customers, orders WHERE customers.id = orders.customer_id;");
+				.add("SELECT name, order_id FROM customers, orders WHERE customers.id = orders.customer_id;");
 
 		return r;
 	}
+	
+	public Rule getColumnListRule() {
+		Rule r = new Rule();
+		r.setKey("C024");
+		r.setInternalKey("C024");
+		r.setDescription(
+				"<h2>Description</h2><p>Avoid implicit column references.</p>");
+		r.setSeverity("MAJOR");
+		r.setTag("readability");
+		r.setRemediationFunction("LINEAR");
+		r.setDebtRemediationFunctionCoefficient("3min");
+		r.setName("Implicit column reference");
+
+		RuleImplementation rImpl = new RuleImplementation();
+		rImpl.setRuleViolationMessage(
+				"Implicit column reference found.");
+
+		rImpl.getCompliantRulesCodeExamples().getRuleCodeExample()
+				.add("SELECT name, surname, count from names;");
+		rImpl.getCompliantRulesCodeExamples().getRuleCodeExample()
+		.add("SELECT n.name, n.surname, n.count from names n;");
+		rImpl.getViolatingRulesCodeExamples().getRuleCodeExample()
+				.add("SELECT n.name, surname, count from names n inner join surnames s on n.surname_id = s.id;");
+		r.setSource("https://dzone.com/articles/sql-handbook-and-best-practices-performance-tuning");
+		r.setRuleImplementation(rImpl);
+		return r;
+	}
+	
 		
 
 }

@@ -38,7 +38,7 @@ public class PluginRulesITCase {
 			if (rule.getDialect() == null) {
 				continue;
 			}
-			if (!rule.getDialect().equalsIgnoreCase("tsql")) {
+			if (!rule.getDialect().equalsIgnoreCase("vsql")) {
 				continue;
 			}
 			for (final Rule r : rule.getRule()) {
@@ -76,6 +76,7 @@ public class PluginRulesITCase {
 		if (issueExists && issues.isEmpty() || !issueExists && !issues.isEmpty()) {
 			PrettyPrinter.print(ctx.root, 0, ctx.stream);
 		}
+		//PrettyPrinter.print(ctx.root, 0, ctx.stream);
 
 		// skip as sample is not supported
 		if (dialect == Dialects.VSQL && text.contains("year(date)")) {
@@ -83,7 +84,7 @@ public class PluginRulesITCase {
 		}
 		Assert.assertTrue("Found issues on : " + text + " for rule: " + rule.getKey() + " " + rule.getName()
 				+ " expected: " + issueExists, !issues.isEmpty() == issueExists);
-		
+
 	}
 
 	@Test

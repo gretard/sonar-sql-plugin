@@ -57,7 +57,7 @@ public enum TSQLRules {
 							getExecRule(), getNoLockRule(), getSargRule(), getPKRule(), getFKRule(),
 							getNullComparisonRule(), getIndexNamingRule(), getWhereWithOrVsUnionRule(),
 							getUnionVsUnionALLRule(), getExistsVsInRule(), getOrderByRuleWithoutAscDesc(),
-							getCartesianJoinsRule()
+							getCartesianJoinsRule(), getColumnListRule()
 					// getCursorRule()
 					// baseRules.getDeclareRule(),
 //							baseRules.getMultipleDeclarations())
@@ -66,6 +66,62 @@ public enum TSQLRules {
 			rules.add(customRules);
 		}
 		return rules;
+	}
+
+	protected Rule getColumnListRule() {
+
+		var rule = baseRules.getColumnListRule();
+		// find all column refs
+		RuleImplementation parent = rule.getRuleImplementation();
+		parent.getNames().getTextItem()
+				.add(org.antlr.sql.dialects.tsql.TSqlParser.Full_column_nameContext.class.getSimpleName());
+		parent.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		{
+			// only check SELECT clauses
+			RuleImplementation columnRefCheck = new RuleImplementation();
+			columnRefCheck.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.tsql.TSqlParser.Select_listContext.class.getSimpleName());
+			columnRefCheck.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			columnRefCheck.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+			parent.getParentRules().getRuleImplementation().add(columnRefCheck);
+		}
+
+		{
+			// check if columns contain references
+			RuleImplementation columnRefCheck = new RuleImplementation();
+			columnRefCheck.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.tsql.TSqlParser.Full_table_nameContext.class.getSimpleName());
+			columnRefCheck.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			columnRefCheck.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
+			parent.getChildrenRules().getRuleImplementation().add(columnRefCheck);
+		}
+
+		{
+			// rule to skip rule for single table queries
+			RuleImplementation querySpec = new RuleImplementation();
+			querySpec.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.tsql.TSqlParser.Select_statementContext.class.getSimpleName());
+			querySpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+			// rule to skip rule for single table queries
+			RuleImplementation fromClauseSpec = new RuleImplementation();
+			fromClauseSpec.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.tsql.TSqlParser.Table_sourcesContext.class.getSimpleName());
+			fromClauseSpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+			RuleImplementation tableRefs = new RuleImplementation();
+			tableRefs.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.tsql.TSqlParser.Table_source_itemContext.class.getSimpleName());
+			tableRefs.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			tableRefs.setRuleResultType(RuleResultType.SKIP_IF_LESS_FOUND);
+			tableRefs.setTimes(2);
+
+			fromClauseSpec.getChildrenRules().getRuleImplementation().add(tableRefs);
+			querySpec.getChildrenRules().getRuleImplementation().add(fromClauseSpec);
+			parent.getParentRules().getRuleImplementation().add(querySpec);
+		}
+
+		return rule;
 	}
 
 	protected Rule getCartesianJoinsRule() {

@@ -5,12 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.antlr.sql.dialects.Dialects;
-import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Insert_stmtContext;
-import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Identifier_listContext;
 import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Combine_clauseContext;
 import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.ExprContext;
 import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Func_callContext;
 import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.IdentifierContext;
+import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Identifier_listContext;
+import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Insert_stmtContext;
 import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Order_by_clauseContext;
 import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.Order_by_itemContext;
 import org.antlr.sql.dialects.psqlv1.PostgreSQLParser.PredicateContext;

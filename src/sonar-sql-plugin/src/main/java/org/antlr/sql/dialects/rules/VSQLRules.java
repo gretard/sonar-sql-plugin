@@ -28,12 +28,66 @@ public enum VSQLRules {
 			customRules.setRepoName("SQL Plugin checks");
 			customRules.setDialect(Dialects.VSQL.name());
 			customRules.getRule().addAll(Arrays.asList(getHintIsUsedRule(), getSargRule(), getCartesianJoinsRule(),
-					getCommitMissing(), getCartesianJoinsRule()));
+					getCommitMissing(), getCartesianJoinsRule(), getColumnListRule()));
 			rules.add(customRules);
 		}
 		return rules;
 	}
+	protected Rule getColumnListRule() {
 
+		var rule = baseRules.getColumnListRule();
+		// find all column refs
+		RuleImplementation parent = rule.getRuleImplementation();
+		parent.getNames().getTextItem()
+				.add(org.antlr.sql.dialects.vsql.VSqlParser.ColumnReferenceContext.class.getSimpleName());
+		parent.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+		{
+			// only check SELECT clauses
+			RuleImplementation columnRefCheck = new RuleImplementation();
+			columnRefCheck.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.vsql.VSqlParser.Select_clauseContext.class.getSimpleName());
+			columnRefCheck.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			columnRefCheck.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+			parent.getParentRules().getRuleImplementation().add(columnRefCheck);
+		}
+
+		{
+			// check if columns contain references
+			RuleImplementation columnRefCheck = new RuleImplementation();
+			columnRefCheck.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.vsql.VSqlParser.TableContext.class.getSimpleName());
+			columnRefCheck.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			columnRefCheck.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
+			parent.getChildrenRules().getRuleImplementation().add(columnRefCheck);
+		}
+
+		{
+			// rule to skip rule for single table queries
+			RuleImplementation querySpec = new RuleImplementation();
+			querySpec.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.vsql.VSqlParser.Select_statementContext.class.getSimpleName());
+			querySpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+			// rule to skip rule for single table queries
+			RuleImplementation fromClauseSpec = new RuleImplementation();
+			fromClauseSpec.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.vsql.VSqlParser.From_clauseContext.class.getSimpleName());
+			fromClauseSpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+			RuleImplementation tableRefs = new RuleImplementation();
+			tableRefs.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.vsql.VSqlParser.DatasetContext.class.getSimpleName());
+			tableRefs.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			tableRefs.setRuleResultType(RuleResultType.SKIP_IF_LESS_FOUND);
+			tableRefs.setTimes(2);
+
+			fromClauseSpec.getChildrenRules().getRuleImplementation().add(tableRefs);
+			querySpec.getChildrenRules().getRuleImplementation().add(fromClauseSpec);
+			parent.getParentRules().getRuleImplementation().add(querySpec);
+		}
+
+		return rule;
+	}
 	protected Rule getSargRule() {
 
 		Rule rule = baseRules.getSargRule();

@@ -46,10 +46,65 @@ public enum MySQLRules {
 					.addAll(Arrays.asList(getWaitForRule(), getSelectAllRule(), getInsertRule(), getOrderByRule(),
 							getSargRule(), getNullComparisonRule(), getWhereWithOrVsUnionRule(),
 							getUnionVsUnionALLRule(), getCartesianJoinsRule(), getExistsVsInRule(),
-							getOrderByRuleWithoutAscDesc()));
+							getOrderByRuleWithoutAscDesc(), getColumnListRule()));
 			rules.add(customRules);
 		}
 		return rules;
+	}
+
+	protected Rule getColumnListRule() {
+
+		var rule = baseRules.getColumnListRule();
+		// find all column refs
+		RuleImplementation parent = rule.getRuleImplementation();
+		parent.getNames().getTextItem()
+				.add(org.antlr.sql.dialects.mysql.MySqlParser.FullColumnNameContext.class.getSimpleName());
+		parent.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+		// filter only select columns
+		{
+			RuleImplementation querySpec = new RuleImplementation();
+			querySpec.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.mysql.MySqlParser.SelectColumnElementContext.class.getSimpleName());
+			querySpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			querySpec.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+			parent.getParentRules().getRuleImplementation().add(querySpec);
+		}
+		{
+			// check if columns contain references
+			RuleImplementation columnRefCheck = new RuleImplementation();
+			columnRefCheck.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.mysql.MySqlParser.DottedIdContext.class.getSimpleName());
+			columnRefCheck.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			columnRefCheck.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
+			parent.getChildrenRules().getRuleImplementation().add(columnRefCheck);
+		}
+		{
+			// rule to skip rule for single table queries
+			RuleImplementation querySpec = new RuleImplementation();
+			querySpec.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.mysql.MySqlParser.DmlStatementContext.class.getSimpleName());
+			querySpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+			RuleImplementation fromClauseSpec = new RuleImplementation();
+			fromClauseSpec.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.mysql.MySqlParser.FromClauseContext.class.getSimpleName());
+			fromClauseSpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			
+			RuleImplementation tableRefs = new RuleImplementation();
+			tableRefs.getNames().getTextItem()
+					.add(org.antlr.sql.dialects.mysql.MySqlParser.AtomTableItemContext.class.getSimpleName());
+			tableRefs.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+			tableRefs.setRuleResultType(RuleResultType.SKIP_IF_LESS_FOUND);
+			tableRefs.setTimes(2);
+
+			fromClauseSpec.getChildrenRules().getRuleImplementation().add(tableRefs);
+			querySpec.getChildrenRules().getRuleImplementation().add(fromClauseSpec);
+
+			parent.getParentRules().getRuleImplementation().add(querySpec);
+		}
+
+		return rule;
 	}
 
 	protected Rule getCartesianJoinsRule() {
@@ -60,7 +115,7 @@ public enum MySQLRules {
 		parent.getNames().getTextItem()
 				.add(org.antlr.sql.dialects.mysql.MySqlParser.FromClauseContext.class.getSimpleName());
 		parent.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-		
+
 		RuleImplementation child = new RuleImplementation();
 
 		child.getNames().getTextItem()

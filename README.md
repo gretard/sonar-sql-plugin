@@ -17,6 +17,7 @@ Currently plug-in supports:
   - [PostgreSQL](https://github.com/tshprecher/antlr_psql)
   - [PostgreSQL](https://github.com/antlr/grammars-v4/tree/master/sql/postgresql)
   - [VSQL](https://github.com/gretard/antlr4-grammar-vsql)
+  - [SNOWFLAKE](https://github.com/antlr/grammars-v4/tree/master/sql/snowflake)
 - Reporting of issues found by:
   - [SQLCodeGuard](https://www.red-gate.com/products/sql-development/sql-code-guard/index) 
   - [MSBuild](https://msdn.microsoft.com/en-us/library/dd172133(v=vs.100).aspx)
@@ -96,6 +97,17 @@ sonar.sources=src
 # optional
 sonar.language=sql
 sonar.sql.dialect=vsql
+```
+### SNOWFLAKE ###
+Sonar settings for snowflake. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/4-vsql)
+```
+sonar.projectKey=examples.sql.snowflake.project
+sonar.projectName=examples.sql.snowflake.project
+sonar.projectVersion=1.1
+sonar.sources=src
+# optional
+sonar.language=sql
+sonar.sql.dialect=snowflake
 ```
 
 ### Custom rules example ###
@@ -214,3 +226,5 @@ docker run \
 3. Implement sql rules, example VSQLRules
 4. Register rules at SQLDialectRules. This step is optional as plugin will support custom rules from user project provided in xml format.
 5. Update ./src/external/README.md with references to your added grammar
+
+Example commit for adding Snowflake grammar: https://github.com/gretard/sonar-sql-plugin/commit/e3296a5d1c69a031f24358aad87a4e46c46ea785

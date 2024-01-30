@@ -12,7 +12,12 @@ import org.apache.commons.lang3.StringUtils;
 
 public class ParseTreeNode implements IParsedNode {
 
-    private ParseTree tree;
+    @Override
+	public String toString() {
+		return "ParseTreeNode [tree=" + tree != null ? tree.getText() : tree + "]";
+	}
+
+	private ParseTree tree;
 
     private int globalIndex;
 
