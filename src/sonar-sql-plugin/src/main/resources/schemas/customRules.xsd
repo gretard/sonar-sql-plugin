@@ -10,7 +10,9 @@
         <xs:enumeration value="FailIfLessFound" />
         <xs:enumeration value="FailIfMoreFound" />
         <xs:enumeration value="SkipIfFound" />   
-        <xs:enumeration value="SkipIfNotFound" />     
+        <xs:enumeration value="SkipIfNotFound" />    
+        <xs:enumeration value="SkipIfLessFound" />   
+        <xs:enumeration value="SkipIfMoreFound" />     
     </xs:restriction>
 </xs:simpleType>
 <xs:simpleType name="ruleMode" final="restriction" >

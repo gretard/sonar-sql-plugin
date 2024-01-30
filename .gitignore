@@ -33,3 +33,4 @@ examples/1-tsql/tools
 
 **/tools/**
 
+src/sonar-sql-plugin/examples/**

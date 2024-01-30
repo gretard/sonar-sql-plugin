@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.antlr.sql.dialects.Dialects;
 import org.antlr.sql.models.AntlrContext;
-import org.antlr.sql.tools.PrettyPrinter;
 import org.antlr.v4.runtime.Token;
 import org.junit.Assert;
 import org.junit.Test;
@@ -54,7 +53,7 @@ public class SnowflakeDialectTest {
 	private static AntlrContext parse(String sql) {
 		AntlrContext antlrContext = Dialects.SNOWFLAKE.parse(sql);
 
-		PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
+		// PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
 		// PrettyPrinter.printTokens(antlrContext);
 		return antlrContext;
 	}

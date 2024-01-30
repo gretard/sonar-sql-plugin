@@ -1,11 +1,13 @@
 package org.antlr.sql.tools;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.antlr.sql.dialects.Dialects;
 import org.antlr.sql.dialects.SQLDialectRules;
 import org.sonar.plugins.sql.models.rules.Rule;
 import org.sonar.plugins.sql.models.rules.SqlRules;
@@ -27,6 +29,10 @@ public class PluginRulesPrinter {
 					if (re.getValue().getRule().stream().anyMatch(x -> x.getKey().equals(r.getKey()))) {
 						dialects.add(re.getKey());
 					}
+				}
+				// Header comment rules
+				if (r.getKey().equals("C030")) {
+					dialects = Arrays.asList(Dialects.values()).stream().map(x->x.name()).toList();
 				}
 				System.out.println(
 						"<p>Supported dialects: " + String.join(",", dialects.toArray(new String[0])) + "</p>");

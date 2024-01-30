@@ -38,9 +38,7 @@ public class PluginRulesITCase {
 			if (rule.getDialect() == null) {
 				continue;
 			}
-			if (!rule.getDialect().equalsIgnoreCase("vsql")) {
-				continue;
-			}
+
 			for (final Rule r : rule.getRule()) {
 
 				r.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample().forEach(t -> {
@@ -76,7 +74,6 @@ public class PluginRulesITCase {
 		if (issueExists && issues.isEmpty() || !issueExists && !issues.isEmpty()) {
 			PrettyPrinter.print(ctx.root, 0, ctx.stream);
 		}
-		//PrettyPrinter.print(ctx.root, 0, ctx.stream);
 
 		// skip as sample is not supported
 		if (dialect == Dialects.VSQL && text.contains("year(date)")) {

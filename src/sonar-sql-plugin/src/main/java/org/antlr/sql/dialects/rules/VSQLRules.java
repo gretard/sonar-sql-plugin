@@ -28,11 +28,13 @@ public enum VSQLRules {
 			customRules.setRepoName("SQL Plugin checks");
 			customRules.setDialect(Dialects.VSQL.name());
 			customRules.getRule().addAll(Arrays.asList(getHintIsUsedRule(), getSargRule(), getCartesianJoinsRule(),
-					getCommitMissing(), getCartesianJoinsRule(), getColumnListRule()));
+					getCommitMissing(),  getCartesianJoinsRule(), getColumnListRule()));
 			rules.add(customRules);
 		}
 		return rules;
 	}
+	
+
 	protected Rule getColumnListRule() {
 
 		var rule = baseRules.getColumnListRule();
@@ -143,7 +145,7 @@ public enum VSQLRules {
 		rule.setKey("C020");
 		rule.setInternalKey("C020");
 		rule.setName("HINT is used");
-		rule.setDescription("HINT is used. Consider rewriting this statement.");
+		rule.setDescription("<h2>Description</h2><p>HINT is used. Consider rewriting this statement.</p>");
 		rule.setTag("reliability");
 		rule.setSeverity("MINOR");
 		rule.setRemediationFunction("LINEAR");
@@ -168,7 +170,7 @@ public enum VSQLRules {
 		rule.setInternalKey("C021");
 		rule.setName("COMMIT is missing");
 		rule.setDescription(
-				"COMMIT is missing after UPDATE/DELETE statement. If you run script without autocommit - your changes might be lost.");
+				"<h2>Description</h2><p>COMMIT is missing after UPDATE/DELETE statement. If you run script without autocommit - your changes might be lost.</p>");
 		rule.setTag("reliability");
 		rule.setSeverity("MINOR");
 		rule.setRemediationFunction("LINEAR");

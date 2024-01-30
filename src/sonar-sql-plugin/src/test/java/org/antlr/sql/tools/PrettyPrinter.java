@@ -34,7 +34,7 @@ public class PrettyPrinter {
 		String data = "@(" + line + ":" + charStart + "," + endLine + ":" + endChar + ") with text: " + text;
 		final int tmp = level + 1;
 		final StringBuilder sb = new StringBuilder();
-		sb.append(StringUtils.repeat("\t", level));
+		sb.append(StringUtils.repeat(" ", level));
 		sb.append(node.getClass().getSimpleName() + ": " + data + " :" + node.getText());
 		System.out.println(sb.toString());
 		final int n = node.getChildCount();

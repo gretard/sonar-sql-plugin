@@ -45,6 +45,7 @@ Mandatory fields for rule:
 		- FailIfNotFound - reports code issue if no node was found violating rule
 		- FailIfLessFound/FailIfMoreFound - reports code issue if rule was not violated less or more times than value defined by times value
 		- SkipIfFound/SkipIfNotFound - skips code issue reporting at all if rule was satisfied or not
+        - SkipIfLessFound/SkipIfMoreFound - skips code issue reporting at all if rule was matches less or more times than value defined by times value
 	- textCheckType - defines how to search for particular text in nodes, can be:
 		- Contains - will be checked if node contains some defined text
 		- Regexp - will be checked if node's text matches regexp

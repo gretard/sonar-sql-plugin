@@ -80,7 +80,7 @@ public class CognitiveComplexityFillerTest {
                         + " HAVING COUNT(*) > 1 union all select * from dbo.test ORDER BY 1, 2;\r\n INSERT INTO dbo.test(a,b) VALUES (1,2);\r\n"
                         + " DELETE  FROM dbo.test; \r\n TRUNCATE TABLE x; \r\n UPDATE dbo.test set id = 1 where x = 4 and u = 10;\r\n");
 
-        PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
+        //PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
 
         filler.fill(ti, ctxTester, antlrContext);
 

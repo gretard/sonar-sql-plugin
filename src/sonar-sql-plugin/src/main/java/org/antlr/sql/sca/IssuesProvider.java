@@ -63,7 +63,6 @@ public class IssuesProvider {
             FoundViolation vio = an.isMatched(res);
 
             if (DEBUG) {
-                /// System.out.println("CHECK: "+res.ruleToCheck.rule.getKey());
                 log("VIOLATIONS: " + res.ruleToCheck.rule.getKey() + " " + vio.failuresFound);
                 res.map.items.forEach((k, val) -> {
                     log("RULES: " + k + " " + val.size() + " " + k.getRuleResultType());

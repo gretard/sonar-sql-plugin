@@ -35,8 +35,8 @@ Tutorials:
 
 ## Requirements ##
 Different plugin versions supports the following:
-- 1.0.0 - Sonarqube 7.4+versions
-- 1.2.0 - Sonarqube 9+versions
+- 1.0.0 - Sonarqube 7.4+ versions
+- 1.2.0 - Sonarqube 9+ versions
 
 ## Installation ##
 1. Download and install SonarQube
@@ -152,9 +152,9 @@ Please configure additional properties:
 `sonar.lang.patterns.plsqlopen=na`
 
 ## Using command line tools
-With the plugin - there is additional cli tool available (they are not required for sonar execution):
+With the plugin - there is additional cli tool available (it does not require sonar execution):
 
- - **rulesHelper.jar** - command line helper tool for writing custom sql rules
+ - **rulesHelper.jar** - command line helper tool for working with plugin and custom sql rules
 
 
 ### rulesHelper
@@ -167,15 +167,23 @@ Full help info:
 
 ```
 Please pass the following: 
-	action (print or  verify)
-	type (text or  file)
-	value (sql string or path to folder) 
-	dialect (tsql, pssql, mysql, pssql, pssqlv2) 
-Example:
-print text "SELECT * FROM dbo.test;" tsql
+	action  (print, verify or analyze)
+	type    (text or file)
+	value   (sql string or path to rules file/folder) 
+	dialect (tsql, pssql, mysql, pssql, pssqlv2, snowflake)
+	folder  (folder to analyze, only applicable when using analyze action)
 
-Example:
-verify file "c:/tests/customRules.rules;" mysql
+Example to print AST tree:
+	print text "SELECT * FROM dbo.test;" tsql
+
+Example to verify custom rules definitions:
+	verify file "c:/tests/customRules.rules;" mysql
+
+Example to execute custom rules and plugin rules against specified folder:
+	analyze file "c:/tests/customRules.rules;" snowflake "c:\docs\src"
+
+Example to execute sql analysis againt specified folder:
+	analyze file "NA" snowflake "c:\docs\src"
 ```
 
 

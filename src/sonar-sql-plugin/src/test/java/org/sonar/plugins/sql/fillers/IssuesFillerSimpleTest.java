@@ -10,7 +10,6 @@ import org.antlr.sql.dialects.psqlv2.PostgreSQLParser.Sort_clauseContext;
 import org.antlr.sql.dialects.rules.CommonRules;
 import org.antlr.sql.dialects.rules.TSQLRules;
 import org.antlr.sql.models.AntlrContext;
-import org.antlr.sql.tools.PrettyPrinter;
 import org.antlr.sql.tools.RulesToXmlPrinter;
 import org.junit.Assert;
 import org.junit.Test;
@@ -31,8 +30,6 @@ public class IssuesFillerSimpleTest {
 		AntlrContext antlrContext = Dialects.TSQL
 				.parse("/** testas */\r\nSELECT * From facts.test where name = 4;\r\n");
 
-		PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
-
 		SqlIssuesList issues = filler.getIssues(antlrContext);
 		Assert.assertEquals(0, issues.getaLLIssues().size());
 
@@ -44,8 +41,6 @@ public class IssuesFillerSimpleTest {
 		CommentIssuesFiller filler = new CommentIssuesFiller();
 
 		AntlrContext antlrContext = Dialects.TSQL.parse("//test\r\nSELECT * From facts.test where name = 4;\r\n");
-
-		PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
 
 		SqlIssuesList issues = filler.getIssues(antlrContext);
 		Assert.assertEquals(1, issues.getaLLIssues().size());
@@ -77,8 +72,6 @@ public class IssuesFillerSimpleTest {
 
 		AntlrContext antlrContext = Dialects.TSQL
 				.parse("/** testas */\r\nSELECT * From facts.test where name = 4;\r\nselect * from dbo.test;");
-
-		PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
 
 		SqlIssuesList issues = filler.getIssues(antlrContext);
 		Assert.assertEquals(2, issues.getaLLIssues().size());
@@ -132,7 +125,6 @@ public class IssuesFillerSimpleTest {
 
 		antlrContext.getRules().get(0).getRule().clear();
 		antlrContext.getRules().get(0).getRule().add(rule);
-		PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
 
 		SqlIssuesList issues = filler.getIssues(antlrContext);
 		Assert.assertEquals(2, issues.getaLLIssues().size());
