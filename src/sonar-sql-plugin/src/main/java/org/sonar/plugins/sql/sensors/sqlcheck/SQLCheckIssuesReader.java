@@ -3,6 +3,9 @@ package org.sonar.plugins.sql.sensors.sqlcheck;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
+import java.util.regex.MatchResult;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.sonar.api.utils.log.Logger;
@@ -18,34 +21,35 @@ public class SQLCheckIssuesReader {
 	private static final Pattern riskPattern = Pattern.compile("\\[([^\\]]+)\\]:\\s+(\\(.+\\))\\s+(\\(.+\\))\\s+(.+)");
 
 	public SqlIssuesList read(String inputFile, File file) throws IOException {
-		var list = new SqlIssuesList();
+		SqlIssuesList list = new SqlIssuesList();
 		try {
-			var txt = Files.readString(file.toPath());
-			var matcher = riskPattern.matcher(txt);
+			String txt = Files.readString(file.toPath());
+			Matcher matcher = riskPattern.matcher(txt);
 
-			var matchResults = matcher.results().toList();
+			List<MatchResult> matchResults = matcher.results().toList();
 			for (int i = 0; i < matchResults.size(); i++) {
 
-				var matchResult = matchResults.get(i);
+				MatchResult matchResult = matchResults.get(i);
 
-				var risk = matchResult.group(2).replace("(", "").replace(")", "");
-				var patternName = matchResult.group(4);
+				String risk = matchResult.group(2).replace("(", "").replace(")", "");
+				String patternName = matchResult.group(4);
 
-				var startIndex = matchResult.end();
-				var endIndex = i == matchResults.size() - 1 ? txt.length() : matchResults.get(i + 1).start();
+				int startIndex = matchResult.end();
+				int endIndex = i == matchResults.size() - 1 ? txt.length() : matchResults.get(i + 1).start();
 
-				var descriptionSearchString = txt.substring(startIndex, endIndex);
-				var descriptionsMatcher = issueDescriptionPattern.matcher(descriptionSearchString);
+				String descriptionSearchString = txt.substring(startIndex, endIndex);
+				Matcher descriptionsMatcher = issueDescriptionPattern.matcher(descriptionSearchString);
 				descriptionsMatcher.results().forEach(dm -> {
 
-					var problem = dm.group(1).trim();
+					String problem = dm.group(1).trim();
 					if (problem.endsWith(":")) {
 						problem = problem.substring(0, problem.length() - 1);
 					}
 
-					var description = dm.group(2).trim().split("==================== Summary ===================")[0];
+					String description = dm.group(2).trim()
+							.split("==================== Summary ===================")[0];
 
-					var issue = new SqlIssue();
+					SqlIssue issue = new SqlIssue();
 					issue.description = description;
 					issue.fileName = inputFile;
 					issue.severity = risk;

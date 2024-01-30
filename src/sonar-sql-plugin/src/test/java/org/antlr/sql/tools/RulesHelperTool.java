@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.sonar.plugins.sql.Constants;
 import org.sonar.plugins.sql.adhoc.AdhocRulesProvider;
 import org.sonar.plugins.sql.issues.RuleToCheck;
 import org.sonar.plugins.sql.issues.SqlIssue;
+import org.sonar.plugins.sql.issues.SqlIssuesList;
 import org.sonar.plugins.sql.models.rules.Rule;
 import org.sonar.plugins.sql.models.rules.SqlRules;
 
@@ -58,7 +60,7 @@ public class RulesHelperTool {
 		String text = value;
 
 		if (!"text".equals(type)) {
-			var file = new File(value);
+			File file = new File(value);
 			if (file.exists()) {
 				text = IOUtils.toString(new FileInputStream(file), "UTF-8");
 			}
@@ -109,24 +111,24 @@ public class RulesHelperTool {
 		}
 
 		if ("analyze".equalsIgnoreCase(action)) {
-			var fileDir = new File(folder);
+			File fileDir = new File(folder);
 			System.out.printf("Analyzing folder: %s%n", fileDir);
 
-			var sqlDialectRulesWithCustomRules = sqlDialect.getDialectRules(rules.toArray(new SqlRules[0]));
-			var rulesToBeChecked = RuleToCheck.createCodeList2(sqlDialectRulesWithCustomRules);
+			List<SqlRules> sqlDialectRulesWithCustomRules = sqlDialect.getDialectRules(rules.toArray(new SqlRules[0]));
+			List<RuleToCheck> rulesToBeChecked = RuleToCheck.createCodeList2(sqlDialectRulesWithCustomRules);
 
-			var anyIssueFound = false;
+			boolean anyIssueFound = false;
 
-			var sourcePath = fileDir.toPath();
-			var filesToCheck = Files.walk(sourcePath).filter(f -> Files.isRegularFile(f)).toList();
+			Path sourcePath = fileDir.toPath();
+			List<Path> filesToCheck = Files.walk(sourcePath).filter(f -> Files.isRegularFile(f)).toList();
 
-			for (var fileToCheck : filesToCheck) {
+			for (Path fileToCheck : filesToCheck) {
 				try {
-					var code = Files.readString(fileToCheck);
+					String code = Files.readString(fileToCheck);
 					AntlrContext ctx = sqlDialect.parse(code);
 
-					var issues = issuesProvider.check(rulesToBeChecked, ctx.root);
-					for (var iss : issues.getaLLIssues()) {
+					SqlIssuesList issues = issuesProvider.check(rulesToBeChecked, ctx.root);
+					for (SqlIssue iss : issues.getaLLIssues()) {
 						System.out.printf("Issue found: \"%s(%s)\" at line %s in \"%s\" file%n", iss.getKey(),
 								iss.getName(), iss.getLine(), sourcePath.relativize(fileToCheck));
 						anyIssueFound = true;

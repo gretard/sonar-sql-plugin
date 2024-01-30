@@ -53,7 +53,7 @@ public enum PSSQLV2Rules {
 
 	protected Rule getColumnListRule() {
 
-		var rule = baseRules.getColumnListRule();
+		Rule rule = baseRules.getColumnListRule();
 		// find all column refs
 		RuleImplementation parent = rule.getRuleImplementation();
 		parent.getNames().getTextItem()
@@ -117,7 +117,7 @@ public enum PSSQLV2Rules {
 	}
 	protected Rule getCartesianJoinsRule() {
 
-		var rule = baseRules.getCartesianJoinsRule();
+		Rule rule = baseRules.getCartesianJoinsRule();
 		RuleImplementation rImpl = rule.getRuleImplementation();
 
 		rImpl.getNames().getTextItem()

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
@@ -26,9 +27,9 @@ public class SQLCheckIssuesReaderTest {
 		File baseFile = folder.newFile("results.txt");
 		FileUtils.copyURLToFile(getClass().getResource("/external/sqlcheck.txt"), baseFile);
 
-		var results = sut.read("sqlCheckv1_2.sql", baseFile).getaLLIssues();
+		Collection<SqlIssue> results = sut.read("sqlCheckv1_2.sql", baseFile).getaLLIssues();
 
-		var expected = getExpectedIssueImplicitColumnUsage();
+		SqlIssue expected = getExpectedIssueImplicitColumnUsage();
 
 		assertThat(results).hasSize(4).filteredOn(x -> x.key, expected.key).element(0).usingRecursiveComparison()
 				.ignoringFields("description").isEqualTo(expected);
@@ -41,16 +42,16 @@ public class SQLCheckIssuesReaderTest {
 		File baseFile = folder.newFile("results.txt");
 		FileUtils.copyURLToFile(getClass().getResource("/external/sqlCheck1.3.txt"), baseFile);
 
-		var results = sut.read("sqlCheckv1_3.sql", baseFile).getaLLIssues();
+		Collection<SqlIssue> results = sut.read("sqlCheckv1_3.sql", baseFile).getaLLIssues();
 
-		var expected = getExpectedIssueForSelectStar();
+		SqlIssue expected = getExpectedIssueForSelectStar();
 		assertThat(results).hasSize(4).filteredOn(x -> x.key, expected.key).element(0).usingRecursiveComparison()
 				.ignoringFields("description").isEqualTo(expected);
 
 	}
 
 	private static SqlIssue getExpectedIssueImplicitColumnUsage() {
-		var issue = new SqlIssue();
+		SqlIssue issue = new SqlIssue();
 		issue.fileName = "sqlCheckv1_2.sql";
 		issue.isAdhoc = true;
 		issue.repo = "sqlcheck";
@@ -64,7 +65,7 @@ public class SQLCheckIssuesReaderTest {
 	}
 
 	private static SqlIssue getExpectedIssueForSelectStar() {
-		var issue = new SqlIssue();
+		SqlIssue issue = new SqlIssue();
 		issue.fileName = "sqlCheckv1_3.sql";
 		issue.isAdhoc = true;
 		issue.repo = "sqlcheck";

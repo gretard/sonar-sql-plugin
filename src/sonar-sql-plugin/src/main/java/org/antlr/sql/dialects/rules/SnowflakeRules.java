@@ -67,7 +67,7 @@ public enum SnowflakeRules {
 
 	protected Rule getColumnListRule() {
 
-		var rule = baseRules.getColumnListRule();
+		Rule rule = baseRules.getColumnListRule();
 		// find all column refs
 		RuleImplementation parent = rule.getRuleImplementation();
 		parent.getNames().getTextItem()
@@ -176,7 +176,7 @@ public enum SnowflakeRules {
 
 	protected Rule getCartesianJoinsRule() {
 
-		var rule = baseRules.getCartesianJoinsRule();
+		Rule rule = baseRules.getCartesianJoinsRule();
 		RuleImplementation rImpl = rule.getRuleImplementation();
 
 		rImpl.getNames().getTextItem().add(From_clauseContext.class.getSimpleName());

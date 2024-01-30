@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.antlr.sql.dialects.Dialects;
 import org.antlr.sql.models.AntlrContext;
-import org.antlr.sql.tools.PrettyPrinter;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Rule;

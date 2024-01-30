@@ -18,7 +18,7 @@ public enum Dialects {
 	}
 
 	public List<SqlRules> getDialectRules(SqlRules... additionalRules) {
-		var rules = new LinkedList<SqlRules>();
+		List<SqlRules> rules = new LinkedList<SqlRules>();
 		SQLDialectRules.INSTANCE.getRules().forEach(r -> {
 			if (r.getDialect() == null || this.name().equalsIgnoreCase(r.getDialect())) {
 				rules.add(r);

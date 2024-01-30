@@ -81,18 +81,18 @@ public class IssuesFillerSimpleTest {
 	@Test
 	public void testRandomOrderIssue() throws IOException, JAXBException {
 
-		var rule = new Rule();
+		Rule rule = new Rule();
 		rule.setKey("R001");
 		rule.setName("Random order is used");
 		rule.setDescription("Rule description");
 
-		var ruleImpl = new RuleImplementation();
+		RuleImplementation ruleImpl = new RuleImplementation();
 		ruleImpl.getNames().getTextItem().add(Builtin_function_nameContext.class.getSimpleName());
 		ruleImpl.setRuleResultType(RuleResultType.FAIL_IF_FOUND);
 		ruleImpl.getTextToFind().getTextItem().add("RANDOM");
 		ruleImpl.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
 
-		var parentRule = new RuleImplementation();
+		RuleImplementation parentRule = new RuleImplementation();
 		parentRule.getNames().getTextItem().add(Sort_clauseContext.class.getSimpleName());
 		parentRule.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
 		parentRule.getChildrenRules().getRuleImplementation().add(ruleImpl);
@@ -100,7 +100,7 @@ public class IssuesFillerSimpleTest {
 
 		rule.setRuleImplementation(parentRule);
 
-		var rules = new SqlRules();
+		SqlRules rules = new SqlRules();
 		rules.getRule().add(rule);
 		IssuesFiller filler = new IssuesFiller();
 		AntlrContext antlrContext = Dialects.PSSQLV2.parse("SELECT name from names order by random()");

@@ -20,7 +20,7 @@ public class ParserDispatchingErrorListener implements ANTLRErrorListener
 
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e)
     {
-        var foo = new ProxyErrorListener(_parent.getErrorListeners());
+    	ProxyErrorListener foo = new ProxyErrorListener(_parent.getErrorListeners());
         foo.syntaxError(recognizer, offendingSymbol, line, charPositionInLine, msg, e);
     }
 
@@ -32,7 +32,7 @@ public class ParserDispatchingErrorListener implements ANTLRErrorListener
                                 BitSet ambigAlts,
                                 ATNConfigSet configs)
     {
-        var foo = new ProxyErrorListener(_parent.getErrorListeners());
+    	ProxyErrorListener foo = new ProxyErrorListener(_parent.getErrorListeners());
         foo.reportAmbiguity(recognizer, dfa, startIndex, stopIndex, exact, ambigAlts, configs);
     }
 
@@ -43,7 +43,7 @@ public class ParserDispatchingErrorListener implements ANTLRErrorListener
                                             BitSet conflictingAlts,
                                             ATNConfigSet configs)
     {
-        var foo = new ProxyErrorListener(_parent.getErrorListeners());
+    	ProxyErrorListener foo = new ProxyErrorListener(_parent.getErrorListeners());
         foo.reportAttemptingFullContext(recognizer, dfa, startIndex, stopIndex, conflictingAlts, configs);
     }
 
@@ -54,7 +54,7 @@ public class ParserDispatchingErrorListener implements ANTLRErrorListener
                                          int prediction,
                                          ATNConfigSet configs)
     {
-        var foo = new ProxyErrorListener(_parent.getErrorListeners());
+    	ProxyErrorListener foo = new ProxyErrorListener(_parent.getErrorListeners());
         foo.reportContextSensitivity(recognizer, dfa, startIndex, stopIndex, prediction, configs);
     }
 }

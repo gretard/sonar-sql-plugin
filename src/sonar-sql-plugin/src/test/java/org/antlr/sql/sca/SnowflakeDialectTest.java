@@ -14,7 +14,7 @@ public class SnowflakeDialectTest {
 	@Test
 	public void testComments() throws IOException {
 
-		var antlrContext = parse("/**test**/\r\n---test\r\nselect 1;\r\n// test");
+		AntlrContext antlrContext = parse("/**test**/\r\n---test\r\nselect 1;\r\n// test");
 
 		Assert.assertNotNull(antlrContext);
 
@@ -29,7 +29,7 @@ public class SnowflakeDialectTest {
 	@Test
 	public void testKeywords() throws IOException {
 
-		var antlrContext = parse("select 1");
+		AntlrContext antlrContext = parse("select 1");
 
 		Assert.assertNotNull(antlrContext);
 
@@ -41,7 +41,7 @@ public class SnowflakeDialectTest {
 
 	@Test
 	public void testString() throws IOException {
-		var antlrContext = parse("select '1', *, 1*4");
+		AntlrContext antlrContext = parse("select '1', *, 1*4");
 
 		Assert.assertNotNull(antlrContext);
 

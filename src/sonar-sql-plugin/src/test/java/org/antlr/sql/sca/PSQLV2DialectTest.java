@@ -14,7 +14,7 @@ public class PSQLV2DialectTest {
 	@Test
 	public void testComments() throws IOException {
 
-		var antlrContext = parse("/** test**/\r\n---test");
+		AntlrContext antlrContext = parse("/** test**/\r\n---test");
 
 		Assert.assertNotNull(antlrContext);
 
@@ -28,7 +28,7 @@ public class PSQLV2DialectTest {
 	@Test
 	public void testKeyword() throws IOException {
 
-		var antlrContext = parse("select 1");
+		AntlrContext antlrContext = parse("select 1");
 
 		Assert.assertNotNull(antlrContext);
 
@@ -41,7 +41,7 @@ public class PSQLV2DialectTest {
 	@Test
 	public void testString() throws IOException {
 
-		var antlrContext = parse("select 'aa'");
+		AntlrContext antlrContext = parse("select 'aa'");
 
 		Assert.assertNotNull(antlrContext);
 

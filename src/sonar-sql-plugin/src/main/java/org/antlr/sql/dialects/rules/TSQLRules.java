@@ -70,7 +70,7 @@ public enum TSQLRules {
 
 	protected Rule getColumnListRule() {
 
-		var rule = baseRules.getColumnListRule();
+		Rule rule = baseRules.getColumnListRule();
 		// find all column refs
 		RuleImplementation parent = rule.getRuleImplementation();
 		parent.getNames().getTextItem()
@@ -126,7 +126,7 @@ public enum TSQLRules {
 
 	protected Rule getCartesianJoinsRule() {
 
-		var rule = baseRules.getCartesianJoinsRule();
+		Rule rule = baseRules.getCartesianJoinsRule();
 		RuleImplementation parent = rule.getRuleImplementation();
 
 		parent.getNames().getTextItem()

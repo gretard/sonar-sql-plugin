@@ -13,22 +13,22 @@ public class IndexMatcherTest {
 
 	@Test
 	public void testRuleHasZeroIndex() {
-		var node = new TestParsedNode();
-		var rule = new RuleImplementation();
+		TestParsedNode node = new TestParsedNode();
+		RuleImplementation rule = new RuleImplementation();
 
-		var result = sut.match(node, rule);
+		boolean result = sut.match(node, rule);
 
 		assertThat(result).isTrue();
 	}
 
 	@Test
 	public void testRuleHasNoneZeroIndexAndExpectsBiggerIndex() {
-		var node = new TestParsedNode();
-		var rule = new RuleImplementation();
+		TestParsedNode node = new TestParsedNode();
+		RuleImplementation rule = new RuleImplementation();
 		rule.setIndex(20);
 		rule.setIndexCheckType(RuleDistanceIndexMatchType.MORE);
 
-		var result = sut.match(node, rule);
+		boolean result = sut.match(node, rule);
 
 		assertThat(result).isFalse();
 	}
