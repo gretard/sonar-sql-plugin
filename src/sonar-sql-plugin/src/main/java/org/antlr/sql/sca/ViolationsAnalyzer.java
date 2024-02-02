@@ -93,6 +93,8 @@ public class ViolationsAnalyzer {
             RuleImplementation impl = item.getKey();
             List<IParsedNode> values = item.getValue();
 
+            // System.out.println(impl.getNames().getTextItem()+"
+            // "+impl.getRuleMatchType()+" "+impl.getRuleResultType()+" "+values);
             if (RuleResultType.DEFAULT == impl.getRuleResultType()) {
                 continue;
             }

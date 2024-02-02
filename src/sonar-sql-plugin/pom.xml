@@ -144,11 +144,14 @@
 					</formats>
 					<!-- define a language-specific format -->
 					<java>
-						<!-- no need to specify files, inferred automatically,
-						but you can if you want -->
-
-						<!-- apply a specific flavor of google-java-format and
-						reflow long strings -->
+						<excludes>
+							<exclude>**/org/antlr/sql/dialects/comments/**</exclude>
+							<exclude>**/org/antlr/sql/dialects/vsql/**</exclude>
+							<exclude>**/org/antlr/sql/dialects/snowflake/**</exclude>
+							<exclude>**/org/antlr/sql/dialects/mysql/**</exclude>
+							<exclude>**/org/antlr/sql/dialects/psqlv1/**</exclude>
+							<exclude>**/org/antlr/sql/dialects/psqlv2/**</exclude>
+						</excludes>
 						<googleJavaFormat>
 							<style>AOSP</style>
 							<reflowLongStrings>true</reflowLongStrings>

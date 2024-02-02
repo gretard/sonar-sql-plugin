@@ -53,8 +53,9 @@ public enum PSSQLV2Rules {
                                     getUnionVsUnionALLRule(),
                                     getCartesianJoinsRule(),
                                     getExistsVsInRule(),
-                                    getOrderByRuleWithoutAscDesc(),
-                                    getColumnListRule()));
+                                    getOrderByRuleWithoutAscDesc()
+                                    // getColumnListRule()
+                                    ));
             rules.add(customRules);
         }
         return rules;

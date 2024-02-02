@@ -25,6 +25,7 @@ import org.antlr.sql.dialects.snowflake.SnowflakeParser.Table_sourceContext;
 import org.antlr.sql.dialects.snowflake.SnowflakeParser.Where_clauseContext;
 import org.antlr.v4.runtime.tree.TerminalNodeImpl;
 import org.sonar.plugins.sql.models.rules.Rule;
+import org.sonar.plugins.sql.models.rules.RuleDistanceIndexMatchType;
 import org.sonar.plugins.sql.models.rules.RuleImplementation;
 import org.sonar.plugins.sql.models.rules.RuleMatchType;
 import org.sonar.plugins.sql.models.rules.RuleMode;
@@ -57,23 +58,26 @@ public enum SnowflakeRules {
             customRules.getRule().add(getMaterializedView());
             customRules.getRule().add(getCartesianJoinsRule());
 
-            customRules.getRule().add(getColumnListRule());
+            // customRules.getRule().add(getColumnListRule());
             rules.add(customRules);
         }
         return rules;
     }
 
-    protected Rule getColumnListRule() {
+    public Rule getColumnListRule() {
 
         Rule rule = baseRules.getColumnListRule();
+
         // find all column refs
-        RuleImplementation parent = rule.getRuleImplementation();
-        parent.getNames()
+        RuleImplementation columnRef = rule.getRuleImplementation();
+        columnRef
+                .getNames()
                 .getTextItem()
                 .add(
-                        org.antlr.sql.dialects.snowflake.SnowflakeParser.Column_elemContext.class
+                        org.antlr.sql.dialects.snowflake.SnowflakeParser.Select_list_elemContext
+                                .class
                                 .getSimpleName());
-        parent.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        columnRef.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 
         {
             // only check SELECT clauses
@@ -87,9 +91,25 @@ public enum SnowflakeRules {
                                     .getSimpleName());
             columnRefCheck.setRuleMatchType(RuleMatchType.CLASS_ONLY);
             columnRefCheck.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
-            parent.getParentRules().getRuleImplementation().add(columnRefCheck);
+            columnRef.getParentRules().getRuleImplementation().add(columnRefCheck);
         }
+        {
 
+            // Skip select *
+            RuleImplementation columnRefCheck = new RuleImplementation();
+            columnRefCheck
+                    .getNames()
+                    .getTextItem()
+                    .add(
+                            org.antlr.sql.dialects.snowflake.SnowflakeParser
+                                    .Select_list_no_topContext.class
+                                    .getSimpleName());
+            columnRefCheck.setRuleMatchType(RuleMatchType.TEXT_AND_CLASS);
+            columnRefCheck.getTextToFind().getTextItem().add("*");
+
+            columnRefCheck.setRuleResultType(RuleResultType.SKIP_IF_FOUND);
+            columnRef.getParentRules().getRuleImplementation().add(columnRefCheck);
+        }
         {
             // check if columns contain references
             RuleImplementation columnRefCheck = new RuleImplementation();
@@ -101,31 +121,42 @@ public enum SnowflakeRules {
                                     .getSimpleName());
             columnRefCheck.setRuleMatchType(RuleMatchType.CLASS_ONLY);
             columnRefCheck.setRuleResultType(RuleResultType.FAIL_IF_NOT_FOUND);
-            parent.getChildrenRules().getRuleImplementation().add(columnRefCheck);
+            columnRef.getChildrenRules().getRuleImplementation().add(columnRefCheck);
         }
-
+        //// Select_clauseContext
         {
-            // rule to skip rule for single table queries
-            RuleImplementation querySpec = new RuleImplementation();
-            querySpec
+            RuleImplementation selectClause = new RuleImplementation();
+            selectClause
                     .getNames()
                     .getTextItem()
                     .add(
-                            org.antlr.sql.dialects.snowflake.SnowflakeParser.Select_statementContext
+                            org.antlr.sql.dialects.snowflake.SnowflakeParser.Select_clauseContext
                                     .class
                                     .getSimpleName());
-            querySpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+            selectClause.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 
-            // rule to skip rule for single table queries
-            RuleImplementation fromClauseSpec = new RuleImplementation();
-            fromClauseSpec
+            RuleImplementation selectClauseContext = new RuleImplementation();
+            selectClauseContext
+                    .getNames()
+                    .getTextItem()
+                    .add(
+                            org.antlr.sql.dialects.snowflake.SnowflakeParser
+                                    .Select_optional_clausesContext.class
+                                    .getSimpleName());
+            selectClauseContext.setDistance(1);
+            selectClauseContext.setDistanceCheckType(RuleDistanceIndexMatchType.EQUALS);
+
+            selectClauseContext.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+
+            RuleImplementation fromClause = new RuleImplementation();
+            fromClause
                     .getNames()
                     .getTextItem()
                     .add(
                             org.antlr.sql.dialects.snowflake.SnowflakeParser.From_clauseContext
                                     .class
                                     .getSimpleName());
-            fromClauseSpec.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+            fromClause.setRuleMatchType(RuleMatchType.CLASS_ONLY);
 
             RuleImplementation tableRefs = new RuleImplementation();
             tableRefs
@@ -138,15 +169,16 @@ public enum SnowflakeRules {
             tableRefs.setRuleResultType(RuleResultType.SKIP_IF_LESS_FOUND);
             tableRefs.setTimes(2);
 
-            fromClauseSpec.getChildrenRules().getRuleImplementation().add(tableRefs);
-            querySpec.getChildrenRules().getRuleImplementation().add(fromClauseSpec);
-            parent.getParentRules().getRuleImplementation().add(querySpec);
+            fromClause.getChildrenRules().getRuleImplementation().add(tableRefs);
+            selectClauseContext.getChildrenRules().getRuleImplementation().add(fromClause);
+            selectClause.getSiblingsRules().getRuleImplementation().add(selectClauseContext);
+            columnRef.getParentRules().getRuleImplementation().add(selectClause);
         }
 
         return rule;
     }
 
-    protected Rule getMaterializedView() {
+    public Rule getMaterializedView() {
 
         Rule r = new Rule();
         r.setKey("C022");
@@ -175,7 +207,7 @@ public enum SnowflakeRules {
         return r;
     }
 
-    public Rule getUnusedJoinRule() {
+    public Rule getUnusedVariableRule() {
         Rule r = new Rule();
         r.setInternalKey("C024");
         r.setKey("C024");
@@ -203,7 +235,7 @@ public enum SnowflakeRules {
         return r;
     }
 
-    protected Rule getCartesianJoinsRule() {
+    public Rule getCartesianJoinsRule() {
 
         Rule rule = baseRules.getCartesianJoinsRule();
         RuleImplementation rImpl = rule.getRuleImplementation();
@@ -221,7 +253,7 @@ public enum SnowflakeRules {
         return rule;
     }
 
-    protected Rule getWhereWithOrVsUnionRule() {
+    public Rule getWhereWithOrVsUnionRule() {
 
         Rule rule = baseRules.getWhereWithOrVsUnionRule();
         RuleImplementation rImpl = rule.getRuleImplementation();
@@ -240,7 +272,7 @@ public enum SnowflakeRules {
         return rule;
     }
 
-    protected Rule getUnionVsUnionALLRule() {
+    public Rule getUnionVsUnionALLRule() {
         Rule rule = baseRules.getUnionVsUnionALLRule();
         RuleImplementation rImpl = rule.getRuleImplementation();
 
@@ -261,7 +293,7 @@ public enum SnowflakeRules {
         return rule;
     }
 
-    protected Rule getExistsVsInRule() {
+    public Rule getExistsVsInRule() {
         Rule rule = baseRules.getExistsVsInRule();
 
         RuleImplementation rImpl = rule.getRuleImplementation();
@@ -287,7 +319,7 @@ public enum SnowflakeRules {
         return rule;
     }
 
-    protected Rule getOrderByRuleWithoutAscDesc() {
+    public Rule getOrderByRuleWithoutAscDesc() {
         Rule rule = baseRules.getOrderByRuleWithoutAscDesc();
 
         RuleImplementation impl = rule.getRuleImplementation();
@@ -308,11 +340,15 @@ public enum SnowflakeRules {
         return rule;
     }
 
-    protected Rule getSargRule() {
+    public Rule getSargRule() {
 
         Rule rule = baseRules.getSargRule();
 
         RuleImplementation impl = rule.getRuleImplementation();
+        impl.setRuleViolationMessage("Non-sargeable argument found");
+        impl.getNames().getTextItem().add(Search_conditionContext.class.getSimpleName());
+        impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        impl.setRuleResultType(RuleResultType.DEFAULT);
 
         RuleImplementation functionCallContainsColRef = new RuleImplementation();
         functionCallContainsColRef.getNames().getTextItem().add(Id_Context.class.getSimpleName());
@@ -357,15 +393,21 @@ public enum SnowflakeRules {
 
         impl.getChildrenRules().getRuleImplementation().add(ruleFunctionCall);
         impl.getChildrenRules().getRuleImplementation().add(predicateContextContainsLike);
-        impl.setRuleViolationMessage("Non-sargeable argument found");
-        impl.getNames().getTextItem().add(Search_conditionContext.class.getSimpleName());
-        impl.setRuleMatchType(RuleMatchType.CLASS_ONLY);
-        impl.setRuleResultType(RuleResultType.DEFAULT);
+
+        RuleImplementation whereClauseContextOnly = new RuleImplementation();
+        whereClauseContextOnly
+                .getNames()
+                .getTextItem()
+                .add(Where_clauseContext.class.getSimpleName());
+        whereClauseContextOnly.setRuleMatchType(RuleMatchType.CLASS_ONLY);
+        whereClauseContextOnly.setRuleResultType(RuleResultType.SKIP_IF_NOT_FOUND);
+
+        impl.getParentRules().getRuleImplementation().add(whereClauseContextOnly);
 
         return rule;
     }
 
-    protected Rule getOrderByRule() {
+    public Rule getOrderByRule() {
         Rule rule = baseRules.getOrderByRule();
         RuleImplementation impl = rule.getRuleImplementation();
 
@@ -387,7 +429,7 @@ public enum SnowflakeRules {
         return rule;
     }
 
-    protected Rule getNullComparisonRule() {
+    public Rule getNullComparisonRule() {
 
         Rule rule = baseRules.getNullComparisonRule();
         RuleImplementation rImpl = rule.getRuleImplementation();
@@ -417,7 +459,7 @@ public enum SnowflakeRules {
         return rule;
     }
 
-    protected Rule getInsertRule() {
+    public Rule getInsertRule() {
         Rule rule = baseRules.getInsertRule();
         RuleImplementation impl = rule.getRuleImplementation();
 
@@ -437,7 +479,7 @@ public enum SnowflakeRules {
         return rule;
     }
 
-    protected Rule getSelectAllRule() {
+    public Rule getSelectAllRule() {
         Rule rule = baseRules.getSelectAllRule();
         RuleImplementation impl = rule.getRuleImplementation();
 

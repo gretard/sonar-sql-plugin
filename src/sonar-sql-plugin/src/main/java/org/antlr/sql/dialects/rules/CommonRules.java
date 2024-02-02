@@ -32,7 +32,7 @@ public enum CommonRules {
         rule.setInternalKey("C030");
         rule.setName("File does not start with multiline/header comment");
         rule.setDescription("File does not start with multiline/header comment.");
-        rule.setTag("reliability");
+        rule.setTag("maintainability");
         rule.setSeverity("MINOR");
         rule.setRemediationFunction("LINEAR");
         rule.setDebtRemediationFunctionCoefficient("2min");

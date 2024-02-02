@@ -34,7 +34,7 @@ public enum BaseRules {
         rule.setInternalKey("C002");
         rule.setName("SELECT * is used");
         rule.setDescription("<h2>Description</h2><p>SELECT * is used. Please list names.</p>");
-        rule.setTag("design");
+        rule.setTag("performance");
         rule.setSeverity("MINOR");
         rule.setRemediationFunction("LINEAR");
         rule.setDebtRemediationFunctionCoefficient("2min");
@@ -614,7 +614,11 @@ public enum BaseRules {
         impl.getCompliantRulesCodeExamples()
                 .getRuleCodeExample()
                 .add("SELECT max(price) from dbo.items;");
-
+        impl.getCompliantRulesCodeExamples()
+                .getRuleCodeExample()
+                .add(
+                        "select department_id, count(*) from employees group by department_id"
+                                + " having count (*) < 10;");
         rule.setSource("http://sqlmag.com/t-sql/t-sql-best-practices-part-1");
         rule.setRuleImplementation(impl);
 
@@ -680,7 +684,7 @@ public enum BaseRules {
                 "<h2>Description</h2><p>Cartesian join without explicit JOIN clause. Consider using"
                         + " explicit JOIN clause.</p>");
         r.setSeverity("MAJOR");
-        r.setTag("performance");
+        r.setTag("readability");
         r.setRemediationFunction("LINEAR");
         r.setDebtRemediationFunctionCoefficient("3min");
         r.setName("Cartesian join found");
@@ -719,7 +723,9 @@ public enum BaseRules {
 
         RuleImplementation rImpl = new RuleImplementation();
         rImpl.setRuleViolationMessage("Implicit column reference found.");
-
+        rImpl.getCompliantRulesCodeExamples()
+                .getRuleCodeExample()
+                .add("select * from t where (t.c, t.d) in (select c, d from t2);");
         rImpl.getCompliantRulesCodeExamples()
                 .getRuleCodeExample()
                 .add("SELECT name, surname, count from names;");

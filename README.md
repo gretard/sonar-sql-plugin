@@ -189,7 +189,7 @@ Example to execute sql analysis againt specified folder:
 
 ## Contributing ##
 ### Building locally
-Run: ```mvn clean spotless:check spotless:apply install```
+Run: ```mvn versions:display-dependency-updates spotless:check spotless:apply install```
 
 ### Developing locally
 Added container definitions for easy development with VSCode. Download the [remote containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) and let it figure out the maven targets. 

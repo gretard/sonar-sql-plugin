@@ -69,8 +69,8 @@ public enum TSQLRules {
                                     getUnionVsUnionALLRule(),
                                     getExistsVsInRule(),
                                     getOrderByRuleWithoutAscDesc(),
-                                    getCartesianJoinsRule(),
-                                    getColumnListRule()
+                                    getCartesianJoinsRule()
+                                    // getColumnListRule()
                                     // getCursorRule()
                                     // baseRules.getDeclareRule(),
                                     //							baseRules.getMultipleDeclarations())

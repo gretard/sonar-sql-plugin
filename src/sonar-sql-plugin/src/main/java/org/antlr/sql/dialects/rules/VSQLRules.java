@@ -33,8 +33,9 @@ public enum VSQLRules {
                                     getSargRule(),
                                     getCartesianJoinsRule(),
                                     getCommitMissing(),
-                                    getCartesianJoinsRule(),
-                                    getColumnListRule()));
+                                    getCartesianJoinsRule()
+                                    // getColumnListRule()
+                                    ));
             rules.add(customRules);
         }
         return rules;

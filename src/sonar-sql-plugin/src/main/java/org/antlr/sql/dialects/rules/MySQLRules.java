@@ -54,8 +54,9 @@ public enum MySQLRules {
                                     getUnionVsUnionALLRule(),
                                     getCartesianJoinsRule(),
                                     getExistsVsInRule(),
-                                    getOrderByRuleWithoutAscDesc(),
-                                    getColumnListRule()));
+                                    getOrderByRuleWithoutAscDesc()
+                                    // getColumnListRule()
+                                    ));
             rules.add(customRules);
         }
         return rules;
