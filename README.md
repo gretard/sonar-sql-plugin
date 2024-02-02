@@ -99,7 +99,7 @@ sonar.language=sql
 sonar.sql.dialect=vsql
 ```
 ### SNOWFLAKE ###
-Sonar settings for snowflake. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/4-vsql)
+Sonar settings for snowflake. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/7-snowflake)
 ```
 sonar.projectKey=examples.sql.snowflake.project
 sonar.projectName=examples.sql.snowflake.project
