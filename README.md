@@ -17,6 +17,7 @@ Currently plug-in supports:
   - [PostgreSQL](https://github.com/tshprecher/antlr_psql)
   - [PostgreSQL](https://github.com/antlr/grammars-v4/tree/master/sql/postgresql)
   - [VSQL](https://github.com/gretard/antlr4-grammar-vsql)
+  - [SNOWFLAKE](https://github.com/antlr/grammars-v4/tree/master/sql/snowflake)
 - Reporting of issues found by:
   - [SQLCodeGuard](https://www.red-gate.com/products/sql-development/sql-code-guard/index) 
   - [MSBuild](https://msdn.microsoft.com/en-us/library/dd172133(v=vs.100).aspx)
@@ -34,8 +35,8 @@ Tutorials:
 
 ## Requirements ##
 Different plugin versions supports the following:
-- 1.0.0 - Sonarqube 7.4+versions
-- 1.2.0 - Sonarqube 9+versions
+- 1.0.0 - Sonarqube 7.4+ versions
+- 1.2.0 - Sonarqube 9+ versions
 
 ## Installation ##
 1. Download and install SonarQube
@@ -97,6 +98,17 @@ sonar.sources=src
 sonar.language=sql
 sonar.sql.dialect=vsql
 ```
+### SNOWFLAKE ###
+Sonar settings for snowflake. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/4-vsql)
+```
+sonar.projectKey=examples.sql.snowflake.project
+sonar.projectName=examples.sql.snowflake.project
+sonar.projectVersion=1.1
+sonar.sources=src
+# optional
+sonar.language=sql
+sonar.sql.dialect=snowflake
+```
 
 ### Custom rules example ###
 This is an example for sonar settings for project which uses custom plugin rules from local directory (located at ./rules directory). You can check full example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/6-pssql-with-custom-rules)
@@ -140,9 +152,9 @@ Please configure additional properties:
 `sonar.lang.patterns.plsqlopen=na`
 
 ## Using command line tools
-With the plugin - there is additional cli tool available (they are not required for sonar execution):
+With the plugin - there is additional cli tool available (it does not require sonar execution):
 
- - **rulesHelper.jar** - command line helper tool for writing custom sql rules
+ - **rulesHelper.jar** - command line helper tool for working with plugin and custom sql rules
 
 
 ### rulesHelper
@@ -155,19 +167,30 @@ Full help info:
 
 ```
 Please pass the following: 
-	action (print or  verify)
-	type (text or  file)
-	value (sql string or path to folder) 
-	dialect (tsql, pssql, mysql, pssql, pssqlv2) 
-Example:
-print text "SELECT * FROM dbo.test;" tsql
+	action  (print, verify or analyze)
+	type    (text or file)
+	value   (sql string or path to rules file/folder) 
+	dialect (tsql, pssql, mysql, pssql, pssqlv2, snowflake)
+	folder  (folder to analyze, only applicable when using analyze action)
 
-Example:
-verify file "c:/tests/customRules.rules;" mysql
+Example to print AST tree:
+	print text "SELECT * FROM dbo.test;" tsql
+
+Example to verify custom rules definitions:
+	verify file "c:/tests/customRules.rules;" mysql
+
+Example to execute custom rules and plugin rules against specified folder:
+	analyze file "c:/tests/customRules.rules;" snowflake "c:\docs\src"
+
+Example to execute sql analysis againt specified folder:
+	analyze file "NA" snowflake "c:\docs\src"
 ```
 
 
 ## Contributing ##
+### Building locally
+Run: ```mvn versions:display-dependency-updates spotless:check spotless:apply install```
+
 ### Developing locally
 Added container definitions for easy development with VSCode. Download the [remote containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) and let it figure out the maven targets. 
 <img width="1917" alt="vscode_remote_containers_extension_maven" src="https://user-images.githubusercontent.com/3657015/125957363-653c9f6f-b5cc-4a3c-96ef-9dc18d0f8bfb.png">
@@ -214,3 +237,5 @@ docker run \
 3. Implement sql rules, example VSQLRules
 4. Register rules at SQLDialectRules. This step is optional as plugin will support custom rules from user project provided in xml format.
 5. Update ./src/external/README.md with references to your added grammar
+
+Example commit for adding Snowflake grammar: https://github.com/gretard/sonar-sql-plugin/commit/e3296a5d1c69a031f24358aad87a4e46c46ea785

@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
 import org.antlr.sql.sca.nodes.IParsedNode;
 import org.sonar.plugins.sql.models.rules.Rule;
 import org.sonar.plugins.sql.models.rules.RuleImplementation;
@@ -46,40 +45,45 @@ public class RuleToCheck {
     public static List<RuleToCheck> createCodeList2(SqlRules... list) {
         List<RuleToCheck> items = new LinkedList<>();
         for (SqlRules item : list) {
-            item.getRule().forEach(rule -> {
-                if (rule.getRuleAppliesTo() == null || "code".equalsIgnoreCase(rule.getRuleAppliesTo())) {
-                    items.add(new RuleToCheck(item, rule));
-                }
-            });
+            item.getRule()
+                    .forEach(
+                            rule -> {
+                                if (rule.getRuleAppliesTo() == null
+                                        || "code".equalsIgnoreCase(rule.getRuleAppliesTo())) {
+                                    items.add(new RuleToCheck(item, rule));
+                                }
+                            });
         }
 
         return items;
     }
-
 
     public static List<RuleToCheck> createCodeList2(List<SqlRules> list) {
         List<RuleToCheck> items = new LinkedList<>();
         for (SqlRules item : list) {
-            item.getRule().forEach(rule -> {
-                if (rule.getRuleAppliesTo() == null || "code".equalsIgnoreCase(rule.getRuleAppliesTo())) {
-                    items.add(new RuleToCheck(item, rule));
-                }
-            });
+            item.getRule()
+                    .forEach(
+                            rule -> {
+                                if (rule.getRuleAppliesTo() == null
+                                        || "code".equalsIgnoreCase(rule.getRuleAppliesTo())) {
+                                    items.add(new RuleToCheck(item, rule));
+                                }
+                            });
         }
 
         return items;
     }
 
-    
-    
     public static List<RuleToCheck> createCommentsList(SqlRules... list) {
         List<RuleToCheck> items = new LinkedList<>();
         for (SqlRules item : list) {
-            item.getRule().forEach(rule -> {
-                if ("comments".equalsIgnoreCase(rule.getRuleAppliesTo())) {
-                    items.add(new RuleToCheck(item, rule));
-                }
-            });
+            item.getRule()
+                    .forEach(
+                            rule -> {
+                                if ("comments".equalsIgnoreCase(rule.getRuleAppliesTo())) {
+                                    items.add(new RuleToCheck(item, rule));
+                                }
+                            });
         }
 
         return items;
@@ -92,14 +96,18 @@ public class RuleToCheck {
         public RuleNodesMap(Rule rule) {
             initMap(items, rule.getRuleImplementation());
         }
+
         public List<IParsedNode> getNodes() {
             List<IParsedNode> nodes = new LinkedList<>();
-            items.forEach((k,v)-> {
-                nodes.addAll(v);
-            });
+            items.forEach(
+                    (k, v) -> {
+                        nodes.addAll(v);
+                    });
             return nodes;
         }
-        private static void initMap(final Map<RuleImplementation, List<IParsedNode>> map,
+
+        private static void initMap(
+                final Map<RuleImplementation, List<IParsedNode>> map,
                 final RuleImplementation rule) {
             map.putIfAbsent(rule, new ArrayList<>());
 

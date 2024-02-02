@@ -5,10 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.antlr.sql.dialects.Dialects;
 import org.antlr.sql.models.AntlrContext;
-import org.antlr.sql.tools.PrettyPrinter;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -34,19 +32,17 @@ public class HighlightingFillerTest {
 
         List<Object[]> data = new ArrayList<>();
 
-        data.add(new Object[] { Dialects.MYSQL, 17 });
-        data.add(new Object[] { Dialects.PSSQL, 7 });
-        data.add(new Object[] { Dialects.TSQL, 9 });
+        data.add(new Object[] {Dialects.MYSQL, 17});
+        data.add(new Object[] {Dialects.PSSQL, 7});
+        data.add(new Object[] {Dialects.TSQL, 9});
 
-        data.add(new Object[] { Dialects.VSQL, 9 });
+        data.add(new Object[] {Dialects.VSQL, 9});
         return data;
     }
 
-    @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
+    @Rule public TemporaryFolder folder = new TemporaryFolder();
 
-    @org.junit.Rule
-    public JUnitTempFolder temp = new org.sonar.api.impl.utils.JUnitTempFolder();
+    @org.junit.Rule public JUnitTempFolder temp = new org.sonar.api.impl.utils.JUnitTempFolder();
 
     private Dialects dialect;
 
@@ -67,20 +63,22 @@ public class HighlightingFillerTest {
         FileUtils.copyURLToFile(getClass().getResource("/tsql/sample1.sql"), baseFile);
         String contents = new String(Files.readAllBytes(baseFile.toPath()));
 
-        DefaultInputFile ti = new TestInputFileBuilder("test", folder.getRoot(), baseFile).initMetadata(contents)
-                .setLanguage(Constants.languageKey).setContents(contents).setProjectBaseDir(folder.getRoot().toPath())
-                .build();
+        DefaultInputFile ti =
+                new TestInputFileBuilder("test", folder.getRoot(), baseFile)
+                        .initMetadata(contents)
+                        .setLanguage(Constants.languageKey)
+                        .setContents(contents)
+                        .setProjectBaseDir(folder.getRoot().toPath())
+                        .build();
         ctxTester.fileSystem().add(ti);
 
         AntlrContext antlrContext = dialect.parse("SELECT * From facts.test where name = 4;\r\n");
 
-        PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
+        // PrettyPrinter.print(antlrContext.root, 0, antlrContext.stream);
 
         filler.fill(ti, ctxTester, antlrContext);
         List<TypeOfText> res = ctxTester.highlightingTypeAt("test:test.sql", 1, 1);
         Assert.assertEquals(1, res.size());
         Assert.assertEquals("KEYWORD", res.get(0).name());
-
     }
-
 }

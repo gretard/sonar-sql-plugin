@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-
-import org.antlr.sql.dialects.Dialects;
-import org.antlr.sql.dialects.SQLDialectRules;
 import org.antlr.sql.dialects.rules.CommonRules;
 import org.antlr.sql.models.AntlrContext;
 import org.antlr.sql.tools.PrettyPrinter;
@@ -15,11 +12,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
-import org.sonar.api.issue.Issue;
 import org.sonar.api.utils.log.LoggerLevel;
 import org.sonar.api.utils.log.Loggers;
 import org.sonar.plugins.sql.fillers.CommentIssuesFiller;
-import org.sonar.plugins.sql.fillers.IssuesFiller;
 import org.sonar.plugins.sql.issues.SqlIssue;
 import org.sonar.plugins.sql.issues.SqlIssuesList;
 import org.sonar.plugins.sql.models.rules.Rule;
@@ -41,21 +36,21 @@ public class PluginCommentRulesITCase {
 
             for (final Rule r : rule.getRule()) {
 
-                r.getRuleImplementation().getViolatingRulesCodeExamples().getRuleCodeExample().forEach(t -> {
-                    data.add(new Object[] { t, r.getKey(), r,
+                r.getRuleImplementation()
+                        .getViolatingRulesCodeExamples()
+                        .getRuleCodeExample()
+                        .forEach(
+                                t -> {
+                                    data.add(new Object[] {t, r.getKey(), r, true});
+                                });
 
-                            true
-
-                    });
-
-                });
-
-                r.getRuleImplementation().getCompliantRulesCodeExamples().getRuleCodeExample().forEach(t -> {
-                    data.add(new Object[] { t, r.getKey(), r, false
-
-                    });
-
-                });
+                r.getRuleImplementation()
+                        .getCompliantRulesCodeExamples()
+                        .getRuleCodeExample()
+                        .forEach(
+                                t -> {
+                                    data.add(new Object[] {t, r.getKey(), r, false});
+                                });
             }
         }
 
@@ -78,17 +73,24 @@ public class PluginCommentRulesITCase {
             PrettyPrinter.print(ctx.root, 0, ctx.stream);
         }
 
-        Assert.assertTrue("Found issues on : " + text + " for rule: " + rule.getKey() + " " + rule.getName()
-                + " expected: " + issueExists, !issues.isEmpty() == issueExists);
-
+        Assert.assertTrue(
+                "Found issues on : "
+                        + text
+                        + " for rule: "
+                        + rule.getKey()
+                        + " "
+                        + rule.getName()
+                        + " expected: "
+                        + issueExists,
+                !issues.isEmpty() == issueExists);
     }
 
     @Test
     public void testRuleContainsViolationMessgae() throws Throwable {
 
-        Assert.assertNotNull("Rule " + rule.getKey() + " does not contain violation message",
+        Assert.assertNotNull(
+                "Rule " + rule.getKey() + " does not contain violation message",
                 rule.getRuleImplementation().getRuleViolationMessage());
-
     }
 
     private String text;
@@ -99,6 +101,5 @@ public class PluginCommentRulesITCase {
         this.text = text;
         this.rule = rule;
         this.issueExists = issueExists;
-
     }
 }

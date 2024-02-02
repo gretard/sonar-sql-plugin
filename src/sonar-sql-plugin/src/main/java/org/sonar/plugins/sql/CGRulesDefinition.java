@@ -2,10 +2,8 @@ package org.sonar.plugins.sql;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
@@ -20,8 +18,8 @@ public class CGRulesDefinition implements RulesDefinition {
 
     @Override
     public void define(Context context) {
-        final NewRepository repository = context.createExternalRepository(Constants.TSQL_CG_ENGINEID,
-                Constants.languageKey);
+        final NewRepository repository =
+                context.createExternalRepository(Constants.TSQL_CG_ENGINEID, Constants.languageKey);
         try (InputStream stream = this.getClass().getResourceAsStream("cgsql-rules.xml")) {
             try (InputStreamReader reader = new InputStreamReader(stream)) {
 
@@ -37,18 +35,23 @@ public class CGRulesDefinition implements RulesDefinition {
                         final String name = XmlHelper.getNodeValue(node, "name");
                         final String description = XmlHelper.getNodeValue(node, "description");
 
-                        final String constantPerIssue = XmlHelper.getNodeValue(node,
-                                "debtRemediationFunctionCoefficient");
+                        final String constantPerIssue =
+                                XmlHelper.getNodeValue(node, "debtRemediationFunctionCoefficient");
                         final String severity = XmlHelper.getNodeValue(node, "severity");
                         final String tags[] = XmlHelper.getNodeValue(node, "tag").split(",");
 
-                        final NewRule rule = repository.createRule(key).setName(name)
-                                .setMarkdownDescription(description).setSeverity(severity).setTags(tags);
+                        final NewRule rule =
+                                repository
+                                        .createRule(key)
+                                        .setName(name)
+                                        .setMarkdownDescription(description)
+                                        .setSeverity(severity)
+                                        .setTags(tags);
                         rule.setDebtRemediationFunction(
                                 rule.debtRemediationFunctions().constantPerIssue(constantPerIssue));
                     } catch (final Exception e) {
-                        LOGGER.warn(String.format("Unexpected error while registering rule: %s", i), e);
-
+                        LOGGER.warn(
+                                String.format("Unexpected error while registering rule: %s", i), e);
                     }
                 }
             }
@@ -56,7 +59,5 @@ public class CGRulesDefinition implements RulesDefinition {
             LOGGER.warn("Unexpected error while registering rules", e);
         }
         repository.done();
-
     }
-
 }

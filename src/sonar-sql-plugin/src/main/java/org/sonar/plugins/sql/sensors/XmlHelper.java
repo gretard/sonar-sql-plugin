@@ -1,7 +1,6 @@
 package org.sonar.plugins.sql.sensors;
 
 import java.util.function.Function;
-
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -42,6 +41,7 @@ public final class XmlHelper {
         }
         return null;
     }
+
     public static final String getNodeValue(Node parent, String name, String defaultValue) {
         NodeList children = parent.getChildNodes();
         for (int i = 0; i < children.getLength(); i++) {
@@ -52,7 +52,9 @@ public final class XmlHelper {
         }
         return defaultValue;
     }
-    public static final <T> T getNodeValue2(Node parent, String name, Function<String, T> func, T defaultValue) {
+
+    public static final <T> T getNodeValue2(
+            Node parent, String name, Function<String, T> func, T defaultValue) {
         NodeList children = parent.getChildNodes();
         for (int i = 0; i < children.getLength(); i++) {
             Node child = children.item(i);
@@ -66,5 +68,4 @@ public final class XmlHelper {
         }
         return defaultValue;
     }
-
 }

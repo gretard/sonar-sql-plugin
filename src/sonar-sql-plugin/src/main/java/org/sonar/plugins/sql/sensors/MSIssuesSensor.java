@@ -7,10 +7,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.stream.Stream;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.antlr.sql.dialects.Dialects;
 import org.apache.commons.io.input.BOMInputStream;
 import org.sonar.api.batch.sensor.Sensor;
@@ -32,42 +30,54 @@ public class MSIssuesSensor extends BaseSensor implements Sensor {
 
     @Override
     public void describe(SensorDescriptor descriptor) {
-        descriptor.onlyOnLanguage(Constants.languageKey).onlyWhenConfiguration(x -> x.get(Constants.PLUGIN_SQL_DIALECT)
-                .orElse(Dialects.TSQL.name()).equalsIgnoreCase(Dialects.TSQL.name()));
-
+        descriptor
+                .onlyOnLanguage(Constants.languageKey)
+                .onlyWhenConfiguration(
+                        x ->
+                                x.get(Constants.PLUGIN_SQL_DIALECT)
+                                        .orElse(Dialects.TSQL.name())
+                                        .equalsIgnoreCase(Dialects.TSQL.name()));
     }
 
     @Override
     public void execute(final SensorContext context) {
         final File baseDir = context.fileSystem().baseDir();
-        final String filePath = context.config().get(Constants.TSQL_MS_ISSUES).orElse(Constants.TSQL_MS_ISSUES_DEFAULT)
-                .toLowerCase();
+        final String filePath =
+                context.config()
+                        .get(Constants.TSQL_MS_ISSUES)
+                        .orElse(Constants.TSQL_MS_ISSUES_DEFAULT)
+                        .toLowerCase();
 
         try (Stream<Path> fileStream = Files.walk(baseDir.toPath())) {
 
             fileStream
-                    .filter(p -> Files.isRegularFile(p) && p.getFileName().toString().toLowerCase().contains(filePath))
-                    .forEach(p -> {
-                        LOGGER.debug("Found file with issues {}", p.toString());
+                    .filter(
+                            p ->
+                                    Files.isRegularFile(p)
+                                            && p.getFileName()
+                                                    .toString()
+                                                    .toLowerCase()
+                                                    .contains(filePath))
+                    .forEach(
+                            p -> {
+                                LOGGER.debug("Found file with issues {}", p.toString());
 
-                        try (final BOMInputStream stream = new BOMInputStream(new FileInputStream(p.toFile()))) {
+                                try (final BOMInputStream stream =
+                                        new BOMInputStream(new FileInputStream(p.toFile()))) {
 
-                            final SqlIssuesList issues = read(stream);
-                            addIssues(context, issues, null);
+                                    final SqlIssuesList issues = read(stream);
+                                    addIssues(context, issues, null);
 
-                        } catch (IOException e1) {
-                            LOGGER.warn("Unexpected IO error: " + p.toString(), e1);
+                                } catch (IOException e1) {
+                                    LOGGER.warn("Unexpected IO error: " + p.toString(), e1);
 
-                        } catch (Exception e) {
-                            LOGGER.warn("Unexpected error: " + p.toString(), e);
-                        }
-
-                    });
+                                } catch (Exception e) {
+                                    LOGGER.warn("Unexpected error: " + p.toString(), e);
+                                }
+                            });
         } catch (Throwable e) {
             LOGGER.warn("Unexpected error", e);
-
         }
-
     }
 
     private SqlIssuesList read(final InputStream stream) throws Exception {
@@ -108,5 +118,4 @@ public class MSIssuesSensor extends BaseSensor implements Sensor {
 
         return issuesList;
     }
-
 }

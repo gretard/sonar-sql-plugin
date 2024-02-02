@@ -3,7 +3,6 @@ package org.antlr.sql.sca.nodes;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -11,6 +10,11 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import org.apache.commons.lang3.StringUtils;
 
 public class ParseTreeNode implements IParsedNode {
+
+    @Override
+    public String toString() {
+        return "ParseTreeNode [tree=" + tree != null ? tree.getText() : tree + "]";
+    }
 
     private ParseTree tree;
 
@@ -48,18 +52,13 @@ public class ParseTreeNode implements IParsedNode {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
         ParseTreeNode other = (ParseTreeNode) obj;
         if (tree == null) {
-            if (other.tree != null)
-                return false;
-        } else if (!tree.equals(other.tree))
-            return false;
+            if (other.tree != null) return false;
+        } else if (!tree.equals(other.tree)) return false;
         return true;
     }
 
@@ -133,7 +132,6 @@ public class ParseTreeNode implements IParsedNode {
         ParseTree parseTreeItem = this.tree.getParent();
         visit(nodes, parseTreeItem, 0);
         return nodes.toArray(new IParsedNode[0]);
-
     }
 
     @Override

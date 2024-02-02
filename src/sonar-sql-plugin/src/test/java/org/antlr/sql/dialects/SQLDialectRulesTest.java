@@ -8,14 +8,12 @@ public class SQLDialectRulesTest {
     @Test
     public void testGetRules() {
         long s = SQLDialectRules.INSTANCE.getGroupedRules().get(0).getRule().size();
-        Assert.assertEquals(18, s);
-
+        Assert.assertEquals(20, s);
     }
+
     @Test
     public void testGetRules2() {
         long s = SQLDialectRules.INSTANCE.getRules().get(0).getRule().size();
-        Assert.assertEquals(15, s);
-
+        Assert.assertEquals(16, s);
     }
-
 }

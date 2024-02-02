@@ -31,7 +31,6 @@ public class IndexMatcher implements IMatcher {
                     return false;
                 }
             }
-
         }
         if (rule.getIndex() < 0) {
             int val = node.getIndex2();
@@ -53,9 +52,7 @@ public class IndexMatcher implements IMatcher {
                     return false;
                 }
             }
-
         }
         return true;
     }
-
 }

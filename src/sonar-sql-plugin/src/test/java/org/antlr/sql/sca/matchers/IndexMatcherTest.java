@@ -9,28 +9,27 @@ import org.sonar.plugins.sql.models.rules.RuleImplementation;
 
 public class IndexMatcherTest {
 
-	private final IndexMatcher sut = new IndexMatcher();
+    private final IndexMatcher sut = new IndexMatcher();
 
-	@Test
-	public void testRuleHasZeroIndex() {
-		var node = new TestParsedNode();
-		var rule = new RuleImplementation();
+    @Test
+    public void testRuleHasZeroIndex() {
+        TestParsedNode node = new TestParsedNode();
+        RuleImplementation rule = new RuleImplementation();
 
-		var result = sut.match(node, rule);
+        boolean result = sut.match(node, rule);
 
-		assertThat(result).isTrue();
-	}
+        assertThat(result).isTrue();
+    }
 
-	@Test
-	public void testRuleHasNoneZeroIndexAndExpectsBiggerIndex() {
-		var node = new TestParsedNode();
-		var rule = new RuleImplementation();
-		rule.setIndex(20);
-		rule.setIndexCheckType(RuleDistanceIndexMatchType.MORE);
+    @Test
+    public void testRuleHasNoneZeroIndexAndExpectsBiggerIndex() {
+        TestParsedNode node = new TestParsedNode();
+        RuleImplementation rule = new RuleImplementation();
+        rule.setIndex(20);
+        rule.setIndexCheckType(RuleDistanceIndexMatchType.MORE);
 
-		var result = sut.match(node, rule);
+        boolean result = sut.match(node, rule);
 
-		assertThat(result).isFalse();
-	}
-
+        assertThat(result).isFalse();
+    }
 }

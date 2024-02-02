@@ -1,10 +1,8 @@
 package org.sonar.plugins.sql;
 
 import java.io.InputStream;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
@@ -19,9 +17,10 @@ public class MsRulesDefinition implements RulesDefinition {
 
     @Override
     public void define(Context context) {
-        final NewRepository repository = context.createExternalRepository(Constants.TSQL_MS_ENGINEID,
-                Constants.languageKey);
-        try (InputStream stream = this.getClass().getClassLoader().getResourceAsStream("vssql-rules.xml")) {
+        final NewRepository repository =
+                context.createExternalRepository(Constants.TSQL_MS_ENGINEID, Constants.languageKey);
+        try (InputStream stream =
+                this.getClass().getClassLoader().getResourceAsStream("vssql-rules.xml")) {
 
             final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             final DocumentBuilder builder = factory.newDocumentBuilder();
@@ -35,23 +34,27 @@ public class MsRulesDefinition implements RulesDefinition {
                     final String name = XmlHelper.getNodeValue(node, "name");
                     final String description = XmlHelper.getNodeValue(node, "description");
 
-                    final String constantPerIssue = XmlHelper.getNodeValue(node, "debtRemediationFunctionCoefficient");
+                    final String constantPerIssue =
+                            XmlHelper.getNodeValue(node, "debtRemediationFunctionCoefficient");
                     final String severity = XmlHelper.getNodeValue(node, "severity");
                     final String tags[] = XmlHelper.getNodeValue(node, "tag").split(",");
 
-                    final NewRule rule = repository.createRule(key).setName(name).setMarkdownDescription(description)
-                            .setSeverity(severity).setTags(tags);
-                    rule.setDebtRemediationFunction(rule.debtRemediationFunctions().constantPerIssue(constantPerIssue));
+                    final NewRule rule =
+                            repository
+                                    .createRule(key)
+                                    .setName(name)
+                                    .setMarkdownDescription(description)
+                                    .setSeverity(severity)
+                                    .setTags(tags);
+                    rule.setDebtRemediationFunction(
+                            rule.debtRemediationFunctions().constantPerIssue(constantPerIssue));
                 } catch (final Exception e) {
                     LOGGER.warn(String.format("Unexpected error while registering rule: %s", i), e);
-
                 }
             }
         } catch (Exception e) {
             LOGGER.warn("Unexpected error while registering rules", e);
         }
         repository.done();
-
     }
-
 }

@@ -1,7 +1,6 @@
 package org.sonar.plugins.sql.fillers;
 
 import java.util.List;
-
 import org.antlr.sql.models.AntlrContext;
 import org.antlr.v4.runtime.Token;
 import org.apache.commons.lang3.StringUtils;
@@ -26,12 +25,17 @@ public class HighlighterFiller implements Filler {
                 try {
 
                     final String text = token.getText();
-                    if (token.getType() == -1 || token.getStartIndex() >= token.getStopIndex()
+                    if (token.getType() == -1
+                            || token.getStartIndex() >= token.getStopIndex()
                             || StringUtils.isEmpty(text)) {
                         continue;
                     }
-                    final TextRange range = file.newRange(token.getLine(), token.getCharPositionInLine(),
-                            token.getLine(), token.getCharPositionInLine() + text.length());
+                    final TextRange range =
+                            file.newRange(
+                                    token.getLine(),
+                                    token.getCharPositionInLine(),
+                                    token.getLine(),
+                                    token.getCharPositionInLine() + text.length());
                     if (antlrContext.isComment(token)) {
                         newHighlighting.highlight(range, TypeOfText.COMMENT);
                         continue;
@@ -46,7 +50,11 @@ public class HighlighterFiller implements Filler {
                     }
                 } catch (Exception e) {
                     if (LOGGER.isDebugEnabled()) {
-                        LOGGER.debug("Cannot add highlighting: {} on file {} for token {}", e, file, token);
+                        LOGGER.debug(
+                                "Cannot add highlighting: {} on file {} for token {}",
+                                e,
+                                file,
+                                token);
                     }
                 }
             }
@@ -57,5 +65,4 @@ public class HighlighterFiller implements Filler {
             LOGGER.warn("Unexpected error adding highlighting on: " + file, e);
         }
     }
-
 }

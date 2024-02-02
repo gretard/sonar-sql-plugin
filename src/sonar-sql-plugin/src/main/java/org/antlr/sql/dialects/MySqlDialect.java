@@ -12,26 +12,27 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 public class MySqlDialect extends BaseDialect {
 
-	@Override
-	protected Lexer getLexer(CharStream charStream) {
-		return new MySqlLexer(charStream);
-	}
+    @Override
+    protected Lexer getLexer(CharStream charStream) {
+        return new MySqlLexer(charStream);
+    }
 
-	@Override
-	protected ParseTree getRoot(CommonTokenStream stream) {
-		MySqlParser p = new MySqlParser(stream);
-		p.removeErrorListeners();
-		return p.root();
-	}
+    @Override
+    protected ParseTree getRoot(CommonTokenStream stream) {
+        MySqlParser p = new MySqlParser(stream);
+        p.removeErrorListeners();
+        return p.root();
+    }
 
-	@Override
-	protected DialectLanguageTypesMap getTypesMap() {
-		return new DialectLanguageTypesMap().addCommentToken(MySqlParser.COMMENT)
-				.addCommentToken(MySqlParser.LINE_COMMENT).addStringToken(MySqlParser.STRING)
-				.addCognitiveComplexityType(PredicateExpressionContext.class)
-				.addCognitiveComplexityType(DmlStatementContext.class)
-				.addCognitiveComplexityType(ScalarFunctionCallContext.class)
-				.addComplexityType(PredicateExpressionContext.class);
-
-	}
+    @Override
+    protected DialectLanguageTypesMap getTypesMap() {
+        return new DialectLanguageTypesMap()
+                .addCommentToken(MySqlParser.COMMENT)
+                .addCommentToken(MySqlParser.LINE_COMMENT)
+                .addStringToken(MySqlParser.STRING)
+                .addCognitiveComplexityType(PredicateExpressionContext.class)
+                .addCognitiveComplexityType(DmlStatementContext.class)
+                .addCognitiveComplexityType(ScalarFunctionCallContext.class)
+                .addComplexityType(PredicateExpressionContext.class);
+    }
 }

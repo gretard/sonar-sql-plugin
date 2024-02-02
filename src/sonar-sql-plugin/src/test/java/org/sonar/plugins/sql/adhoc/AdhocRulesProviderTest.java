@@ -1,7 +1,6 @@
 package org.sonar.plugins.sql.adhoc;
 
 import java.io.File;
-
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,8 +15,7 @@ import org.sonar.plugins.sql.models.rules.SqlRules;
 import org.sonar.plugins.sql.models.rules.TextCheckType;
 
 public class AdhocRulesProviderTest {
-    @org.junit.Rule
-    public JUnitTempFolder temp = new org.sonar.api.impl.utils.JUnitTempFolder();
+    @org.junit.Rule public JUnitTempFolder temp = new org.sonar.api.impl.utils.JUnitTempFolder();
 
     @Test
     public void testRuleDetailsAreParsedProperlyToDefaults() throws Exception {
@@ -46,9 +44,8 @@ public class AdhocRulesProviderTest {
         Assert.assertEquals("design", rule.getTag());
         Assert.assertNotNull(rule.getRuleImplementation());
         Assert.assertEquals("line", rule.getRuleReportsOn());
-
-
     }
+
     @Test
     public void testRuleDetailsAreParsedProperly() throws Exception {
         File baseFile = temp.newFile();
@@ -77,7 +74,6 @@ public class AdhocRulesProviderTest {
         Assert.assertEquals("comments", rule.getRuleAppliesTo());
         Assert.assertEquals("design", rule.getTag());
         Assert.assertNotNull(rule.getRuleImplementation());
-
     }
 
     @Test
@@ -109,10 +105,11 @@ public class AdhocRulesProviderTest {
         Assert.assertEquals(RuleResultType.FAIL_IF_FOUND, ri.getRuleResultType());
         Assert.assertEquals("msg", ri.getRuleViolationMessage());
         Assert.assertEquals(TextCheckType.STRICT, ri.getTextCheckType());
-        Assert.assertEquals("test", ri.getParentRules().getRuleImplementation().get(0).getRuleViolationMessage());
+        Assert.assertEquals(
+                "test",
+                ri.getParentRules().getRuleImplementation().get(0).getRuleViolationMessage());
 
         // ri.getChildrenRules()
 
     }
-
 }
