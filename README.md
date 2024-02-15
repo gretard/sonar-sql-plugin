@@ -2,7 +2,7 @@
 [![Gitter](https://badges.gitter.im/sonar-sql-plugin/community.svg)](https://gitter.im/sonar-sql-plugin/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Build Status](https://dev.azure.com/kgreta/sonar-sql-plugin/_apis/build/status/gretard.sonar-sql-plugin?branchName=master)](https://dev.azure.com/kgreta/sonar-sql-plugin/_build/latest?definitionId=2&branchName=master)
 
-  SQL language (T-SQL, MySQL, PostgreSQL and Vertica SQL dialects) plugin for [SonarQube](https://www.sonarqube.org/) 
+  SQL language (T-SQL, MySQL, PostgreSQL, Snowflake and Vertica SQL dialects) plugin for [SonarQube](https://www.sonarqube.org/) 
 
 ## Donating ##
 You can support this [project and others](https://github.com/gretard) via [Paypal](https://www.paypal.me/greta514284/)
