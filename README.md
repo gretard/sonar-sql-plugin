@@ -52,8 +52,8 @@ Please see examples on how to use different dialects.
 ### T-SQL ###
 Sonar settings for tsql. You can check example at [here](https://github.com/gretard/sonar-sql-plugin/tree/master/examples/1-tsql)
 ```
-sonar.projectKey=examples.sql.mysql.project
-sonar.projectName=examples.sql.mysql.project
+sonar.projectKey=examples.sql.tsql.project
+sonar.projectName=examples.sql.tsql.project
 sonar.projectVersion=1.1
 sonar.sources=src
 # optional
