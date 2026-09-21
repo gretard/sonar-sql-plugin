@@ -3,6 +3,7 @@ package org.antlr.sql.models;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.antlr.sql.dialects.DialectLanguageTypesMap;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;
@@ -54,7 +55,7 @@ public class AntlrContext {
     }
 
     public AntlrContext withRules(Rule... rules) {
-        var list = Arrays.asList(rules).stream().map(x -> x.getKey()).toList();
+        var list = Arrays.asList(rules).stream().map(x -> x.getKey()).collect(Collectors.toList());
         this.rules.forEach(
                 r -> {
                     r.getRule().removeIf(ri -> !list.contains(ri.getKey()));
