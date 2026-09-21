@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 import org.sonar.plugins.sql.Constants;
@@ -27,7 +28,7 @@ public class SQLCheckIssuesReader {
             String txt = Files.readString(file.toPath());
             Matcher matcher = riskPattern.matcher(txt);
 
-            List<MatchResult> matchResults = matcher.results().toList();
+            List<MatchResult> matchResults = matcher.results().collect(Collectors.toList());
             for (int i = 0; i < matchResults.size(); i++) {
 
                 MatchResult matchResult = matchResults.get(i);

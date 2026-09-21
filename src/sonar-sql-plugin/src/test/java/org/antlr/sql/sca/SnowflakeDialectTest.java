@@ -2,6 +2,7 @@ package org.antlr.sql.sca;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.antlr.sql.dialects.Dialects;
 import org.antlr.sql.dialects.rules.SnowflakeRules;
 import org.antlr.sql.models.AntlrContext;
@@ -66,7 +67,8 @@ public class SnowflakeDialectTest {
                                 + "));");
 
         SqlIssuesList list = sut.getIssues(antlrContext);
-        List<String> keys = list.getaLLIssues().stream().map(x -> x.getKey()).toList();
+        List<String> keys =
+                list.getaLLIssues().stream().map(x -> x.getKey()).collect(Collectors.toList());
         Assertions.assertThat(keys).contains("C023", "C002"); // cartesian join, select *
     }
 
@@ -80,7 +82,8 @@ public class SnowflakeDialectTest {
 
         SqlIssuesList list = sut.getIssues(antlrContext);
 
-        List<String> keys = list.getaLLIssues().stream().map(x -> x.getKey()).toList();
+        List<String> keys =
+                list.getaLLIssues().stream().map(x -> x.getKey()).collect(Collectors.toList());
         Assertions.assertThat(keys).isEmpty();
     }
 
@@ -96,7 +99,8 @@ public class SnowflakeDialectTest {
 
         SqlIssuesList list = sut.getIssues(antlrContext);
 
-        List<String> keys = list.getaLLIssues().stream().map(x -> x.getKey()).toList();
+        List<String> keys =
+                list.getaLLIssues().stream().map(x -> x.getKey()).collect(Collectors.toList());
         Assertions.assertThat(keys).isEmpty();
     }
 

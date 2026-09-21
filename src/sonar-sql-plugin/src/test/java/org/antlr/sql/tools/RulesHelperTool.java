@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.antlr.sql.dialects.Dialects;
 import org.antlr.sql.models.AntlrContext;
 import org.antlr.sql.sca.IssuesProvider;
@@ -142,7 +143,9 @@ public class RulesHelperTool {
 
             Path sourcePath = fileDir.toPath();
             List<Path> filesToCheck =
-                    Files.walk(sourcePath).filter(f -> Files.isRegularFile(f)).toList();
+                    Files.walk(sourcePath)
+                            .filter(f -> Files.isRegularFile(f))
+                            .collect(Collectors.toList());
 
             for (Path fileToCheck : filesToCheck) {
                 try {

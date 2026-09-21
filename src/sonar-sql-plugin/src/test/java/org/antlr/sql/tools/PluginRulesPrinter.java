@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import org.antlr.sql.dialects.Dialects;
 import org.antlr.sql.dialects.SQLDialectRules;
 import org.sonar.plugins.sql.models.rules.Rule;
@@ -34,7 +35,10 @@ public class PluginRulesPrinter {
                 // Header comment rules
                 if (r.getKey().equals("C030")) {
                     dialects =
-                            Arrays.asList(Dialects.values()).stream().map(x -> x.name()).toList();
+                            Arrays.asList(Dialects.values())
+                                    .stream()
+                                    .map(x -> x.name())
+                                    .collect(Collectors.toList());
                 }
                 System.out.println(
                         "<p>Supported dialects: "
